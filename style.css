@@ -185,7 +185,7 @@ header {
 .hero-content p {
   font-size: 1.05rem;
   color: rgba(255,255,255,0.5);
-  max-width: 520px;
+  max-width: 1000px;
   margin-bottom: 36px;
   line-height: 1.8;
 }

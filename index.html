@@ -1,252 +1,219 @@
 <!DOCTYPE html>
-<!-- HTML5 文件宣告 -->
-
-<html lang="zh-Hant">
-<!-- 網頁語言設定為繁體中文 -->
+<html lang="zh-Hant"> <!-- 網頁語言設定為繁體中文 -->
 
 <head>
-
-  <!-- 網頁編碼 -->
-  <meta charset="UTF-8" />
-
-  <!-- 響應式網頁設定（手機版重要） -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- 網頁標題 -->
-  <title>台灣能源互動電子書</title>
-
-  <link rel="stylesheet" href="css/style.css">
-	
-  <link href="style.css" rel="stylesheet" type="text/css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 讓手機版正常縮放。 -->
+  <title>臺灣能源互動電子書</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- =========================
-       Header 頁首
-  ========================= -->
-
-  <header>
-
-    <!-- 網站主標題 -->
-    <h1>台灣能源互動電子書</h1>
-
-    <!-- 網站簡介 -->
-    <p>
-      本平台結合 Unity WebGL 與互動式 3D 模型，
-      展示台灣主要發電方式與新世代能源技術，
-      提供沉浸式能源教育與虛擬導覽體驗。
-    </p>
-
-  </header>
-
-  <!-- =========================
-       導覽列
-  ========================= -->
-
+  <!-- Navbar 網頁主選單 -->
   <nav>
+    <div class="logo">Taiwan Energy<span></span></div>
 
-    <ul>
+    <button class="nav-toggle" aria-label="開啟選單" onclick="toggleMenu()"> <!-- 手機版開關選單-->
+      <span></span><span></span><span></span>
+    </button>
 
-      <!-- 點擊後跳到指定區塊 -->
-      <li><a href="#thermal">火力發電</a></li>
-
-      <li><a href="#wind">風力發電</a></li>
-
-      <li><a href="#hydro">水力發電</a></li>
-
-      <li><a href="#solar">太陽能發電</a></li>
-
-      <li><a href="#nuclear">核能發電</a></li>
-
-      <li><a href="#tokamak">托克瑪克核融合</a></li>
-
-      <li><a href="#alphae">Alpha-E 新核能</a></li>
-
+    <ul id="nav-menu"> <!-- 頁面章節跳轉-->
+      <li><a href="#thermal">火力</a></li>
+      <li><a href="#wind">風力</a></li>
+      <li><a href="#hydro">水力</a></li>
+      <li><a href="#solar">太陽能</a></li>
+      <li><a href="#nuclear">核能</a></li>
+      <li><a href="#tokamak">核融合</a></li>
+      <li><a href="#alpha-e">Alpha-E</a></li>
     </ul>
-
   </nav>
 
-  <!-- =========================
-       主內容區
-  ========================= -->
+  <!-- Header / Hero -->
+  <header>
+    <div class="hero-content">
+      <div class="hero-tag">互動式能源教育平台</div>
+      <h1>探索<em>臺灣</em>的能源未來</h1> <!-- em：改色-->
+      <p>結合 Unity WebGL 與互動式 3D 模型，展示臺灣主要發電方式與未來能源科技，提供沉浸式能源教育與虛擬導覽體驗。</p>
+      <a href="#thermal" class="hero-button">開始探索</a>
+    </div>
 
+    <!-- 統計列 -->
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <strong>6+</strong>
+        <span>發電技術</span>
+      </div>
+      <div class="hero-stat">
+        <strong>3D</strong>
+        <span>互動模型</span>
+      </div>
+      <div class="hero-stat">
+        <strong>Unity</strong>
+        <span>WebGL 技術</span>
+      </div>
+      <div class="hero-stat">
+        <strong>免費</strong>
+        <span>教育用途</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主內容 -->
   <main class="container">
 
-    <!-- =========================
-         火力發電區塊
-    ========================= -->
-
+    <!-- 火力發電 -->
     <section id="thermal" class="energy-section">
-
-      <!-- 區塊標題 -->
-      <h2>火力發電</h2>
-
-      <!-- 區塊介紹 -->
-      <p>
-        展示火力發電廠中的鍋爐、汽輪機與發電流程，
-        使用 Unity 建立虛擬導覽系統。
-      </p>
-
-      <!-- iframe 外框 -->
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2>火力發電</h2>
+      </div>
+      <p>展示火力發電廠中的鍋爐、汽輪機與發電流程，使用 Unity 建立虛擬導覽系統。</p>
       <div class="iframe-wrapper">
-
-        <!-- Unity WebGL 嵌入 -->
         <iframe
           src="https://teresa1107-nthu.github.io/Thermal-Power-Plant-Unity/"
+          title="火力發電廠 3D 互動模型"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin" 
           allowfullscreen>
         </iframe>
-
+        <!-- sandbox="allow-scripts allow-same-origin"  增加 iframe 安全性 -->
       </div>
-
     </section>
 
-    <!-- =========================
-         風力發電區塊
-    ========================= -->
-
+    <!-- 風力發電 -->
     <section id="wind" class="energy-section">
-
-      <h2>風力發電</h2>
-
-      <p>
-        介紹風力機葉片、風場配置與再生能源應用。
-      </p>
-
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2>風力發電</h2>
+      </div>
+      <p>展示風力發電系統與再生能源應用。</p>
       <div class="iframe-wrapper">
-
         <iframe
           src="https://3d.energyencyclopedia.com/wind_menu?mode=iframe"
+          title="風力發電 3D 互動模型"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin"
           allowfullscreen>
         </iframe>
-
       </div>
-
+      <div class="credit">
+        3D content by <a href="https://energyencyclopedia.com/" target="_blank">EnergyEncyclopedia.com</a>
+      </div>
     </section>
 
-    <!-- =========================
-         水力發電區塊
-    ========================= -->
-
+    <!-- 水力發電 -->
     <section id="hydro" class="energy-section">
-
-      <h2>水力發電</h2>
-
-      <p>
-        展示水庫、水輪機與水力發電流程。
-      </p>
-
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2>水力發電</h2>
+      </div>
+      <p>展示水力發電系統與水輪機運作原理。</p>
       <div class="iframe-wrapper">
-
         <iframe
           src="https://3d.energyencyclopedia.com/hydro_powerplant?mode=iframe"
+          title="水力發電 3D 互動模型"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin"
           allowfullscreen>
         </iframe>
-
       </div>
-
+      <div class="credit">
+        3D content by <a href="https://energyencyclopedia.com/" target="_blank">EnergyEncyclopedia.com</a>
+      </div>
     </section>
 
-    <!-- =========================
-         太陽能發電區塊
-    ========================= -->
-
+    <!-- 太陽能 -->
     <section id="solar" class="energy-section">
-
-      <h2>太陽能發電</h2>
-
-      <p>
-        展示太陽能板、光電系統與綠能應用。
-      </p>
-
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2>太陽能發電</h2>
+      </div>
+      <p>展示太陽能板與光電系統技術。</p>
       <div class="iframe-wrapper">
-
         <iframe
           src="https://3d.energyencyclopedia.com/solar_menu?mode=iframe"
+          title="太陽能發電 3D 互動模型"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin"
           allowfullscreen>
         </iframe>
-
       </div>
-
+      <div class="credit">
+        3D content by <a href="https://energyencyclopedia.com/" target="_blank">EnergyEncyclopedia.com</a>
+      </div>
     </section>
 
-    <!-- =========================
-         核能發電區塊
-    ========================= -->
-
+    <!-- 核能 -->
     <section id="nuclear" class="energy-section">
-
-      <h2>核能發電</h2>
-
-      <p>
-        展示壓水式核能電廠與反應爐運作原理。
-      </p>
-
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2>核能發電</h2>
+      </div>
+      <p>展示核能發電與反應爐運作原理。</p>
       <div class="iframe-wrapper">
-
         <iframe
           src="https://3d.energyencyclopedia.com/pwr_npp?mode=iframe"
+          title="核能發電 3D 互動模型"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin"
           allowfullscreen>
         </iframe>
-
       </div>
-
+      <div class="credit">
+        3D content by <a href="https://energyencyclopedia.com/" target="_blank">EnergyEncyclopedia.com</a>
+      </div>
     </section>
 
-    <!-- =========================
-         托克瑪克核融合區塊
-    ========================= -->
-
+    <!-- 托克瑪克 -->
     <section id="tokamak" class="energy-section">
-
-      <h2>托克瑪克核融合</h2>
-
-      <p>
-        展示托克瑪克核融合反應爐與未來核融合技術概念。
-      </p>
-
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2>托克瑪克核融合</h2>
+      </div>
+      <p>展示托克瑪克核融合與未來能源技術。</p>
       <div class="iframe-wrapper">
-
         <iframe
           src="https://3d.energyencyclopedia.com/tokamak_building?mode=iframe"
+          title="托克瑪克核融合 3D 互動模型"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin"
           allowfullscreen>
         </iframe>
-
       </div>
-
+      <div class="credit">
+        3D content by <a href="https://energyencyclopedia.com/" target="_blank">EnergyEncyclopedia.com</a>
+      </div>
     </section>
 
-    <!-- =========================
-         Alpha-E 開發中區塊
-    ========================= -->
-
-    <section id="alphae" class="energy-section">
-
-      <div class="coming-soon">
-
-        <h3>Alpha-E 新核能發電</h3>
-
-        <p>
-          系統開發中。
-        </p>
-
+    <!-- Alpha-E（id 已修正，不再重複） -->
+    <section id="alpha-e" class="energy-section">
+      <div class="section-header">
+        <span class="section-num">07</span>
+        <h2>Alpha-E <span class="badge-wip">開發中</span></h2>
       </div>
-
+      <p>此章節正在開發中，敬請期待。</p>
     </section>
 
   </main>
 
-  <!-- =========================
-       Footer 頁尾
-  ========================= -->
-
+  <!-- Footer -->
   <footer>
-
-    <p>
-      台灣能源互動電子書 © 2026
-    </p>
-
+    <p>臺灣能源互動電子書 © 2026</p>
+    <p>本網站為教育與學術用途開發。</p>
   </footer>
+
+  <script>
+    function toggleMenu() { //切換手機版選單開關。
+      document.getElementById('nav-menu').classList.toggle('open');
+    }
+    // 點選選單項目後自動關閉
+    document.querySelectorAll('#nav-menu a').forEach(a => { //點選後自動關閉手機選單。
+      a.addEventListener('click', () => {
+        document.getElementById('nav-menu').classList.remove('open');
+      });
+    });
+  </script>
 
 </body>
 </html>

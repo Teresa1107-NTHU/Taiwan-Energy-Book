@@ -1,0 +1,413 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+:root{--black:#0d1117;--white:#fff;--line:#e9ecef;--muted:#6c757d;--cyan:#63daf4;--green:#6ee64e;--red:#ff4040;--yellow:#fbbf24;--nav:64px}*{box-sizing:border-box;margin:0;padding:0}body{font-family:"DM Sans","Noto Sans TC",sans-serif;background:#f8f9fa;color:var(--black);line-height:1.7}button,input,select{font:inherit}button{cursor:pointer}nav{position:fixed;inset:0 0 auto;z-index:1000;height:var(--nav);display:flex;align-items:center;justify-content:space-between;padding:0 40px;background:rgba(13,17,23,.94);backdrop-filter:blur(16px)}.logo{color:#fff;text-decoration:none;font-weight:600}.logo span{display:inline-block;width:8px;height:8px;margin-left:4px;border-radius:50%;background:var(--yellow)}nav ul{display:flex;gap:4px;list-style:none}nav a:not(.logo){color:#ffffff9d;text-decoration:none;font-size:.875rem;padding:6px 12px;border-radius:8px}nav a:hover,nav a.active{color:#fff;background:#ffffff14}.nav-toggle{display:none;background:none;border:0;flex-direction:column;gap:5px}.nav-toggle span{width:22px;height:2px;background:#fff}.page-hero{margin-top:var(--nav);min-height:330px;padding:70px max(5vw,32px);display:flex;align-items:center;color:#fff;background:radial-gradient(circle at 78% 28%,#65d9ef2e,transparent 30%),var(--black)}.eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.12em;color:#ffffff78}.page-hero h1{margin:12px 0 18px;font-size:clamp(2.2rem,5vw,4rem);line-height:1.1}.page-hero p:last-child{max-width:850px;color:#ffffff9c}.alpha-container{width:min(1440px,95%);margin:auto;padding:48px 0 80px}.content-card{margin-bottom:24px;padding:32px;border:1px solid var(--line);border-radius:24px;background:#fff}.card-heading{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:22px}.card-heading>div{display:flex;align-items:baseline;gap:12px}.card-heading span,.info-head span{color:#adb5bd;font-size:.75rem;font-weight:700}.card-heading h2{font-size:1.45rem}.card-heading p{color:var(--muted);font-size:.88rem}.sim-panel{overflow:hidden;border-radius:16px;background:#8f9197;box-shadow:0 10px 32px #0002}.panel-bar{height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:#5f6269;color:#fff}.panel-bar button{border:0;border-radius:6px;padding:7px 14px;margin-left:6px;background:#777b84;color:#eee}.panel-bar button.active{background:#fff;color:#222}.panel-bar button.cyan{background:var(--cyan);color:#17343b}.schematic{position:relative;aspect-ratio:1536/720;overflow:hidden}.schematic>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 8%;filter:saturate(.55) brightness(.72)}.device{position:absolute;z-index:2;color:#eee;background:#4e5057f7;border:1px solid #ffffff20;border-radius:8px;box-shadow:0 7px 18px #0006;overflow:hidden}.device header{display:flex;align-items:center;gap:7px;padding:7px 9px;background:#656870;font-size:.86rem}.device header i{width:9px;height:9px;border-radius:50%;background:#55585f}.device header i.on{background:var(--green);box-shadow:0 0 9px var(--green)}.device header i.red.on{background:var(--red);box-shadow:0 0 9px var(--red)}.device header b{margin-left:auto;padding:1px 5px;border-radius:4px;background:#767981;font-size:.62rem;font-weight:500}.device header b.on{background:var(--green);color:#183312}.readout{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:7px;padding:8px;border-radius:6px;background:#36383d}.readout span,.readout label{font-size:.67rem;color:#aaa}.readout strong{display:block;color:#fff;font-size:.78rem}.readout em{font-style:normal}.fields{grid-template-columns:1fr}.fields label{display:flex;align-items:center;justify-content:space-between;gap:6px}.fields input{width:72px;padding:3px 5px;border:1px solid #777;border-radius:4px;background:#45484e;color:#fff;text-align:right}.actions{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:0 7px 7px}.actions.three{grid-template-columns:repeat(3,1fr)}.actions button,.gas button{border:0;border-radius:5px;padding:5px;background:#6d7078;color:#ddd}.actions button:last-child,.gas button{background:var(--cyan);color:#16333a}.rough{left:13.7%;top:25%;width:11%;}.turbo{left:24.5%;top:14.8%;width:11.3%}.hv{left:37%;top:19%;width:14.5%}.microwave{left:52.8%;top:18.5%;width:14.3%}.mfc{left:67.5%;top:18.5%;width:13.3%}.gas{left:13.8%;top:48%;width:18.5%;padding-bottom:7px}.gasline{display:grid;grid-template-columns:1fr 74px auto;gap:6px;padding:7px}.gas select,.gas input{min-width:0;border:1px solid #777;border-radius:5px;background:#44474d;color:#fff;padding:4px}.cooler{left:77%;top:47%;width:12%}.detector{left:65%;top:63%;width:14.5%;padding-bottom:6px}.detector header strong{margin-left:auto;font-size:.62rem}.chart{margin:5px 7px;padding:4px;background:#fff;border-radius:5px;color:#666}.chart small{display:block;font-size:.57rem}.chart canvas{display:block;width:100%;height:38px}.bottom-console{display:grid;grid-template-columns:39% 1fr 7%;gap:12px;padding:14px;background:#555860;color:#eee}.bottom-console h3{margin-bottom:7px;font-size:.78rem;font-weight:500}.bottom-console progress{width:100%;height:10px}.vac-status{display:flex;justify-content:space-between;gap:8px;margin-top:7px;padding:9px;border:1px solid #aaa;border-radius:6px;background:#36383d;font-size:.72rem}.vac-status strong{display:block}.vac-status b{align-self:flex-start;padding:3px 7px;border-radius:4px;background:#666}.vac-status b.ready{background:var(--green);color:#183312}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.steps button{min-height:78px;border:1px solid #aaa;border-radius:6px;background:#36383d;color:#eee;text-align:left;padding:9px}.steps strong,.steps span{display:block}.steps span{margin-top:3px;color:#aaa;font-size:.67rem}.beam{display:grid;gap:7px}.beam button{border:0;border-radius:6px;background:#63747a;color:#ddd}.beam button.enabled{background:var(--cyan);color:#17343b}.beam button.active{background:var(--green);color:#173610}.info-card{background:var(--black);color:#fff}.info-head{display:flex;justify-content:space-between;gap:20px}.info-head>div{display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:baseline}.info-head p,.info-head h2{grid-column:2}.info-head p{font-size:.72rem;letter-spacing:.1em;color:#ffffff73}.info-head b{align-self:flex-start;padding:6px 12px;border:1px solid #ffffff20;border-radius:999px;background:#ffffff0d;color:#ffffffb5;font-size:.78rem}.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}.info-grid article{padding:20px;border:1px solid #ffffff19;border-radius:16px;background:#ffffff0b}.info-grid h3{margin-bottom:9px;color:var(--cyan);font-size:.88rem}.info-grid p{color:#ffffffa6;font-size:.9rem}.unity-wrap{position:relative;min-height:650px;overflow:hidden;border-radius:16px;background:#11161d}.unity-wrap iframe{display:none;width:100%;min-height:650px;border:0}#unityPlaceholder{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;color:#ffffffa8;text-align:center}#unityPlaceholder>strong{display:grid;place-items:center;width:74px;height:74px;margin-bottom:16px;border:1px solid #ffffff2e;border-radius:20px;background:#ffffff0d;color:var(--cyan);font-size:1.3rem}footer{display:flex;justify-content:space-between;padding:32px 40px;border-top:1px solid var(--line);background:#fff;color:var(--muted);font-size:.85rem}@media(max-width:950px){.schematic{min-width:1050px}.sim-panel{overflow:auto}.info-grid{grid-template-columns:1fr}.bottom-console{min-width:1050px}}@media(max-width:768px){nav{padding:0 20px}nav ul{display:none;position:absolute;top:var(--nav);left:0;width:100%;padding:12px 16px 20px;flex-direction:column;background:#0d1117}.nav-toggle{display:flex}nav ul.open{display:flex}.page-hero{padding:56px 24px}.alpha-container{width:calc(100% - 24px)}.content-card{padding:18px}.card-heading{align-items:flex-start;flex-direction:column}.info-grid{grid-template-columns:1fr}footer{flex-direction:column;text-align:center;gap:8px}}
+
+/* =========================
+   v3：依照原始 Alpha-E 面板重新排版
+   讓各控制卡片避開彼此，並對齊背景設備位置。
+========================= */
+.schematic {
+  aspect-ratio: 1536 / 790;
+  min-height: 0;
+}
+
+.schematic > img {
+  object-position: center 10%;
+}
+
+.device {
+  font-size: clamp(10px, .72vw, 14px);
+}
+
+.device header {
+  min-height: 34px;
+  padding: 7px 9px;
+  white-space: nowrap;
+}
+
+.device header b {
+  flex: 0 0 auto;
+}
+
+.readout {
+  gap: 5px;
+  margin: 6px;
+  padding: 7px;
+}
+
+.readout span,
+.readout label {
+  font-size: .62rem;
+}
+
+.readout strong {
+  font-size: .74rem;
+}
+
+.fields input {
+  width: 62px;
+  padding: 2px 4px;
+}
+
+.actions {
+  gap: 5px;
+  padding: 0 6px 6px;
+}
+
+.actions button,
+.gas button {
+  min-height: 32px;
+  padding: 4px 6px;
+}
+
+/* 上排控制器：保持適當間隔，不再互相壓住 */
+.rough {
+  left: 7.0%;
+  top: 18.0%;
+  width: 12.2%;
+}
+
+.turbo {
+  left: 19.5%;
+  top: 6.0%;
+  width: 12.8%;
+}
+
+.hv {
+  left: 33.0%;
+  top: 10.0%;
+  width: 15.5%;
+}
+
+.microwave {
+  left: 49.6%;
+  top: 9.0%;
+  width: 15.8%;
+}
+
+.mfc {
+  left: 66.0%;
+  top: 10.0%;
+  width: 14.5%;
+}
+
+/* 中排：氣體與冷卻 */
+.gas {
+  left: 7.0%;
+  top: 43.0%;
+  width: 23.0%;
+}
+
+.gasline {
+  grid-template-columns: 1.1fr 58px auto;
+  gap: 5px;
+}
+
+.gas select,
+.gas input {
+  width: 100%;
+  padding: 4px 5px;
+}
+
+.cooler {
+  left: 76.2%;
+  top: 42.0%;
+  width: 13.5%;
+}
+
+/* 偵測圖表放在腔體右側，不遮住 MFC 與 Cooler */
+.detector {
+  left: 63.3%;
+  top: 63.0%;
+  width: 16.0%;
+}
+
+.chart {
+  margin: 5px 7px;
+  padding: 4px;
+}
+
+.chart canvas {
+  height: 42px;
+}
+
+/* 選取設備時只加外框，不改變位置 */
+.device[style*="outline"] {
+  outline-offset: 2px;
+}
+
+@media (max-width: 1200px) {
+  .schematic {
+    min-width: 1180px;
+  }
+
+  .bottom-console {
+    min-width: 1180px;
+  }
+}
+
+
+/* =========================================================
+   v4：使用原圖完整 1536 × 1024 座標，讓控制卡覆蓋原面板
+   關鍵：不可再把原圖裁成 1536 × 790，否則座標一定會偏移。
+========================================================= */
+
+/* 上方另外做的標題列隱藏，直接使用原始圖片中的標題列 */
+.panel-bar {
+  display: none;
+}
+
+/* 完整保留原始面板比例 */
+.schematic {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1536 / 1024;
+  min-width: 0;
+  overflow: hidden;
+  background: #8f9197;
+}
+
+.schematic > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: center;
+  filter: saturate(.55) brightness(.72);
+}
+
+/*
+  每張新卡片後方增加不透明遮罩邊，
+  即使座標有 2～4 px 誤差，舊面板也不會從旁邊露出。
+*/
+.device {
+  background: #4e5057;
+  box-shadow:
+    0 0 0 5px rgba(83, 85, 92, .98),
+    0 8px 20px rgba(0, 0, 0, .42);
+  overflow: hidden;
+}
+
+/* 使用原始 1536 × 1024 圖片座標對齊 */
+.rough {
+  left: 13.8%;
+  top: 25.5%;
+  width: 10.5%;
+  height: 12.5%;
+}
+
+.turbo {
+  left: 24.7%;
+  top: 18.8%;
+  width: 10.2%;
+  height: 20.5%;
+}
+
+.hv {
+  left: 37.2%;
+  top: 22.7%;
+  width: 13.8%;
+  height: 18.5%;
+}
+
+.microwave {
+  left: 52.9%;
+  top: 22.5%;
+  width: 13.5%;
+  height: 27.3%;
+}
+
+.mfc {
+  left: 67.2%;
+  top: 22.5%;
+  width: 13%;
+  height: 15.5%;
+}
+
+.gas {
+  left: 14.1%;
+  top: 40.7%;
+  width: 17.7%;
+  height: 8.8%;
+}
+
+.cooler {
+  left: 76.8%;
+  top: 42.5%;
+  width: 11.7%;
+  height: 12.7%;
+}
+
+.detector {
+  left: 65.3%;
+  top: 56.4%;
+  width: 13.7%;
+  height: 19.2%;
+}
+
+/* 固定卡片內部密度，避免內容把卡片撐出原區域 */
+.device header {
+  min-height: 30px;
+  padding: 5px 7px;
+  font-size: clamp(10px, .72vw, 14px);
+}
+
+.readout {
+  margin: 5px;
+  padding: 6px;
+  gap: 4px;
+}
+
+.readout span,
+.readout label {
+  font-size: clamp(8px, .55vw, 11px);
+}
+
+.readout strong {
+  font-size: clamp(9px, .65vw, 13px);
+}
+
+.fields input {
+  width: 55px;
+  padding: 2px 3px;
+}
+
+.actions {
+  gap: 4px;
+  padding: 0 5px 5px;
+}
+
+.actions button,
+.gas button {
+  min-height: 27px;
+  padding: 3px 4px;
+  font-size: clamp(9px, .62vw, 12px);
+}
+
+.gasline {
+  grid-template-columns: 1fr 54px auto;
+  padding: 5px;
+  gap: 4px;
+}
+
+.gas select,
+.gas input {
+  min-width: 0;
+  padding: 3px 4px;
+  font-size: clamp(9px, .6vw, 12px);
+}
+
+.chart {
+  margin: 4px 5px;
+  padding: 3px;
+}
+
+.chart canvas {
+  height: 34px;
+}
+
+/*
+  原圖下方已經有 Machine Pressurization / Experiment Setup。
+  目前功能列仍保留在圖片下方，避免與原圖重疊。
+*/
+.bottom-console {
+  position: relative;
+}
+
+/* 小螢幕以橫向捲動維持精準座標，不再把面板壓縮變形 */
+@media (max-width: 1200px) {
+  .sim-panel {
+    overflow-x: auto;
+  }
+
+  .schematic,
+  .bottom-console {
+    min-width: 1180px;
+  }
+}
+
+
+/* =========================================================
+   v5：Power 與下方狀態列也直接覆蓋原圖
+========================================================= */
+.panel-bar {
+  display: flex !important;
+  position: absolute;
+  z-index: 4;
+  left: 1%;
+  top: 3.2%;
+  width: 96.5%;
+  height: 4.8%;
+  min-height: 0;
+  padding: 0 14px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 7px;
+  background: #565960;
+  box-shadow: 0 0 0 4px #565960;
+  color: #fff;
+}
+.panel-bar button {
+  padding: 4px 9px;
+  font-size: clamp(8px,.52vw,11px);
+}
+
+.bottom-console {
+  position: absolute !important;
+  z-index: 4;
+  left: 1.2%;
+  right: auto;
+  top: 79.2%;
+  bottom: auto;
+  width: 97.4%;
+  height: 16.2%;
+  display: grid;
+  grid-template-columns: 40% 1fr 6%;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #555860;
+  box-shadow: 0 0 0 5px #555860;
+  color: #eee;
+  overflow: hidden;
+}
+.bottom-console h3 {
+  margin-bottom: 5px;
+  font-size: clamp(8px,.58vw,11px);
+}
+.bottom-console progress {
+  width: 100%;
+  height: 8px;
+}
+.vac-status {
+  margin-top: 5px;
+  padding: 6px 8px;
+  font-size: clamp(7px,.5vw,10px);
+}
+.steps {
+  gap: 7px;
+}
+.steps button {
+  min-height: 0;
+  height: 76px;
+  padding: 7px;
+}
+.steps strong {
+  font-size: clamp(8px,.58vw,11px);
+}
+.steps span {
+  font-size: clamp(7px,.48vw,9px);
+}
+.beam {
+  gap: 6px;
+}
+.beam button {
+  min-height: 0;
+  font-size: clamp(7px,.5vw,10px);
+}
+
+/* v5 小螢幕：整張面板一起捲動，不拆開底部控制列 */
+@media (max-width: 1200px) {
+  .schematic { min-width: 1180px; }
+  .bottom-console { min-width: 0; }
+}

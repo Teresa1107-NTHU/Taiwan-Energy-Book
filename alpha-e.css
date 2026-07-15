@@ -823,3 +823,28 @@ footer {
     text-align: center;
   }
 }
+
+/* 下方操作區文字大小 */
+.status-title {
+  font-size: 15px;
+}
+
+.status-body strong {
+  font-size: 14px;
+}
+
+.status-body span {
+  font-size: 13px;
+}
+
+.step-cards strong {
+  font-size: 14px;
+}
+
+.step-cards span {
+  font-size: 13px;
+}
+
+.beam-actions button {
+  font-size: 14px;
+}

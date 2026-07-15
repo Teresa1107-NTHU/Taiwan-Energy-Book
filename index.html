@@ -3,54 +3,116 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alpha-E 互動教學系統｜臺灣能源互動電子書</title>
-  <link rel="stylesheet" href="alpha-e.css">
+  <title>臺灣能源互動電子書</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav>
-  <a class="logo" href="index.html">Taiwan Energy<span></span></a>
-  <button class="nav-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-  <ul id="nav-menu">
-    <li><a href="index.html#thermal">火力</a></li><li><a href="index.html#wind">風力</a></li>
-    <li><a href="index.html#hydro">水力</a></li><li><a href="index.html#solar">太陽能</a></li>
-    <li><a href="index.html#nuclear">核能</a></li><li><a href="index.html#tokamak">核融合</a></li>
-    <li><a class="active" href="alpha-e.html">Alpha-E</a></li>
-  </ul>
-</nav>
-<header class="page-hero">
-  <div><p class="eyebrow">INTERACTIVE FUSION LEARNING MODULE</p><h1>Alpha-E 互動教學系統</h1>
-  <p>面板數值、開關、壓力曲線與偵測圖表皆可即時改變，並可把指令傳送到下方 Unity WebGL 模型。</p></div>
-</header>
-<main class="alpha-container">
-<section class="content-card">
-  <div class="card-heading"><div><span>01</span><h2>Alpha-E 仿真操作面板</h2></div><p>這一版不是圖片熱區，而是真正的 HTML 控制元件。</p></div>
-  <div class="sim-panel">
-    <div class="schematic">
-      <img src="assets/alpha-e-panel.jpg" alt="Alpha-E 面板底圖">
-      <div class="device rough" data-device="rough_pump"><header>Rough Pump <i id="roughLed"></i><b id="roughLabel">off</b></header><div class="actions"><button data-cmd="rough:off">Off</button><button data-cmd="rough:on">On</button></div></div>
-      <div class="device turbo" data-device="turbo_pump"><header>Turbo Pump <i id="turboLed"></i><b id="turboLabel">off</b></header><div class="readout"><span>Rotation Speed<strong><em id="turboSpeed">0</em> Hz</strong></span><span>Temp<strong><em id="turboTemp">24</em> °C</strong></span><span>Current<strong><em id="turboCurrent">0.00</em> A</strong></span></div><div class="actions three"><button data-cmd="turbo:off">Off</button><button data-cmd="turbo:vent">Vent</button><button data-cmd="turbo:on">On</button></div></div>
-      <div class="device hv" data-device="high_voltage"><header>High Voltage <i id="hvLed" class="red"></i><b id="hvLabel">off</b></header><div class="readout fields"><label>Voltage<input id="hvVoltage" type="number" min="0" max="10" step="0.1" value="5.0"> kV</label><label>Current<input id="hvCurrent" type="number" min="0" max="5" step="0.1" value="1.0"> mA</label></div><div class="actions"><button data-cmd="hv:off">Off</button><button data-cmd="hv:on">On</button></div></div>
-      <div class="device microwave" data-device="microwave"><header>Microwave <i id="mwLed"></i><b id="mwLabel">off</b></header><div class="readout fields"><label>Duty Cycle<input id="mwDuty" type="number" min="0" max="100" value="9"> %</label><label>Pulse Frequency<input id="mwPulse" type="number" min="10" max="5000" value="1000"> Hz</label><label>RF Frequency<input id="mwFreq" type="number" min="2000" max="3000" value="2450"> MHz</label><label>RF Attenuation<input id="mwAtt" type="number" min="0" max="100" value="80"> Lv</label></div><div class="actions"><button data-cmd="mw:off">Off</button><button data-cmd="mw:on">On</button></div></div>
-      <div class="device mfc" data-device="gas_mfc"><header>MFC <i id="mfcLed"></i><b id="mfcLabel">off</b></header><div class="readout fields"><label>Flowrate<input id="mfcFlow" type="number" min="0" max="10000" step="10" value="9000"> sccm</label><span>Measured<strong><em id="mfcMeasured">0.0000</em></strong></span></div><div class="actions"><button data-cmd="mfc:off">Off</button><button data-cmd="mfc:on">On</button></div></div>
-      <div class="device gas" data-device="gas_supply"><header>Gas Can</header><div class="gasline"><select id="gasType"><option>Deuterium</option><option>Hydrogen</option><option>Argon</option></select><input id="gasPressure" type="number" min="0" max="100" value="40"><button id="setupGas" class="cyan">Set Up Gas</button></div></div>
-      <div class="device cooler" data-device="cooler"><header>Cooler <i id="coolerLed"></i><b id="coolerLabel">off</b></header><div class="readout"><span>Flow<strong><em id="coolerFlow">0.0</em> L/m</strong></span><span>Temp<strong><em id="coolerTemp">24.3</em> °C</strong></span></div><div class="actions"><button data-cmd="cooler:off">Off</button><button data-cmd="cooler:on">On</button></div></div>
-      <div class="panel-bar"><strong>Alpha-E @ Tainan</strong><div><button id="powerOff" class="active">Off</button><button id="powerOn" class="cyan">Power On</button></div></div>
-      <div class="device detector" data-device="detector"><header>Pressure <strong><em id="pressureValue">7.50e-1</em> Torr</strong></header><div class="chart"><small>PN Detector Signal</small><canvas id="pnChart" width="300" height="80"></canvas></div><div class="chart"><small>PSD Scatter Dataset</small><canvas id="psdChart" width="300" height="80"></canvas></div></div>
-    <div class="bottom-console">
-      <div><h3>Machine Pressurization</h3><progress id="vacuumProgress" max="100" value="0"></progress><div class="vac-status"><span>Time Under Vacuum <strong id="vacuumTime">00:00</strong></span><b id="vacuumReady">Not Ready</b></div></div>
-      <div><h3>Experiment Setup</h3><div class="steps"><button data-device="gas_supply"><strong>Gas Injection</strong><span id="stepGas">尚未設定</span></button><button data-device="high_voltage"><strong>High Voltage</strong><span id="stepHv">前置步驟未完成</span></button><button data-device="microwave"><strong>Microwave</strong><span id="stepMw">前置步驟未完成</span></button></div></div>
-      <div class="beam"><button id="beamOn">Beam On</button><button id="beamOff">Beam Off</button></div>
+  <nav>
+    <div class="logo">Taiwan Energy<span></span></div>
+    <button class="nav-toggle" aria-label="開啟選單" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="nav-menu">
+      <li><a href="#thermal">火力</a></li>
+      <li><a href="#wind">風力</a></li>
+      <li><a href="#hydro">水力</a></li>
+      <li><a href="#solar">太陽能</a></li>
+      <li><a href="#nuclear">核能</a></li>
+      <li><a href="#tokamak">核融合</a></li>
+      <li><a href="alpha-e.html">Alpha-E</a></li>
+    </ul>
+  </nav>
+
+  <header>
+    <div class="hero-content">
+      <div class="hero-tag">互動式能源教育平台</div>
+      <h1>探索<em>臺灣</em>的能源未來</h1>
+      <p>結合 Unity WebGL 與互動式 3D 模型，展示臺灣主要發電方式與未來能源科技，提供沉浸式能源教育與虛擬導覽體驗。</p>
+      <a href="#thermal" class="hero-button">開始探索</a>
     </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>6+</strong><span>發電技術</span></div>
+      <div class="hero-stat"><strong>3D</strong><span>互動模型</span></div>
+      <div class="hero-stat"><strong>Unity</strong><span>WebGL 技術</span></div>
+      <div class="hero-stat"><strong>免費</strong><span>教育用途</span></div>
     </div>
+  </header>
 
+  <main class="container">
+    <section id="thermal" class="energy-section">
+      <div class="section-header"><span class="section-num">01</span><h2>火力發電</h2></div>
+      <p>展示火力發電廠中的鍋爐、汽輪機與發電流程，使用 Unity 建立虛擬導覽系統。</p>
+      <div class="iframe-wrapper">
+        <iframe src="https://teresa1107-nthu.github.io/Thermal-Power-Plant-Unity/" title="火力發電廠 3D 互動模型" loading="lazy" sandbox="allow-scripts allow-same-origin" allowfullscreen></iframe>
+      </div>
+    </section>
 
-  </div>
-</section>
+    <section id="wind" class="energy-section">
+      <div class="section-header"><span class="section-num">02</span><h2>風力發電</h2></div>
+      <p>展示風力發電系統與再生能源應用。</p>
+      <div class="iframe-wrapper">
+        <iframe src="https://3d.energyencyclopedia.com/wind_menu?mode=iframe" title="風力發電 3D 互動模型" loading="lazy" sandbox="allow-scripts allow-same-origin" allowfullscreen></iframe>
+      </div>
+      <div class="credit">3D content by <a href="https://energyencyclopedia.com/" target="_blank" rel="noopener noreferrer">EnergyEncyclopedia.com</a></div>
+    </section>
 
-<section class="content-card info-card"><div class="info-head"><div><span>02</span><p>目前選取設備</p><h2 id="infoTitle">請點擊面板設備</h2></div><b id="infoStatus">待機</b></div><div class="info-grid"><article><h3>功能</h3><p id="infoFunction">點擊設備後顯示用途。</p></article><article><h3>運作原理</h3><p id="infoPrinciple">點擊設備後顯示原理。</p></article><article><h3>目前狀態</h3><p id="infoLive">尚未選取設備。</p></article></div></section>
+    <section id="hydro" class="energy-section">
+      <div class="section-header"><span class="section-num">03</span><h2>水力發電</h2></div>
+      <p>展示水力發電系統與水輪機運作原理。</p>
+      <div class="iframe-wrapper">
+        <iframe src="https://3d.energyencyclopedia.com/hydro_powerplant?mode=iframe" title="水力發電 3D 互動模型" loading="lazy" sandbox="allow-scripts allow-same-origin" allowfullscreen></iframe>
+      </div>
+      <div class="credit">3D content by <a href="https://energyencyclopedia.com/" target="_blank" rel="noopener noreferrer">EnergyEncyclopedia.com</a></div>
+    </section>
 
-<section class="content-card"><div class="card-heading"><div><span>03</span><h2>Alpha-E 3D 模型</h2></div><p>在 alpha-e.js 填入 Unity WebGL 網址後即可連動。</p></div><div class="unity-wrap"><iframe id="alphaUnity" src="about:blank" allowfullscreen></iframe><div id="unityPlaceholder"><strong>3D</strong><h3>尚未設定 Unity WebGL 網址</h3><p>請修改 alpha-e.js 裡的 UNITY_WEBGL_URL。</p></div></div></section>
-</main>
-<footer><p>臺灣能源互動電子書 © 2026</p><p>本網站為教育與學術用途開發。</p></footer>
-<script src="alpha-e.js"></script>
-</body></html>
+    <section id="solar" class="energy-section">
+      <div class="section-header"><span class="section-num">04</span><h2>太陽能發電</h2></div>
+      <p>展示太陽能板與光電系統技術。</p>
+      <div class="iframe-wrapper">
+        <iframe src="https://3d.energyencyclopedia.com/solar_menu?mode=iframe" title="太陽能發電 3D 互動模型" loading="lazy" sandbox="allow-scripts allow-same-origin" allowfullscreen></iframe>
+      </div>
+      <div class="credit">3D content by <a href="https://energyencyclopedia.com/" target="_blank" rel="noopener noreferrer">EnergyEncyclopedia.com</a></div>
+    </section>
+
+    <section id="nuclear" class="energy-section">
+      <div class="section-header"><span class="section-num">05</span><h2>核能發電</h2></div>
+      <p>展示核能發電與反應爐運作原理。</p>
+      <div class="iframe-wrapper">
+        <iframe src="https://3d.energyencyclopedia.com/pwr_npp?mode=iframe" title="核能發電 3D 互動模型" loading="lazy" sandbox="allow-scripts allow-same-origin" allowfullscreen></iframe>
+      </div>
+      <div class="credit">3D content by <a href="https://energyencyclopedia.com/" target="_blank" rel="noopener noreferrer">EnergyEncyclopedia.com</a></div>
+    </section>
+
+    <section id="tokamak" class="energy-section">
+      <div class="section-header"><span class="section-num">06</span><h2>托克瑪克核融合</h2></div>
+      <p>展示托克瑪克核融合與未來能源技術。</p>
+      <div class="iframe-wrapper">
+        <iframe src="https://3d.energyencyclopedia.com/tokamak_building?mode=iframe" title="托克瑪克核融合 3D 互動模型" loading="lazy" sandbox="allow-scripts allow-same-origin" allowfullscreen></iframe>
+      </div>
+      <div class="credit">3D content by <a href="https://energyencyclopedia.com/" target="_blank" rel="noopener noreferrer">EnergyEncyclopedia.com</a></div>
+    </section>
+
+    <section id="alpha-e" class="energy-section alpha-e-section">
+      <div class="section-header"><span class="section-num">07</span><h2>Alpha-E</h2></div>
+      <p>透過仿真操作面板與 3D 模型，認識 Alpha-E 各子系統、設備功能與實驗操作流程。</p>
+      <a href="alpha-e.html" class="section-button">進入 Alpha-E 教學系統</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>臺灣能源互動電子書 © 2026</p>
+    <p>本網站為教育與學術用途開發。</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav-menu').classList.toggle('open');
+    }
+    document.querySelectorAll('#nav-menu a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.getElementById('nav-menu').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>

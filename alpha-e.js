@@ -145,4 +145,7 @@ function send(type, equipmentId = "", action = "") {
         "*"
     );
 }
-if(UNITY_WEBGL_URL){$("alphaUnity").src=UNITY_WEBGL_URL;$("alphaUnity").style.display="block";$("unityPlaceholder").hidden=true}line($("pnChart"),pn);line($("psdChart"),psd,true);update();
+if (UNITY_WEBGL_URL) {
+    $("alphaUnity").src = UNITY_WEBGL_URL;
+    $("alphaUnity").style.display = "block";
+} line($("pnChart"), pn); line($("psdChart"), psd, true); update();

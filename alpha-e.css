@@ -516,7 +516,7 @@ nav a.active {
   position: absolute;
   z-index: 4;
   left: 1.2%;
-  top: 79.2%;
+  top: 79%;
   width: 97.4%;
   height: 16.2%;
   display: grid;
@@ -822,4 +822,253 @@ footer {
     gap: 8px;
     text-align: center;
   }
+}
+
+/* =========================================================
+   教學導引狀態：整體暗灰、依操作順序逐步亮起
+========================================================= */
+
+/* 下方控制區稍微下移，完全覆蓋背景原本區域 */
+.bottom-console {
+  top: 81.0%;
+  height: 15.2%;
+  padding: 11px 13px;
+}
+
+/* 下方區域文字再放大 */
+.bottom-console h3 {
+  font-size: clamp(13px, 0.88vw, 17px);
+}
+
+.vac-status {
+  font-size: clamp(11px, 0.76vw, 15px);
+}
+
+.steps strong {
+  font-size: clamp(12px, 0.82vw, 16px);
+}
+
+.steps span {
+  font-size: clamp(10px, 0.70vw, 14px);
+}
+
+.beam button {
+  font-size: clamp(11px, 0.76vw, 15px);
+}
+
+/* 開機前：整個面板呈現暗灰色 */
+.sim-panel.power-off .schematic > img {
+  filter: grayscale(0.45) saturate(0.25) brightness(0.43);
+}
+
+.sim-panel.power-off .device,
+.sim-panel.power-off .bottom-console {
+  filter: grayscale(1);
+  opacity: 0.48;
+}
+
+/* Power 列仍保持可見，提示使用者先開機 */
+.sim-panel.power-off .panel-bar {
+  filter: none;
+  opacity: 1;
+}
+
+.sim-panel.power-off #powerOn {
+  box-shadow: 0 0 0 3px rgba(99, 218, 244, 0.34),
+              0 0 18px rgba(99, 218, 244, 0.72);
+  animation: guidePulse 1.5s ease-in-out infinite;
+}
+
+/* 開機後，尚未輪到的設備維持偏暗 */
+.sim-panel.power-on .device,
+.sim-panel.power-on .steps button,
+.sim-panel.power-on .beam button {
+  opacity: 0.52;
+  filter: grayscale(0.7) brightness(0.75);
+  transition: opacity 0.28s ease,
+              filter 0.28s ease,
+              box-shadow 0.28s ease,
+              transform 0.28s ease;
+}
+
+/* 已完成步驟保持正常亮度，並顯示淡綠框 */
+.device.is-complete,
+.steps button.is-complete,
+.beam button.is-complete {
+  opacity: 1 !important;
+  filter: none !important;
+  box-shadow:
+    0 0 0 3px rgba(110, 230, 78, 0.72),
+    0 0 18px rgba(110, 230, 78, 0.32) !important;
+}
+
+/* 目前應操作的步驟最亮並脈動 */
+.device.is-available,
+.steps button.is-available,
+.beam button.is-available {
+  opacity: 1 !important;
+  filter: none !important;
+  z-index: 8;
+  box-shadow:
+    0 0 0 4px rgba(99, 218, 244, 0.92),
+    0 0 24px rgba(99, 218, 244, 0.78) !important;
+  animation: guidePulse 1.45s ease-in-out infinite;
+}
+
+.device.is-available {
+  transform: translateY(-1px);
+}
+
+/* 現在可操作的按鈕也更清楚 */
+.device.is-available .actions button:last-child,
+.device.is-available.gas button,
+.beam button.is-available {
+  background: var(--cyan);
+  color: #14333b;
+  font-weight: 700;
+}
+
+/* 尚未輪到的控制項不可按，避免跳步 */
+.sim-panel.guided [data-locked="true"] {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+@keyframes guidePulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 0 3px rgba(99, 218, 244, 0.55),
+      0 0 14px rgba(99, 218, 244, 0.42);
+  }
+  50% {
+    transform: scale(1.012);
+    box-shadow:
+      0 0 0 4px rgba(99, 218, 244, 0.95),
+      0 0 28px rgba(99, 218, 244, 0.88);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .device.is-available,
+  .steps button.is-available,
+  .beam button.is-available,
+  .sim-panel.power-off #powerOn {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   v7：導引狀態改為不透明暗階，不再透出背景圖片
+========================================================= */
+
+/* Power Off：所有卡片保持完全不透明，只降低亮度 */
+.sim-panel.power-off .device,
+.sim-panel.power-off .bottom-console,
+.sim-panel.power-off .steps button,
+.sim-panel.power-off .beam button {
+  opacity: 1 !important;
+  filter: grayscale(0.35) brightness(0.56) !important;
+}
+
+/* Power On 後，尚未輪到的項目維持不透明暗一階 */
+.sim-panel.power-on .device,
+.sim-panel.power-on .steps button,
+.sim-panel.power-on .beam button {
+  opacity: 1 !important;
+  filter: grayscale(0.28) brightness(0.68) !important;
+  transition: filter 0.28s ease,
+              box-shadow 0.28s ease,
+              transform 0.28s ease;
+}
+
+/* 已完成：恢復正常亮度並顯示綠框 */
+.device.is-complete,
+.steps button.is-complete,
+.beam button.is-complete {
+  opacity: 1 !important;
+  filter: brightness(0.94) saturate(0.95) !important;
+  box-shadow:
+    0 0 0 3px rgba(110, 230, 78, 0.78),
+    0 0 17px rgba(110, 230, 78, 0.30) !important;
+}
+
+/* 目前應操作：維持正常亮度，只用亮框與輕微脈動提示 */
+.device.is-available,
+.steps button.is-available,
+.beam button.is-available {
+  opacity: 1 !important;
+  filter: brightness(1) saturate(1) !important;
+  z-index: 8;
+  box-shadow:
+    0 0 0 4px rgba(99, 218, 244, 0.98),
+    0 0 22px rgba(99, 218, 244, 0.66) !important;
+  animation: guideOutlinePulse 1.5s ease-in-out infinite;
+}
+
+.device.is-available {
+  transform: none;
+}
+
+/* 只讓外框呼吸，不再縮放整張卡片 */
+@keyframes guideOutlinePulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 3px rgba(99, 218, 244, 0.72),
+      0 0 14px rgba(99, 218, 244, 0.38);
+  }
+  50% {
+    box-shadow:
+      0 0 0 5px rgba(99, 218, 244, 1),
+      0 0 25px rgba(99, 218, 244, 0.78);
+  }
+}
+
+/* =========================================================
+   v8：完成後恢復明亮；只有尚未輪到的設備維持暗色
+   使用更高 specificity，確保覆蓋 power-on 的暗階設定。
+========================================================= */
+
+/* 尚未輪到：不透明、暗一階 */
+.sim-panel.power-on .device:not(.is-complete):not(.is-available),
+.sim-panel.power-on .steps button:not(.is-complete):not(.is-available),
+.sim-panel.power-on .beam button:not(.is-complete):not(.is-available) {
+  opacity: 1 !important;
+  filter: grayscale(0.28) brightness(0.68) !important;
+}
+
+/* 已完成：點擊並成功啟動後恢復正常亮度，保留綠框 */
+.sim-panel.power-on .device.is-complete,
+.sim-panel.power-on .steps button.is-complete,
+.sim-panel.power-on .beam button.is-complete {
+  opacity: 1 !important;
+  filter: brightness(1) saturate(1) !important;
+  box-shadow:
+    0 0 0 3px rgba(110, 230, 78, 0.82),
+    0 0 18px rgba(110, 230, 78, 0.34) !important;
+}
+
+/* 現在應操作：正常亮度＋藍色提示框 */
+.sim-panel.power-on .device.is-available,
+.sim-panel.power-on .steps button.is-available,
+.sim-panel.power-on .beam button.is-available {
+  opacity: 1 !important;
+  filter: brightness(1) saturate(1) !important;
+  z-index: 8;
+  box-shadow:
+    0 0 0 4px rgba(99, 218, 244, 0.98),
+    0 0 22px rgba(99, 218, 244, 0.66) !important;
+}
+
+/* 已完成卡片內的按鈕、數值區也恢復正常，不再被父層暗化 */
+.sim-panel.power-on .device.is-complete header,
+.sim-panel.power-on .device.is-complete .readout,
+.sim-panel.power-on .device.is-complete .actions,
+.sim-panel.power-on .device.is-complete .gasline,
+.sim-panel.power-on .device.is-available header,
+.sim-panel.power-on .device.is-available .readout,
+.sim-panel.power-on .device.is-available .actions,
+.sim-panel.power-on .device.is-available .gasline {
+  opacity: 1 !important;
+  filter: none !important;
 }

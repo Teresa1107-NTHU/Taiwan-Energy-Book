@@ -68,7 +68,8 @@ function updateGuide(){
 
 function toggleMenu(){$("nav-menu").classList.toggle("open")}
 function led(name,on){$(name+"Led").classList.toggle("on",on);$(name+"Label").textContent=on?"on":"off";$(name+"Label").classList.toggle("on",on)}
-function select(id){s.selected=id;document.querySelectorAll("[data-device]").forEach(x=>x.style.outline=x.dataset.device===id?"3px solid #63daf4":"");const d=info[id];if(!d)return;$("infoTitle").textContent=d[0];$("infoFunction").textContent=d[1];$("infoPrinciple").textContent=d[2];live();send("SelectEquipment",id)}
+function select(id){s.selected=id;document.querySelectorAll("[data-device]").forEach(x=>x.style.outline=x.dataset.device===id?"3px solid #63daf4":"");
+d=info[id];if(!d)return;$("infoTitle").textContent=d[0];$("infoFunction").textContent=d[1];$("infoPrinciple").textContent=d[2];live();send("SelectEquipment",id)}
 document.querySelectorAll("[data-device]").forEach(x=>x.addEventListener("click",e=>{if(!["BUTTON","INPUT","SELECT"].includes(e.target.tagName))select(x.dataset.device)}));
 function powered(){if(!s.power){alert("請先按 Power On。");return false}return true}
 /*

@@ -75,6 +75,10 @@ function powered(){if(!s.power){alert("請先按 Power On。");return false}retu
  * 控制整台 Alpha-E 的 Power On / Off，
  * 並將電源指令傳送給 Unity WebGL。
  */
+/*
+ * 控制整台 Alpha-E 的 Power On / Off，
+ * 並將電源指令傳送給 Unity WebGL。
+ */
 function master(on) {
     s.power = on;
 
@@ -84,17 +88,18 @@ function master(on) {
     if (!on) {
         s.rough = false;
         s.turbo = false;
+        s.vent = false;
+
+        s.gas = false;
         s.mfc = false;
         s.cooler = false;
         s.hv = false;
         s.mw = false;
         s.beam = false;
-        s.vent = false;
     }
 
     update();
 
-    // 傳送給 Unity
     send(
         "SetPower",
         "system",
@@ -104,10 +109,46 @@ function master(on) {
 $("powerOn").onclick = () => master(true);
 $("powerOff").onclick = () => master(false);
 document.querySelectorAll("[data-cmd]").forEach(b=>b.onclick=()=>{const [d,a]=b.dataset.cmd.split(":");if(a!=="off"&&!powered())return;if(d==="rough")s.rough=a==="on";if(d==="turbo"){if(a==="on"&&!s.rough)return alert("請先啟動 Rough Pump。");s.turbo=a==="on";s.vent=a==="vent"}if(d==="mfc"){if(a==="on"&&!s.gas)return alert("請先 Set Up Gas。");s.mfc=a==="on"}if(d==="cooler")s.cooler=a==="on";if(d==="hv"){if(a==="on"&&!(s.vacuum>=85&&s.gas&&s.cooler))return alert("需先完成高真空、供氣與冷卻。");s.hv=a==="on"}if(d==="mw"){if(a==="on"&&!(s.hv&&s.mfc))return alert("需先啟動 High Voltage 與 MFC。");s.mw=a==="on"}const map={rough:"rough_pump",turbo:"turbo_pump",mfc:"gas_mfc",cooler:"cooler",hv:"high_voltage",mw:"microwave"};select(map[d]);update();send("OperateEquipment",map[d],a)});
-$("setupGas").onclick=()=>{if(!powered())return;s.gas=true;select("gas_supply");update();send("SetupGas","gas_supply",$("gasType").value)};
+/*
+ * 設定氣體供應。
+ * 必須先完成 Power、Rough Pump 與 Turbo Pump。
+ */
+$("setupGas").onclick = () => {
+    if (!powered()) {
+        return;
+    }
+
+    if (!s.rough) {
+        alert("請先啟動 Rough Pump。");
+        return;
+    }
+
+    if (!s.turbo) {
+        alert("請先啟動 Turbo Pump。");
+        return;
+    }
+
+    const selectedGas = $("gasType").value;
+
+    s.gas = true;
+
+    select("gas_supply");
+    update();
+
+    send(
+        "SetupGas",
+        "gas_supply",
+        selectedGas
+    );
+};
 $("beamOn").onclick=()=>{if(!(s.power&&s.hv&&s.mw&&s.mfc&&s.cooler&&s.vacuum>=90))return alert("Beam On 需要完成真空、供氣、冷卻、高壓與微波步驟。");s.beam=true;update();send("Beam","beam","on")};$("beamOff").onclick=()=>{s.beam=false;update();send("Beam","beam","off")};
 function update(){led("rough",s.rough);led("turbo",s.turbo);led("mfc",s.mfc);led("cooler",s.cooler);led("hv",s.hv);led("mw",s.mw);$("vacuumProgress").value=s.vacuum;$("vacuumReady").textContent=s.vacuum>=90?"Vacuum Ready":"Not Ready";$("vacuumReady").classList.toggle("ready",s.vacuum>=90);$("vacuumTime").textContent=String(Math.floor(s.seconds/60)).padStart(2,"0")+":"+String(s.seconds%60).padStart(2,"0");$("stepGas").textContent=s.gas?"Current Gas: "+$("gasType").value:"尚未設定";$("stepHv").textContent=s.hv?"High Voltage On":s.vacuum>=85&&s.gas&&s.cooler?"可以啟動":"前置步驟未完成";$("stepMw").textContent=s.mw?"Microwave On":s.hv&&s.mfc?"可以啟動":"前置步驟未完成";$("beamOn").classList.toggle("enabled",s.hv&&s.mw&&s.mfc&&s.cooler&&s.vacuum>=90);$("beamOn").classList.toggle("active",s.beam);$("beamOff").classList.toggle("active",!s.beam);$("infoStatus").textContent=s.beam?"Beam On":s.power?"Power On":"待機";live();updateGuide()}
-function live(){if(!s.selected)return;let t="";if(s.selected==="rough_pump")t=`${s.rough?"運轉":"停止"}；真空進度 ${s.vacuum.toFixed(0)}%。`;if(s.selected==="turbo_pump")t=`${s.turbo?"運轉":s.vent?"Vent":"停止"}；轉速 ${$("turboSpeed").textContent} Hz。`;if(s.selected==="gas_supply")t=`${$("gasType").value}；設定壓力 ${$("gasPressure").value}。`;if(s.selected==="gas_mfc")t=`${s.mfc?"On":"Off"}；設定 ${$("mfcFlow").value} sccm；量測 ${$("mfcMeasured").textContent}。`;if(s.selected==="cooler")t=`${s.cooler?"On":"Off"}；流量 ${$("coolerFlow").textContent} L/m；溫度 ${$("coolerTemp").textContent} °C。`;if(s.selected==="high_voltage")t=`${s.hv?"On":"Off"}；${$("hvVoltage").value} kV / ${$("hvCurrent").value} mA。`;if(s.selected==="microwave")t=`${s.mw?"On":"Off"}；${$("mwFreq").value} MHz；Duty ${$("mwDuty").value}%。`;if(s.selected==="detector")t=`壓力 ${$("pressureValue").textContent} Torr；Beam ${s.beam?"On":"Off"}。`;$("infoLive").textContent=t}
+function live() {
+    if (!s.selected) return; let t = ""; if (s.selected === "rough_pump") t = `${s.rough ? "運轉" : "停止"}；真空進度 ${s.vacuum.toFixed(0)}%。`; if (s.selected === "turbo_pump") t = `${s.turbo ? "運轉" : s.vent ? "Vent" : "停止"}；轉速 ${$("turboSpeed").textContent} Hz。`; if (s.selected === "gas_supply") {
+        t = s.gas
+            ? `${$("gasType").value} 已完成設定；壓力設定 ${$("gasPressure").value}。`
+            : "Gas Supply 尚未設定。";
+    } if(s.selected==="gas_mfc")t=`${s.mfc?"On":"Off"}；設定 ${$("mfcFlow").value} sccm；量測 ${$("mfcMeasured").textContent}。`;if(s.selected==="cooler")t=`${s.cooler?"On":"Off"}；流量 ${$("coolerFlow").textContent} L/m；溫度 ${$("coolerTemp").textContent} °C。`;if(s.selected==="high_voltage")t=`${s.hv?"On":"Off"}；${$("hvVoltage").value} kV / ${$("hvCurrent").value} mA。`;if(s.selected==="microwave")t=`${s.mw?"On":"Off"}；${$("mwFreq").value} MHz；Duty ${$("mwDuty").value}%。`;if(s.selected==="detector")t=`壓力 ${$("pressureValue").textContent} Torr；Beam ${s.beam?"On":"Off"}。`;$("infoLive").textContent=t}
 const pn=Array(45).fill(.08),psd=Array(45).fill(.03);function line(c,d,scatter=false){const x=c.getContext("2d"),w=c.width,h=c.height;x.clearRect(0,0,w,h);x.strokeStyle="#d9dde2";for(let i=0;i<4;i++){let y=8+i*(h-16)/3;x.beginPath();x.moveTo(0,y);x.lineTo(w,y);x.stroke()}if(scatter){x.fillStyle="#ef7895";d.forEach((v,i)=>{let px=i*w/(d.length-1),py=h-6-v*(h-12);x.beginPath();x.arc(px,py,2,0,Math.PI*2);x.fill()})}else{x.strokeStyle="#72b9e8";x.lineWidth=2;x.beginPath();d.forEach((v,i)=>{let px=i*w/(d.length-1),py=h-6-v*(h-12);i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke()}}
 setInterval(()=>{if(s.power){if(s.rough)s.vacuum+=s.turbo?1.8:.65;if(s.vent)s.vacuum-=2.2;s.vacuum=clamp(s.vacuum,0,100);if(s.rough)s.seconds++;let speed=+$("turboSpeed").textContent,target=s.turbo?1500:0;$("turboSpeed").textContent=Math.round(speed+(target-speed)*.18);$("turboTemp").textContent=(24+(s.turbo?19:0)+Math.random()).toFixed(0);$("turboCurrent").textContent=(s.turbo?.58+Math.random()*.08:0).toFixed(2);$("coolerFlow").textContent=(s.cooler?1.8+Math.random()*.3:0).toFixed(1);$("coolerTemp").textContent=(s.cooler?23.8+Math.random()*.8:24.7+Math.random()).toFixed(1);$("mfcMeasured").textContent=(s.mfc?+$("mfcFlow").value/260000+(Math.random()-.5)*.001:0).toFixed(4);pn.push(s.beam?.55+Math.random()*.35:s.mw?.25+Math.random()*.18:.08+Math.random()*.05);psd.push(s.beam?Math.random()*.9:Math.random()*.12)}else{s.vacuum=Math.max(0,s.vacuum-.25);pn.push(.08+Math.random()*.03);psd.push(Math.random()*.05)}pn.shift();psd.shift();let p=.75*Math.pow(10,-s.vacuum/28);$("pressureValue").textContent=p>=.01?p.toFixed(4):p.toExponential(2);line($("pnChart"),pn);line($("psdChart"),psd,true);update()},1000);
 /*

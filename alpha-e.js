@@ -1,5 +1,19 @@
 /* Alpha-E 仿真面板：控制數值、互鎖、圖表與 Unity 訊息。 */
-const UNITY_WEBGL_URL ="https://teresa1107-nthu.github.io/Alpha-E/";
+const UNITY_WEBGL_URL = "https://teresa1107-nthu.github.io/Alpha-E/";
+
+/*
+ * p–11B Fusion Unity WebGL 網址。
+ *
+ * 等第二個 Unity 上傳 GitHub Pages 後，
+ * 把網址填在這裡。
+ */
+const FUSION_WEBGL_URL = "https://teresa1107-nthu.github.io/Unity_Nuclear-Fusion_Project/";
+
+/*
+ * Fusion WebGL 是否已完成初始化。
+ */
+let fusionUnityReady = false;
+
 const s={power:false,rough:false,turbo:false,vent:false,gas:false,mfc:false,cooler:false,hv:false,mw:false,beam:false,vacuum:0,seconds:0,selected:null};
 const info={rough_pump:["Rough Pump｜前級真空泵","先排除腔體內大部分氣體，建立前級真空。","機械泵浦改變腔室容積，將氣體吸入並排出。"],turbo_pump:["Turbo Pump｜渦輪分子泵","進一步降低壓力，建立高真空環境。","高速葉片與氣體分子碰撞，將分子定向送往排氣端。"],gas_supply:["Gas Supply｜氣體供應","提供實驗氣體並完成調壓。","氣瓶中的氣體經調壓後送往 MFC。"],gas_mfc:["MFC｜質量流量控制器","精確控制氣體進入系統的流量。","感測實際質量流率，再以控制閥閉迴路調節。"],cooler:["Cooler｜冷卻系統","帶走設備運轉產生的熱量。","冷卻液循環通過熱源並經熱交換器散熱。"],high_voltage:["High Voltage｜高壓系統","提供離子源與電極所需的電位差。","帶電粒子在電場中受力並獲得動能。"],microwave:["Microwave RF｜微波射頻系統","輸入微波能量，使低壓氣體游離形成電漿。","自由電子吸收微波能量後碰撞氣體分子造成游離。"],detector:["Pressure & Detector｜壓力與偵測","監測腔體壓力及粒子相關訊號。","感測器把物理量轉換為電訊號。"]};
 const $=id=>document.getElementById(id);const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -185,7 +199,204 @@ $("setupGas").onclick = () => {
         selectedGas
     );
 };
-$("beamOn").onclick=()=>{if(!(s.power&&s.hv&&s.mw&&s.mfc&&s.cooler&&s.vacuum>=90))return alert("Beam On 需要完成真空、供氣、冷卻、高壓與微波步驟。");s.beam=true;update();send("Beam","beam","on")};$("beamOff").onclick=()=>{s.beam=false;update();send("Beam","beam","off")};
+
+/* =========================================================
+   Fusion Section
+========================================================= */
+
+/*
+ * Beam On 完成後：
+ *
+ * 1. 解鎖 Fusion 區域。
+ * 2. 載入 Fusion Unity。
+ * 3. 開放 Fusion 控制按鈕。
+ * 4. 自動捲動到 Fusion 區塊。
+ */
+/*
+ * Beam On 完成後：
+ * 1. 解鎖 Fusion 區域。
+ * 2. 載入 Fusion Unity。
+ * 3. 等待 Unity 回報 Ready。
+ * 4. Ready 後才允許操作。
+ */
+function unlockFusionSection() {
+
+    const section = $("fusion-section");
+    const overlay = $("fusionLockedOverlay");
+    const fusionFrame = $("fusionUnity");
+
+    if (!section || !fusionFrame) {
+        console.warn("找不到 Fusion Section 或 Fusion iframe。");
+        return;
+    }
+
+    /* 解鎖外觀 */
+    section.classList.remove("locked");
+
+    $("fusionSectionHint").textContent =
+        "Beam 已建立，正在載入 p–¹¹B 核融合反應模型...";
+
+    $("fusionStatus").textContent =
+        "Loading Unity...";
+
+
+    /*
+     * Unity 還沒 Ready 前，
+     * 四個控制按鈕全部鎖住。
+     */
+    $("fusionStart").disabled = true;
+    $("fusionPause").disabled = true;
+    $("fusionResume").disabled = true;
+    $("fusionRestart").disabled = true;
+
+
+    /* 隱藏原本 Locked Overlay */
+    if (overlay) {
+        overlay.style.display = "none";
+    }
+
+
+    /*
+     * 第一次 Beam On 才載入 Unity。
+     * 避免重複設定 src，導致 Unity 一直重新載入。
+     */
+    if (
+        fusionFrame.src === "about:blank" ||
+        !fusionFrame.dataset.loaded
+    ) {
+
+        fusionFrame.src = FUSION_WEBGL_URL;
+        fusionFrame.dataset.loaded = "true";
+    }
+
+    fusionFrame.style.display = "block";
+
+
+    /* 平滑移動到 Fusion */
+    setTimeout(() => {
+
+        section.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }, 500);
+}
+
+/*
+ * 接收 Fusion WebGL 傳回外層網頁的訊息。
+ */
+window.addEventListener(
+    "message",
+    function (event) {
+
+        const message = event.data;
+
+        if (
+            !message ||
+            message.source !== "fusion-unity"
+        ) {
+            return;
+        }
+
+        console.log(
+            "網頁收到 Fusion Unity：",
+            message
+        );
+
+
+        /* =========================
+           Unity 初始化完成
+        ========================= */
+
+        if (message.type === "FusionReady") {
+
+            fusionUnityReady = true;
+
+            $("fusionStatus").textContent =
+                "Ready";
+
+            $("fusionSectionHint").textContent =
+                "Beam 已建立，可進行 p–¹¹B 核融合反應示意。";
+
+
+            /* 現在才允許 Start */
+            $("fusionStart").disabled =
+                false;
+
+            $("fusionRestart").disabled =
+                false;
+
+            $("fusionPause").disabled =
+                true;
+
+            $("fusionResume").disabled =
+                true;
+
+
+            console.log(
+                "Fusion Unity 已完成初始化，可以操作。"
+            );
+        }
+    }
+);
+
+/*
+ * Beam On：
+ * 完成所有前置條件後建立 Beam，
+ * 並解鎖下方 p–11B Fusion 區域。
+ */
+$("beamOn").onclick = () => {
+
+    const beamReady =
+        s.power &&
+        s.hv &&
+        s.mw &&
+        s.mfc &&
+        s.cooler &&
+        s.vacuum >= 90;
+
+
+    if (!beamReady) {
+
+        alert(
+            "Beam On 需要完成真空、供氣、冷卻、高壓與微波步驟。"
+        );
+
+        return;
+    }
+
+
+    s.beam = true;
+
+    update();
+
+
+    /* 通知 Alpha-E Unity */
+    send(
+        "Beam",
+        "beam",
+        "on"
+    );
+
+
+    /* 解鎖 Fusion */
+    unlockFusionSection();
+};
+
+$("beamOff").onclick = () => {
+
+    s.beam = false;
+
+    update();
+
+    send(
+        "Beam",
+        "beam",
+        "off"
+    );
+};
+
 /*
  * 更新 Alpha-E 操作面板上的所有即時狀態。
  */
@@ -387,6 +598,275 @@ function send(type, equipmentId = "", action = "") {
         "*"
     );
 }
+
+/*
+ * 將網頁指令傳送給
+ * p–11B Fusion Unity iframe。
+ */
+/*
+ * 將 HTML 操作指令傳送給
+ * p–11B Fusion Unity。
+ */
+function sendFusion(
+    type,
+    action = ""
+) {
+
+    const fusionFrame =
+        $("fusionUnity");
+
+
+    if (!fusionFrame) {
+
+        console.warn(
+            "找不到 fusionUnity iframe。"
+        );
+
+        return false;
+    }
+
+
+    /*
+     * Unity 還沒初始化完成時，
+     * 不送控制訊息。
+     */
+    if (!fusionUnityReady) {
+
+        console.warn(
+            "Fusion Unity 尚未 Ready，暫時不送出：",
+            type
+        );
+
+        return false;
+    }
+
+
+    const message = {
+
+        source: "fusion-parent",
+
+        type: type,
+
+        action: action
+
+    };
+
+
+    console.log(
+        "傳送給 Fusion Unity：",
+        message
+    );
+
+
+    fusionFrame.contentWindow.postMessage(
+        message,
+        "*"
+    );
+
+
+    return true;
+}
+
+/* =========================================================
+   Fusion HTML Controls
+========================================================= */
+
+
+/* =========================================================
+   Fusion HTML Controls
+========================================================= */
+
+
+/* =========================
+   Start
+========================= */
+
+$("fusionStart").onclick = () => {
+
+    const sent = sendFusion(
+        "StartFusion",
+        "start"
+    );
+
+    if (!sent) {
+        return;
+    }
+
+
+    $("fusionStatus").textContent =
+        "Running";
+
+    $("fusionStart").disabled =
+        true;
+
+    $("fusionPause").disabled =
+        false;
+
+    $("fusionResume").disabled =
+        true;
+};
+
+
+/* =========================
+   Pause
+========================= */
+
+$("fusionPause").onclick = () => {
+
+    const sent = sendFusion(
+        "PauseFusion",
+        "pause"
+    );
+
+    if (!sent) {
+        return;
+    }
+
+
+    $("fusionStatus").textContent =
+        "Paused";
+
+    $("fusionPause").disabled =
+        true;
+
+    $("fusionResume").disabled =
+        false;
+};
+
+
+/* =========================
+   Resume
+========================= */
+
+$("fusionResume").onclick = () => {
+
+    const sent = sendFusion(
+        "ResumeFusion",
+        "resume"
+    );
+
+    if (!sent) {
+        return;
+    }
+
+
+    $("fusionStatus").textContent =
+        "Running";
+
+    $("fusionPause").disabled =
+        false;
+
+    $("fusionResume").disabled =
+        true;
+};
+
+
+/* =========================
+   Restart
+========================= */
+
+$("fusionRestart").onclick = () => {
+
+    const sent = sendFusion(
+        "RestartFusion",
+        "restart"
+    );
+
+    if (!sent) {
+        return;
+    }
+
+
+    $("fusionStatus").textContent =
+        "Ready";
+
+    $("fusionEnergyValue").textContent =
+        "0.00";
+
+    $("fusionEnergyProgress").style.width =
+        "0%";
+
+
+    $("fusionStart").disabled =
+        false;
+
+    $("fusionPause").disabled =
+        true;
+
+    $("fusionResume").disabled =
+        true;
+};
+
+
+/* Pause */
+$("fusionPause").onclick = () => {
+
+    $("fusionStatus").textContent =
+        "Paused";
+
+    $("fusionPause").disabled =
+        true;
+
+    $("fusionResume").disabled =
+        false;
+
+
+    sendFusion(
+        "PauseFusion",
+        "pause"
+    );
+};
+
+
+/* Resume */
+$("fusionResume").onclick = () => {
+
+    $("fusionStatus").textContent =
+        "Running";
+
+    $("fusionPause").disabled =
+        false;
+
+    $("fusionResume").disabled =
+        true;
+
+
+    sendFusion(
+        "ResumeFusion",
+        "resume"
+    );
+};
+
+
+/* Restart */
+$("fusionRestart").onclick = () => {
+
+    $("fusionStatus").textContent =
+        "Ready";
+
+    $("fusionEnergyValue").textContent =
+        "0.00";
+
+    $("fusionEnergyProgress").style.width =
+        "0%";
+
+
+    $("fusionStart").disabled =
+        false;
+
+    $("fusionPause").disabled =
+        true;
+
+    $("fusionResume").disabled =
+        true;
+
+
+    sendFusion(
+        "RestartFusion",
+        "restart"
+    );
+};
+
 if (UNITY_WEBGL_URL) {
     $("alphaUnity").src = UNITY_WEBGL_URL;
     $("alphaUnity").style.display = "block";

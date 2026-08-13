@@ -1218,3 +1218,219 @@ footer {
         left: 120%;
     }
 }
+
+/* =========================================================
+   p–11B Fusion Section
+========================================================= */
+
+.fusion-section {
+    position: relative;
+    transition: opacity 0.35s ease, filter 0.35s ease;
+}
+
+
+    /* =========================
+   尚未 Beam On
+========================= */
+
+    .fusion-section.locked {
+        filter: grayscale(0.6);
+    }
+
+        .fusion-section.locked
+        .fusion-control-panel {
+            opacity: 0.55;
+        }
+
+
+/* =========================
+   Fusion 操作面板
+========================= */
+
+.fusion-control-panel {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    margin-bottom: 18px;
+    padding: 20px;
+    border-radius: 14px;
+    background: #3d4047;
+    color: #ffffff;
+    transition: opacity 0.3s ease;
+}
+
+
+.fusion-control-info {
+    display: grid;
+    grid-template-columns: 230px 1fr;
+    gap: 14px;
+}
+
+
+/* =========================
+   Status
+========================= */
+
+.fusion-status-box,
+.fusion-energy-box {
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 9px;
+    background: #303238;
+}
+
+
+    .fusion-status-box span,
+    .fusion-energy-head span {
+        display: block;
+        margin-bottom: 5px;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.78rem;
+    }
+
+
+    .fusion-status-box strong {
+        font-size: 1rem;
+    }
+
+
+/* =========================
+   Energy
+========================= */
+
+.fusion-energy-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+
+    .fusion-energy-head strong {
+        font-size: 0.9rem;
+    }
+
+
+    .fusion-energy-head em {
+        font-style: normal;
+        color: var(--cyan);
+    }
+
+
+.fusion-energy-track {
+    width: 100%;
+    height: 7px;
+    margin-top: 10px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+
+.fusion-energy-progress {
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: var(--cyan);
+    transition: width 0.3s ease;
+}
+
+
+/* =========================
+   Fusion Buttons
+========================= */
+
+.fusion-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(110px, 1fr));
+    gap: 7px;
+}
+
+
+    .fusion-actions button {
+        min-height: 42px;
+        padding: 7px 14px;
+        border: 0;
+        border-radius: 7px;
+        background: #666a73;
+        color: #eeeeee;
+        font-weight: 600;
+    }
+
+
+        .fusion-actions button:not(:disabled):hover {
+            background: var(--cyan);
+            color: #16333a;
+        }
+
+
+        .fusion-actions button:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+
+/* =========================
+   Fusion Unity
+========================= */
+
+.fusion-unity-wrap {
+    position: relative;
+    min-height: 620px;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #353535;
+}
+
+
+#fusionUnity {
+    display: none;
+    width: 100%;
+    min-height: 620px;
+    border: 0;
+}
+
+
+/* =========================
+   Locked Overlay
+========================= */
+
+#fusionLockedOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: rgba(255,255,255,0.65);
+    text-align: center;
+    background: #292c31;
+}
+
+
+    #fusionLockedOverlay strong {
+        color: #ffffff;
+        font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+    }
+
+
+    #fusionLockedOverlay span {
+        font-size: 0.88rem;
+    }
+
+
+/* =========================
+   RWD
+========================= */
+
+@media (max-width: 900px) {
+
+    .fusion-control-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .fusion-control-info {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1384,7 +1384,7 @@ footer {
 
 
 #fusionUnity {
-    display: none;
+    display: block;
     width: 100%;
     min-height: 620px;
     border: 0;
@@ -1398,14 +1398,15 @@ footer {
 #fusionLockedOverlay {
     position: absolute;
     inset: 0;
+    z-index: 20;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 7px;
-    color: rgba(255,255,255,0.65);
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.7);
     text-align: center;
-    background: #292c31;
+    background: rgba(41, 44, 49, 0.97);
 }
 
 

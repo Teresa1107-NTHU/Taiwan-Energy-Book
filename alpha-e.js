@@ -13,6 +13,7 @@ const FUSION_WEBGL_URL = "https://teresa1107-nthu.github.io/Unity_Nuclear-Fusion
  * Fusion WebGL 是否已完成初始化。
  */
 let fusionUnityReady = false;
+let fusionUnlocked = false;
 
 const s={power:false,rough:false,turbo:false,vent:false,gas:false,mfc:false,cooler:false,hv:false,mw:false,beam:false,vacuum:0,seconds:0,selected:null};
 const info={rough_pump:["Rough Pump｜前級真空泵","先排除腔體內大部分氣體，建立前級真空。","機械泵浦改變腔室容積，將氣體吸入並排出。"],turbo_pump:["Turbo Pump｜渦輪分子泵","進一步降低壓力，建立高真空環境。","高速葉片與氣體分子碰撞，將分子定向送往排氣端。"],gas_supply:["Gas Supply｜氣體供應","提供實驗氣體並完成調壓。","氣瓶中的氣體經調壓後送往 MFC。"],gas_mfc:["MFC｜質量流量控制器","精確控制氣體進入系統的流量。","感測實際質量流率，再以控制閥閉迴路調節。"],cooler:["Cooler｜冷卻系統","帶走設備運轉產生的熱量。","冷卻液循環通過熱源並經熱交換器散熱。"],high_voltage:["High Voltage｜高壓系統","提供離子源與電極所需的電位差。","帶電粒子在電場中受力並獲得動能。"],microwave:["Microwave RF｜微波射頻系統","輸入微波能量，使低壓氣體游離形成電漿。","自由電子吸收微波能量後碰撞氣體分子造成游離。"],detector:["Pressure & Detector｜壓力與偵測","監測腔體壓力及粒子相關訊號。","感測器把物理量轉換為電訊號。"]};
@@ -205,74 +206,86 @@ $("setupGas").onclick = () => {
 ========================================================= */
 
 /*
- * Beam On 完成後：
+ * Beam On 完成後解鎖 Fusion 區域。
  *
- * 1. 解鎖 Fusion 區域。
- * 2. 載入 Fusion Unity。
- * 3. 開放 Fusion 控制按鈕。
- * 4. 自動捲動到 Fusion 區塊。
- */
-/*
- * Beam On 完成後：
- * 1. 解鎖 Fusion 區域。
- * 2. 載入 Fusion Unity。
- * 3. 等待 Unity 回報 Ready。
- * 4. Ready 後才允許操作。
+ * Fusion Unity 在網頁開啟時就已經預先載入，
+ * 所以這裡不再重新設定 iframe src。
  */
 function unlockFusionSection() {
 
-    const section = $("fusion-section");
-    const overlay = $("fusionLockedOverlay");
-    const fusionFrame = $("fusionUnity");
+    fusionUnlocked = true;
 
-    if (!section || !fusionFrame) {
-        console.warn("找不到 Fusion Section 或 Fusion iframe。");
+    const section =
+        $("fusion-section");
+
+    const overlay =
+        $("fusionLockedOverlay");
+
+    if (!section) {
+        console.warn(
+            "找不到 Fusion Section。"
+        );
         return;
     }
 
-    /* 解鎖外觀 */
+
+    /* =========================
+       解鎖 Fusion 區域
+    ========================= */
+
     section.classList.remove("locked");
 
-    $("fusionSectionHint").textContent =
-        "Beam 已建立，正在載入 p–¹¹B 核融合反應模型...";
-
-    $("fusionStatus").textContent =
-        "Loading Unity...";
-
-
-    /*
-     * Unity 還沒 Ready 前，
-     * 四個控制按鈕全部鎖住。
-     */
-    $("fusionStart").disabled = true;
-    $("fusionPause").disabled = true;
-    $("fusionResume").disabled = true;
-    $("fusionRestart").disabled = true;
-
-
-    /* 隱藏原本 Locked Overlay */
     if (overlay) {
         overlay.style.display = "none";
     }
 
 
-    /*
-     * 第一次 Beam On 才載入 Unity。
-     * 避免重複設定 src，導致 Unity 一直重新載入。
-     */
-    if (
-        fusionFrame.src === "about:blank" ||
-        !fusionFrame.dataset.loaded
-    ) {
+    /* =========================
+       判斷 Unity 是否已 Ready
+    ========================= */
 
-        fusionFrame.src = FUSION_WEBGL_URL;
-        fusionFrame.dataset.loaded = "true";
+    if (fusionUnityReady) {
+
+        $("fusionStatus").textContent =
+            "Ready";
+
+        $("fusionSectionHint").textContent =
+            "Beam 已建立，可進行 p–¹¹B 核融合反應示意。";
+
+        $("fusionStart").disabled =
+            false;
+
+        $("fusionRestart").disabled =
+            false;
+
+    }
+    else {
+
+        $("fusionStatus").textContent =
+            "Loading Unity...";
+
+        $("fusionSectionHint").textContent =
+            "Beam 已建立，Fusion 模型仍在載入中...";
+
+        $("fusionStart").disabled =
+            true;
+
+        $("fusionRestart").disabled =
+            true;
     }
 
-    fusionFrame.style.display = "block";
+
+    $("fusionPause").disabled =
+        true;
+
+    $("fusionResume").disabled =
+        true;
 
 
-    /* 平滑移動到 Fusion */
+    /* =========================
+       捲動到 Fusion
+    ========================= */
+
     setTimeout(() => {
 
         section.scrollIntoView({
@@ -280,7 +293,7 @@ function unlockFusionSection() {
             block: "start"
         });
 
-    }, 500);
+    }, 400);
 }
 
 /*
@@ -313,30 +326,88 @@ window.addEventListener(
 
             fusionUnityReady = true;
 
-            $("fusionStatus").textContent =
-                "Ready";
-
-            $("fusionSectionHint").textContent =
-                "Beam 已建立，可進行 p–¹¹B 核融合反應示意。";
-
-
-            /* 現在才允許 Start */
-            $("fusionStart").disabled =
-                false;
-
-            $("fusionRestart").disabled =
-                false;
-
-            $("fusionPause").disabled =
-                true;
-
-            $("fusionResume").disabled =
-                true;
-
-
             console.log(
-                "Fusion Unity 已完成初始化，可以操作。"
+                "Fusion Unity 已完成背景載入。"
             );
+
+
+            /*
+             * Unity Ready 不代表可以操作。
+             *
+             * 必須 Beam On 已完成，
+             * Fusion 區域解鎖後才開放按鈕。
+             */
+            if (fusionUnlocked) {
+
+                $("fusionStatus").textContent =
+                    "Ready";
+
+                $("fusionSectionHint").textContent =
+                    "Beam 已建立，可進行 p–¹¹B 核融合反應示意。";
+
+                $("fusionStart").disabled =
+                    false;
+
+                $("fusionRestart").disabled =
+                    false;
+
+                $("fusionPause").disabled =
+                    true;
+
+                $("fusionResume").disabled =
+                    true;
+            }
+
+            return;
+        }
+
+        /* =========================
+   Reaction Status
+========================= */
+
+        if (message.type === "FusionStatus") {
+
+            const status =
+                message.status || "Unknown";
+
+            $("fusionStatus").textContent =
+                status;
+
+            return;
+        }
+
+
+        /* =========================
+           Energy
+        ========================= */
+
+        if (message.type === "FusionEnergy") {
+
+            const energy =
+                Number(message.energy) || 0;
+
+            const totalEnergy =
+                8.68;
+
+            const percentage =
+                Math.min(
+                    100,
+                    Math.max(
+                        0,
+                        energy / totalEnergy * 100
+                    )
+                );
+
+
+            $("fusionEnergyValue").textContent =
+                energy.toFixed(2);
+
+
+            $("fusionEnergyProgress").style.width =
+                percentage + "%";
+
+
+            return;
         }
     }
 );
@@ -867,7 +938,23 @@ $("fusionRestart").onclick = () => {
     );
 };
 
-if (UNITY_WEBGL_URL) {
+if (UNITY_WEBGL_URL)
+{
     $("alphaUnity").src = UNITY_WEBGL_URL;
     $("alphaUnity").style.display = "block";
-} line($("pnChart"), pn); line($("psdChart"), psd, true); update();
+
+    const fusionFrame = $("fusionUnity");
+
+    if (fusionFrame) {
+
+        fusionFrame.src = FUSION_WEBGL_URL;
+
+        fusionFrame.dataset.loaded = "true";
+
+        console.log(
+            "開始預載 Fusion Unity..."
+        );
+    }
+}
+
+line($("pnChart"), pn); line($("psdChart"), psd, true); update();

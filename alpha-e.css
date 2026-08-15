@@ -1391,22 +1391,68 @@ footer {
 }
 
 
-/* =========================
-   Locked Overlay
-========================= */
+/* =========================================================
+   Fusion Locked / Loading Overlay
+========================================================= */
 
 #fusionLockedOverlay {
     position: absolute;
     inset: 0;
     z-index: 20;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    color: rgba(255, 255, 255, 0.7);
-    text-align: center;
     background: rgba(41, 44, 49, 0.97);
+    color: #ffffff;
+    text-align: center;
+}
+
+/* 中央內容 */
+.fusion-lock-content {
+    width: min(440px, 80%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+
+    .fusion-lock-content strong {
+        font-size: clamp(1.2rem, 2vw, 1.6rem);
+    }
+
+
+#fusionLoadingText {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.9rem;
+}
+
+/* =========================
+   Loading Progress
+========================= */
+
+.fusion-loading-track {
+    width: 100%;
+    height: 8px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.13);
+}
+
+
+.fusion-loading-progress {
+    width: 0%;
+    height: 100%;
+    border-radius: inherit;
+    background: #58d3ee;
+    transition: width 0.18s ease;
+}
+
+
+.fusion-lock-hint {
+    margin-top: 5px;
+    color: rgba(255, 255, 255, 0.52);
+    font-size: 0.82rem;
 }
 
 

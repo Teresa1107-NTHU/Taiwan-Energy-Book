@@ -214,11 +214,28 @@
             <!-- Beam On 前顯示 -->
             <div id="fusionLockedOverlay">
 
-                <strong>Fusion Reaction Locked</strong>
+                <div class="fusion-lock-content">
 
-                <span>
-                    請先完成 Alpha-E 操作流程並啟動 Beam On。
-                </span>
+                    <strong id="fusionLockTitle">
+                        Fusion Reaction Locked
+                    </strong>
+
+                    <span id="fusionLoadingText">
+                        Loading Fusion Model... 0%
+                    </span>
+
+                    <div class="fusion-loading-track">
+                        <div id="fusionLoadingProgress"
+                             class="fusion-loading-progress">
+                        </div>
+                    </div>
+
+                    <span id="fusionLockHint"
+                          class="fusion-lock-hint">
+                        完成 Beam On 後即可進行核融合反應
+                    </span>
+
+                </div>
 
             </div>
 

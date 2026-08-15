@@ -317,6 +317,50 @@ window.addEventListener(
             message
         );
 
+        /* =========================
+            Fusion Loading Progress
+        ========================= */
+
+        if (message.type === "FusionLoading") {
+
+            const progress =
+                Math.min(
+                    1,
+                    Math.max(
+                        0,
+                        Number(message.progress) || 0
+                    )
+                );
+
+            const percent =
+                Math.round(
+                    progress * 100
+                );
+
+
+            const progressBar =
+                $("fusionLoadingProgress");
+
+            const loadingText =
+                $("fusionLoadingText");
+
+
+            if (progressBar) {
+
+                progressBar.style.width =
+                    percent + "%";
+            }
+
+
+            if (loadingText) {
+
+                loadingText.textContent =
+                    `Loading Fusion Model... ${percent}%`;
+            }
+
+
+            return;
+        }
 
         /* =========================
            Unity 初始化完成
@@ -326,37 +370,69 @@ window.addEventListener(
 
             fusionUnityReady = true;
 
+
+            /* Loading Bar 強制到 100% */
+            const progressBar =
+                $("fusionLoadingProgress");
+
+            if (progressBar) {
+                progressBar.style.width =
+                    "100%";
+            }
+
+
+            /* 更新鎖定畫面的文字 */
+            const loadingText =
+                $("fusionLoadingText");
+
+            if (loadingText) {
+
+                loadingText.textContent =
+                    "Model Ready ✓";
+            }
+
+
             console.log(
                 "Fusion Unity 已完成背景載入。"
             );
 
 
             /*
-             * Unity Ready 不代表可以操作。
-             *
-             * 必須 Beam On 已完成，
-             * Fusion 區域解鎖後才開放按鈕。
+             * 如果 Beam 還沒 On：
+             * 保持鎖定，只顯示 Ready。
              */
-            if (fusionUnlocked) {
+            if (!fusionUnlocked) {
 
-                $("fusionStatus").textContent =
-                    "Ready";
+                $("fusionLockHint").textContent =
+                    "模型已載入完成，完成 Beam On 後即可進行核融合反應。";
 
-                $("fusionSectionHint").textContent =
-                    "Beam 已建立，可進行 p–¹¹B 核融合反應示意。";
-
-                $("fusionStart").disabled =
-                    false;
-
-                $("fusionRestart").disabled =
-                    false;
-
-                $("fusionPause").disabled =
-                    true;
-
-                $("fusionResume").disabled =
-                    true;
+                return;
             }
+
+
+            /*
+             * Beam 已經 On：
+             * 正式開放操作。
+             */
+            $("fusionStatus").textContent =
+                "Ready";
+
+            $("fusionSectionHint").textContent =
+                "Beam 已建立，可進行 p–¹¹B 核融合反應示意。";
+
+
+            $("fusionStart").disabled =
+                false;
+
+            $("fusionRestart").disabled =
+                false;
+
+            $("fusionPause").disabled =
+                true;
+
+            $("fusionResume").disabled =
+                true;
+
 
             return;
         }

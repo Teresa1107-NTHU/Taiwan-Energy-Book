@@ -60,10 +60,174 @@
                     </div>
                 </div>
 
-                <div class="device mfc" data-device="gas_mfc"><header>MFC <i id="mfcLed"></i><b id="mfcLabel">off</b></header><div class="readout fields"><label>Flowrate<input id="mfcFlow" type="number" min="0" max="10000" step="10" value="9000"> sccm</label><span>Measured<strong><em id="mfcMeasured">0.0000</em></strong></span></div><div class="actions"><button data-cmd="mfc:off">Off</button><button data-cmd="mfc:on">On</button></div></div>
-                <div class="device gas" data-device="gas_supply"><header>Gas Can</header><div class="gasline"><select id="gasType"><option>Deuterium</option><option>Hydrogen</option><option>Argon</option></select><input id="gasPressure" type="number" min="0" max="100" value="40"><button id="setupGas" class="cyan">Set Up Gas</button></div></div>
-                <div class="device cooler" data-device="cooler"><header>Cooler <i id="coolerLed"></i><b id="coolerLabel">off</b></header><div class="readout"><span>Flow<strong><em id="coolerFlow">0.0</em> L/m</strong></span><span>Temp<strong><em id="coolerTemp">24.3</em> °C</strong></span></div><div class="actions"><button data-cmd="cooler:off">Off</button><button data-cmd="cooler:on">On</button></div></div>
-                <div class="panel-bar"><strong>Alpha-E @ Tainan</strong><div><button id="powerOff" class="active">Off</button><button id="powerOn" class="cyan">Power On</button></div></div>
+                <div class="device mfc" data-device="gas_mfc">
+                    <header>
+                        MFC
+                        <i id="mfcLed"></i>
+                        <b id="mfcLabel">off</b>
+                    </header>
+
+                    <div class="readout fields">
+                        <label>
+                            Flowrate
+                            <input id="mfcFlow" type="number" min="0" max="10000" step="10" value="9000"> sccm
+                        </label>
+                        <span>
+                            Measured
+                            <strong><em id="mfcMeasured">0.0000</em></strong>
+                        </span>
+                    </div>
+
+                    <div class="actions">
+                        <button data-cmd="mfc:off">Off</button>
+                        <button data-cmd="mfc:on">On</button>
+                    </div>
+                </div>
+
+                <div class="device gas" data-device="gas_supply">
+                    <header>Gas Can</header>
+                    <div class="gasline">
+                        <select id="gasType">
+                            <option>Deuterium</option>
+                            <option>Hydrogen</option>
+                            <option>Argon</option>
+                        </select>
+                        <input id="gasPressure" type="number" min="0" max="100" value="40">
+                        <button id="setupGas" class="cyan">Set Up Gas</button>
+                    </div>
+                </div>
+
+                <div class="device cooler" data-device="cooler">
+                    <header>
+                        Cooler
+                        <i id="coolerLed"></i>
+                        <b id="coolerLabel">off</b>
+                    </header>
+                    <div class="readout">
+                        <span>Flow<strong><em id="coolerFlow">0.0</em> L/m</strong></span>
+                        <span>Temp<strong><em id="coolerTemp">24.3</em> °C</strong></span>
+                    </div>
+                    <div class="actions">
+                        <button data-cmd="cooler:off">Off</button>
+                        <button data-cmd="cooler:on">On</button>
+                    </div>
+                </div>
+
+                <div class="panel-bar">
+                    <strong>Alpha-E @ Tainan</strong>
+                    <div>
+                        <button id="powerOff" class="active">Off</button>
+                        <button id="powerOn" class="cyan">Power On</button>
+                    </div>
+                </div>
+
+                <!-- =====================================================
+                     Alpha-E 教學流程進度
+                ===================================================== -->
+                <div class="alpha-flow-guide">
+
+                    <div class="alpha-flow-header">
+                        <div>
+                            <span class="alpha-flow-eyebrow">OPERATION PROCESS</span>
+                            <h3>Alpha-E 實驗流程</h3>
+                        </div>
+
+                        <span id="flowProgressText" class="alpha-flow-count">
+                            Step 1 / 8
+                        </span>
+                    </div>
+
+
+                    <div class="alpha-flow-steps">
+
+                        <div class="flow-step" data-flow-step="power">
+                            <span class="flow-number">01</span>
+                            <div class="flow-step-text">
+                                <strong>Power</strong>
+                                <span>系統啟動</span>
+                            </div>
+                        </div>
+
+                        <div class="flow-line"></div>
+
+
+                        <div class="flow-step" data-flow-step="vacuum">
+                            <span class="flow-number">02</span>
+                            <div class="flow-step-text">
+                                <strong>Vacuum</strong>
+                                <span>建立真空</span>
+                            </div>
+                        </div>
+
+                        <div class="flow-line"></div>
+
+
+                        <div class="flow-step" data-flow-step="gas">
+                            <span class="flow-number">03</span>
+                            <div class="flow-step-text">
+                                <strong>Gas</strong>
+                                <span>氣體注入</span>
+                            </div>
+                        </div>
+
+                        <div class="flow-line"></div>
+
+
+                        <div class="flow-step" data-flow-step="cooling">
+                            <span class="flow-number">04</span>
+                            <div class="flow-step-text">
+                                <strong>Cooling</strong>
+                                <span>冷卻系統</span>
+                            </div>
+                        </div>
+
+                        <div class="flow-line"></div>
+
+
+                        <div class="flow-step" data-flow-step="high_voltage">
+                            <span class="flow-number">05</span>
+                            <div class="flow-step-text">
+                                <strong>High Voltage</strong>
+                                <span>粒子加速</span>
+                            </div>
+                        </div>
+
+                        <div class="flow-line"></div>
+
+
+                        <div class="flow-step" data-flow-step="plasma">
+                            <span class="flow-number">06</span>
+                            <div class="flow-step-text">
+                                <strong>Plasma</strong>
+                                <span>微波游離</span>
+                            </div>
+                        </div>
+
+                        <div class="flow-line"></div>
+
+
+                        <div class="flow-step" data-flow-step="beam">
+                            <span class="flow-number">07</span>
+                            <div class="flow-step-text">
+                                <strong>Beam</strong>
+                                <span>建立粒子束</span>
+                            </div>
+                        </div>
+
+                        <div class="flow-line"></div>
+
+
+                        <div class="flow-step" data-flow-step="fusion">
+                            <span class="flow-number">08</span>
+                            <div class="flow-step-text">
+                                <strong>Fusion</strong>
+                                <span>核融合反應</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
 
                 <!-- =========================
                       Plasma 顯示區
@@ -117,6 +281,37 @@
             <iframe id="alphaUnity" src="about:blank" allowfullscreen></iframe>
         </div>
     </section>
+
+    <!-- =====================================================
+         Beam 建立完成過場
+    ===================================================== -->
+    <div id="beamTransition"
+         class="beam-transition"
+         aria-hidden="true">
+        <div class="beam-transition-card">
+
+            <div class="beam-transition-icon">
+                ✓
+            </div>
+
+            <span class="beam-transition-eyebrow">
+                REACTION CONDITIONS ESTABLISHED
+            </span>
+
+            <h3>
+                Ion Beam Established
+            </h3>
+
+            <p>
+                Alpha-E 實驗條件已完成，高能粒子束已建立。
+            </p>
+
+            <span class="beam-transition-next">
+                即將進入 p–¹¹B 核融合反應示意
+            </span>
+
+        </div>
+    </div>
 
     <!-- =====================================================
          04 p–11B 核融合反應
@@ -236,6 +431,61 @@
                     </span>
 
                 </div>
+
+            </div>
+
+        </div>
+
+        <!-- =====================================================
+         Fusion Complete Result
+    ===================================================== -->
+        <div id="fusionResult"
+             class="fusion-result"
+             aria-hidden="true">
+
+            <div class="fusion-result-icon">
+                ✓
+            </div>
+
+            <span class="fusion-result-eyebrow">
+                REACTION COMPLETE
+            </span>
+
+            <h3>
+                Fusion Complete
+            </h3>
+
+            <div class="fusion-result-equation">
+                p + ¹¹B → 3α
+            </div>
+
+            <div class="fusion-result-grid">
+
+                <div>
+                    <span>Total Energy Released</span>
+                    <strong>8.68 MeV</strong>
+                </div>
+
+                <div>
+                    <span>Reaction Products</span>
+                    <strong>3 × α particles</strong>
+                </div>
+
+            </div>
+
+            <p>
+                質子與硼-11 發生核融合反應後，最終產生三個 α 粒子並釋放能量。
+            </p>
+
+            <div class="fusion-result-actions">
+
+                <button id="fusionReplay">
+                    Replay Reaction
+                </button>
+
+                <button id="returnAlpha">
+                    Return to Alpha-E
+                </button>
 
             </div>
 

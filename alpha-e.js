@@ -14,6 +14,7 @@ const FUSION_WEBGL_URL = "https://teresa1107-nthu.github.io/Unity_Nuclear-Fusion
  */
 let fusionUnityReady = false;
 let fusionUnlocked = false;
+let fusionCompleted = false;
 
 const s={power:false,rough:false,turbo:false,vent:false,gas:false,mfc:false,cooler:false,hv:false,mw:false,beam:false,vacuum:0,seconds:0,selected:null};
 const info={rough_pump:["Rough Pump｜前級真空泵","先排除腔體內大部分氣體，建立前級真空。","機械泵浦改變腔室容積，將氣體吸入並排出。"],turbo_pump:["Turbo Pump｜渦輪分子泵","進一步降低壓力，建立高真空環境。","高速葉片與氣體分子碰撞，將分子定向送往排氣端。"],gas_supply:["Gas Supply｜氣體供應","提供實驗氣體並完成調壓。","氣瓶中的氣體經調壓後送往 MFC。"],gas_mfc:["MFC｜質量流量控制器","精確控制氣體進入系統的流量。","感測實際質量流率，再以控制閥閉迴路調節。"],cooler:["Cooler｜冷卻系統","帶走設備運轉產生的熱量。","冷卻液循環通過熱源並經熱交換器散熱。"],high_voltage:["High Voltage｜高壓系統","提供離子源與電極所需的電位差。","帶電粒子在電場中受力並獲得動能。"],microwave:["Microwave RF｜微波射頻系統","輸入微波能量，使低壓氣體游離形成電漿。","自由電子吸收微波能量後碰撞氣體分子造成游離。"],detector:["Pressure & Detector｜壓力與偵測","監測腔體壓力及粒子相關訊號。","感測器把物理量轉換為電訊號。"]};
@@ -81,8 +82,134 @@ function updateGuide(){
   $("beamOff").dataset.locked="false";
 }
 
-function toggleMenu(){$("nav-menu").classList.toggle("open")}
-function led(name,on){$(name+"Led").classList.toggle("on",on);$(name+"Label").textContent=on?"on":"off";$(name+"Label").classList.toggle("on",on)}
+/* =========================================================
+   Alpha-E 教學流程進度列
+========================================================= */
+
+function updateFlowProgress() {
+
+    const flow = [
+        {
+            id: "power",
+            complete: s.power
+        },
+
+        {
+            id: "vacuum",
+            complete: s.vacuum >= 90
+        },
+
+        {
+            id: "gas",
+            complete: s.gas && s.mfc
+        },
+
+        {
+            id: "cooling",
+            complete: s.cooler
+        },
+
+        {
+            id: "high_voltage",
+            complete: s.hv
+        },
+
+        {
+            id: "plasma",
+            complete: s.mw
+        },
+
+        {
+            id: "beam",
+            complete: s.beam
+        },
+
+        {
+            id: "fusion",
+            complete: fusionCompleted
+        }
+    ];
+
+
+    /* 找出第一個尚未完成的步驟 */
+    let currentIndex =
+        flow.findIndex(step => !step.complete);
+
+
+    /* 全部完成 */
+    if (currentIndex === -1) {
+        currentIndex = flow.length - 1;
+    }
+
+
+    flow.forEach((step, index) => {
+
+        const element =
+            document.querySelector(
+                `[data-flow-step="${step.id}"]`
+            );
+
+        if (!element) return;
+
+
+        element.classList.remove(
+            "current",
+            "complete"
+        );
+
+
+        if (step.complete) {
+
+            element.classList.add(
+                "complete"
+            );
+
+        }
+        else if (index === currentIndex) {
+
+            element.classList.add(
+                "current"
+            );
+        }
+    });
+
+
+    /* 更新連接線 */
+    const lines =
+        document.querySelectorAll(
+            ".alpha-flow-steps .flow-line"
+        );
+
+    lines.forEach((line, index) => {
+
+        line.classList.toggle(
+            "complete",
+            flow[index]?.complete === true
+        );
+
+    });
+
+
+    /* Step X / 8 */
+    const progressText =
+        $("flowProgressText");
+
+    if (progressText) {
+
+        progressText.textContent =
+            `Step ${currentIndex + 1} / ${flow.length}`;
+    }
+}
+
+function toggleMenu() {
+    $("nav-menu").classList.toggle("open")
+}
+
+function led(name, on) {
+    $(name + "Led").classList.toggle("on", on);
+    $(name + "Label").textContent = on ? "on" : "off"; $(name + "Label").classList.toggle("on", on)
+}
+
 function select(id) {
     s.selected = id;
 
@@ -200,6 +327,67 @@ $("setupGas").onclick = () => {
         selectedGas
     );
 };
+
+/*
+ * Beam 建立完成後的教學過場。
+ *
+ * 顯示 Beam Established 提示，
+ * 再解鎖並捲動到 Fusion 區域。
+ */
+function showBeamTransition() {
+
+    const transition =
+        $("beamTransition");
+
+
+    /* 找不到過場元素時，
+       直接進入 Fusion，避免流程卡住 */
+    if (!transition) {
+
+        unlockFusionSection();
+
+        return;
+    }
+
+
+    transition.classList.add(
+        "active"
+    );
+
+    transition.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    /*
+     * 顯示約 1.5 秒
+     */
+    setTimeout(() => {
+
+        transition.classList.remove(
+            "active"
+        );
+
+        transition.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+
+        /*
+         * 等淡出開始後再進 Fusion，
+         * 畫面會比較自然。
+         */
+        setTimeout(() => {
+
+            unlockFusionSection();
+
+        }, 250);
+
+
+    }, 1500);
+}
 
 /* =========================================================
    Fusion Section
@@ -438,8 +626,8 @@ window.addEventListener(
         }
 
         /* =========================
-   Reaction Status
-========================= */
+           Reaction Status
+        ========================= */
 
         if (message.type === "FusionStatus") {
 
@@ -448,6 +636,21 @@ window.addEventListener(
 
             $("fusionStatus").textContent =
                 status;
+
+
+            /*
+             * FusionController 完成時送出的文字：
+             * "Fusion finished. Check products, then press Restart."
+             */
+            if (
+                status.includes(
+                    "Fusion finished"
+                )
+            ) {
+
+                completeFusionReaction();
+            }
+
 
             return;
         }
@@ -528,7 +731,7 @@ $("beamOn").onclick = () => {
 
 
     /* 解鎖 Fusion */
-    unlockFusionSection();
+    showBeamTransition();
 };
 
 $("beamOff").onclick = () => {
@@ -692,6 +895,7 @@ function update() {
 
     live();
     updateGuide();
+    updateFlowProgress();
 }
 function live() {
     if (!s.selected) return; let t = ""; if (s.selected === "rough_pump") t = `${s.rough ? "運轉" : "停止"}；真空進度 ${s.vacuum.toFixed(0)}%。`; if (s.selected === "turbo_pump") t = `${s.turbo ? "運轉" : s.vent ? "Vent" : "停止"}；轉速 ${$("turboSpeed").textContent} Hz。`; if (s.selected === "gas_supply") {
@@ -746,10 +950,6 @@ function send(type, equipmentId = "", action = "") {
     );
 }
 
-/*
- * 將網頁指令傳送給
- * p–11B Fusion Unity iframe。
- */
 /*
  * 將 HTML 操作指令傳送給
  * p–11B Fusion Unity。
@@ -814,15 +1014,94 @@ function sendFusion(
     return true;
 }
 
+/*
+ * Fusion 反應完成。
+ *
+ * 1. 第 8 步改為 Complete。
+ * 2. 顯示反應結果卡。
+ * 3. 鎖住 Pause / Resume。
+ */
+function completeFusionReaction() {
+
+    fusionCompleted = true;
+
+
+    /* =========================
+       Fusion 控制面板
+    ========================= */
+
+    $("fusionStatus").textContent =
+        "Fusion Complete";
+
+    $("fusionPause").disabled =
+        true;
+
+    $("fusionResume").disabled =
+        true;
+
+    $("fusionStart").disabled =
+        true;
+
+    $("fusionRestart").disabled =
+        false;
+
+
+    /* =========================
+       Energy 強制完成
+    ========================= */
+
+    $("fusionEnergyValue").textContent =
+        "8.68";
+
+    $("fusionEnergyProgress")
+        .style.width =
+        "100%";
+
+
+    /* =========================
+       顯示結果卡
+    ========================= */
+
+    const result =
+        $("fusionResult");
+
+    if (result) {
+
+        result.classList.add(
+            "active"
+        );
+
+        result.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+    }
+
+
+    /* =========================
+       更新 8 步驟流程
+    ========================= */
+
+    updateFlowProgress();
+
+
+    /* =========================
+       自動捲到結果
+    ========================= */
+
+    setTimeout(() => {
+
+        result?.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    }, 350);
+}
+
 /* =========================================================
    Fusion HTML Controls
 ========================================================= */
-
-
-/* =========================================================
-   Fusion HTML Controls
-========================================================= */
-
 
 /* =========================
    Start
@@ -859,6 +1138,7 @@ $("fusionStart").onclick = () => {
 ========================= */
 
 $("fusionPause").onclick = () => {
+
 
     const sent = sendFusion(
         "PauseFusion",
@@ -907,7 +1187,6 @@ $("fusionResume").onclick = () => {
         true;
 };
 
-
 /* =========================
    Restart
 ========================= */
@@ -924,70 +1203,28 @@ $("fusionRestart").onclick = () => {
     }
 
 
-    $("fusionStatus").textContent =
-        "Ready";
-
-    $("fusionEnergyValue").textContent =
-        "0.00";
-
-    $("fusionEnergyProgress").style.width =
-        "0%";
+    /* 重設 Fusion 完成狀態 */
+    fusionCompleted = false;
 
 
-    $("fusionStart").disabled =
-        false;
+    /* 隱藏 Fusion Complete 結果卡 */
+    const result =
+        $("fusionResult");
 
-    $("fusionPause").disabled =
-        true;
+    if (result) {
 
-    $("fusionResume").disabled =
-        true;
-};
+        result.classList.remove(
+            "active"
+        );
 
-
-/* Pause */
-$("fusionPause").onclick = () => {
-
-    $("fusionStatus").textContent =
-        "Paused";
-
-    $("fusionPause").disabled =
-        true;
-
-    $("fusionResume").disabled =
-        false;
+        result.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+    }
 
 
-    sendFusion(
-        "PauseFusion",
-        "pause"
-    );
-};
-
-
-/* Resume */
-$("fusionResume").onclick = () => {
-
-    $("fusionStatus").textContent =
-        "Running";
-
-    $("fusionPause").disabled =
-        false;
-
-    $("fusionResume").disabled =
-        true;
-
-
-    sendFusion(
-        "ResumeFusion",
-        "resume"
-    );
-};
-
-
-/* Restart */
-$("fusionRestart").onclick = () => {
-
+    /* 重設儀表板 */
     $("fusionStatus").textContent =
         "Ready";
 
@@ -1007,30 +1244,150 @@ $("fusionRestart").onclick = () => {
     $("fusionResume").disabled =
         true;
 
+    $("fusionRestart").disabled =
+        false;
 
-    sendFusion(
+
+    /* 第 8 步重新回到目前步驟 */
+    updateFlowProgress();
+};
+
+$("fusionReplay").onclick = () => {
+
+    fusionCompleted = false;
+
+
+    /* 隱藏結果卡 */
+    const result =
+        $("fusionResult");
+
+    if (result) {
+
+        result.classList.remove(
+            "active"
+        );
+
+        result.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+    }
+
+
+    /* 先 Reset Unity */
+    const sent = sendFusion(
         "RestartFusion",
         "restart"
     );
+
+    if (!sent) {
+        return;
+    }
+
+
+    /* 重設 HTML 儀表板 */
+    $("fusionStatus").textContent =
+        "Ready";
+
+    $("fusionEnergyValue").textContent =
+        "0.00";
+
+    $("fusionEnergyProgress")
+        .style.width =
+        "0%";
+
+
+    $("fusionStart").disabled =
+        false;
+
+    $("fusionPause").disabled =
+        true;
+
+    $("fusionResume").disabled =
+        true;
+
+    $("fusionRestart").disabled =
+        false;
+
+
+    updateFlowProgress();
+
+
+    /* 回到 Fusion 模型上方 */
+    $("fusion-section")
+        .scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 };
 
-if (UNITY_WEBGL_URL)
-{
-    $("alphaUnity").src = UNITY_WEBGL_URL;
-    $("alphaUnity").style.display = "block";
+$("returnAlpha").onclick = () => {
 
-    const fusionFrame = $("fusionUnity");
+    const alphaPanel =
+        document.querySelector(
+            ".sim-panel"
+        );
+
+    if (!alphaPanel) {
+        return;
+    }
+
+
+    alphaPanel.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+};
+
+/* =========================
+   載入 Alpha-E Unity
+========================= */
+
+if (UNITY_WEBGL_URL) {
+
+    $("alphaUnity").src =
+        UNITY_WEBGL_URL;
+
+    $("alphaUnity").style.display =
+        "block";
+}
+
+
+/* =========================
+   背景預載 Fusion Unity
+========================= */
+
+if (FUSION_WEBGL_URL) {
+
+    const fusionFrame =
+        $("fusionUnity");
 
     if (fusionFrame) {
 
-        fusionFrame.src = FUSION_WEBGL_URL;
+        fusionFrame.src =
+            FUSION_WEBGL_URL;
 
-        fusionFrame.dataset.loaded = "true";
+        fusionFrame.dataset.loaded =
+            "true";
 
         console.log(
             "開始預載 Fusion Unity..."
         );
     }
 }
+
+
+line(
+    $("pnChart"),
+    pn
+);
+
+line(
+    $("psdChart"),
+    psd,
+    true
+);
+
+update();
 
 line($("pnChart"), pn); line($("psdChart"), psd, true); update();

@@ -1934,3 +1934,288 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================================================
+   Alpha-E 新版互動工作區
+   左側操作面板 + 右側 Unity 3D
+========================================================= */
+
+.alpha-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 14px;
+    width: 100%;
+    /*
+     * 先控制在接近一個螢幕內。
+     */
+    height: min(60vh, 610px);
+    min-height: 500px;
+    margin-top: 14px;
+}
+
+
+/* =========================================================
+   左側：Alpha-E 操作面板
+========================================================= */
+
+.alpha-control-column {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #343434;
+}
+
+
+    /*
+ * 原本 sim-panel 是依比例設計，
+ * 這裡讓它縮進左側欄位。
+ */
+    .alpha-control-column .sim-panel {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        border-radius: 14px;
+    }
+
+
+    /*
+ * schematic 本身必須跟著容器縮放
+ */
+    .alpha-control-column .schematic {
+        width: 100%;
+        height: 100%;
+    }
+
+
+/* =========================================================
+   右側：Unity 3D
+========================================================= */
+
+.alpha-unity-column {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #0e141b;
+}
+
+
+/* Unity 標題列 */
+.alpha-unity-header {
+    flex: 0 0 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 13px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    background: #171d24;
+    color: #fff;
+}
+
+
+    .alpha-unity-header > div {
+        display: flex;
+        flex-direction: column;
+    }
+
+
+        .alpha-unity-header > div > span {
+            color: #61d7ee;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .12em;
+        }
+
+
+    .alpha-unity-header strong {
+        margin-top: 2px;
+        font-size: 13px;
+    }
+
+
+#alphaModelStatus {
+    padding: 5px 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.08);
+    color: rgba(255,255,255,.6);
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   Unity iframe
+========================================================= */
+
+.alpha-unity-wrap {
+    position: relative;
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    overflow: hidden;
+    background: #080c11;
+}
+
+
+#alphaUnity {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    border: 0;
+}
+
+
+/* =========================================================
+   Selected Equipment
+========================================================= */
+
+.alpha-device-info {
+    margin-top: 14px;
+    padding: 14px 16px;
+    border: 1px solid #2d333b;
+    border-radius: 14px;
+    background: #0d1218;
+    color: #fff;
+}
+
+
+/* 標題 */
+.alpha-device-info-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+
+    .alpha-device-info-title > div > span {
+        color: #60d8ef;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: .11em;
+    }
+
+
+    .alpha-device-info-title h3 {
+        margin: 3px 0 0;
+        color: #fff;
+        font-size: 15px;
+    }
+
+
+#infoStatus {
+    padding: 5px 9px;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 999px;
+    color: rgba(255,255,255,.65);
+    font-size: 10px;
+}
+
+
+/* 三欄資訊 */
+.alpha-device-info-grid {
+    display: grid;
+    grid-template-columns: .85fr 1.3fr 1fr;
+    gap: 9px;
+}
+
+
+.alpha-info-box {
+    min-height: 70px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255,255,255,.09);
+    border-radius: 9px;
+    background: #151b21;
+}
+
+
+    .alpha-info-box > span {
+        color: #5ed8ef;
+        font-size: 10px;
+        font-weight: 700;
+    }
+
+
+    .alpha-info-box p {
+        margin: 6px 0 0;
+        color: rgba(255,255,255,.65);
+        font-size: 11px;
+        line-height: 1.45;
+    }
+
+
+/* =========================================================
+   8 Steps 稍微縮緊
+========================================================= */
+
+.alpha-flow-guide {
+    margin: 14px 0 0;
+    padding: 12px 16px;
+    border-radius: 12px;
+}
+
+
+.alpha-flow-header {
+    margin-bottom: 10px;
+}
+
+
+    .alpha-flow-header h3 {
+        font-size: 14px;
+    }
+
+
+.flow-number {
+    width: 26px;
+    height: 26px;
+    flex: 0 0 26px;
+}
+
+
+.flow-step-text strong {
+    font-size: 10px;
+}
+
+
+.flow-step-text span {
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   中尺寸畫面
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .alpha-workspace {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+
+    .alpha-control-column {
+        height: auto;
+        aspect-ratio: 1536 / 1024;
+    }
+
+
+    .alpha-unity-column {
+        height: 500px;
+    }
+
+
+    .alpha-device-info-grid {
+        grid-template-columns: 1fr;
+    }
+}

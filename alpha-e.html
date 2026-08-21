@@ -23,262 +23,338 @@
 </header>
 <main class="alpha-container">
     <section class="content-card">
-        <div class="card-heading"><div><span>01</span><h2>Alpha-E 仿真操作面板</h2></div><p>這一版不是圖片熱區，而是真正的 HTML 控制元件。</p></div>
-        <div class="sim-panel">
-            <div class="schematic">
-                <img src="assets/alpha-e-panel.jpg" alt="Alpha-E 面板底圖">
-                <div class="device rough" data-device="rough_pump"><header>Rough Pump <i id="roughLed"></i><b id="roughLabel">off</b></header><div class="actions"><button data-cmd="rough:off">Off</button><button data-cmd="rough:on">On</button></div></div>
-                <div class="device turbo" data-device="turbo_pump"><header>Turbo Pump <i id="turboLed"></i><b id="turboLabel">off</b></header><div class="readout"><span>Rotation Speed<strong><em id="turboSpeed">0</em> Hz</strong></span><span>Temp<strong><em id="turboTemp">24</em> °C</strong></span><span>Current<strong><em id="turboCurrent">0.00</em> A</strong></span></div><div class="actions three"><button data-cmd="turbo:off">Off</button><button data-cmd="turbo:vent">Vent</button><button data-cmd="turbo:on">On</button></div></div>
-                <div class="device hv" data-device="high_voltage"><header>High Voltage <i id="hvLed" class="red"></i><b id="hvLabel">off</b></header><div class="readout fields"><label>Voltage<input id="hvVoltage" type="number" min="0" max="10" step="0.1" value="5.0"> kV</label><label>Current<input id="hvCurrent" type="number" min="0" max="5" step="0.1" value="1.0"> mA</label></div><div class="actions"><button data-cmd="hv:off">Off</button><button data-cmd="hv:on">On</button></div></div>
-
-                <div class="device microwave" data-device="microwave">
-                    <header>
-                        Microwave <i id="mwLed"></i>
-                        <b id="mwLabel">off</b>
-                    </header>
-                    <div class="readout fields">
-                        <label>
-                            Duty Cycle
-                            <input id="mwDuty" type="number" min="0" max="100" value="9"> %
-                        </label>
-                        <label>
-                            Pulse Frequency
-                            <input id="mwPulse" type="number" min="10" max="5000" value="1000"> Hz
-                        </label>
-                        <label>
-                            RF Frequency
-                            <input id="mwFreq" type="number" min="2000" max="3000" value="2450"> MHz
-                        </label>
-                        <label>
-                            RF Attenuation
-                            <input id="mwAtt" type="number" min="0" max="100" value="80"> Lv
-                        </label>
-                    </div>
-                    <div class="actions">
-                        <button data-cmd="mw:off">Off</button>
-                        <button data-cmd="mw:on">On</button>
-                    </div>
-                </div>
-
-                <div class="device mfc" data-device="gas_mfc">
-                    <header>
-                        MFC
-                        <i id="mfcLed"></i>
-                        <b id="mfcLabel">off</b>
-                    </header>
-
-                    <div class="readout fields">
-                        <label>
-                            Flowrate
-                            <input id="mfcFlow" type="number" min="0" max="10000" step="10" value="9000"> sccm
-                        </label>
-                        <span>
-                            Measured
-                            <strong><em id="mfcMeasured">0.0000</em></strong>
-                        </span>
-                    </div>
-
-                    <div class="actions">
-                        <button data-cmd="mfc:off">Off</button>
-                        <button data-cmd="mfc:on">On</button>
-                    </div>
-                </div>
-
-                <div class="device gas" data-device="gas_supply">
-                    <header>Gas Can</header>
-                    <div class="gasline">
-                        <select id="gasType">
-                            <option>Deuterium</option>
-                            <option>Hydrogen</option>
-                            <option>Argon</option>
-                        </select>
-                        <input id="gasPressure" type="number" min="0" max="100" value="40">
-                        <button id="setupGas" class="cyan">Set Up Gas</button>
-                    </div>
-                </div>
-
-                <div class="device cooler" data-device="cooler">
-                    <header>
-                        Cooler
-                        <i id="coolerLed"></i>
-                        <b id="coolerLabel">off</b>
-                    </header>
-                    <div class="readout">
-                        <span>Flow<strong><em id="coolerFlow">0.0</em> L/m</strong></span>
-                        <span>Temp<strong><em id="coolerTemp">24.3</em> °C</strong></span>
-                    </div>
-                    <div class="actions">
-                        <button data-cmd="cooler:off">Off</button>
-                        <button data-cmd="cooler:on">On</button>
-                    </div>
-                </div>
-
-                <div class="panel-bar">
-                    <strong>Alpha-E @ Tainan</strong>
-                    <div>
-                        <button id="powerOff" class="active">Off</button>
-                        <button id="powerOn" class="cyan">Power On</button>
-                    </div>
-                </div>
-
-                <!-- =====================================================
-                     Alpha-E 教學流程進度
-                ===================================================== -->
-                <div class="alpha-flow-guide">
-
-                    <div class="alpha-flow-header">
-                        <div>
-                            <span class="alpha-flow-eyebrow">OPERATION PROCESS</span>
-                            <h3>Alpha-E 實驗流程</h3>
-                        </div>
-
-                        <span id="flowProgressText" class="alpha-flow-count">
-                            Step 1 / 8
-                        </span>
-                    </div>
-
-
-                    <div class="alpha-flow-steps">
-
-                        <div class="flow-step" data-flow-step="power">
-                            <span class="flow-number">01</span>
-                            <div class="flow-step-text">
-                                <strong>Power</strong>
-                                <span>系統啟動</span>
-                            </div>
-                        </div>
-
-                        <div class="flow-line"></div>
-
-
-                        <div class="flow-step" data-flow-step="vacuum">
-                            <span class="flow-number">02</span>
-                            <div class="flow-step-text">
-                                <strong>Vacuum</strong>
-                                <span>建立真空</span>
-                            </div>
-                        </div>
-
-                        <div class="flow-line"></div>
-
-
-                        <div class="flow-step" data-flow-step="gas">
-                            <span class="flow-number">03</span>
-                            <div class="flow-step-text">
-                                <strong>Gas</strong>
-                                <span>氣體注入</span>
-                            </div>
-                        </div>
-
-                        <div class="flow-line"></div>
-
-
-                        <div class="flow-step" data-flow-step="cooling">
-                            <span class="flow-number">04</span>
-                            <div class="flow-step-text">
-                                <strong>Cooling</strong>
-                                <span>冷卻系統</span>
-                            </div>
-                        </div>
-
-                        <div class="flow-line"></div>
-
-
-                        <div class="flow-step" data-flow-step="high_voltage">
-                            <span class="flow-number">05</span>
-                            <div class="flow-step-text">
-                                <strong>High Voltage</strong>
-                                <span>粒子加速</span>
-                            </div>
-                        </div>
-
-                        <div class="flow-line"></div>
-
-
-                        <div class="flow-step" data-flow-step="plasma">
-                            <span class="flow-number">06</span>
-                            <div class="flow-step-text">
-                                <strong>Plasma</strong>
-                                <span>微波游離</span>
-                            </div>
-                        </div>
-
-                        <div class="flow-line"></div>
-
-
-                        <div class="flow-step" data-flow-step="beam">
-                            <span class="flow-number">07</span>
-                            <div class="flow-step-text">
-                                <strong>Beam</strong>
-                                <span>建立粒子束</span>
-                            </div>
-                        </div>
-
-                        <div class="flow-line"></div>
-
-
-                        <div class="flow-step" data-flow-step="fusion">
-                            <span class="flow-number">08</span>
-                            <div class="flow-step-text">
-                                <strong>Fusion</strong>
-                                <span>核融合反應</span>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <!-- =========================
-                      Plasma 顯示區
-                      Microwave On 後顯示
-                ========================= -->
-                <!-- =========================
-                      Plasma 顯示區
-                      Microwave On 後顯示
-                ========================= -->
-                <div id="plasmaDisplay"
-                     class="plasma-display"
-                     aria-hidden="true">
-
-                    <!-- Plasma 水平路徑 -->
-                    <div class="plasma-line"></div>
-
-                    <!-- 中央 Plasma 區塊 -->
-                    <div class="plasma-box">
-                        <span>Plasma</span>
-                    </div>
-
-                </div>
-
-                <div class="device detector" data-device="detector">
-                    <header>Pressure <strong><em id="pressureValue">7.50e-1</em> Torr</strong></header>
-                    <div class="chart"><small>PN Detector Signal</small><canvas id="pnChart" width="300" height="80"></canvas></div>
-                    <div class="chart"><small>PSD Scatter Dataset</small><canvas id="psdChart" width="300" height="80"></canvas></div>
-                </div>
-
-                <div class="bottom-console">
-                    <div><h3>Machine Pressurization</h3><progress id="vacuumProgress" max="100" value="0"></progress><div class="vac-status"><span>Time Under Vacuum <strong id="vacuumTime">00:00</strong></span><b id="vacuumReady">Not Ready</b></div></div>
-                    <div><h3>Experiment Setup</h3><div class="steps"><button data-device="gas_supply"><strong>Gas Injection</strong><span id="stepGas">尚未設定</span></button><button data-device="high_voltage"><strong>High Voltage</strong><span id="stepHv">前置步驟未完成</span></button><button data-device="microwave"><strong>Microwave</strong><span id="stepMw">前置步驟未完成</span></button></div></div>
-                    <div class="beam"><button id="beamOn">Beam On</button><button id="beamOff">Beam Off</button></div>
-                </div>
-            </div>
-
-
-        </div>
-    </section>
-
-    <section class="content-card info-card"><div class="info-head"><div><span>02</span><p>目前選取設備</p><h2 id="infoTitle">請點擊面板設備</h2></div><b id="infoStatus">待機</b></div><div class="info-grid"><article><h3>功能</h3><p id="infoFunction">點擊設備後顯示用途。</p></article><article><h3>運作原理</h3><p id="infoPrinciple">點擊設備後顯示原理。</p></article><article><h3>目前狀態</h3><p id="infoLive">尚未選取設備。</p></article></div></section>
-
-    <section class="content-card">
         <div class="card-heading">
             <div>
-                <span>03</span>
-                <h2>Alpha-E 3D 模型</h2>
+                <span>01</span>
+                <h2>Alpha-E 互動實驗</h2>
             </div>
         </div>
-        <div class="unity-wrap">
-            <iframe id="alphaUnity" src="about:blank" allowfullscreen></iframe>
+
+        <div class="alpha-flow-guide">
+
+            <div class="alpha-flow-header">
+                <div>
+                    <span class="alpha-flow-eyebrow">OPERATION PROCESS</span>
+                    <h3>Alpha-E 實驗流程</h3>
+                </div>
+
+                <span id="flowProgressText" class="alpha-flow-count">
+                    Step 1 / 8
+                </span>
+            </div>
+
+
+            <div class="alpha-flow-steps">
+
+                <div class="flow-step" data-flow-step="power">
+                    <span class="flow-number">01</span>
+                    <div class="flow-step-text">
+                        <strong>Power</strong>
+                        <span>系統啟動</span>
+                    </div>
+                </div>
+
+                <div class="flow-line"></div>
+
+
+                <div class="flow-step" data-flow-step="vacuum">
+                    <span class="flow-number">02</span>
+                    <div class="flow-step-text">
+                        <strong>Vacuum</strong>
+                        <span>建立真空</span>
+                    </div>
+                </div>
+
+                <div class="flow-line"></div>
+
+
+                <div class="flow-step" data-flow-step="gas">
+                    <span class="flow-number">03</span>
+                    <div class="flow-step-text">
+                        <strong>Gas</strong>
+                        <span>氣體注入</span>
+                    </div>
+                </div>
+
+                <div class="flow-line"></div>
+
+
+                <div class="flow-step" data-flow-step="cooling">
+                    <span class="flow-number">04</span>
+                    <div class="flow-step-text">
+                        <strong>Cooling</strong>
+                        <span>冷卻系統</span>
+                    </div>
+                </div>
+
+                <div class="flow-line"></div>
+
+
+                <div class="flow-step" data-flow-step="high_voltage">
+                    <span class="flow-number">05</span>
+                    <div class="flow-step-text">
+                        <strong>High Voltage</strong>
+                        <span>粒子加速</span>
+                    </div>
+                </div>
+
+                <div class="flow-line"></div>
+
+
+                <div class="flow-step" data-flow-step="plasma">
+                    <span class="flow-number">06</span>
+                    <div class="flow-step-text">
+                        <strong>Plasma</strong>
+                        <span>微波游離</span>
+                    </div>
+                </div>
+
+                <div class="flow-line"></div>
+
+
+                <div class="flow-step" data-flow-step="beam">
+                    <span class="flow-number">07</span>
+                    <div class="flow-step-text">
+                        <strong>Beam</strong>
+                        <span>建立粒子束</span>
+                    </div>
+                </div>
+
+                <div class="flow-line"></div>
+
+
+                <div class="flow-step" data-flow-step="fusion">
+                    <span class="flow-number">08</span>
+                    <div class="flow-step-text">
+                        <strong>Fusion</strong>
+                        <span>核融合反應</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="alpha-workspace">
+
+            <div class="alpha-control-column">
+
+                <div class="sim-panel">
+                    <div class="schematic">
+                        <img src="assets/alpha-e-panel.jpg" alt="Alpha-E 面板底圖">
+                        <div class="device rough" data-device="rough_pump"><header>Rough Pump <i id="roughLed"></i><b id="roughLabel">off</b></header><div class="actions"><button data-cmd="rough:off">Off</button><button data-cmd="rough:on">On</button></div></div>
+                        <div class="device turbo" data-device="turbo_pump"><header>Turbo Pump <i id="turboLed"></i><b id="turboLabel">off</b></header><div class="readout"><span>Rotation Speed<strong><em id="turboSpeed">0</em> Hz</strong></span><span>Temp<strong><em id="turboTemp">24</em> °C</strong></span><span>Current<strong><em id="turboCurrent">0.00</em> A</strong></span></div><div class="actions three"><button data-cmd="turbo:off">Off</button><button data-cmd="turbo:vent">Vent</button><button data-cmd="turbo:on">On</button></div></div>
+                        <div class="device hv" data-device="high_voltage"><header>High Voltage <i id="hvLed" class="red"></i><b id="hvLabel">off</b></header><div class="readout fields"><label>Voltage<input id="hvVoltage" type="number" min="0" max="10" step="0.1" value="5.0"> kV</label><label>Current<input id="hvCurrent" type="number" min="0" max="5" step="0.1" value="1.0"> mA</label></div><div class="actions"><button data-cmd="hv:off">Off</button><button data-cmd="hv:on">On</button></div></div>
+
+                        <div class="device microwave" data-device="microwave">
+                            <header>
+                                Microwave <i id="mwLed"></i>
+                                <b id="mwLabel">off</b>
+                            </header>
+                            <div class="readout fields">
+                                <label>
+                                    Duty Cycle
+                                    <input id="mwDuty" type="number" min="0" max="100" value="9"> %
+                                </label>
+                                <label>
+                                    Pulse Frequency
+                                    <input id="mwPulse" type="number" min="10" max="5000" value="1000"> Hz
+                                </label>
+                                <label>
+                                    RF Frequency
+                                    <input id="mwFreq" type="number" min="2000" max="3000" value="2450"> MHz
+                                </label>
+                                <label>
+                                    RF Attenuation
+                                    <input id="mwAtt" type="number" min="0" max="100" value="80"> Lv
+                                </label>
+                            </div>
+                            <div class="actions">
+                                <button data-cmd="mw:off">Off</button>
+                                <button data-cmd="mw:on">On</button>
+                            </div>
+                        </div>
+
+                        <div class="device mfc" data-device="gas_mfc">
+                            <header>
+                                MFC
+                                <i id="mfcLed"></i>
+                                <b id="mfcLabel">off</b>
+                            </header>
+
+                            <div class="readout fields">
+                                <label>
+                                    Flowrate
+                                    <input id="mfcFlow" type="number" min="0" max="10000" step="10" value="9000"> sccm
+                                </label>
+                                <span>
+                                    Measured
+                                    <strong><em id="mfcMeasured">0.0000</em></strong>
+                                </span>
+                            </div>
+
+                            <div class="actions">
+                                <button data-cmd="mfc:off">Off</button>
+                                <button data-cmd="mfc:on">On</button>
+                            </div>
+                        </div>
+
+                        <div class="device gas" data-device="gas_supply">
+                            <header>Gas Can</header>
+                            <div class="gasline">
+                                <select id="gasType">
+                                    <option>Deuterium</option>
+                                    <option>Hydrogen</option>
+                                    <option>Argon</option>
+                                </select>
+                                <input id="gasPressure" type="number" min="0" max="100" value="40">
+                                <button id="setupGas" class="cyan">Set Up Gas</button>
+                            </div>
+                        </div>
+
+                        <div class="device cooler" data-device="cooler">
+                            <header>
+                                Cooler
+                                <i id="coolerLed"></i>
+                                <b id="coolerLabel">off</b>
+                            </header>
+                            <div class="readout">
+                                <span>Flow<strong><em id="coolerFlow">0.0</em> L/m</strong></span>
+                                <span>Temp<strong><em id="coolerTemp">24.3</em> °C</strong></span>
+                            </div>
+                            <div class="actions">
+                                <button data-cmd="cooler:off">Off</button>
+                                <button data-cmd="cooler:on">On</button>
+                            </div>
+                        </div>
+
+                        <div class="panel-bar">
+                            <strong>Alpha-E @ Tainan</strong>
+                            <div>
+                                <button id="powerOff" class="active">Off</button>
+                                <button id="powerOn" class="cyan">Power On</button>
+                            </div>
+                        </div>
+
+                        <!-- =====================================================
+                         Alpha-E 教學流程進度
+                    ===================================================== -->
+                        <!-- =========================
+                          Plasma 顯示區
+                          Microwave On 後顯示
+                    ========================= -->
+                        <!-- =========================
+                          Plasma 顯示區
+                          Microwave On 後顯示
+                    ========================= -->
+                        <div id="plasmaDisplay"
+                             class="plasma-display"
+                             aria-hidden="true">
+
+                            <!-- Plasma 水平路徑 -->
+                            <div class="plasma-line"></div>
+
+                            <!-- 中央 Plasma 區塊 -->
+                            <div class="plasma-box">
+                                <span>Plasma</span>
+                            </div>
+
+                        </div>
+
+                        <div class="device detector" data-device="detector">
+                            <header>Pressure <strong><em id="pressureValue">7.50e-1</em> Torr</strong></header>
+                            <div class="chart"><small>PN Detector Signal</small><canvas id="pnChart" width="300" height="80"></canvas></div>
+                            <div class="chart"><small>PSD Scatter Dataset</small><canvas id="psdChart" width="300" height="80"></canvas></div>
+                        </div>
+
+                        <div class="bottom-console">
+                            <div><h3>Machine Pressurization</h3><progress id="vacuumProgress" max="100" value="0"></progress><div class="vac-status"><span>Time Under Vacuum <strong id="vacuumTime">00:00</strong></span><b id="vacuumReady">Not Ready</b></div></div>
+                            <div><h3>Experiment Setup</h3><div class="steps"><button data-device="gas_supply"><strong>Gas Injection</strong><span id="stepGas">尚未設定</span></button><button data-device="high_voltage"><strong>High Voltage</strong><span id="stepHv">前置步驟未完成</span></button><button data-device="microwave"><strong>Microwave</strong><span id="stepMw">前置步驟未完成</span></button></div></div>
+                            <div class="beam"><button id="beamOn">Beam On</button><button id="beamOff">Beam Off</button></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="alpha-unity-column">
+
+                <div class="alpha-unity-header">
+                    <div>
+                        <span>REAL-TIME 3D VIEW</span>
+                        <strong>Alpha-E 3D Model</strong>
+                    </div>
+
+                    <span id="alphaModelStatus">
+                        System Standby
+                    </span>
+                </div>
+
+                <div class="alpha-unity-wrap">
+                    <iframe id="alphaUnity"
+                            src="about:blank"
+                            title="Alpha-E 3D 模型"
+                            allowfullscreen>
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+        <div class="alpha-device-info">
+
+            <div class="alpha-device-info-title">
+
+                <div>
+                    <span>SELECTED EQUIPMENT</span>
+
+                    <h3 id="infoTitle">
+                        請點擊面板設備
+                    </h3>
+                </div>
+
+                <span id="infoStatus">
+                    待機
+                </span>
+
+            </div>
+
+
+            <div class="alpha-device-info-grid">
+
+                <div class="alpha-info-box">
+
+                    <span>功能</span>
+
+                    <p id="infoFunction">
+                        點擊設備後顯示用途。
+                    </p>
+
+                </div>
+
+
+                <div class="alpha-info-box">
+
+                    <span>運作原理</span>
+
+                    <p id="infoPrinciple">
+                        點擊設備後顯示原理。
+                    </p>
+
+                </div>
+
+
+                <div class="alpha-info-box">
+
+                    <span>目前狀態</span>
+
+                    <p id="infoLive">
+                        尚未選取設備。
+                    </p>
+
+                </div>
+
+            </div>
+
         </div>
     </section>
 
@@ -321,7 +397,7 @@
 
         <div class="card-heading">
             <div>
-                <span>04</span>
+                <span>02</span>
                 <h2>p–¹¹B 核融合反應</h2>
             </div>
 

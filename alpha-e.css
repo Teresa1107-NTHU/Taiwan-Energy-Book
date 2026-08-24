@@ -219,15 +219,15 @@ nav a.active {
   color: var(--white);
 }
 
-.panel-bar button {
-  margin-left: 6px;
-  padding: 4px 9px;
-  border: 0;
-  border-radius: 6px;
-  background: #777b84;
-  color: #eeeeee;
-  font-size: clamp(8px, 0.52vw, 11px);
-}
+    .panel-bar button {
+        margin-left: 6px;
+        padding: 6px 12px;
+        border: 0;
+        border-radius: 6px;
+        background: #777b84;
+        color: #eeeeee;
+        font-size: 18px;
+    }
 
 .panel-bar button.active {
   background: var(--white);
@@ -237,6 +237,10 @@ nav a.active {
 .panel-bar button.cyan {
   background: var(--cyan);
   color: #17343b;
+}
+
+.panel-bar > strong {
+    font-size: 22px;
 }
 
 /* 完整保留原始 1536 × 1024 比例 */
@@ -275,16 +279,16 @@ nav a.active {
     0 8px 20px rgba(0, 0, 0, 0.42);
 }
 
-.device header {
-  min-height: 30px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 5px 7px;
-  background: #656870;
-  font-size: clamp(10px, 0.72vw, 14px);
-  white-space: nowrap;
-}
+    .device header {
+        min-height: 30px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 5px 7px;
+        background: #656870;
+        font-size: 20px;
+        white-space: nowrap;
+    }
 
 .device header i {
   width: 9px;
@@ -309,7 +313,7 @@ nav a.active {
   padding: 1px 5px;
   border-radius: 4px;
   background: #767981;
-  font-size: 0.62rem;
+   font-size: 16px;
   font-weight: 500;
 }
 
@@ -333,14 +337,14 @@ nav a.active {
 
 .readout span,
 .readout label {
-  color: #aaaaaa;
-  font-size: clamp(8px, 0.55vw, 11px);
+    color: #aaaaaa;
+    font-size: 15px;
 }
 
 .readout strong {
-  display: block;
-  color: var(--white);
-  font-size: clamp(9px, 0.65vw, 13px);
+    display: block;
+    color: var(--white);
+    font-size: 18px;
 }
 
 .readout em {
@@ -359,13 +363,13 @@ nav a.active {
 }
 
 .fields input {
-  width: 55px;
-  padding: 2px 3px;
-  border: 1px solid #777777;
-  border-radius: 4px;
-  background: #45484e;
-  color: var(--white);
-  text-align: right;
+    width: 72px;
+    padding: 3px 5px;
+    border: 1px solid #777777;
+    border-radius: 4px;
+    background: #45484e;
+    color: var(--white);
+    text-align: right;
 }
 
 /* =========================
@@ -384,13 +388,13 @@ nav a.active {
 
 .actions button,
 .gas button {
-  min-height: 27px;
-  padding: 3px 4px;
-  border: 0;
-  border-radius: 5px;
-  background: #6d7078;
-  color: #dddddd;
-  font-size: clamp(9px, 0.62vw, 12px);
+    min-height: 34px;
+    padding: 4px 6px;
+    border: 0;
+    border-radius: 5px;
+    background: #6d7078;
+    color: #dddddd;
+    font-size: 17px;
 }
 
 .actions button:last-child,
@@ -472,14 +476,14 @@ nav a.active {
 
 .gas select,
 .gas input {
-  min-width: 0;
-  width: 100%;
-  padding: 3px 4px;
-  border: 1px solid #777777;
-  border-radius: 5px;
-  background: #44474d;
-  color: var(--white);
-  font-size: clamp(9px, 0.6vw, 12px);
+    min-width: 0;
+    width: 100%;
+    padding: 4px 5px;
+    border: 1px solid #777777;
+    border-radius: 5px;
+    background: #44474d;
+    color: var(--white);
+    font-size: 16px;
 }
 
 /* =========================
@@ -532,7 +536,7 @@ nav a.active {
 
 .bottom-console h3 {
   margin-bottom: 5px;
-  font-size: clamp(11px, 0.75vw, 15px);
+  font-size: 21px;
   font-weight: 500;
 }
 
@@ -551,7 +555,7 @@ nav a.active {
   border: 1px solid #aaaaaa;
   border-radius: 6px;
   background: #36383d;
-  font-size: clamp(10px, 0.68vw, 13px);
+  font-size: 17px;
 }
 
 .vac-status strong {
@@ -594,13 +598,13 @@ nav a.active {
 }
 
 .steps strong {
-  font-size: clamp(11px, 0.72vw, 14px);
+  font-size: 19px;
 }
 
 .steps span {
   margin-top: 3px;
   color: #aaaaaa;
-  font-size: clamp(9px, 0.62vw, 12px);
+  font-size: 16px;
 }
 
 /* Beam */
@@ -615,7 +619,7 @@ nav a.active {
   border-radius: 6px;
   background: #63747a;
   color: #dddddd;
-  font-size: clamp(10px, 0.68vw, 13px);
+  font-size: 17px;
 }
 
 .beam button.enabled {
@@ -837,24 +841,24 @@ footer {
 }
 
 /* 下方區域文字再放大 */
-.bottom-console h3 {
-  font-size: clamp(13px, 0.88vw, 17px);
-}
+    .bottom-console h3 {
+        font-size: 21px;
+    }
 
 .vac-status {
-  font-size: clamp(11px, 0.76vw, 15px);
+    font-size: 17px;
 }
 
 .steps strong {
-  font-size: clamp(12px, 0.82vw, 16px);
+    font-size: 19px;
 }
 
 .steps span {
-  font-size: clamp(10px, 0.70vw, 14px);
+    font-size: 16px;
 }
 
 .beam button {
-  font-size: clamp(11px, 0.76vw, 15px);
+    font-size: 17px;
 }
 
 /* 開機前：整個面板呈現暗灰色 */
@@ -1945,17 +1949,14 @@ footer {
 
 .alpha-workspace {
     display: grid;
-    /*
-     * 左邊操作面板稍微寬一點，
-     * 方便閱讀與點擊控制項。
-     */
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    /* 操作面板需要更大的閱讀與點擊空間 */
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
     gap: 12px;
     width: 100%;
     margin-top: 10px;
-    align-items: start;
+    /* 右側跟左側同高 */
+    align-items: stretch;
 }
-
 
 .alpha-control-column {
     position: relative;
@@ -1974,8 +1975,7 @@ footer {
 
 .alpha-unity-column {
     width: 100%;
-    /* Unity WebGL 原始比例 960 × 600 */
-    aspect-ratio: 8 / 5;
+    height: 100%;
     min-width: 0;
     display: flex;
     flex-direction: column;

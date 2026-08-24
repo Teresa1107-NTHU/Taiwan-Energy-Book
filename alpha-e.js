@@ -245,11 +245,13 @@ function select(id) {
     );
 }
 document.querySelectorAll("[data-device]").forEach(x=>x.addEventListener("click",e=>{if(!["BUTTON","INPUT","SELECT"].includes(e.target.tagName))select(x.dataset.device)}));
-function powered(){if(!s.power){alert("請先按 Power On。");return false}return true}
-/*
- * 控制整台 Alpha-E 的 Power On / Off，
- * 並將電源指令傳送給 Unity WebGL。
- */
+function powered() {
+    if (!s.power) {
+        alert("請先按 Power On。");
+        return false
+    } return true
+}
+
 /*
  * 控制整台 Alpha-E 的 Power On / Off，
  * 並將電源指令傳送給 Unity WebGL。
@@ -1390,4 +1392,81 @@ line(
 
 update();
 
-line($("pnChart"), pn); line($("psdChart"), psd, true); update();
+/* =========================================================
+   Alpha-E 操作面板等比例縮放
+========================================================= */
+
+/*
+ * Alpha-E 原始設計尺寸：
+ * 1536 × 1024
+ *
+ * 根據左側容器目前實際寬度，
+ * 自動計算整張面板縮放倍率。
+ */
+function resizeAlphaPanel() {
+
+    const container =
+        document.querySelector(
+            ".alpha-control-column"
+        );
+
+    if (!container) {
+        return;
+    }
+
+
+    const originalWidth =
+        1536;
+
+
+    const containerWidth =
+        container.clientWidth;
+
+
+    const scale =
+        containerWidth /
+        originalWidth;
+
+
+    container.style.setProperty(
+        "--alpha-panel-scale",
+        scale
+    );
+}
+
+
+/* 網頁第一次開啟 */
+resizeAlphaPanel();
+
+
+/* 視窗尺寸改變 */
+window.addEventListener(
+    "resize",
+    resizeAlphaPanel
+);
+
+
+/*
+ * 外層 Grid 尺寸改變時也重新計算。
+ * 比單純 window.resize 更穩定。
+ */
+const alphaPanelResizeObserver =
+    new ResizeObserver(() => {
+
+        resizeAlphaPanel();
+
+    });
+
+
+const alphaControlColumn =
+    document.querySelector(
+        ".alpha-control-column"
+    );
+
+
+if (alphaControlColumn) {
+
+    alphaPanelResizeObserver.observe(
+        alphaControlColumn
+    );
+}

@@ -148,7 +148,7 @@ nav a.active {
 .alpha-container {
     width: min(1240px, 90%);
     margin: auto;
-    padding: 48px 0 80px;
+    padding: 28px 0 80px;
 }
 
 .content-card {
@@ -160,11 +160,11 @@ nav a.active {
 }
 
 .card-heading {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 10px;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 8px;
 }
 
 .card-heading > div {
@@ -241,12 +241,12 @@ nav a.active {
 
 /* 完整保留原始 1536 × 1024 比例 */
 .schematic {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 1536 / 1024;
-  min-width: 0;
-  overflow: hidden;
-  background: #8f9197;
+    position: relative;
+    width: 1536px;
+    height: 1024px;
+    min-width: 0;
+    overflow: hidden;
+    background: #8f9197;
 }
 
 .schematic > img {
@@ -758,20 +758,13 @@ footer {
 ========================= */
 @media (max-width: 1200px) {
 
-    /*
-     * 新版左右工作區：
-     * Alpha-E 面板必須允許等比例縮小，
-     * 不再強制 1180px。
-     */
-
-    .alpha-control-column .sim-panel {
+    .alpha-control-column {
         overflow: hidden;
     }
 
-    .alpha-control-column .schematic {
-        width: 100%;
-        min-width: 0;
-    }
+        .alpha-control-column .sim-panel {
+            overflow: hidden;
+        }
 
     .bottom-console {
         min-width: 0;
@@ -815,14 +808,6 @@ footer {
   .alpha-container {
     width: calc(100% - 24px);
   }
-
-    .content-card {
-        margin-bottom: 20px;
-        padding: 20px 24px;
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        background: var(--white);
-    }
 
   .card-heading {
     align-items: flex-start;
@@ -1961,15 +1946,13 @@ footer {
 .alpha-workspace {
     display: grid;
     /*
-     * 左面板 3:2  → 寬高比 1.5
-     * Unity 8:5   → 寬高比 1.6
-     *
-     * 因此欄寬比例使用 15 : 16
+     * 左邊操作面板稍微寬一點，
+     * 方便閱讀與點擊控制項。
      */
-    grid-template-columns: minmax(0, 15fr) minmax(0, 16fr);
-    gap: 14px;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: 12px;
     width: 100%;
-    margin-top: 12px;
+    margin-top: 10px;
     align-items: start;
 }
 
@@ -1984,24 +1967,6 @@ footer {
     border-radius: 14px;
     background: #343434;
 }
-
-
-    .alpha-control-column .sim-panel {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        overflow: hidden;
-        border-radius: 14px;
-    }
-
-
-    .alpha-control-column .schematic {
-        width: 100%;
-        height: 100%;
-        min-width: 0;
-        aspect-ratio: 1536 / 1024;
-    }
-
 
 /* =========================================================
    右側：Unity 3D
@@ -2170,18 +2135,6 @@ footer {
    8 Steps 稍微縮緊
 ========================================================= */
 
-.alpha-flow-guide {
-    margin: 14px 0 0;
-    padding: 12px 16px;
-    border-radius: 12px;
-}
-
-
-.alpha-flow-header {
-    margin-bottom: 10px;
-}
-
-
     .alpha-flow-header h3 {
         font-size: 14px;
     }
@@ -2215,15 +2168,10 @@ footer {
         height: auto;
     }
 
-
-    .alpha-control-column {
-        height: auto;
-        aspect-ratio: 1536 / 1024;
-    }
-
-
     .alpha-unity-column {
-        height: 500px;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 8 / 5;
     }
 
 
@@ -2233,72 +2181,26 @@ footer {
 }
 
 /* =========================================================
-   最終桌機版：讓 Alpha-E 主操作區更緊湊
+   Alpha-E 面板真正等比例縮放
+   內部固定維持原始 1536 × 1024
 ========================================================= */
 
-.alpha-container {
-    width: min(1240px, 90%);
-    padding-top: 28px;
+    /*
+ * 非常重要：
+ * 面板本體永遠使用原始設計尺寸。
+ *
+ * 不再把內部 DOM 壓成 500px，
+ * 而是最後用 transform 整張縮小。
+ */
+.alpha-control-column .sim-panel {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1536px;
+    height: 1024px;
+    margin: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    transform-origin: top left;
+    transform: scale(var(--alpha-panel-scale, 1));
 }
-
-
-.content-card {
-    padding: 18px 24px;
-}
-
-
-.card-heading {
-    margin-bottom: 8px;
-}
-
-
-.alpha-flow-guide {
-    margin: 6px 0 10px;
-    padding: 7px 12px;
-}
-
-
-.alpha-workspace {
-    gap: 12px;
-    margin-top: 10px;
-}
-
-
-/* 讓左右區再縮一點 */
-.alpha-control-column {
-    max-height: 390px;
-}
-
-
-.alpha-unity-column {
-    max-height: 390px;
-}
-
-
-/* Selected Equipment 變薄 */
-.alpha-device-info {
-    margin-top: 8px;
-    padding: 8px 11px;
-}
-
-
-.alpha-device-info-title {
-    margin-bottom: 5px;
-}
-
-
-    .alpha-device-info-title h3 {
-        font-size: 13px;
-    }
-
-
-.alpha-info-box {
-    min-height: 48px;
-    padding: 6px 9px;
-}
-
-
-    .alpha-info-box p {
-        margin-top: 4px;
-        font-size: 10px;
-    }

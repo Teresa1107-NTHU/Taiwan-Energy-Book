@@ -146,7 +146,7 @@ nav a.active {
    主內容
 ========================= */
 .alpha-container {
-    width: min(1240px, 90%);
+    width: min(1320px, 96%);
     margin: auto;
     padding: 28px 0 80px;
 }
@@ -1949,12 +1949,10 @@ footer {
 
 .alpha-workspace {
     display: grid;
-    /* 操作面板需要更大的閱讀與點擊空間 */
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
-    gap: 12px;
+    grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+    gap: 10px;
     width: 100%;
     margin-top: 10px;
-    /* 右側跟左側同高 */
     align-items: stretch;
 }
 
@@ -1981,7 +1979,7 @@ footer {
     flex-direction: column;
     overflow: hidden;
     border-radius: 14px;
-    background: #0e141b;
+    background: #000;
 }
 
 
@@ -2038,7 +2036,7 @@ footer {
     width: 100%;
     min-height: 0;
     overflow: hidden;
-    background: #080c11;
+    background: #000;
 }
 
 

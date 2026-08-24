@@ -1425,7 +1425,8 @@ function resizeAlphaPanel() {
 
     const scale =
         containerWidth /
-        originalWidth;
+        originalWidth *
+        1.04;
 
 
     container.style.setProperty(

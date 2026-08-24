@@ -146,14 +146,14 @@ nav a.active {
    主內容
 ========================= */
 .alpha-container {
-    width: min(1320px, 96%);
+    width: min(1500px, 98%);
     margin: auto;
-    padding: 28px 0 80px;
+    padding: 20px 0 80px;
 }
 
 .content-card {
     margin-bottom: 20px;
-    padding: 20px 24px;
+    padding: 14px 14px;
     border: 1px solid var(--line);
     border-radius: 20px;
     background: var(--white);
@@ -1949,7 +1949,7 @@ footer {
 
 .alpha-workspace {
     display: grid;
-    grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
+    grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
     gap: 10px;
     width: 100%;
     margin-top: 10px;
@@ -2035,10 +2035,12 @@ footer {
     flex: 1;
     width: 100%;
     min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
     background: #000;
 }
-
 
 #alphaUnity {
     display: block;

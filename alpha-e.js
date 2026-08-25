@@ -1414,20 +1414,15 @@ function resizeAlphaPanel() {
         return;
     }
 
-
     const originalWidth =
         1536;
-
 
     const containerWidth =
         container.clientWidth;
 
-
     const scale =
         containerWidth /
-        originalWidth *
-        1.04;
-
+        originalWidth;
 
     container.style.setProperty(
         "--alpha-panel-scale",

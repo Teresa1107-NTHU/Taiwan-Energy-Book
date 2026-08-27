@@ -1953,7 +1953,7 @@ footer {
     gap: 10px;
     width: 100%;
     margin-top: 10px;
-    align-items: stretch;
+    align-items: center;
 }
 
 .alpha-control-column {
@@ -1985,39 +1985,51 @@ footer {
 
 /* Unity 標題列 */
 .alpha-unity-header {
-    flex: 0 0 44px;
+    flex: 0 0 68px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding: 6px 11px;
+    padding: 7px 11px;
     border-bottom: 1px solid rgba(255,255,255,.08);
     background: #171d24;
     color: #fff;
 }
 
 
-    .alpha-unity-header > div {
-        display: flex;
-        flex-direction: column;
+.alpha-unity-heading {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+
+    .alpha-unity-heading > span {
+        color: #61d7ee;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: .12em;
     }
 
 
-        .alpha-unity-header > div > span {
-            color: #61d7ee;
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: .12em;
-        }
-
-
-    .alpha-unity-header strong {
-        margin-top: 2px;
+    .alpha-unity-heading strong {
+        margin-top: 1px;
+        color: #fff;
         font-size: 13px;
     }
 
+.alpha-unity-controls {
+    margin-top: 3px;
+    color: rgba(255,255,255,.52);
+    font-size: 9px;
+    font-weight: 500;
+    line-height: 1.25;
+    white-space: nowrap;
+}
+
 
 #alphaModelStatus {
+    flex: 0 0 auto;
     padding: 5px 8px;
     border-radius: 999px;
     background: rgba(255,255,255,.08);
@@ -2035,9 +2047,6 @@ footer {
     flex: 1;
     width: 100%;
     min-height: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
     background: #000;
 }
@@ -2047,7 +2056,6 @@ footer {
     width: 100%;
     height: 100%;
     border: 0;
-    overflow: hidden;
 }
 
 

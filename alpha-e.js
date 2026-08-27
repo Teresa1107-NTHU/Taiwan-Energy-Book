@@ -1394,15 +1394,12 @@ update();
 
 /* =========================================================
    Alpha-E 操作面板等比例縮放
+
+   同時依照容器的「寬度」與「高度」計算，
+   自動選擇較小的縮放倍率，
+   確保完整面板永遠不會被裁切。
 ========================================================= */
 
-/*
- * Alpha-E 原始設計尺寸：
- * 1536 × 1024
- *
- * 根據左側容器目前實際寬度，
- * 自動計算整張面板縮放倍率。
- */
 function resizeAlphaPanel() {
 
     const container =
@@ -1410,26 +1407,90 @@ function resizeAlphaPanel() {
             ".alpha-control-column"
         );
 
-    if (!container) {
+    const panel =
+        container?.querySelector(
+            ".sim-panel"
+        );
+
+    if (!container || !panel) {
         return;
     }
+
 
     const originalWidth =
         1536;
 
+    const originalHeight =
+        1024;
+
+
     const containerWidth =
         container.clientWidth;
 
-    const scale =
+    const containerHeight =
+        container.clientHeight;
+
+
+    /*
+     * 分別計算：
+     *
+     * 寬度最多可以縮多少
+     * 高度最多可以縮多少
+     */
+    const scaleByWidth =
         containerWidth /
         originalWidth;
+
+    const scaleByHeight =
+        containerHeight /
+        originalHeight;
+
+
+    /*
+     * 選比較小的倍率，
+     * 才能保證 1536 × 1024 完整塞入。
+     */
+    const scale =
+        Math.min(
+            scaleByWidth,
+            scaleByHeight
+        );
+
 
     container.style.setProperty(
         "--alpha-panel-scale",
         scale
     );
-}
 
+
+    /*
+     * 算出縮小後真正尺寸。
+     */
+    const scaledWidth =
+        originalWidth *
+        scale;
+
+    const scaledHeight =
+        originalHeight *
+        scale;
+
+
+    /*
+     * 水平置中。
+     *
+     * 垂直從頂端開始，
+     * 避免 Panel Bar 被 Navbar 擋到。
+     */
+    panel.style.left =
+        Math.max(
+            0,
+            (containerWidth - scaledWidth) / 2
+        )
+        + "px";
+
+    panel.style.top =
+        "0px";
+}
 
 /* 網頁第一次開啟 */
 resizeAlphaPanel();

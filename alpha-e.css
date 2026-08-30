@@ -202,21 +202,21 @@ nav a.active {
 
 /* 上方標題列及 Power 控制 */
 .panel-bar {
-  position: absolute;
-  z-index: 4;
-  left: 1%;
-  top: 3.2%;
-  width: 96.5%;
-  height: 4.8%;
-  min-height: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 14px;
-  border-radius: 7px;
-  background: #565960;
-  box-shadow: 0 0 0 4px #565960;
-  color: var(--white);
+    position: absolute;
+    z-index: 4;
+    left: 1%;
+    top: 3.2%;
+    width: 96.5%;
+    height: 4.8%;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+    border-radius: 7px;
+    background: #565960;
+    box-shadow: 0 0 0 4px #565960;
+    color: var(--white);
 }
 
     .panel-bar button {
@@ -242,6 +242,16 @@ nav a.active {
 .panel-bar > strong {
     font-size: 22px;
 }
+
+    .panel-bar button {
+        margin-left: 6px;
+        padding: 6px 12px;
+        border: 0;
+        border-radius: 6px;
+        background: #777b84;
+        color: #eeeeee;
+        font-size: 18px;
+    }
 
 /* 完整保留原始 1536 × 1024 比例 */
 .schematic {
@@ -280,13 +290,14 @@ nav a.active {
 }
 
     .device header {
-        min-height: 30px;
+        min-height: 32px;
         display: flex;
         align-items: center;
         gap: 7px;
         padding: 5px 7px;
         background: #656870;
-        font-size: 20px;
+        font-size: 24px;
+        font-weight: 600;
         white-space: nowrap;
     }
 
@@ -335,17 +346,17 @@ nav a.active {
   background: #36383d;
 }
 
-.readout span,
-.readout label {
-    color: #aaaaaa;
-    font-size: 15px;
-}
+    .readout span,
+    .readout label {
+        color: #aaaaaa;
+        font-size: 17px;
+    }
 
-.readout strong {
-    display: block;
-    color: var(--white);
-    font-size: 18px;
-}
+    .readout strong {
+        display: block;
+        color: var(--white);
+        font-size: 20px;
+    }
 
 .readout em {
   font-style: normal;
@@ -386,16 +397,16 @@ nav a.active {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.actions button,
-.gas button {
-    min-height: 34px;
-    padding: 4px 6px;
-    border: 0;
-    border-radius: 5px;
-    background: #6d7078;
-    color: #dddddd;
-    font-size: 17px;
-}
+    .actions button,
+    .gas button {
+        min-height: 34px;
+        padding: 4px 6px;
+        border: 0;
+        border-radius: 5px;
+        background: #6d7078;
+        color: #dddddd;
+        font-size: 19px;
+    }
 
 .actions button:last-child,
 .gas button {
@@ -407,61 +418,61 @@ nav a.active {
    設備位置
 ========================= */
 .rough {
-  left: 13.8%;
-  top: 25.5%;
-  width: 10.5%;
-  height: 12.5%;
+    left: 6.5%;
+    top: 25.5%;
+    width: 13.5%;
+    height: 12.5%;
 }
 
 .turbo {
-  left: 24.7%;
-  top: 18.8%;
-  width: 10.2%;
-  height: 20.5%;
+    left: 20.5%;
+    top: 18.8%;
+    width: 13%;
+    height: 20.5%;
 }
 
 .hv {
-  left: 37.2%;
-  top: 22.7%;
-  width: 13.8%;
-  height: 18.5%;
+    left: 35%;
+    top: 22.7%;
+    width: 15.5%;
+    height: 18.5%;
 }
 
 .microwave {
-  left: 52.9%;
-  top: 22.5%;
-  width: 13.5%;
-  height: 27.3%;
+    left: 52%;
+    top: 22.5%;
+    width: 16%;
+    height: 27.3%;
 }
 
 .mfc {
-  left: 67.2%;
-  top: 22.5%;
-  width: 13%;
-  height: 15.5%;
+    left: 70%;
+    top: 22.5%;
+    width: 16%;
+    height: 15.5%;
 }
 
 .gas {
-  left: 14.1%;
-  top: 40.7%;
-  width: 17.7%;
-  height: 8.8%;
-  padding-bottom: 7px;
+    left: 10.8%;
+    top: 40.7%;
+    width: 21%;
+    height: 8.8%;
+    padding-bottom: 7px;
 }
 
 .cooler {
-  left: 76.8%;
-  top: 42.5%;
-  width: 11.7%;
-  height: 12.7%;
+    left: 78%;
+    top: 42.5%;
+    width: 13%;
+    height: 12.7%;
 }
 
 .detector {
-  left: 65.3%;
-  top: 56.4%;
-  width: 13.7%;
-  height: 19.2%;
-  padding-bottom: 6px;
+    left: 64%;
+    top: 56.4%;
+    width: 16%;
+    height: 19.2%;
+    padding-bottom: 6px;
 }
 
 /* =========================
@@ -517,32 +528,21 @@ nav a.active {
    下方 Machine Pressurization / Experiment Setup
 ========================= */
 .bottom-console {
-  position: absolute;
-  z-index: 4;
-  left: 1.2%;
-  top: 79%;
-  width: 97.4%;
-  height: 16.2%;
-  display: grid;
-  grid-template-columns: 40% 1fr 6%;
-  gap: 10px;
-  padding: 10px 12px;
-  overflow: hidden;
-  border-radius: 10px;
-  background: #555860;
-  box-shadow: 0 0 0 5px #555860;
-  color: #eeeeee;
-}
-
-.bottom-console h3 {
-  margin-bottom: 5px;
-  font-size: 21px;
-  font-weight: 500;
-}
-
-.bottom-console progress {
-  width: 100%;
-  height: 8px;
+    position: absolute;
+    z-index: 4;
+    left: 1.2%;
+    top: 81%;
+    width: 97.4%;
+    height: 15.2%;
+    display: grid;
+    grid-template-columns: 40% 1fr 6%;
+    gap: 10px;
+    padding: 11px 13px;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #555860;
+    box-shadow: 0 0 0 5px #555860;
+    color: #eeeeee;
 }
 
 /* Machine Pressurization */
@@ -581,31 +581,31 @@ nav a.active {
   gap: 7px;
 }
 
-.steps button {
-  min-height: 0;
-  height: 76px;
-  padding: 7px;
-  border: 1px solid #aaaaaa;
-  border-radius: 6px;
-  background: #36383d;
-  color: #eeeeee;
-  text-align: left;
-}
+    .steps button {
+        min-height: 0;
+        height: 76px;
+        padding: 7px;
+        border: 1px solid #aaaaaa;
+        border-radius: 6px;
+        background: #36383d;
+        color: #eeeeee;
+        text-align: left;
+    }
 
 .steps strong,
 .steps span {
   display: block;
 }
 
-.steps strong {
-  font-size: 19px;
-}
+    .steps strong {
+        font-size: 19px;
+    }
 
-.steps span {
-  margin-top: 3px;
-  color: #aaaaaa;
-  font-size: 16px;
-}
+    .steps span {
+        margin-top: 3px;
+        color: #aaaaaa;
+        font-size: 16px;
+    }
 
 /* Beam */
 .beam {
@@ -833,22 +833,24 @@ footer {
    教學導引狀態：整體暗灰、依操作順序逐步亮起
 ========================================================= */
 
-/* 下方控制區稍微下移，完全覆蓋背景原本區域 */
-.bottom-console {
-  top: 81.0%;
-  height: 15.2%;
-  padding: 11px 13px;
-}
-
 /* 下方區域文字再放大 */
-    .bottom-console h3 {
-        font-size: 21px;
-    }
+.bottom-console h3 {
+    margin-bottom: 5px;
+    font-size: 21px;
+    font-weight: 500;
+}
 
 .vac-status {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 5px;
+    padding: 6px 8px;
+    border: 1px solid #aaaaaa;
+    border-radius: 6px;
+    background: #36383d;
     font-size: 17px;
 }
-
 .steps strong {
     font-size: 19px;
 }
@@ -1554,9 +1556,9 @@ footer {
 
 
 .flow-number {
-    flex: 0 0 30px;
-    width: 30px;
-    height: 30px;
+    flex: 0 0 28px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1577,14 +1579,15 @@ footer {
 
     .flow-step-text strong {
         color: #fff;
-        font-size: 11px;
-        font-weight: 650;
+        font-size: 13px;
+        font-weight: 700;
     }
 
     .flow-step-text span {
         margin-top: 2px;
         color: rgba(255,255,255,.48);
-        font-size: 9px;
+        font-size: 11px;
+        font-weight: 500;
     }
 
 
@@ -1972,7 +1975,7 @@ footer {
     min-height: 0;
     overflow: hidden;
     border-radius: 14px;
-    background: #343434;
+    background: #8f9197;
 }
 
 /* =========================================================
@@ -2154,7 +2157,7 @@ footer {
 ========================================================= */
 
     .alpha-flow-header h3 {
-        font-size: 14px;
+        font-size: 16px;
     }
 
 
@@ -2166,12 +2169,14 @@ footer {
 
 
 .flow-step-text strong {
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 700;
 }
 
-
 .flow-step-text span {
-    font-size: 8px;
+    margin-top: 2px;
+    font-size: 10px;
+    font-weight: 500;
 }
 
 

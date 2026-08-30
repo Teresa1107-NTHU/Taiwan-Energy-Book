@@ -140,10 +140,56 @@
             <div class="alpha-control-column">
 
                 <div class="sim-panel">
+
+                    <div class="panel-bar">
+                        <strong>Alpha-E @ Tainan</strong>
+                        <div>
+                            <button id="powerOff" class="active">Off</button>
+                            <button id="powerOn" class="cyan">Power On</button>
+                        </div>
+                    </div>
+
                     <div class="schematic">
-                        <img src="assets/alpha-e-panel.jpg" alt="Alpha-E 面板底圖">
-                        <div class="device rough" data-device="rough_pump"><header>Rough Pump <i id="roughLed"></i><b id="roughLabel">off</b></header><div class="actions"><button data-cmd="rough:off">Off</button><button data-cmd="rough:on">On</button></div></div>
-                        <div class="device turbo" data-device="turbo_pump"><header>Turbo Pump <i id="turboLed"></i><b id="turboLabel">off</b></header><div class="readout"><span>Rotation Speed<strong><em id="turboSpeed">0</em> Hz</strong></span><span>Temp<strong><em id="turboTemp">24</em> °C</strong></span><span>Current<strong><em id="turboCurrent">0.00</em> A</strong></span></div><div class="actions three"><button data-cmd="turbo:off">Off</button><button data-cmd="turbo:vent">Vent</button><button data-cmd="turbo:on">On</button></div></div>
+
+                        <img src="assets/alpha-e-panel.jpg"
+                             alt="Alpha-E 面板底圖">
+
+
+
+                        <div class="device rough" data-device="rough_pump">
+                            <header>
+                                Rough Pump
+                                <i id="roughLed"></i>
+                                <b id="roughLabel">off</b>
+                            </header>
+
+                            <div class="actions">
+                                <button data-cmd="rough:off">Off</button>
+                                <button data-cmd="rough:on">On</button>
+                            </div>
+                        </div>
+
+                        <div class="device turbo" data-device="turbo_pump">
+                            <header>
+                                Turbo Pump <i id="turboLed"></i>
+                                <b id="turboLabel">off</b>
+                            </header>
+                            <div class="readout">
+                                <span>
+                                    Rotation Speed<strong>
+                                        <em id="turboSpeed">0</em> Hz
+                                    </strong>
+                                </span>
+                                <span>
+                                    Temp
+                                    <strong>
+                                        <em id="turboTemp">24</em> °C
+                                    </strong>
+                                </span>
+                                <span>Current<strong><em id="turboCurrent">0.00</em> A</strong></span>
+                            </div>
+                            <div class="actions three"><button data-cmd="turbo:off">Off</button><button data-cmd="turbo:vent">Vent</button><button data-cmd="turbo:on">On</button></div>
+                        </div>
                         <div class="device hv" data-device="high_voltage"><header>High Voltage <i id="hvLed" class="red"></i><b id="hvLabel">off</b></header><div class="readout fields"><label>Voltage<input id="hvVoltage" type="number" min="0" max="10" step="0.1" value="5.0"> kV</label><label>Current<input id="hvCurrent" type="number" min="0" max="5" step="0.1" value="1.0"> mA</label></div><div class="actions"><button data-cmd="hv:off">Off</button><button data-cmd="hv:on">On</button></div></div>
 
                         <div class="device microwave" data-device="microwave">
@@ -228,25 +274,17 @@
                             </div>
                         </div>
 
-                        <div class="panel-bar">
-                            <strong>Alpha-E @ Tainan</strong>
-                            <div>
-                                <button id="powerOff" class="active">Off</button>
-                                <button id="powerOn" class="cyan">Power On</button>
-                            </div>
-                        </div>
-
                         <!-- =====================================================
-                         Alpha-E 教學流程進度
-                    ===================================================== -->
+         Alpha-E 教學流程進度
+    ===================================================== -->
                         <!-- =========================
-                          Plasma 顯示區
-                          Microwave On 後顯示
-                    ========================= -->
+          Plasma 顯示區
+          Microwave On 後顯示
+    ========================= -->
                         <!-- =========================
-                          Plasma 顯示區
-                          Microwave On 後顯示
-                    ========================= -->
+          Plasma 顯示區
+          Microwave On 後顯示
+    ========================= -->
                         <div id="plasmaDisplay"
                              class="plasma-display"
                              aria-hidden="true">
@@ -268,9 +306,35 @@
                         </div>
 
                         <div class="bottom-console">
-                            <div><h3>Machine Pressurization</h3><progress id="vacuumProgress" max="100" value="0"></progress><div class="vac-status"><span>Time Under Vacuum <strong id="vacuumTime">00:00</strong></span><b id="vacuumReady">Not Ready</b></div></div>
-                            <div><h3>Experiment Setup</h3><div class="steps"><button data-device="gas_supply"><strong>Gas Injection</strong><span id="stepGas">尚未設定</span></button><button data-device="high_voltage"><strong>High Voltage</strong><span id="stepHv">前置步驟未完成</span></button><button data-device="microwave"><strong>Microwave</strong><span id="stepMw">前置步驟未完成</span></button></div></div>
-                            <div class="beam"><button id="beamOn">Beam On</button><button id="beamOff">Beam Off</button></div>
+                            <div>
+                                <h3>Machine Pressurization</h3>
+                                <progress id="vacuumProgress" max="100" value="0"></progress>
+                                <div class="vac-status">
+                                    <span>Time Under Vacuum <strong id="vacuumTime">00:00</strong></span>
+                                    <b id="vacuumReady">Not Ready</b>
+                                </div>
+                            </div>
+                            <div>
+                                <h3>Experiment Setup</h3>
+                                <div class="steps">
+                                    <button data-device="gas_supply">
+                                        <strong>Gas Injection</strong>
+                                        <span id="stepGas">尚未設定</span>
+                                    </button>
+                                    <button data-device="high_voltage">
+                                        <strong>High Voltage</strong>
+                                        <span id="stepHv">前置步驟未完成</span>
+                                    </button>
+                                    <button data-device="microwave">
+                                        <strong>Microwave</strong>
+                                        <span id="stepMw">前置步驟未完成</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="beam">
+                                <button id="beamOn">Beam On</button>
+                                <button id="beamOff">Beam Off</button>
+                            </div>
                         </div>
                     </div>
 

@@ -628,6 +628,77 @@ window.addEventListener(
         }
 
         /* =========================
+   Reaction Stage
+   Unity 核融合動畫階段同步
+========================= */
+
+        if (message.type === "FusionStage") {
+
+            const stage =
+                message.stage || "IDLE";
+
+            console.log(
+                "Fusion Reaction Stage：",
+                stage
+            );
+
+            switch (stage) {
+
+                case "IDLE":
+                    $("fusionStatus").textContent =
+                        "Ready";
+                    break;
+
+
+                case "APPROACH":
+                    $("fusionStatus").textContent =
+                        "Proton approaching B-11";
+                    break;
+
+
+                case "CAPTURE":
+                    $("fusionStatus").textContent =
+                        "Proton captured by B-11";
+                    break;
+
+
+                case "C12_EXCITED":
+                    $("fusionStatus").textContent =
+                        "C-12* excited state";
+                    break;
+
+
+                case "C12_BREAK":
+                    $("fusionStatus").textContent =
+                        "C-12 → He-4 + Be-8";
+                    break;
+
+
+                case "BE8_UNSTABLE":
+                    $("fusionStatus").textContent =
+                        "Be-8 unstable";
+                    break;
+
+
+                case "BE8_BREAK":
+                    $("fusionStatus").textContent =
+                        "Be-8 → He-4 + He-4";
+                    break;
+
+
+                case "FINISHED":
+                    $("fusionStatus").textContent =
+                        "Fusion Complete";
+
+                    completeFusionReaction();
+                    break;
+            }
+
+            return;
+        }
+
+
+        /* =========================
            Reaction Status
         ========================= */
 
@@ -639,10 +710,9 @@ window.addEventListener(
             $("fusionStatus").textContent =
                 status;
 
-
             /*
-             * FusionController 完成時送出的文字：
-             * "Fusion finished. Check products, then press Restart."
+             * 保留原本 Finished 判斷，
+             * 當作 FusionStage 沒收到時的備援。
              */
             if (
                 status.includes(
@@ -652,7 +722,6 @@ window.addEventListener(
 
                 completeFusionReaction();
             }
-
 
             return;
         }
@@ -1399,7 +1468,6 @@ update();
    自動選擇較小的縮放倍率，
    確保完整面板永遠不會被裁切。
 ========================================================= */
-
 function resizeAlphaPanel() {
 
     const container =
@@ -1416,13 +1484,8 @@ function resizeAlphaPanel() {
         return;
     }
 
-
-    const originalWidth =
-        1536;
-
-    const originalHeight =
-        1024;
-
+    const originalWidth = 1800;
+    const originalHeight = 1024;
 
     const containerWidth =
         container.clientWidth;
@@ -1430,66 +1493,40 @@ function resizeAlphaPanel() {
     const containerHeight =
         container.clientHeight;
 
-
-    /*
-     * 分別計算：
-     *
-     * 寬度最多可以縮多少
-     * 高度最多可以縮多少
-     */
     const scaleByWidth =
-        containerWidth /
-        originalWidth;
+        containerWidth / originalWidth;
 
     const scaleByHeight =
-        containerHeight /
-        originalHeight;
+        containerHeight / originalHeight;
 
-
-    /*
-     * 選比較小的倍率，
-     * 才能保證 1536 × 1024 完整塞入。
-     */
     const scale =
         Math.min(
             scaleByWidth,
             scaleByHeight
         );
 
-
     container.style.setProperty(
         "--alpha-panel-scale",
         scale
     );
 
-
-    /*
-     * 算出縮小後真正尺寸。
-     */
     const scaledWidth =
-        originalWidth *
-        scale;
+        originalWidth * scale;
 
     const scaledHeight =
-        originalHeight *
-        scale;
+        originalHeight * scale;
 
-
-    /*
-     * 水平置中。
-     *
-     * 垂直從頂端開始，
-     * 避免 Panel Bar 被 Navbar 擋到。
-     */
     panel.style.left =
         Math.max(
             0,
             (containerWidth - scaledWidth) / 2
-        )
-        + "px";
+        ) + "px";
 
     panel.style.top =
-        "0px";
+        Math.max(
+            0,
+            (containerHeight - scaledHeight) / 2
+        ) + "px";
 }
 
 /* 網頁第一次開啟 */

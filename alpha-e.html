@@ -281,10 +281,6 @@
           Plasma 顯示區
           Microwave On 後顯示
     ========================= -->
-                        <!-- =========================
-          Plasma 顯示區
-          Microwave On 後顯示
-    ========================= -->
                         <div id="plasmaDisplay"
                              class="plasma-display"
                              aria-hidden="true">
@@ -305,12 +301,13 @@
                             <div class="chart"><small>PSD Scatter Dataset</small><canvas id="psdChart" width="300" height="80"></canvas></div>
                         </div>
 
+                        <!-- 下方整塊，包含 Machine Pressurization 和 Experiment Setup -->
                         <div class="bottom-console">
                             <div>
                                 <h3>Machine Pressurization</h3>
                                 <progress id="vacuumProgress" max="100" value="0"></progress>
                                 <div class="vac-status">
-                                    <span>Time Under Vacuum <strong id="vacuumTime">00:00</strong></span>
+                                    <span>Time Under Vacuum <strong id="vacuumTime">00:00</strong></span> <!-- span 是行內容器元素-->
                                     <b id="vacuumReady">Not Ready</b>
                                 </div>
                             </div>

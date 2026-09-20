@@ -456,6 +456,46 @@ function showBeamTransition() {
 }
 
 /* =========================================================
+   Alpha-E Unity Message
+========================================================= */
+
+window.addEventListener(
+    "message",
+    function (event) {
+
+        const message =
+            event.data;
+
+        if (
+            !message ||
+            message.source !== "alpha-unity"
+        ) {
+            return;
+        }
+
+
+        /*
+         * Alpha-E Unity 已經載入完成。
+         */
+        if (
+            message.type === "AlphaReady"
+        ) {
+
+            console.log(
+                "Alpha-E Unity Ready ✓"
+            );
+
+            return;
+        }
+    }
+);
+
+
+/* =========================================================
+   Fusion Section
+========================================================= */
+
+/* =========================================================
    Fusion Section
 ========================================================= */
 

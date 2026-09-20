@@ -874,16 +874,22 @@ $("beamOn").onclick = () => {
 
     update();
 
-
-    /* 通知 Alpha-E Unity */
+    /* 先通知 Alpha-E Unity Beam On */
     send(
         "Beam",
         "beam",
         "on"
     );
 
+    /*
+     * Beam 已建立。
+     * 接下來即將進入 Fusion，
+     * 立即釋放 Alpha-E Unity，
+     * 避免兩個 WebGL 同時占用 GPU。
+     */
+    unloadAlphaUnity();
 
-    /* 解鎖 Fusion */
+    /* 顯示 Beam Established 過場 */
     showBeamTransition();
 };
 
@@ -1486,6 +1492,15 @@ $("returnAlpha").onclick = () => {
     }
 
 
+    /*
+     * 先重新載入 Alpha-E Unity。
+     */
+    loadAlphaUnity();
+
+
+    /*
+     * 再回到 Alpha-E 操作區。
+     */
     alphaPanel.scrollIntoView({
         behavior: "smooth",
         block: "start"
@@ -1497,6 +1512,11 @@ $("returnAlpha").onclick = () => {
 ========================= */
 
 let alphaUnityLoaded = false;
+
+
+/* =========================
+   載入 Alpha-E Unity
+========================= */
 
 function loadAlphaUnity() {
 
@@ -1524,6 +1544,38 @@ function loadAlphaUnity() {
 
     console.log(
         "開始載入 Alpha-E Unity..."
+    );
+}
+
+
+/* =========================
+   卸載 Alpha-E Unity
+========================= */
+
+function unloadAlphaUnity() {
+
+    const alphaFrame =
+        $("alphaUnity");
+
+    if (!alphaFrame) {
+        return;
+    }
+
+    /*
+     * 先停止目前頁面
+     */
+    alphaFrame.src = "about:blank";
+
+    /*
+     * 再把 iframe 本身從 DOM 移除，
+     * 確保 Alpha-E WebGL context 被釋放。
+     */
+    alphaFrame.remove();
+
+    alphaUnityLoaded = false;
+
+    console.log(
+        "Alpha-E Unity 已完全移除"
     );
 }
 

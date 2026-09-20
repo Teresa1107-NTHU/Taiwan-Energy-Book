@@ -17,6 +17,43 @@ let fusionUnlocked = false;
 let fusionCompleted = false;
 let lastFusionEnergyUpdate = 0;
 
+// Fusion Unity 是否已經開始載入
+let fusionUnityLoaded = false;
+
+/* =========================================================
+   延遲載入 Fusion Unity
+========================================================= */
+
+function loadFusionUnity() {
+
+    // 已經載入過就不要重複載入
+    if (fusionUnityLoaded) {
+        return;
+    }
+
+    const fusionFrame =
+        $("fusionUnity");
+
+    if (
+        !fusionFrame ||
+        !FUSION_WEBGL_URL
+    ) {
+        return;
+    }
+
+    fusionUnityLoaded = true;
+
+    fusionFrame.src =
+        FUSION_WEBGL_URL;
+
+    fusionFrame.dataset.loaded =
+        "true";
+
+    console.log(
+        "開始載入 Fusion Unity..."
+    );
+}
+
 const s={power:false,rough:false,turbo:false,vent:false,gas:false,mfc:false,cooler:false,hv:false,mw:false,beam:false,vacuum:0,seconds:0,selected:null};
 const info={rough_pump:["Rough Pump｜前級真空泵","先排除腔體內大部分氣體，建立前級真空。","機械泵浦改變腔室容積，將氣體吸入並排出。"],turbo_pump:["Turbo Pump｜渦輪分子泵","進一步降低壓力，建立高真空環境。","高速葉片與氣體分子碰撞，將分子定向送往排氣端。"],gas_supply:["Gas Supply｜氣體供應","提供實驗氣體並完成調壓。","氣瓶中的氣體經調壓後送往 MFC。"],gas_mfc:["MFC｜質量流量控制器","精確控制氣體進入系統的流量。","感測實際質量流率，再以控制閥閉迴路調節。"],cooler:["Cooler｜冷卻系統","帶走設備運轉產生的熱量。","冷卻液循環通過熱源並經熱交換器散熱。"],high_voltage:["High Voltage｜高壓系統","提供離子源與電極所需的電位差。","帶電粒子在電場中受力並獲得動能。"],microwave:["Microwave RF｜微波射頻系統","輸入微波能量，使低壓氣體游離形成電漿。","自由電子吸收微波能量後碰撞氣體分子造成游離。"],detector:["Pressure & Detector｜壓力與偵測","監測腔體壓力及粒子相關訊號。","感測器把物理量轉換為電訊號。"]};
 const $=id=>document.getElementById(id);const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -287,7 +324,33 @@ function master(on) {
 $("powerOn").onclick = () => master(true);
 $("powerOff").onclick = () => master(false);
 document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
-    const [d, a] = b.dataset.cmd.split(":"); if (a !== "off" && !powered()) return; if (d === "rough") s.rough = a === "on"; if (d === "turbo") { if (a === "on" && !s.rough) return alert("請先啟動 Rough Pump。"); s.turbo = a === "on"; s.vent = a === "vent" } if (d === "mfc") { if (a === "on" && !s.gas) return alert("請先 Set Up Gas。"); s.mfc = a === "on" } if (d === "cooler") s.cooler = a === "on"; if (d === "hv") { if (a === "on" && !(s.vacuum >= 85 && s.gas && s.cooler)) return alert("需先完成高真空、供氣與冷卻。"); s.hv = a === "on" } if (d === "mw") { if (a === "on" && !(s.hv && s.mfc)) return alert("需先啟動 High Voltage 與 MFC。"); s.mw = a === "on" }
+    const [d, a] = b.dataset.cmd.split(":"); if (a !== "off" && !powered()) return; if (d === "rough") s.rough = a === "on"; if (d === "turbo") { if (a === "on" && !s.rough) return alert("請先啟動 Rough Pump。"); s.turbo = a === "on"; s.vent = a === "vent" } if (d === "mfc") { if (a === "on" && !s.gas) return alert("請先 Set Up Gas。"); s.mfc = a === "on" } if (d === "cooler") s.cooler = a === "on"; if (d === "hv") { if (a === "on" && !(s.vacuum >= 85 && s.gas && s.cooler)) return alert("需先完成高真空、供氣與冷卻。"); s.hv = a === "on" }
+    if (d === "mw") {
+
+        if (
+            a === "on" &&
+            !(s.hv && s.mfc)
+        ) {
+            return alert(
+                "需先啟動 High Voltage 與 MFC。"
+            );
+        }
+
+        s.mw =
+            a === "on";
+
+
+        /*
+         * Microwave On / Plasma 形成後，
+         * 才開始背景載入 Fusion Unity。
+         */
+        if (
+            a === "on" &&
+            s.mw
+        ) {
+            loadFusionUnity();
+        }
+    }
     const map = {
         rough: "rough_pump",
         turbo: "turbo_pump",
@@ -1032,7 +1095,7 @@ function send(type, equipmentId = "", action = "") {
         state: { ...s }
     };
 
-    console.log("傳送給 Unity：", message);
+    // console.log("傳送給 Unity：", message);
 
     unityFrame.contentWindow.postMessage(
         message,
@@ -1089,10 +1152,10 @@ function sendFusion(
     };
 
 
-    console.log(
-        "傳送給 Fusion Unity：",
-        message
-    );
+    // console.log(
+    //    "傳送給 Fusion Unity：",
+    //    message
+    // );
 
 
     fusionFrame.contentWindow.postMessage(
@@ -1512,31 +1575,6 @@ if (alphaUnityColumn) {
         alphaUnityColumn
     );
 }
-
-
-/* =========================
-   背景預載 Fusion Unity
-========================= */
-
-if (FUSION_WEBGL_URL) {
-
-    const fusionFrame =
-        $("fusionUnity");
-
-    if (fusionFrame) {
-
-        fusionFrame.src =
-            FUSION_WEBGL_URL;
-
-        fusionFrame.dataset.loaded =
-            "true";
-
-        console.log(
-            "開始預載 Fusion Unity..."
-        );
-    }
-}
-
 
 line(
     $("pnChart"),

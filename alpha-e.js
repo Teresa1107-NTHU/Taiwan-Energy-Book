@@ -1524,15 +1524,59 @@ function loadAlphaUnity() {
         return;
     }
 
-    const alphaFrame =
-        $("alphaUnity");
-
-    if (
-        !alphaFrame ||
-        !UNITY_WEBGL_URL
-    ) {
+    if (!UNITY_WEBGL_URL) {
         return;
     }
+
+    let alphaFrame =
+        $("alphaUnity");
+
+
+    /*
+     * 如果 Alpha-E iframe 之前已經被 remove，
+     * Return 時重新建立一個新的 iframe。
+     */
+    if (!alphaFrame) {
+
+        const wrapper =
+            document.querySelector(
+                ".alpha-unity-wrap"
+            );
+
+        if (!wrapper) {
+            console.warn(
+                "找不到 .alpha-unity-wrap"
+            );
+            return;
+        }
+
+
+        alphaFrame =
+            document.createElement(
+                "iframe"
+            );
+
+        alphaFrame.id =
+            "alphaUnity";
+
+        alphaFrame.title =
+            "Alpha-E 3D 模型";
+
+        alphaFrame.setAttribute(
+            "allowfullscreen",
+            ""
+        );
+
+
+        wrapper.appendChild(
+            alphaFrame
+        );
+
+        console.log(
+            "重新建立 Alpha-E iframe"
+        );
+    }
+
 
     alphaUnityLoaded = true;
 
@@ -1541,6 +1585,7 @@ function loadAlphaUnity() {
 
     alphaFrame.style.display =
         "block";
+
 
     console.log(
         "開始載入 Alpha-E Unity..."
@@ -1557,21 +1602,20 @@ function unloadAlphaUnity() {
     const alphaFrame =
         $("alphaUnity");
 
-    console.log(
-        "★★★ unloadAlphaUnity 被執行了 ★★★",
-        alphaFrame
-    );
-
     if (!alphaFrame) {
         return;
     }
 
+    /*
+     * 完整移除 Alpha-E iframe，
+     * 釋放 Unity WebGL / GPU 資源。
+     */
     alphaFrame.remove();
 
     alphaUnityLoaded = false;
 
     console.log(
-        "★★★ Alpha-E iframe 已從 DOM 移除 ★★★"
+        "Alpha-E Unity 已卸載"
     );
 }
 

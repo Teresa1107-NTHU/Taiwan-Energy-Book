@@ -1430,19 +1430,88 @@ $("returnAlpha").onclick = () => {
 };
 
 /* =========================
-   載入 Alpha-E Unity
+   延遲載入 Alpha-E Unity
 ========================= */
 
-/*
-if (UNITY_WEBGL_URL) {
+let alphaUnityLoaded = false;
 
-    $("alphaUnity").src =
+function loadAlphaUnity() {
+
+    if (alphaUnityLoaded) {
+        return;
+    }
+
+    const alphaFrame =
+        $("alphaUnity");
+
+    if (
+        !alphaFrame ||
+        !UNITY_WEBGL_URL
+    ) {
+        return;
+    }
+
+    alphaUnityLoaded = true;
+
+    alphaFrame.src =
         UNITY_WEBGL_URL;
 
-    $("alphaUnity").style.display =
+    alphaFrame.style.display =
         "block";
+
+    console.log(
+        "開始載入 Alpha-E Unity..."
+    );
 }
-*/
+
+
+/*
+ * 當 Alpha-E 3D Model 接近畫面時
+ * 才開始載入 Unity。
+ */
+const alphaUnityColumn =
+    document.querySelector(
+        ".alpha-unity-column"
+    );
+
+if (alphaUnityColumn) {
+
+    const alphaUnityObserver =
+        new IntersectionObserver(
+
+            (entries, observer) => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        loadAlphaUnity();
+
+                        observer.disconnect();
+                    }
+
+                });
+
+            },
+
+            {
+                root: null,
+
+                /*
+                 * 還沒真正看到模型以前
+                 * 提前 300px 開始載入。
+                 */
+                rootMargin: "300px 0px",
+
+                threshold: 0.01
+            }
+        );
+
+
+    alphaUnityObserver.observe(
+        alphaUnityColumn
+    );
+}
 
 
 /* =========================

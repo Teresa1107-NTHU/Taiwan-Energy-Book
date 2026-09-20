@@ -15,6 +15,7 @@ const FUSION_WEBGL_URL = "https://teresa1107-nthu.github.io/Unity_Nuclear-Fusion
 let fusionUnityReady = false;
 let fusionUnlocked = false;
 let fusionCompleted = false;
+let lastFusionEnergyUpdate = 0;
 
 const s={power:false,rough:false,turbo:false,vent:false,gas:false,mfc:false,cooler:false,hv:false,mw:false,beam:false,vacuum:0,seconds:0,selected:null};
 const info={rough_pump:["Rough Pump｜前級真空泵","先排除腔體內大部分氣體，建立前級真空。","機械泵浦改變腔室容積，將氣體吸入並排出。"],turbo_pump:["Turbo Pump｜渦輪分子泵","進一步降低壓力，建立高真空環境。","高速葉片與氣體分子碰撞，將分子定向送往排氣端。"],gas_supply:["Gas Supply｜氣體供應","提供實驗氣體並完成調壓。","氣瓶中的氣體經調壓後送往 MFC。"],gas_mfc:["MFC｜質量流量控制器","精確控制氣體進入系統的流量。","感測實際質量流率，再以控制閥閉迴路調節。"],cooler:["Cooler｜冷卻系統","帶走設備運轉產生的熱量。","冷卻液循環通過熱源並經熱交換器散熱。"],high_voltage:["High Voltage｜高壓系統","提供離子源與電極所需的電位差。","帶電粒子在電場中受力並獲得動能。"],microwave:["Microwave RF｜微波射頻系統","輸入微波能量，使低壓氣體游離形成電漿。","自由電子吸收微波能量後碰撞氣體分子造成游離。"],detector:["Pressure & Detector｜壓力與偵測","監測腔體壓力及粒子相關訊號。","感測器把物理量轉換為電訊號。"]};
@@ -502,10 +503,10 @@ window.addEventListener(
             return;
         }
 
-        console.log(
-            "網頁收到 Fusion Unity：",
-            message
-        );
+        // console.log(
+        //    "網頁收到 Fusion Unity：",
+        //    message
+        // );
 
         /* =========================
             Fusion Loading Progress
@@ -637,10 +638,10 @@ window.addEventListener(
             const stage =
                 message.stage || "IDLE";
 
-            console.log(
-                "Fusion Reaction Stage：",
-                stage
-            );
+            //console.log(
+            //    "Fusion Reaction Stage：",
+            //    stage
+            // );
 
             switch (stage) {
 
@@ -733,11 +734,22 @@ window.addEventListener(
 
         if (message.type === "FusionEnergy") {
 
+            const now = performance.now();
+
+            // 最多約 15 次 / 秒更新 HTML
+            if (
+                now - lastFusionEnergyUpdate < 66 &&
+                Number(message.energy) < 8.68
+            ) {
+                return;
+            }
+
+            lastFusionEnergyUpdate = now;
+
             const energy =
                 Number(message.energy) || 0;
 
-            const totalEnergy =
-                8.68;
+            const totalEnergy = 8.68;
 
             const percentage =
                 Math.min(
@@ -748,14 +760,21 @@ window.addEventListener(
                     )
                 );
 
+            const energyValue =
+                $("fusionEnergyValue");
 
-            $("fusionEnergyValue").textContent =
-                energy.toFixed(2);
+            const energyProgress =
+                $("fusionEnergyProgress");
 
+            if (energyValue) {
+                energyValue.textContent =
+                    energy.toFixed(2);
+            }
 
-            $("fusionEnergyProgress").style.width =
-                percentage + "%";
-
+            if (energyProgress) {
+                energyProgress.style.width =
+                    percentage + "%";
+            }
 
             return;
         }
@@ -1414,6 +1433,7 @@ $("returnAlpha").onclick = () => {
    載入 Alpha-E Unity
 ========================= */
 
+/*
 if (UNITY_WEBGL_URL) {
 
     $("alphaUnity").src =
@@ -1422,6 +1442,7 @@ if (UNITY_WEBGL_URL) {
     $("alphaUnity").style.display =
         "block";
 }
+*/
 
 
 /* =========================

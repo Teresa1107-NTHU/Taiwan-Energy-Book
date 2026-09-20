@@ -1557,25 +1557,21 @@ function unloadAlphaUnity() {
     const alphaFrame =
         $("alphaUnity");
 
+    console.log(
+        "★★★ unloadAlphaUnity 被執行了 ★★★",
+        alphaFrame
+    );
+
     if (!alphaFrame) {
         return;
     }
 
-    /*
-     * 先停止目前頁面
-     */
-    alphaFrame.src = "about:blank";
-
-    /*
-     * 再把 iframe 本身從 DOM 移除，
-     * 確保 Alpha-E WebGL context 被釋放。
-     */
     alphaFrame.remove();
 
     alphaUnityLoaded = false;
 
     console.log(
-        "Alpha-E Unity 已完全移除"
+        "★★★ Alpha-E iframe 已從 DOM 移除 ★★★"
     );
 }
 

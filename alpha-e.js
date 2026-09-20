@@ -456,6 +456,110 @@ function showBeamTransition() {
 }
 
 /* =========================================================
+   恢復 Alpha-E Unity 狀態
+========================================================= */
+
+function restoreAlphaUnityState() {
+
+    console.log(
+        "開始恢復 Alpha-E Unity 狀態..."
+    );
+
+
+    /* Power */
+    if (s.power) {
+
+        send(
+            "SetPower",
+            "system",
+            "on"
+        );
+    }
+
+
+    /* Rough Pump */
+    if (s.rough) {
+
+        send(
+            "OperateEquipment",
+            "rough_pump",
+            "on"
+        );
+    }
+
+
+    /* Turbo Pump */
+    if (s.turbo) {
+
+        send(
+            "OperateEquipment",
+            "turbo_pump",
+            "on"
+        );
+    }
+
+
+    /* Gas Supply */
+    if (s.gas) {
+
+        send(
+            "SetupGas",
+            "gas_supply",
+            $("gasType").value
+        );
+    }
+
+
+    /* MFC */
+    if (s.mfc) {
+
+        send(
+            "OperateEquipment",
+            "gas_mfc",
+            "on"
+        );
+    }
+
+
+    /* Cooler */
+    if (s.cooler) {
+
+        send(
+            "OperateEquipment",
+            "cooler",
+            "on"
+        );
+    }
+
+
+    /* High Voltage */
+    if (s.hv) {
+
+        send(
+            "OperateEquipment",
+            "high_voltage",
+            "on"
+        );
+    }
+
+
+    /* Microwave */
+    if (s.mw) {
+
+        send(
+            "OperateEquipment",
+            "microwave",
+            "on"
+        );
+    }
+
+
+    console.log(
+        "Alpha-E Unity 狀態恢復完成 ✓"
+    );
+}
+
+/* =========================================================
    Alpha-E Unity Message
 ========================================================= */
 
@@ -484,6 +588,14 @@ window.addEventListener(
             console.log(
                 "Alpha-E Unity Ready ✓"
             );
+
+
+            /*
+             * Unity 已經真正初始化完成，
+             * 現在可以安全恢復目前設備狀態。
+             */
+            restoreAlphaUnityState();
+
 
             return;
         }

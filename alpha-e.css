@@ -110,6 +110,27 @@ nav a.active {
 }
 
 /* =========================
+   語言切換按鈕
+========================= */
+
+.lang-toggle {
+    margin-left: 8px;
+    padding: 6px 12px;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 8px;
+    background: rgba(255,255,255,.06);
+    color: rgba(255,255,255,.85);
+    font-size: 0.82rem;
+    font-weight: 700;
+    transition: background .2s ease, color .2s ease;
+}
+
+    .lang-toggle:hover {
+        background: rgba(255,255,255,.14);
+        color: #ffffff;
+    }
+
+/* =========================
    頁首
 ========================= */
 .page-hero {

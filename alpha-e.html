@@ -11,10 +11,20 @@
   <a class="logo" href="index.html">Taiwan Energy<span></span></a>
   <button class="nav-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   <ul id="nav-menu">
-    <li><a href="index.html#thermal">火力</a></li><li><a href="index.html#wind">風力</a></li>
-    <li><a href="index.html#hydro">水力</a></li><li><a href="index.html#solar">太陽能</a></li>
-    <li><a href="index.html#nuclear">核能</a></li><li><a href="index.html#tokamak">核融合</a></li>
-    <li><a class="active" href="alpha-e.html">Alpha-E</a></li>
+      <li><a href="index.html#thermal">火力</a></li>
+      <li><a href="index.html#wind">風力</a></li>
+      <li><a href="index.html#hydro">水力</a></li>
+      <li><a href="index.html#solar">太陽能</a></li>
+      <li><a href="index.html#nuclear">核能</a></li>
+      <li><a href="index.html#tokamak">核融合</a></li>
+      <li><a class="active" href="alpha-e.html">Alpha-E</a></li>
+      <li>
+          <button id="langToggle"
+                  class="lang-toggle"
+                  type="button">
+              EN
+          </button>
+      </li>
   </ul>
 </nav>
 <header class="page-hero">
@@ -35,7 +45,9 @@
             <div class="alpha-flow-header">
                 <div>
                     <span class="alpha-flow-eyebrow">OPERATION PROCESS</span>
-                    <h3>Alpha-E 實驗流程</h3>
+                    <h3 data-i18n="flow_title">
+                        Alpha-E 實驗流程
+                    </h3>
                 </div>
 
                 <span id="flowProgressText" class="alpha-flow-count">
@@ -49,8 +61,13 @@
                 <div class="flow-step" data-flow-step="power">
                     <span class="flow-number">01</span>
                     <div class="flow-step-text">
-                        <strong>Power</strong>
-                        <span>系統啟動</span>
+                        <strong data-i18n="flow_power">
+                            Power
+                        </strong>
+
+                        <span data-i18n="flow_power_desc">
+                            系統啟動
+                        </span>
                     </div>
                 </div>
 
@@ -60,8 +77,13 @@
                 <div class="flow-step" data-flow-step="vacuum">
                     <span class="flow-number">02</span>
                     <div class="flow-step-text">
-                        <strong>Vacuum</strong>
-                        <span>建立真空</span>
+                        <strong data-i18n="flow_vacuum">
+                            Vacuum
+                        </strong>
+
+                        <span data-i18n="flow_vacuum_desc">
+                            建立真空
+                        </span>
                     </div>
                 </div>
 
@@ -71,8 +93,13 @@
                 <div class="flow-step" data-flow-step="gas">
                     <span class="flow-number">03</span>
                     <div class="flow-step-text">
-                        <strong>Gas</strong>
-                        <span>氣體注入</span>
+                        <strong data-i18n="flow_gas">
+                            Gas
+                        </strong>
+
+                        <span data-i18n="flow_gas_desc">
+                            氣體注入
+                        </span>
                     </div>
                 </div>
 
@@ -82,8 +109,13 @@
                 <div class="flow-step" data-flow-step="cooling">
                     <span class="flow-number">04</span>
                     <div class="flow-step-text">
-                        <strong>Cooling</strong>
-                        <span>冷卻系統</span>
+                        <strong data-i18n="flow_cooling">
+                            Cooling
+                        </strong>
+
+                        <span data-i18n="flow_cooling_desc">
+                            冷卻系統
+                        </span>
                     </div>
                 </div>
 
@@ -93,8 +125,13 @@
                 <div class="flow-step" data-flow-step="high_voltage">
                     <span class="flow-number">05</span>
                     <div class="flow-step-text">
-                        <strong>High Voltage</strong>
-                        <span>粒子加速</span>
+                        <strong data-i18n="flow_hv">
+                            High Voltage
+                        </strong>
+
+                        <span data-i18n="flow_hv_desc">
+                            粒子加速
+                        </span>
                     </div>
                 </div>
 
@@ -104,8 +141,13 @@
                 <div class="flow-step" data-flow-step="plasma">
                     <span class="flow-number">06</span>
                     <div class="flow-step-text">
-                        <strong>Plasma</strong>
-                        <span>微波游離</span>
+                        <strong data-i18n="flow_plasma">
+                            Plasma
+                        </strong>
+
+                        <span data-i18n="flow_plasma_desc">
+                            微波游離
+                        </span>
                     </div>
                 </div>
 
@@ -115,8 +157,13 @@
                 <div class="flow-step" data-flow-step="beam">
                     <span class="flow-number">07</span>
                     <div class="flow-step-text">
-                        <strong>Beam</strong>
-                        <span>建立粒子束</span>
+                        <strong data-i18n="flow_beam">
+                            Beam
+                        </strong>
+
+                        <span data-i18n="flow_beam_desc">
+                            建立粒子束
+                        </span>
                     </div>
                 </div>
 
@@ -126,8 +173,13 @@
                 <div class="flow-step" data-flow-step="fusion">
                     <span class="flow-number">08</span>
                     <div class="flow-step-text">
-                        <strong>Fusion</strong>
-                        <span>核融合反應</span>
+                        <strong data-i18n="flow_fusion">
+                            Fusion
+                        </strong>
+
+                        <span data-i18n="flow_fusion_desc">
+                            核融合反應
+                        </span>
                     </div>
                 </div>
 
@@ -380,9 +432,12 @@
             <div class="alpha-device-info-title">
 
                 <div>
-                    <span>SELECTED EQUIPMENT</span>
+                    <span data-i18n="selected_equipment">
+                        SELECTED EQUIPMENT
+                    </span>
 
-                    <h3 id="infoTitle">
+                    <h3 id="infoTitle"
+                        data-i18n="select_equipment_hint">
                         請點擊面板設備
                     </h3>
                 </div>
@@ -398,7 +453,7 @@
 
                 <div class="alpha-info-box">
 
-                    <span>功能</span>
+                    <span data-i18n="function">功能</span>
 
                     <p id="infoFunction">
                         點擊設備後顯示用途。
@@ -409,7 +464,7 @@
 
                 <div class="alpha-info-box">
 
-                    <span>運作原理</span>
+                    <span data-i18n="principle">運作原理</span>
 
                     <p id="infoPrinciple">
                         點擊設備後顯示原理。
@@ -420,7 +475,7 @@
 
                 <div class="alpha-info-box">
 
-                    <span>目前狀態</span>
+                    <span data-i18n="current_status">目前狀態</span>
 
                     <p id="infoLive">
                         尚未選取設備。
@@ -473,7 +528,9 @@
         <div class="card-heading">
             <div>
                 <span>02</span>
-                <h2>p–¹¹B 核融合反應</h2>
+                <h2 data-i18n="fusion_title">
+                    p–¹¹B 核融合反應
+                </h2>
             </div>
 
             <p id="fusionSectionHint">
@@ -523,6 +580,7 @@
             <div class="fusion-actions">
 
                 <button id="fusionStart"
+                        data-i18n="start_reaction"
                         disabled>
                     Start Reaction
                 </button>

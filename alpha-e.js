@@ -32,6 +32,14 @@ const translations = {
         nav_nuclear: "核能",
         nav_fusion: "核融合",
 
+        /* Hero */
+        hero_eyebrow: "互動式核融合學習模組",
+
+        hero_title: "Alpha-E 互動教學系統",
+
+        hero_desc:
+            "面板數值、開關、壓力曲線與偵測圖表皆可即時改變，並可把指令傳送到下方 Unity WebGL 模型。",
+
         /* Flow */
         flow_title: "Alpha-E 實驗流程",
 
@@ -145,6 +153,14 @@ const translations = {
         nav_solar: "Solar",
         nav_nuclear: "Nuclear",
         nav_fusion: "Fusion",
+
+        /* Hero */
+        hero_eyebrow: "INTERACTIVE FUSION LEARNING MODULE",
+
+        hero_title: "Alpha-E Interactive Learning System",
+
+        hero_desc:
+            "Panel values, switches, pressure curves, and detector charts can be updated in real time, while control commands are synchronized with the Unity WebGL model below.",
 
         /* Flow */
         flow_title:

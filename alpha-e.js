@@ -40,6 +40,10 @@ const translations = {
         hero_desc:
             "面板數值、開關、壓力曲線與偵測圖表皆可即時改變，並可把指令傳送到下方 Unity WebGL 模型。",
 
+        /* Alpha-E Experiment */
+        alpha_experiment_title:
+            "Alpha-E 互動實驗",
+
         /* Flow */
         flow_title: "Alpha-E 實驗流程",
 
@@ -161,6 +165,10 @@ const translations = {
 
         hero_desc:
             "Panel values, switches, pressure curves, and detector charts can be updated in real time, while control commands are synchronized with the Unity WebGL model below.",
+
+        /* Alpha-E Experiment */
+        alpha_experiment_title:
+            "Alpha-E Interactive Experiment",
 
         /* Flow */
         flow_title:

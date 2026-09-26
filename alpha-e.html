@@ -102,7 +102,10 @@
 
             <div class="alpha-flow-header">
                 <div>
-                    <span class="alpha-flow-eyebrow">OPERATION PROCESS</span>
+                    <span class="alpha-flow-eyebrow"
+                          data-i18n="operation_process">
+                        OPERATION PROCESS
+                    </span>
                     <h3 data-i18n="flow_title">
                         Alpha-E 實驗流程
                     </h3>
@@ -252,11 +255,27 @@
                 <div class="sim-panel">
 
                     <div class="panel-bar">
-                        <strong>Alpha-E @ Tainan</strong>
+
+                        <strong data-i18n="panel_location">
+                            Alpha-E @ Tainan
+                        </strong>
+
                         <div>
-                            <button id="powerOff" class="active">Off</button>
-                            <button id="powerOn" class="cyan">Power On</button>
+
+                            <button id="powerOff"
+                                    class="active"
+                                    data-i18n="panel_off">
+                                Off
+                            </button>
+
+                            <button id="powerOn"
+                                    class="cyan"
+                                    data-i18n="panel_power_on">
+                                Power On
+                            </button>
+
                         </div>
+
                     </div>
 
                     <div class="schematic">
@@ -266,122 +285,432 @@
 
 
 
-                        <div class="device rough" data-device="rough_pump">
+                        <div class="device rough"
+                             data-device="rough_pump">
+
                             <header>
-                                Rough Pump
+
+                                <span data-i18n="panel_rough_pump">
+                                    Rough Pump
+                                </span>
+
                                 <i id="roughLed"></i>
                                 <b id="roughLabel">off</b>
+
                             </header>
 
                             <div class="actions">
-                                <button data-cmd="rough:off">Off</button>
-                                <button data-cmd="rough:on">On</button>
+
+                                <button data-cmd="rough:off"
+                                        data-i18n="panel_off">
+                                    Off
+                                </button>
+
+                                <button data-cmd="rough:on"
+                                        data-i18n="panel_on">
+                                    On
+                                </button>
+
                             </div>
+
                         </div>
 
-                        <div class="device turbo" data-device="turbo_pump">
+                        <div class="device turbo"
+                             data-device="turbo_pump">
+
                             <header>
-                                Turbo Pump <i id="turboLed"></i>
+
+                                <span data-i18n="panel_turbo_pump">
+                                    Turbo Pump
+                                </span>
+
+                                <i id="turboLed"></i>
                                 <b id="turboLabel">off</b>
+
                             </header>
+
                             <div class="readout">
+
                                 <span>
-                                    Rotation Speed<strong>
+
+                                    <span data-i18n="panel_rotation_speed">
+                                        Rotation Speed
+                                    </span>
+
+                                    <strong>
                                         <em id="turboSpeed">0</em> Hz
                                     </strong>
+
                                 </span>
+
                                 <span>
-                                    Temp
+
+                                    <span data-i18n="panel_temperature">
+                                        Temp
+                                    </span>
+
                                     <strong>
                                         <em id="turboTemp">24</em> °C
                                     </strong>
+
                                 </span>
-                                <span>Current<strong><em id="turboCurrent">0.00</em> A</strong></span>
-                            </div>
-                            <div class="actions three"><button data-cmd="turbo:off">Off</button><button data-cmd="turbo:vent">Vent</button><button data-cmd="turbo:on">On</button></div>
-                        </div>
-                        <div class="device hv" data-device="high_voltage"><header>High Voltage <i id="hvLed" class="red"></i><b id="hvLabel">off</b></header><div class="readout fields"><label>Voltage<input id="hvVoltage" type="number" min="0" max="10" step="0.1" value="5.0"> kV</label><label>Current<input id="hvCurrent" type="number" min="0" max="5" step="0.1" value="1.0"> mA</label></div><div class="actions"><button data-cmd="hv:off">Off</button><button data-cmd="hv:on">On</button></div></div>
 
-                        <div class="device microwave" data-device="microwave">
+                                <span>
+
+                                    <span data-i18n="panel_current">
+                                        Current
+                                    </span>
+
+                                    <strong>
+                                        <em id="turboCurrent">0.00</em> A
+                                    </strong>
+
+                                </span>
+
+                            </div>
+
+                            <div class="actions three">
+
+                                <button data-cmd="turbo:off"
+                                        data-i18n="panel_off">
+                                    Off
+                                </button>
+
+                                <button data-cmd="turbo:vent">
+                                    Vent
+                                </button>
+
+                                <button data-cmd="turbo:on"
+                                        data-i18n="panel_on">
+                                    On
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="device hv"
+                             data-device="high_voltage">
+
                             <header>
-                                Microwave <i id="mwLed"></i>
-                                <b id="mwLabel">off</b>
+
+                                <span data-i18n="panel_high_voltage">
+                                    High Voltage
+                                </span>
+
+                                <i id="hvLed" class="red"></i>
+                                <b id="hvLabel">off</b>
+
                             </header>
+
                             <div class="readout fields">
+
                                 <label>
-                                    Duty Cycle
-                                    <input id="mwDuty" type="number" min="0" max="100" value="9"> %
+
+                                    <span data-i18n="panel_voltage">
+                                        Voltage
+                                    </span>
+
+                                    <input id="hvVoltage"
+                                           type="number"
+                                           min="0"
+                                           max="10"
+                                           step="0.1"
+                                           value="5.0">
+                                    kV
+
                                 </label>
+
                                 <label>
-                                    Pulse Frequency
-                                    <input id="mwPulse" type="number" min="10" max="5000" value="1000"> Hz
+
+                                    <span data-i18n="panel_current">
+                                        Current
+                                    </span>
+
+                                    <input id="hvCurrent"
+                                           type="number"
+                                           min="0"
+                                           max="5"
+                                           step="0.1"
+                                           value="1.0">
+                                    mA
+
                                 </label>
-                                <label>
-                                    RF Frequency
-                                    <input id="mwFreq" type="number" min="2000" max="3000" value="2450"> MHz
-                                </label>
-                                <label>
-                                    RF Attenuation
-                                    <input id="mwAtt" type="number" min="0" max="100" value="80"> Lv
-                                </label>
+
                             </div>
+
                             <div class="actions">
-                                <button data-cmd="mw:off">Off</button>
-                                <button data-cmd="mw:on">On</button>
+
+                                <button data-cmd="hv:off"
+                                        data-i18n="panel_off">
+                                    Off
+                                </button>
+
+                                <button data-cmd="hv:on"
+                                        data-i18n="panel_on">
+                                    On
+                                </button>
+
                             </div>
+
                         </div>
 
-                        <div class="device mfc" data-device="gas_mfc">
+                        <div class="device microwave"
+                             data-device="microwave">
+
                             <header>
-                                MFC
+
+                                <span data-i18n="panel_microwave">
+                                    Microwave
+                                </span>
+
+                                <i id="mwLed"></i>
+                                <b id="mwLabel">off</b>
+
+                            </header>
+
+                            <div class="readout fields">
+
+                                <label>
+
+                                    <span data-i18n="panel_duty_cycle">
+                                        Duty Cycle
+                                    </span>
+
+                                    <input id="mwDuty"
+                                           type="number"
+                                           min="0"
+                                           max="100"
+                                           value="9">
+                                    %
+
+                                </label>
+
+                                <label>
+
+                                    <span data-i18n="panel_pulse_frequency">
+                                        Pulse Frequency
+                                    </span>
+
+                                    <input id="mwPulse"
+                                           type="number"
+                                           min="10"
+                                           max="5000"
+                                           value="1000">
+                                    Hz
+
+                                </label>
+
+                                <label>
+
+                                    <span data-i18n="panel_rf_frequency">
+                                        RF Frequency
+                                    </span>
+
+                                    <input id="mwFreq"
+                                           type="number"
+                                           min="2000"
+                                           max="3000"
+                                           value="2450">
+                                    MHz
+
+                                </label>
+
+                                <label>
+
+                                    <span data-i18n="panel_rf_attenuation">
+                                        RF Attenuation
+                                    </span>
+
+                                    <input id="mwAtt"
+                                           type="number"
+                                           min="0"
+                                           max="100"
+                                           value="80">
+                                    Lv
+
+                                </label>
+
+                            </div>
+
+                            <div class="actions">
+
+                                <button data-cmd="mw:off"
+                                        data-i18n="panel_off">
+                                    Off
+                                </button>
+
+                                <button data-cmd="mw:on"
+                                        data-i18n="panel_on">
+                                    On
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="device mfc"
+                             data-device="gas_mfc">
+
+                            <header>
+
+                                <span data-i18n="panel_mfc">
+                                    MFC
+                                </span>
+
                                 <i id="mfcLed"></i>
                                 <b id="mfcLabel">off</b>
+
                             </header>
 
                             <div class="readout fields">
+
                                 <label>
-                                    Flowrate
-                                    <input id="mfcFlow" type="number" min="0" max="10000" step="10" value="9000"> sccm
+
+                                    <span data-i18n="panel_flowrate">
+                                        Flowrate
+                                    </span>
+
+                                    <input id="mfcFlow"
+                                           type="number"
+                                           min="0"
+                                           max="10000"
+                                           step="10"
+                                           value="9000">
+                                    sccm
+
                                 </label>
+
                                 <span>
-                                    Measured
-                                    <strong><em id="mfcMeasured">0.0000</em></strong>
+
+                                    <span data-i18n="panel_measured">
+                                        Measured
+                                    </span>
+
+                                    <strong>
+                                        <em id="mfcMeasured">0.0000</em>
+                                    </strong>
+
                                 </span>
+
                             </div>
 
                             <div class="actions">
-                                <button data-cmd="mfc:off">Off</button>
-                                <button data-cmd="mfc:on">On</button>
+
+                                <button data-cmd="mfc:off"
+                                        data-i18n="panel_off">
+                                    Off
+                                </button>
+
+                                <button data-cmd="mfc:on"
+                                        data-i18n="panel_on">
+                                    On
+                                </button>
+
                             </div>
+
                         </div>
 
-                        <div class="device gas" data-device="gas_supply">
-                            <header>Gas Can</header>
+                        <div class="device gas"
+                             data-device="gas_supply">
+
+                            <header data-i18n="panel_gas_can">
+                                Gas Can
+                            </header>
+
                             <div class="gasline">
+
                                 <select id="gasType">
-                                    <option>Deuterium</option>
-                                    <option>Hydrogen</option>
-                                    <option>Argon</option>
+
+                                    <option value="Deuterium"
+                                            data-i18n="gas_deuterium">
+                                        Deuterium
+                                    </option>
+
+                                    <option value="Hydrogen"
+                                            data-i18n="gas_hydrogen">
+                                        Hydrogen
+                                    </option>
+
+                                    <option value="Argon"
+                                            data-i18n="gas_argon">
+                                        Argon
+                                    </option>
+
                                 </select>
-                                <input id="gasPressure" type="number" min="0" max="100" value="40">
-                                <button id="setupGas" class="cyan">Set Up Gas</button>
+
+                                <input id="gasPressure"
+                                       type="number"
+                                       min="0"
+                                       max="100"
+                                       value="40">
+
+                                <button id="setupGas"
+                                        class="cyan"
+                                        data-i18n="panel_setup_gas">
+                                    Set Up Gas
+                                </button>
+
                             </div>
+
                         </div>
 
-                        <div class="device cooler" data-device="cooler">
+                        <div class="device cooler"
+                             data-device="cooler">
+
                             <header>
-                                Cooler
+
+                                <span data-i18n="panel_cooler">
+                                    Cooler
+                                </span>
+
                                 <i id="coolerLed"></i>
                                 <b id="coolerLabel">off</b>
+
                             </header>
+
                             <div class="readout">
-                                <span>Flow<strong><em id="coolerFlow">0.0</em> L/m</strong></span>
-                                <span>Temp<strong><em id="coolerTemp">24.3</em> °C</strong></span>
+
+                                <span>
+
+                                    <span data-i18n="panel_flow">
+                                        Flow
+                                    </span>
+
+                                    <strong>
+                                        <em id="coolerFlow">0.0</em> L/m
+                                    </strong>
+
+                                </span>
+
+                                <span>
+
+                                    <span data-i18n="panel_temperature">
+                                        Temp
+                                    </span>
+
+                                    <strong>
+                                        <em id="coolerTemp">24.3</em> °C
+                                    </strong>
+
+                                </span>
+
                             </div>
+
                             <div class="actions">
-                                <button data-cmd="cooler:off">Off</button>
-                                <button data-cmd="cooler:on">On</button>
+
+                                <button data-cmd="cooler:off"
+                                        data-i18n="panel_off">
+                                    Off
+                                </button>
+
+                                <button data-cmd="cooler:on"
+                                        data-i18n="panel_on">
+                                    On
+                                </button>
+
                             </div>
+
                         </div>
 
                         <!-- =====================================================
@@ -400,49 +729,162 @@
 
                             <!-- 中央 Plasma 區塊 -->
                             <div class="plasma-box">
-                                <span>Plasma</span>
+
+                                <span data-i18n="panel_plasma">
+                                    Plasma
+                                </span>
+
                             </div>
 
                         </div>
 
-                        <div class="device detector" data-device="detector">
-                            <header>Pressure <strong><em id="pressureValue">7.50e-1</em> Torr</strong></header>
-                            <div class="chart"><small>PN Detector Signal</small><canvas id="pnChart" width="300" height="80"></canvas></div>
-                            <div class="chart"><small>PSD Scatter Dataset</small><canvas id="psdChart" width="300" height="80"></canvas></div>
+                        <div class="device detector"
+                             data-device="detector">
+
+                            <header>
+
+                                <span data-i18n="panel_pressure">
+                                    Pressure
+                                </span>
+
+                                <strong>
+                                    <em id="pressureValue">7.50e-1</em> Torr
+                                </strong>
+
+                            </header>
+
+                            <div class="chart">
+
+                                <small data-i18n="panel_pn_detector">
+                                    PN Detector Signal
+                                </small>
+
+                                <canvas id="pnChart"
+                                        width="300"
+                                        height="80">
+                                </canvas>
+
+                            </div>
+
+                            <div class="chart">
+
+                                <small data-i18n="panel_psd_dataset">
+                                    PSD Scatter Dataset
+                                </small>
+
+                                <canvas id="psdChart"
+                                        width="300"
+                                        height="80">
+                                </canvas>
+
+                            </div>
+
                         </div>
 
                         <!-- 下方整塊，包含 Machine Pressurization 和 Experiment Setup -->
                         <div class="bottom-console">
+
                             <div>
-                                <h3>Machine Pressurization</h3>
-                                <progress id="vacuumProgress" max="100" value="0"></progress>
+
+                                <h3 data-i18n="panel_pressurization">
+                                    Machine Pressurization
+                                </h3>
+
+                                <progress id="vacuumProgress"
+                                          max="100"
+                                          value="0">
+                                </progress>
+
                                 <div class="vac-status">
-                                    <span>Time Under Vacuum <strong id="vacuumTime">00:00</strong></span> <!-- span 是行內容器元素-->
-                                    <b id="vacuumReady">Not Ready</b>
+
+                                    <span>
+
+                                        <span data-i18n="panel_time_under_vacuum">
+                                            Time Under Vacuum
+                                        </span>
+
+                                        <strong id="vacuumTime">
+                                            00:00
+                                        </strong>
+
+                                    </span>
+
+                                    <b id="vacuumReady">
+                                        Not Ready
+                                    </b>
+
                                 </div>
+
                             </div>
+
+
                             <div>
-                                <h3>Experiment Setup</h3>
+
+                                <h3 data-i18n="panel_experiment_setup">
+                                    Experiment Setup
+                                </h3>
+
                                 <div class="steps">
+
                                     <button data-device="gas_supply">
-                                        <strong>Gas Injection</strong>
-                                        <span id="stepGas">尚未設定</span>
+
+                                        <strong data-i18n="panel_gas_injection">
+                                            Gas Injection
+                                        </strong>
+
+                                        <span id="stepGas">
+                                            尚未設定
+                                        </span>
+
                                     </button>
+
+
                                     <button data-device="high_voltage">
-                                        <strong>High Voltage</strong>
-                                        <span id="stepHv">前置步驟未完成</span>
+
+                                        <strong data-i18n="panel_high_voltage">
+                                            High Voltage
+                                        </strong>
+
+                                        <span id="stepHv">
+                                            前置步驟未完成
+                                        </span>
+
                                     </button>
+
+
                                     <button data-device="microwave">
-                                        <strong>Microwave</strong>
-                                        <span id="stepMw">前置步驟未完成</span>
+
+                                        <strong data-i18n="panel_microwave">
+                                            Microwave
+                                        </strong>
+
+                                        <span id="stepMw">
+                                            前置步驟未完成
+                                        </span>
+
                                     </button>
+
                                 </div>
+
                             </div>
+
+
                             <div class="beam">
-                                <button id="beamOn">Beam On</button>
-                                <button id="beamOff">Beam Off</button>
+
+                                <button id="beamOn"
+                                        data-i18n="panel_beam_on">
+                                    Beam On
+                                </button>
+
+                                <button id="beamOff"
+                                        data-i18n="panel_beam_off">
+                                    Beam Off
+                                </button>
+
                             </div>
+
                         </div>
+
                     </div>
 
 
@@ -454,23 +896,25 @@
 
                     <div class="alpha-unity-heading">
 
-                        <span>
+                        <span data-i18n="realtime_3d">
                             REAL-TIME 3D VIEW
                         </span>
 
-                        <strong>
+                        <strong data-i18n="alpha_model">
                             Alpha-E 3D Model
                         </strong>
 
-                        <small class="alpha-unity-controls">
+                        <small class="alpha-unity-controls"
+                               data-i18n="camera_controls">
                             左鍵拖曳：旋轉 ｜ 右鍵拖曳：平移 ｜ 滾輪：縮放 ｜ R：重設
                         </small>
 
                     </div>
 
 
-                    <span id="alphaModelStatus">
-                        System Standby
+                    <span id="alphaModelStatus"
+                          data-i18n="alpha_model_status">
+                        系統待機
                     </span>
 
                 </div>
@@ -500,7 +944,8 @@
                     </h3>
                 </div>
 
-                <span id="infoStatus">
+                <span id="infoStatus"
+                      data-i18n="standby">
                     待機
                 </span>
 
@@ -513,7 +958,8 @@
 
                     <span data-i18n="function">功能</span>
 
-                    <p id="infoFunction">
+                    <p id="infoFunction"
+                       data-i18n="function_hint">
                         點擊設備後顯示用途。
                     </p>
 
@@ -524,7 +970,8 @@
 
                     <span data-i18n="principle">運作原理</span>
 
-                    <p id="infoPrinciple">
+                    <p id="infoPrinciple"
+                       data-i18n="principle_hint">
                         點擊設備後顯示原理。
                     </p>
 
@@ -535,7 +982,8 @@
 
                     <span data-i18n="current_status">目前狀態</span>
 
-                    <p id="infoLive">
+                    <p id="infoLive"
+                       data-i18n="status_hint">
                         尚未選取設備。
                     </p>
 
@@ -558,19 +1006,21 @@
                 ✓
             </div>
 
-            <span class="beam-transition-eyebrow">
+            <span class="beam-transition-eyebrow"
+                  data-i18n="beam_transition_eyebrow">
                 REACTION CONDITIONS ESTABLISHED
             </span>
 
-            <h3>
+            <h3 data-i18n="beam_transition_title">
                 Ion Beam Established
             </h3>
 
-            <p>
+            <p data-i18n="beam_transition_desc">
                 Alpha-E 實驗條件已完成，高能粒子束已建立。
             </p>
 
-            <span class="beam-transition-next">
+            <span class="beam-transition-next"
+                  data-i18n="beam_transition_next">
                 即將進入 p–¹¹B 核融合反應示意
             </span>
 
@@ -591,7 +1041,8 @@
                 </h2>
             </div>
 
-            <p id="fusionSectionHint">
+            <p id="fusionSectionHint"
+               data-i18n="fusion_locked_hint">
                 完成 Alpha-E 操作並啟動 Beam On 後解鎖。
             </p>
         </div>
@@ -603,18 +1054,25 @@
             <div class="fusion-control-info">
 
                 <div class="fusion-status-box">
-                    <span>Reaction Status</span>
 
-                    <strong id="fusionStatus">
+                    <span data-i18n="reaction_status">
+                        Reaction Status
+                    </span>
+
+                    <strong id="fusionStatus"
+                            data-i18n="fusion_status_locked">
                         Locked
                     </strong>
+
                 </div>
 
 
                 <div class="fusion-energy-box">
                     <div class="fusion-energy-head">
 
-                        <span>Energy Released</span>
+                        <span data-i18n="energy_released">
+                            Energy Released
+                        </span>
 
                         <strong>
                             <em id="fusionEnergyValue">0.00</em>
@@ -644,16 +1102,19 @@
                 </button>
 
                 <button id="fusionPause"
+                        data-i18n="pause"
                         disabled>
                     Pause
                 </button>
 
                 <button id="fusionResume"
+                        data-i18n="resume"
                         disabled>
                     Resume
                 </button>
 
                 <button id="fusionRestart"
+                        data-i18n="restart"
                         disabled>
                     Restart
                 </button>
@@ -679,7 +1140,8 @@
 
                 <div class="fusion-lock-content">
 
-                    <strong id="fusionLockTitle">
+                    <strong id="fusionLockTitle"
+                            data-i18n="fusion_locked">
                         Fusion Reaction Locked
                     </strong>
 
@@ -694,7 +1156,8 @@
                     </div>
 
                     <span id="fusionLockHint"
-                          class="fusion-lock-hint">
+                          class="fusion-lock-hint"
+                          data-i18n="fusion_wait_beam">
                         完成 Beam On 後即可進行核融合反應
                     </span>
 
@@ -715,11 +1178,12 @@
                 ✓
             </div>
 
-            <span class="fusion-result-eyebrow">
+            <span class="fusion-result-eyebrow"
+                  data-i18n="reaction_complete_eyebrow">
                 REACTION COMPLETE
             </span>
 
-            <h3>
+            <h3 data-i18n="fusion_complete">
                 Fusion Complete
             </h3>
 
@@ -730,28 +1194,37 @@
             <div class="fusion-result-grid">
 
                 <div>
-                    <span>Total Energy Released</span>
+                    <span data-i18n="total_energy">
+                        Total Energy Released
+                    </span>
                     <strong>8.68 MeV</strong>
                 </div>
 
                 <div>
-                    <span>Reaction Products</span>
-                    <strong>3 × α particles</strong>
+                    <span data-i18n="reaction_products">
+                        Reaction Products
+                    </span>
+
+                    <strong data-i18n="alpha_particles">
+                        3 × α particles
+                    </strong>
                 </div>
 
             </div>
 
-            <p>
+            <p data-i18n="fusion_result_desc">
                 質子與硼-11 發生核融合反應後，最終產生三個 α 粒子並釋放能量。
             </p>
 
             <div class="fusion-result-actions">
 
-                <button id="fusionReplay">
+                <button id="fusionReplay"
+                        data-i18n="replay">
                     Replay Reaction
                 </button>
 
-                <button id="returnAlpha">
+                <button id="returnAlpha"
+                        data-i18n="return_alpha">
                     Return to Alpha-E
                 </button>
 
@@ -762,6 +1235,21 @@
     </section>
 
 </main>
-<footer><p>臺灣能源互動電子書 © 2026</p><p>本網站為教育與學術用途開發。</p></footer>
+
+<footer>
+
+    <p data-i18n="footer_title">
+        臺灣能源互動電子書 © 2026
+    </p>
+
+    <p data-i18n="footer_desc">
+        本網站為教育與學術用途開發。
+    </p>
+
+</footer>
+
 <script src="alpha-e.js"></script>
-</body></html>
+
+</body>
+
+</html>

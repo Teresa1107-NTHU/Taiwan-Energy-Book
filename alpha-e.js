@@ -90,9 +90,190 @@ const translations = {
 
         standby: "待機",
 
+        /* Alpha-E Panel */
+        panel_location:
+            "Alpha-E @ 台南",
+
+        panel_off:
+            "關閉",
+
+        panel_on:
+            "開啟",
+
+        panel_power_on:
+            "電源開啟",
+
+        panel_rough_pump:
+            "前級真空泵",
+
+        panel_turbo_pump:
+            "渦輪分子泵",
+
+        panel_rotation_speed:
+            "轉速",
+
+        panel_temperature:
+            "溫度",
+
+        panel_current:
+            "電流",
+
+        panel_high_voltage:
+            "高壓系統",
+
+        panel_voltage:
+            "電壓",
+
+        panel_microwave:
+            "微波系統",
+
+        panel_duty_cycle:
+            "工作週期",
+
+        panel_pulse_frequency:
+            "脈衝頻率",
+
+        panel_rf_frequency:
+            "RF 頻率",
+
+        panel_rf_attenuation:
+            "RF 衰減",
+
+        panel_mfc:
+            "MFC｜質量流量控制器",
+
+        panel_flowrate:
+            "流量設定",
+
+        panel_measured:
+            "量測值",
+
+        panel_gas_can:
+            "氣體供應",
+
+        panel_setup_gas:
+            "設定氣體",
+
+        panel_cooler:
+            "冷卻系統",
+
+        panel_flow:
+            "流量",
+
+        panel_plasma:
+            "電漿",
+
+        panel_pressure:
+            "壓力",
+
+        panel_pn_detector:
+            "PN 偵測器訊號",
+
+        panel_psd_dataset:
+            "PSD 散佈資料",
+
+        panel_pressurization:
+            "真空系統狀態",
+
+        panel_time_under_vacuum:
+            "真空運轉時間",
+
+        panel_experiment_setup:
+            "實驗設定",
+
+        panel_gas_injection:
+            "氣體注入",
+
+        panel_beam_on:
+            "粒子束開啟",
+
+        panel_beam_off:
+            "粒子束關閉",
+
+        gas_deuterium:
+            "氘",
+
+        gas_hydrogen:
+            "氫",
+
+        gas_argon:
+            "氬",
+
+        /* Alpha-E Dynamic Status */
+        vacuum_ready:
+            "真空已就緒",
+
+        vacuum_not_ready:
+            "尚未就緒",
+
+        current_gas:
+            "目前氣體",
+
+        not_configured:
+            "尚未設定",
+
+        high_voltage_on:
+            "高壓已啟動",
+
+        ready_to_start:
+            "可以啟動",
+
+        prerequisites_incomplete:
+            "前置步驟未完成",
+
+        microwave_plasma_on:
+            "微波已啟動 / 電漿已形成",
+
+        status_beam_on:
+            "粒子束已開啟",
+
+        status_plasma_generated:
+            "電漿已形成",
+
+        status_power_on:
+            "電源已開啟",
+
+        live_running:
+            "運轉",
+
+        live_stopped:
+            "停止",
+
+        live_vacuum_progress:
+            "真空進度",
+
+        live_rotation_speed:
+            "轉速",
+
+        live_gas_configured:
+            "已完成設定",
+
+        live_pressure_setting:
+            "壓力設定",
+
+        live_setpoint:
+            "設定",
+
+        live_measured:
+            "量測",
+
+        live_flow:
+            "流量",
+
+        live_temperature:
+            "溫度",
+
+        live_plasma_not_generated:
+            "電漿尚未形成",
+
+        gas_supply_not_configured:
+            "氣體供應尚未設定。",
+
         /* Unity */
         realtime_3d: "REAL-TIME 3D VIEW",
         alpha_model: "Alpha-E 3D Model",
+        alpha_model_status:
+            "系統待機",
 
         camera_controls:
             "左鍵拖曳：旋轉 ｜ 右鍵拖曳：平移 ｜ 滾輪：縮放 ｜ R：重設",
@@ -129,22 +310,140 @@ const translations = {
             "完成 Beam On 後即可進行核融合反應",
 
         fusion_complete:
-            "Fusion Complete",
+            "核融合完成",
 
         total_energy:
-            "Total Energy Released",
+            "總釋放能量",
 
         reaction_products:
-            "Reaction Products",
+            "反應產物",
 
         fusion_result_desc:
             "質子與硼-11 發生核融合反應後，最終產生三個 α 粒子並釋放能量。",
 
         replay:
-            "Replay Reaction",
+            "重新播放反應",
 
         return_alpha:
-            "Return to Alpha-E"
+            "返回 Alpha-E",
+
+        fusion_loading:
+            "正在載入 Fusion 模型...",
+
+        fusion_model_ready:
+            "模型已就緒 ✓",
+
+        fusion_model_ready_hint:
+            "模型已載入完成，完成 Beam On 後即可進行核融合反應。",
+
+        fusion_ready_hint:
+            "Beam 已建立，可進行 p–¹¹B 核融合反應示意。",
+
+        fusion_loading_hint:
+            "Beam 已建立，Fusion 模型仍在載入中...",
+
+        fusion_status_ready:
+            "就緒",
+
+        fusion_status_loading:
+            "正在載入 Unity...",
+
+        fusion_status_running:
+            "反應進行中",
+
+        fusion_status_paused:
+            "已暫停",
+
+        fusion_stage_approach:
+            "質子接近硼-11",
+
+        fusion_stage_capture:
+            "質子被硼-11 捕獲",
+
+        fusion_stage_c12_excited:
+            "碳-12* 激發態",
+
+        fusion_stage_c12_break:
+            "碳-12 → 氦-4 + 鈹-8",
+
+        fusion_stage_be8_unstable:
+            "鈹-8 處於不穩定狀態",
+
+        fusion_stage_be8_break:
+            "鈹-8 → 氦-4 + 氦-4",
+
+        fusion_stage_complete:
+            "核融合完成",
+
+        reaction_complete_eyebrow:
+            "反應完成",
+
+        alpha_particles:
+            "3 × α 粒子",
+
+        fusion_status_locked:
+            "尚未解鎖",
+
+        /* Beam Transition */
+
+        beam_transition_eyebrow:
+            "反應條件已建立",
+
+        beam_transition_title:
+            "離子束已建立",
+
+        beam_transition_desc:
+            "Alpha-E 實驗條件已完成，高能粒子束已建立。",
+
+        beam_transition_next:
+            "即將進入 p–¹¹B 核融合反應示意",
+
+        /* Alpha-E Alerts */
+        alert_power_first:
+            "請先開啟系統電源。",
+
+        alert_rough_first:
+            "請先啟動前級真空泵。",
+
+        alert_setup_gas_first:
+            "請先完成氣體設定。",
+
+        alert_hv_prerequisites:
+            "需先完成高真空、供氣與冷卻。",
+
+        alert_mw_prerequisites:
+            "需先啟動高壓系統與 MFC。",
+
+        alert_turbo_first:
+            "請先啟動渦輪分子泵。",
+
+        alert_beam_prerequisites:
+            "粒子束啟動前需先完成真空、供氣、冷卻、高壓與微波步驟。",
+
+        /* Final UI */
+        operation_process:
+            "操作流程",
+
+        flow_step:
+            "步驟",
+
+        footer_title:
+            "臺灣能源互動電子書 © 2026",
+
+        footer_desc:
+            "本網站為教育與學術用途開發。",
+
+        page_title:
+            "Alpha-E 互動教學系統｜臺灣能源互動電子書",
+
+        alpha_panel_alt:
+            "Alpha-E 操作面板底圖",
+
+        alpha_unity_title:
+            "Alpha-E 3D 模型",
+
+        fusion_unity_title:
+            "p–¹¹B 核融合反應模型",
     },
 
 
@@ -250,12 +549,194 @@ const translations = {
         standby:
             "Standby",
 
+        /* Alpha-E Panel */
+        panel_location:
+            "Alpha-E @ Tainan",
+
+        panel_off:
+            "Off",
+
+        panel_on:
+            "On",
+
+        panel_power_on:
+            "Power On",
+
+        panel_rough_pump:
+            "Rough Pump",
+
+        panel_turbo_pump:
+            "Turbo Pump",
+
+        panel_rotation_speed:
+            "Rotation Speed",
+
+        panel_temperature:
+            "Temp",
+
+        panel_current:
+            "Current",
+
+        panel_high_voltage:
+            "High Voltage",
+
+        panel_voltage:
+            "Voltage",
+
+        panel_microwave:
+            "Microwave",
+
+        panel_duty_cycle:
+            "Duty Cycle",
+
+        panel_pulse_frequency:
+            "Pulse Frequency",
+
+        panel_rf_frequency:
+            "RF Frequency",
+
+        panel_rf_attenuation:
+            "RF Attenuation",
+
+        panel_mfc:
+            "MFC",
+
+        panel_flowrate:
+            "Flowrate",
+
+        panel_measured:
+            "Measured",
+
+        panel_gas_can:
+            "Gas Can",
+
+        panel_setup_gas:
+            "Set Up Gas",
+
+        panel_cooler:
+            "Cooler",
+
+        panel_flow:
+            "Flow",
+
+        panel_plasma:
+            "Plasma",
+
+        panel_pressure:
+            "Pressure",
+
+        panel_pn_detector:
+            "PN Detector Signal",
+
+        panel_psd_dataset:
+            "PSD Scatter Dataset",
+
+        panel_pressurization:
+            "Machine Pressurization",
+
+        panel_time_under_vacuum:
+            "Time Under Vacuum",
+
+        panel_experiment_setup:
+            "Experiment Setup",
+
+        panel_gas_injection:
+            "Gas Injection",
+
+        panel_beam_on:
+            "Beam On",
+
+        panel_beam_off:
+            "Beam Off",
+
+        gas_deuterium:
+            "Deuterium",
+
+        gas_hydrogen:
+            "Hydrogen",
+
+        gas_argon:
+            "Argon",
+
+        /* Alpha-E Dynamic Status */
+        vacuum_ready:
+            "Vacuum Ready",
+
+        vacuum_not_ready:
+            "Not Ready",
+
+        current_gas:
+            "Current Gas",
+
+        not_configured:
+            "Not configured",
+
+        high_voltage_on:
+            "High Voltage On",
+
+        ready_to_start:
+            "Ready",
+
+        prerequisites_incomplete:
+            "Prerequisites incomplete",
+
+        microwave_plasma_on:
+            "Microwave On / Plasma Generated",
+
+        status_beam_on:
+            "Beam On",
+
+        status_plasma_generated:
+            "Plasma Generated",
+
+        status_power_on:
+            "Power On",
+
+        live_running:
+            "Running",
+
+        live_stopped:
+            "Stopped",
+
+        live_vacuum_progress:
+            "Vacuum Progress",
+
+        live_rotation_speed:
+            "Rotation Speed",
+
+        live_gas_configured:
+            "configured",
+
+        live_pressure_setting:
+            "Pressure setting",
+
+        live_setpoint:
+            "Setpoint",
+
+        live_measured:
+            "Measured",
+
+        live_flow:
+            "Flow",
+
+        live_temperature:
+            "Temperature",
+
+        live_plasma_not_generated:
+            "Plasma not generated",
+
+        gas_supply_not_configured:
+            "Gas supply is not configured.",
+
         /* Unity */
         realtime_3d:
             "REAL-TIME 3D VIEW",
 
         alpha_model:
             "Alpha-E 3D Model",
+
+        alpha_model_status:
+            "System Standby",
 
         camera_controls:
             "Left Drag: Rotate ｜ Right Drag: Pan ｜ Scroll: Zoom ｜ R: Reset",
@@ -307,7 +788,124 @@ const translations = {
             "Replay Reaction",
 
         return_alpha:
-            "Return to Alpha-E"
+            "Return to Alpha-E",
+
+        fusion_loading:
+            "Loading Fusion Model...",
+
+        fusion_model_ready:
+            "Model Ready ✓",
+
+        fusion_model_ready_hint:
+            "The model is ready. Complete Beam On to begin the fusion reaction.",
+
+        fusion_ready_hint:
+            "The beam has been established. You can now proceed with the p–¹¹B fusion reaction demonstration.",
+
+        fusion_loading_hint:
+            "The beam has been established, but the Fusion model is still loading...",
+
+        fusion_status_ready:
+            "Ready",
+
+        fusion_status_loading:
+            "Loading Unity...",
+
+        fusion_status_running:
+            "Running",
+
+        fusion_status_paused:
+            "Paused",
+
+        fusion_stage_approach:
+            "Proton approaching B-11",
+
+        fusion_stage_capture:
+            "Proton captured by B-11",
+
+        fusion_stage_c12_excited:
+            "C-12* excited state",
+
+        fusion_stage_c12_break:
+            "C-12 → He-4 + Be-8",
+
+        fusion_stage_be8_unstable:
+            "Be-8 unstable",
+
+        fusion_stage_be8_break:
+            "Be-8 → He-4 + He-4",
+
+        fusion_stage_complete:
+            "Fusion Complete",
+
+        reaction_complete_eyebrow:
+            "REACTION COMPLETE",
+
+        alpha_particles:
+            "3 × α particles",
+
+        fusion_status_locked:
+            "Locked",
+
+        /* Beam Transition */
+        beam_transition_eyebrow:
+            "REACTION CONDITIONS ESTABLISHED",
+
+        beam_transition_title:
+            "Ion Beam Established",
+
+        beam_transition_desc:
+            "The Alpha-E experimental conditions are complete, and a high-energy ion beam has been established.",
+
+        beam_transition_next:
+            "Proceeding to the p–¹¹B fusion reaction demonstration.",
+
+        /* Alpha-E Alerts */
+        alert_power_first:
+            "Please turn on the system power first.",
+
+        alert_rough_first:
+            "Please start the rough pump first.",
+
+        alert_setup_gas_first:
+            "Please complete the gas setup first.",
+
+        alert_hv_prerequisites:
+            "High vacuum, gas supply, and cooling must be completed first.",
+
+        alert_mw_prerequisites:
+            "Please activate High Voltage and the MFC first.",
+
+        alert_turbo_first:
+            "Please start the turbo pump first.",
+
+        alert_beam_prerequisites:
+            "Vacuum, gas supply, cooling, high voltage, and microwave steps must be completed before Beam On.",
+
+        /* Final UI */
+        operation_process:
+            "OPERATION PROCESS",
+
+        flow_step:
+            "Step",
+
+        footer_title:
+            "Taiwan Energy Interactive E-Book © 2026",
+
+        footer_desc:
+            "This website was developed for educational and academic purposes.",
+
+        page_title:
+            "Alpha-E Interactive Learning System | Taiwan Energy Interactive E-Book",
+
+        alpha_panel_alt:
+            "Alpha-E control panel",
+
+        alpha_unity_title:
+            "Alpha-E 3D Model",
+
+        fusion_unity_title:
+            "p–¹¹B Fusion Reaction Model",
     }
 };
 
@@ -322,6 +920,92 @@ function t(key) {
     );
 }
 
+function getGasDisplayName(value) {
+
+    switch (value) {
+
+        case "Deuterium":
+            return t("gas_deuterium");
+
+        case "Hydrogen":
+            return t("gas_hydrogen");
+
+        case "Argon":
+            return t("gas_argon");
+
+        default:
+            return value;
+    }
+}
+
+function setFusionStatus(key) {
+
+    currentFusionStatusKey = key;
+
+    const element =
+        $("fusionStatus");
+
+    if (element) {
+        element.textContent =
+            t(key);
+    }
+}
+
+
+function setFusionSectionHint(key) {
+
+    currentFusionSectionHintKey = key;
+
+    const element =
+        $("fusionSectionHint");
+
+    if (element) {
+        element.textContent =
+            t(key);
+    }
+}
+
+
+function refreshFusionLanguage() {
+
+    /* Reaction Status */
+    setFusionStatus(
+        currentFusionStatusKey
+    );
+
+
+    /* Fusion 區塊右上提示 */
+    setFusionSectionHint(
+        currentFusionSectionHintKey
+    );
+
+
+    /* Beam On 前鎖定畫面的提示 */
+    const lockHint =
+        $("fusionLockHint");
+
+    if (lockHint) {
+
+        lockHint.textContent =
+            fusionUnityReady
+                ? t("fusion_model_ready_hint")
+                : t("fusion_wait_beam");
+    }
+
+
+    /* Fusion Unity Loading 顯示 */
+    const loadingText =
+        $("fusionLoadingText");
+
+    if (loadingText) {
+
+        loadingText.textContent =
+            fusionUnityReady
+                ? t("fusion_model_ready")
+                : `${t("fusion_loading")} ${fusionLoadingPercent}%`;
+    }
+}
+
 function applyLanguage() {
 
     document.documentElement.lang =
@@ -329,6 +1013,36 @@ function applyLanguage() {
             ? "zh-Hant"
             : "en";
 
+    document.title =
+        t("page_title");
+
+    const panelImage =
+        document.querySelector(
+            '.schematic img[src="assets/alpha-e-panel.jpg"]'
+        );
+
+    if (panelImage) {
+        panelImage.alt =
+            t("alpha_panel_alt");
+    }
+
+
+    const alphaFrame =
+        $("alphaUnity");
+
+    if (alphaFrame) {
+        alphaFrame.title =
+            t("alpha_unity_title");
+    }
+
+
+    const fusionFrame =
+        $("fusionUnity");
+
+    if (fusionFrame) {
+        fusionFrame.title =
+            t("fusion_unity_title");
+    }
 
     document
         .querySelectorAll("[data-i18n]")
@@ -363,6 +1077,10 @@ function applyLanguage() {
     if (s.selected) {
         select(s.selected);
     }
+
+
+    /* 重新套用 Fusion 當前狀態語言 */
+    refreshFusionLanguage();
 }
 
 /*
@@ -372,6 +1090,15 @@ let fusionUnityReady = false;
 let fusionUnlocked = false;
 let fusionCompleted = false;
 let lastFusionEnergyUpdate = 0;
+
+/* 目前 Fusion 畫面所使用的翻譯狀態 */
+let currentFusionStatusKey =
+    "fusion_status_locked";
+
+let currentFusionSectionHintKey =
+    "fusion_locked_hint";
+
+let fusionLoadingPercent = 0;
 
 // Fusion Unity 是否已經開始載入
 let fusionUnityLoaded = false;
@@ -711,7 +1438,7 @@ function updateFlowProgress() {
     if (progressText) {
 
         progressText.textContent =
-            `Step ${currentIndex + 1} / ${flow.length}`;
+            `${t("flow_step")} ${currentIndex + 1} / ${flow.length}`;
     }
 }
 
@@ -720,8 +1447,23 @@ function toggleMenu() {
 }
 
 function led(name, on) {
-    $(name + "Led").classList.toggle("on", on);
-    $(name + "Label").textContent = on ? "on" : "off"; $(name + "Label").classList.toggle("on", on)
+
+    $(name + "Led")
+        .classList.toggle(
+            "on",
+            on
+        );
+
+    $(name + "Label").textContent =
+        on
+            ? t("panel_on")
+            : t("panel_off");
+
+    $(name + "Label")
+        .classList.toggle(
+            "on",
+            on
+        );
 }
 
 function select(id) {
@@ -771,10 +1513,17 @@ document.querySelectorAll("[data-device]").forEach
         )
     );
 function powered() {
+
     if (!s.power) {
-        alert("請先按 Power On。");
-        return false
-    } return true
+
+        alert(
+            t("alert_power_first")
+        );
+
+        return false;
+    }
+
+    return true;
 }
 
 /*
@@ -810,8 +1559,41 @@ function master(on) {
 }
 $("powerOn").onclick = () => master(true);
 $("powerOff").onclick = () => master(false);
+
 document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
-    const [d, a] = b.dataset.cmd.split(":"); if (a !== "off" && !powered()) return; if (d === "rough") s.rough = a === "on"; if (d === "turbo") { if (a === "on" && !s.rough) return alert("請先啟動 Rough Pump。"); s.turbo = a === "on"; s.vent = a === "vent" } if (d === "mfc") { if (a === "on" && !s.gas) return alert("請先 Set Up Gas。"); s.mfc = a === "on" } if (d === "cooler") s.cooler = a === "on"; if (d === "hv") { if (a === "on" && !(s.vacuum >= 85 && s.gas && s.cooler)) return alert("需先完成高真空、供氣與冷卻。"); s.hv = a === "on" }
+    const [d, a] = b.dataset.cmd.split(":");
+    if (a !== "off" && !powered()) return;
+    if (d === "rough") s.rough = a === "on";
+    if (d === "turbo") {
+        if (a === "on" && !s.rough)
+            return alert(
+                t("alert_rough_first")
+            );
+            s.turbo = a === "on"; s.vent = a === "vent"
+    }
+    if (d === "mfc") {
+
+        if (
+            a === "on" &&
+            !s.gas
+        ) {
+
+            return alert(
+                t("alert_setup_gas_first")
+            );
+        }
+
+        s.mfc =
+            a === "on";
+    }
+if (d === "cooler") s.cooler = a === "on";
+if (d === "hv") {
+    if (a === "on" && !(s.vacuum >= 85 && s.gas && s.cooler))
+        return alert(
+            t("alert_hv_prerequisites")
+        );
+    s.hv = a === "on"
+}
     if (d === "mw") {
 
         if (
@@ -819,7 +1601,7 @@ document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
             !(s.hv && s.mfc)
         ) {
             return alert(
-                "需先啟動 High Voltage 與 MFC。"
+                t("alert_mw_prerequisites")
             );
         }
 
@@ -858,12 +1640,16 @@ $("setupGas").onclick = () => {
     }
 
     if (!s.rough) {
-        alert("請先啟動 Rough Pump。");
+        alert(
+            t("alert_rough_first")
+        );
         return;
     }
 
     if (!s.turbo) {
-        alert("請先啟動 Turbo Pump。");
+        alert(
+            t("alert_turbo_first")
+        );
         return;
     }
 
@@ -1134,11 +1920,13 @@ function unlockFusionSection() {
 
     if (fusionUnityReady) {
 
-        $("fusionStatus").textContent =
-            "Ready";
+        setFusionStatus(
+            "fusion_status_ready"
+        );
 
-        $("fusionSectionHint").textContent =
-            "Beam 已建立，可進行 p–¹¹B 核融合反應示意。";
+        setFusionSectionHint(
+            "fusion_ready_hint"
+        );
 
         $("fusionStart").disabled =
             false;
@@ -1149,11 +1937,13 @@ function unlockFusionSection() {
     }
     else {
 
-        $("fusionStatus").textContent =
-            "Loading Unity...";
+        setFusionStatus(
+            "fusion_status_loading"
+        );
 
-        $("fusionSectionHint").textContent =
-            "Beam 已建立，Fusion 模型仍在載入中...";
+        setFusionSectionHint(
+            "fusion_loading_hint"
+        );
 
         $("fusionStart").disabled =
             true;
@@ -1225,6 +2015,9 @@ window.addEventListener(
                     progress * 100
                 );
 
+            fusionLoadingPercent =
+                percent;
+
 
             const progressBar =
                 $("fusionLoadingProgress");
@@ -1243,7 +2036,7 @@ window.addEventListener(
             if (loadingText) {
 
                 loadingText.textContent =
-                    `Loading Fusion Model... ${percent}%`;
+                    `${t("fusion_loading")} ${percent}%`;
             }
 
 
@@ -1276,7 +2069,7 @@ window.addEventListener(
             if (loadingText) {
 
                 loadingText.textContent =
-                    "Model Ready ✓";
+                    t("fusion_model_ready");
             }
 
 
@@ -1292,7 +2085,7 @@ window.addEventListener(
             if (!fusionUnlocked) {
 
                 $("fusionLockHint").textContent =
-                    "模型已載入完成，完成 Beam On 後即可進行核融合反應。";
+                    t("fusion_model_ready_hint");
 
                 return;
             }
@@ -1302,11 +2095,13 @@ window.addEventListener(
              * Beam 已經 On：
              * 正式開放操作。
              */
-            $("fusionStatus").textContent =
-                "Ready";
+            setFusionStatus(
+                "fusion_status_ready"
+            );
 
-            $("fusionSectionHint").textContent =
-                "Beam 已建立，可進行 p–¹¹B 核融合反應示意。";
+            setFusionSectionHint(
+                "fusion_ready_hint"
+            );
 
 
             $("fusionStart").disabled =
@@ -1343,52 +2138,76 @@ window.addEventListener(
             switch (stage) {
 
                 case "IDLE":
-                    $("fusionStatus").textContent =
-                        "Ready";
+
+                    setFusionStatus(
+                        "fusion_status_ready"
+                    );
+
                     break;
 
 
                 case "APPROACH":
-                    $("fusionStatus").textContent =
-                        "Proton approaching B-11";
+
+                    setFusionStatus(
+                        "fusion_stage_approach"
+                    );
+
                     break;
 
 
                 case "CAPTURE":
-                    $("fusionStatus").textContent =
-                        "Proton captured by B-11";
+
+                    setFusionStatus(
+                        "fusion_stage_capture"
+                    );
+
                     break;
 
 
                 case "C12_EXCITED":
-                    $("fusionStatus").textContent =
-                        "C-12* excited state";
+
+                    setFusionStatus(
+                        "fusion_stage_c12_excited"
+                    );
+
                     break;
 
 
                 case "C12_BREAK":
-                    $("fusionStatus").textContent =
-                        "C-12 → He-4 + Be-8";
+
+                    setFusionStatus(
+                        "fusion_stage_c12_break"
+                    );
+
                     break;
 
 
                 case "BE8_UNSTABLE":
-                    $("fusionStatus").textContent =
-                        "Be-8 unstable";
+
+                    setFusionStatus(
+                        "fusion_stage_be8_unstable"
+                    );
+
                     break;
 
 
                 case "BE8_BREAK":
-                    $("fusionStatus").textContent =
-                        "Be-8 → He-4 + He-4";
+
+                    setFusionStatus(
+                        "fusion_stage_be8_break"
+                    );
+
                     break;
 
 
                 case "FINISHED":
-                    $("fusionStatus").textContent =
-                        "Fusion Complete";
+
+                    setFusionStatus(
+                        "fusion_stage_complete"
+                    );
 
                     completeFusionReaction();
+
                     break;
             }
 
@@ -1403,23 +2222,65 @@ window.addEventListener(
         if (message.type === "FusionStatus") {
 
             const status =
-                message.status || "Unknown";
+                message.status || "";
 
-            $("fusionStatus").textContent =
-                status;
+            const normalizedStatus =
+                status.toLowerCase();
+
 
             /*
-             * 保留原本 Finished 判斷，
-             * 當作 FusionStage 沒收到時的備援。
+             * Unity 傳回的 FusionStatus 主要作為備援。
+             * 網頁顯示文字統一由翻譯系統控制，
+             * 避免中文模式突然出現 Unity 原始英文。
              */
+
             if (
-                status.includes(
-                    "Fusion finished"
-                )
+                normalizedStatus.includes("finished") ||
+                normalizedStatus.includes("complete")
             ) {
 
                 completeFusionReaction();
+
+                return;
             }
+
+
+            if (
+                normalizedStatus.includes("pause")
+            ) {
+
+                setFusionStatus(
+                    "fusion_status_paused"
+                );
+
+                return;
+            }
+
+
+            if (
+                normalizedStatus.includes("ready") ||
+                normalizedStatus.includes("idle")
+            ) {
+
+                setFusionStatus(
+                    "fusion_status_ready"
+                );
+
+                return;
+            }
+
+
+            /*
+             * 其他 Unity 狀態不直接顯示原始英文，
+             * 統一視為反應進行中。
+             */
+            if (status) {
+
+                setFusionStatus(
+                    "fusion_status_running"
+                );
+            }
+
 
             return;
         }
@@ -1497,7 +2358,7 @@ $("beamOn").onclick = () => {
     if (!beamReady) {
 
         alert(
-            "Beam On 需要完成真空、供氣、冷卻、高壓與微波步驟。"
+            t("alert_beam_prerequisites")
         );
 
         return;
@@ -1565,8 +2426,8 @@ function update() {
 
     $("vacuumReady").textContent =
         s.vacuum >= 90
-            ? "Vacuum Ready"
-            : "Not Ready";
+            ? t("vacuum_ready")
+            : t("vacuum_not_ready");
 
     $("vacuumReady").classList.toggle(
         "ready",
@@ -1591,63 +2452,33 @@ function update() {
 
     $("stepGas").textContent =
         s.gas
-            ? (
-                currentLanguage === "zh"
-                    ? "目前氣體：" + $("gasType").value
-                    : "Current Gas: " + $("gasType").value
-            )
-            : (
-                currentLanguage === "zh"
-                    ? "尚未設定"
-                    : "Not configured"
-            );
+            ? `${t("current_gas")}：${getGasDisplayName(
+                $("gasType").value
+            )}`
+            : t("not_configured");
 
 
     $("stepHv").textContent =
         s.hv
-            ? (
-                currentLanguage === "zh"
-                    ? "高壓已啟動"
-                    : "High Voltage On"
-            )
+            ? t("high_voltage_on")
             : (
                 s.vacuum >= 85 &&
                 s.gas &&
                 s.cooler
             )
-                ? (
-                    currentLanguage === "zh"
-                        ? "可以啟動"
-                        : "Ready"
-                )
-                : (
-                    currentLanguage === "zh"
-                        ? "前置步驟未完成"
-                        : "Prerequisites incomplete"
-                );
+                ? t("ready_to_start")
+                : t("prerequisites_incomplete");
 
 
     $("stepMw").textContent =
         s.mw
-            ? (
-                currentLanguage === "zh"
-                    ? "微波已啟動 / 電漿已形成"
-                    : "Microwave On / Plasma Generated"
-            )
+            ? t("microwave_plasma_on")
             : (
                 s.hv &&
                 s.mfc
             )
-                ? (
-                    currentLanguage === "zh"
-                        ? "可以啟動"
-                        : "Ready"
-                )
-                : (
-                    currentLanguage === "zh"
-                        ? "前置步驟未完成"
-                        : "Prerequisites incomplete"
-                );
+                ? t("ready_to_start")
+                : t("prerequisites_incomplete");
 
 
     /* =========================
@@ -1706,12 +2537,12 @@ function update() {
 
     $("infoStatus").textContent =
         s.beam
-            ? "Beam On"
+            ? t("status_beam_on")
             : s.mw
-                ? "Plasma Generated"
+                ? t("status_plasma_generated")
                 : s.power
-                    ? "Power On"
-                    : "待機";
+                    ? t("status_power_on")
+                    : t("standby");
 
 
     /* =========================
@@ -1723,19 +2554,192 @@ function update() {
     updateFlowProgress();
 }
 function live() {
-    if (!s.selected) return; let t = ""; if (s.selected === "rough_pump") t = `${s.rough ? "運轉" : "停止"}；真空進度 ${s.vacuum.toFixed(0)}%。`; if (s.selected === "turbo_pump") t = `${s.turbo ? "運轉" : s.vent ? "Vent" : "停止"}；轉速 ${$("turboSpeed").textContent} Hz。`; if (s.selected === "gas_supply") {
-        t = s.gas
-            ? `${$("gasType").value} 已完成設定；壓力設定 ${$("gasPressure").value}。`
-            : "Gas Supply 尚未設定。";
-    }
-    if (s.selected === "gas_mfc") t = `${s.mfc ? "On" : "Off"}；設定 ${$("mfcFlow").value} sccm；量測 ${$("mfcMeasured").textContent}。`; if (s.selected === "cooler") t = `${s.cooler ? "On" : "Off"}；流量 ${$("coolerFlow").textContent} L/m；溫度 ${$("coolerTemp").textContent} °C。`; if (s.selected === "high_voltage") t = `${s.hv ? "On" : "Off"}；${$("hvVoltage").value} kV / ${$("hvCurrent").value} mA。`;
-    if (s.selected === "microwave") {
 
-        t = s.mw
-            ? `On；Plasma Generated；RF ${$("mwFreq").value} MHz；Duty ${$("mwDuty").value}%。`
-            : `Off；Plasma 尚未形成；RF ${$("mwFreq").value} MHz；Duty ${$("mwDuty").value}%。`;
+    if (!s.selected) {
+        return;
     }
-    if (s.selected === "detector") t = `壓力 ${$("pressureValue").textContent} Torr；Beam ${s.beam ? "On" : "Off"}。`; $("infoLive").textContent = t
+
+
+    let text = "";
+
+
+    /* =========================
+       Rough Pump
+    ========================= */
+
+    if (
+        s.selected ===
+        "rough_pump"
+    ) {
+
+        text =
+            `${s.rough
+                ? t("live_running")
+                : t("live_stopped")
+            }；` +
+            `${t("live_vacuum_progress")} ` +
+            `${s.vacuum.toFixed(0)}%。`;
+    }
+
+
+    /* =========================
+       Turbo Pump
+    ========================= */
+
+    if (
+        s.selected ===
+        "turbo_pump"
+    ) {
+
+        const turboStatus =
+            s.turbo
+                ? t("live_running")
+                : s.vent
+                    ? "Vent"
+                    : t("live_stopped");
+
+        text =
+            `${turboStatus}；` +
+            `${t("live_rotation_speed")} ` +
+            `${$("turboSpeed").textContent} Hz。`;
+    }
+
+
+    /* =========================
+       Gas Supply
+    ========================= */
+
+    if (
+        s.selected ===
+        "gas_supply"
+    ) {
+
+        if (s.gas) {
+
+            text =
+                `${getGasDisplayName(
+                    $("gasType").value
+                )} ` +
+                `${t("live_gas_configured")}；` +
+                `${t("live_pressure_setting")} ` +
+                `${$("gasPressure").value}。`;
+        }
+        else {
+
+            text =
+                t("gas_supply_not_configured");
+        }
+    }
+
+
+    /* =========================
+       MFC
+    ========================= */
+
+    if (
+        s.selected ===
+        "gas_mfc"
+    ) {
+
+        text =
+            `${s.mfc
+                ? t("panel_on")
+                : t("panel_off")
+            }；` +
+            `${t("live_setpoint")} ` +
+            `${$("mfcFlow").value} sccm；` +
+            `${t("live_measured")} ` +
+            `${$("mfcMeasured").textContent}。`;
+    }
+
+
+    /* =========================
+       Cooler
+    ========================= */
+
+    if (
+        s.selected ===
+        "cooler"
+    ) {
+
+        text =
+            `${s.cooler
+                ? t("panel_on")
+                : t("panel_off")
+            }；` +
+            `${t("live_flow")} ` +
+            `${$("coolerFlow").textContent} L/m；` +
+            `${t("live_temperature")} ` +
+            `${$("coolerTemp").textContent} °C。`;
+    }
+
+
+    /* =========================
+       High Voltage
+    ========================= */
+
+    if (
+        s.selected ===
+        "high_voltage"
+    ) {
+
+        text =
+            `${s.hv
+                ? t("panel_on")
+                : t("panel_off")
+            }；` +
+            `${$("hvVoltage").value} kV / ` +
+            `${$("hvCurrent").value} mA。`;
+    }
+
+
+    /* =========================
+       Microwave
+    ========================= */
+
+    if (
+        s.selected ===
+        "microwave"
+    ) {
+
+        text =
+            `${s.mw
+                ? t("panel_on")
+                : t("panel_off")
+            }；` +
+
+            `${s.mw
+                ? t("status_plasma_generated")
+                : t("live_plasma_not_generated")
+            }；` +
+
+            `RF ${$("mwFreq").value} MHz；` +
+            `Duty ${$("mwDuty").value}%。`;
+    }
+
+
+    /* =========================
+       Detector
+    ========================= */
+
+    if (
+        s.selected ===
+        "detector"
+    ) {
+
+        text =
+            `${t("panel_pressure")} ` +
+            `${$("pressureValue").textContent} Torr；` +
+            `Beam ` +
+            `${s.beam
+                ? t("panel_on")
+                : t("panel_off")
+            }。`;
+    }
+
+
+    $("infoLive").textContent =
+        text;
 }
 const pn=Array(45).fill(.08),psd=Array(45).fill(.03);function line(c,d,scatter=false){const x=c.getContext("2d"),w=c.width,h=c.height;x.clearRect(0,0,w,h);x.strokeStyle="#d9dde2";for(let i=0;i<4;i++){let y=8+i*(h-16)/3;x.beginPath();x.moveTo(0,y);x.lineTo(w,y);x.stroke()}if(scatter){x.fillStyle="#ef7895";d.forEach((v,i)=>{let px=i*w/(d.length-1),py=h-6-v*(h-12);x.beginPath();x.arc(px,py,2,0,Math.PI*2);x.fill()})}else{x.strokeStyle="#72b9e8";x.lineWidth=2;x.beginPath();d.forEach((v,i)=>{let px=i*w/(d.length-1),py=h-6-v*(h-12);i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke()}}
 setInterval(()=>{if(s.power){if(s.rough)s.vacuum+=s.turbo?1.8:.65;if(s.vent)s.vacuum-=2.2;s.vacuum=clamp(s.vacuum,0,100);if(s.rough)s.seconds++;let speed=+$("turboSpeed").textContent,target=s.turbo?1500:0;$("turboSpeed").textContent=Math.round(speed+(target-speed)*.18);$("turboTemp").textContent=(24+(s.turbo?19:0)+Math.random()).toFixed(0);$("turboCurrent").textContent=(s.turbo?.58+Math.random()*.08:0).toFixed(2);$("coolerFlow").textContent=(s.cooler?1.8+Math.random()*.3:0).toFixed(1);$("coolerTemp").textContent=(s.cooler?23.8+Math.random()*.8:24.7+Math.random()).toFixed(1);$("mfcMeasured").textContent=(s.mfc?+$("mfcFlow").value/260000+(Math.random()-.5)*.001:0).toFixed(4);pn.push(s.beam?.55+Math.random()*.35:s.mw?.25+Math.random()*.18:.08+Math.random()*.05);psd.push(s.beam?Math.random()*.9:Math.random()*.12)}else{s.vacuum=Math.max(0,s.vacuum-.25);pn.push(.08+Math.random()*.03);psd.push(Math.random()*.05)}pn.shift();psd.shift();let p=.75*Math.pow(10,-s.vacuum/28);$("pressureValue").textContent=p>=.01?p.toFixed(4):p.toExponential(2);line($("pnChart"),pn);line($("psdChart"),psd,true);update()},1000);
@@ -1855,8 +2859,9 @@ function completeFusionReaction() {
        Fusion 控制面板
     ========================= */
 
-    $("fusionStatus").textContent =
-        "Fusion Complete";
+    setFusionStatus(
+        "fusion_stage_complete"
+    );
 
     $("fusionPause").disabled =
         true;
@@ -1944,8 +2949,9 @@ $("fusionStart").onclick = () => {
     }
 
 
-    $("fusionStatus").textContent =
-        "Running";
+    setFusionStatus(
+        "fusion_status_running"
+    );
 
     $("fusionStart").disabled =
         true;
@@ -1975,8 +2981,9 @@ $("fusionPause").onclick = () => {
     }
 
 
-    $("fusionStatus").textContent =
-        "Paused";
+    setFusionStatus(
+        "fusion_status_paused"
+    );
 
     $("fusionPause").disabled =
         true;
@@ -2002,8 +3009,9 @@ $("fusionResume").onclick = () => {
     }
 
 
-    $("fusionStatus").textContent =
-        "Running";
+    setFusionStatus(
+        "fusion_status_running"
+    );
 
     $("fusionPause").disabled =
         false;
@@ -2050,8 +3058,10 @@ $("fusionRestart").onclick = () => {
 
 
     /* 重設儀表板 */
-    $("fusionStatus").textContent =
-        "Ready";
+    setFusionStatus(
+        "fusion_status_ready"
+    );
+
 
     $("fusionEnergyValue").textContent =
         "0.00";
@@ -2111,8 +3121,9 @@ $("fusionReplay").onclick = () => {
 
 
     /* 重設 HTML 儀表板 */
-    $("fusionStatus").textContent =
-        "Ready";
+    setFusionStatus(
+        "fusion_status_ready"
+    );
 
     $("fusionEnergyValue").textContent =
         "0.00";
@@ -2226,7 +3237,7 @@ function loadAlphaUnity() {
             "alphaUnity";
 
         alphaFrame.title =
-            "Alpha-E 3D 模型";
+            t("alpha_unity_title");
 
         alphaFrame.setAttribute(
             "allowfullscreen",

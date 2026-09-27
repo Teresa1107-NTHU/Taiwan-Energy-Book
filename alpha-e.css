@@ -1999,12 +1999,12 @@ footer {
 
 /* Unity 標題列 */
 .alpha-unity-header {
-    flex: 0 0 68px;
+    flex: 0 0 52px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding: 7px 11px;
+    padding: 4px 11px;
     border-bottom: 1px solid rgba(255,255,255,.08);
     background: #171d24;
     color: #fff;
@@ -2027,13 +2027,13 @@ footer {
 
 
     .alpha-unity-heading strong {
-        margin-top: 1px;
+        margin-top: 0px;
         color: #fff;
         font-size: 13px;
     }
 
 .alpha-unity-controls {
-    margin-top: 3px;
+    margin-top: 1px;
     color: rgba(255,255,255,.52);
     font-size: 9px;
     font-weight: 500;

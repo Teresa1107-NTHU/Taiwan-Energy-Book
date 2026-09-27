@@ -37,9 +37,6 @@ const translations = {
 
         hero_title: "Alpha-E 互動教學系統",
 
-        hero_desc:
-            "面板數值、開關、壓力曲線與偵測圖表皆可即時改變，並可把指令傳送到下方 Unity WebGL 模型。",
-
         /* Alpha-E Experiment */
         alpha_experiment_title:
             "Alpha-E 互動實驗",
@@ -92,7 +89,7 @@ const translations = {
 
         /* Alpha-E Panel */
         panel_location:
-            "Alpha-E @ 台南",
+            "Alpha-E 互動模擬操作面板",
 
         panel_off:
             "關閉",
@@ -199,6 +196,15 @@ const translations = {
         gas_argon:
             "氬",
 
+        panel_vent:
+            "洩氣",
+
+        status_on_short:
+            "開",
+
+        status_off_short:
+            "關",
+
         /* Alpha-E Dynamic Status */
         vacuum_ready:
             "真空已就緒",
@@ -270,8 +276,9 @@ const translations = {
             "氣體供應尚未設定。",
 
         /* Unity */
-        realtime_3d: "REAL-TIME 3D VIEW",
-        alpha_model: "Alpha-E 3D Model",
+        alpha_model:
+            "Alpha-E 互動式 3D 模型",
+
         alpha_model_status:
             "系統待機",
 
@@ -286,25 +293,25 @@ const translations = {
             "完成 Alpha-E 操作並啟動 Beam On 後解鎖。",
 
         reaction_status:
-            "Reaction Status",
+            "反應狀態",
 
         energy_released:
-            "Energy Released",
+            "釋放能量",
 
         start_reaction:
-            "Start Reaction",
+            "開始反應",
 
         pause:
-            "Pause",
+            "暫停",
 
         resume:
-            "Resume",
+            "繼續",
 
         restart:
-            "Restart",
+            "重新開始",
 
         fusion_locked:
-            "Fusion Reaction Locked",
+            "核融合反應尚未解鎖",
 
         fusion_wait_beam:
             "完成 Beam On 後即可進行核融合反應",
@@ -462,9 +469,6 @@ const translations = {
 
         hero_title: "Alpha-E Interactive Learning System",
 
-        hero_desc:
-            "Panel values, switches, pressure curves, and detector charts can be updated in real time, while control commands are synchronized with the Unity WebGL model below.",
-
         /* Alpha-E Experiment */
         alpha_experiment_title:
             "Alpha-E Interactive Experiment",
@@ -551,7 +555,7 @@ const translations = {
 
         /* Alpha-E Panel */
         panel_location:
-            "Alpha-E @ Tainan",
+            "Alpha-E Interactive Simulation Panel",
 
         panel_off:
             "Off",
@@ -658,6 +662,15 @@ const translations = {
         gas_argon:
             "Argon",
 
+        panel_vent:
+            "Vent",
+
+        status_on_short:
+            "On",
+
+        status_off_short:
+            "Off",
+
         /* Alpha-E Dynamic Status */
         vacuum_ready:
             "Vacuum Ready",
@@ -729,11 +742,8 @@ const translations = {
             "Gas supply is not configured.",
 
         /* Unity */
-        realtime_3d:
-            "REAL-TIME 3D VIEW",
-
         alpha_model:
-            "Alpha-E 3D Model",
+            "Alpha-E Interactive 3D Model",
 
         alpha_model_status:
             "System Standby",
@@ -1456,8 +1466,8 @@ function led(name, on) {
 
     $(name + "Label").textContent =
         on
-            ? t("panel_on")
-            : t("panel_off");
+            ? t("status_on_short")
+            : t("status_off_short");
 
     $(name + "Label")
         .classList.toggle(
@@ -1665,6 +1675,26 @@ $("setupGas").onclick = () => {
         "gas_supply",
         selectedGas
     );
+};
+
+/* =========================================================
+   測試用：快速完成真空
+========================================================= */
+
+$("vacuumTestSkip").onclick = () => {
+
+    if (!s.power) {
+        return;
+    }
+
+    s.rough = true;
+    s.turbo = true;
+    s.vent = false;
+
+    s.vacuum = 100;
+    s.seconds = 60;
+
+    update();
 };
 
 /*
@@ -2742,7 +2772,71 @@ function live() {
         text;
 }
 const pn=Array(45).fill(.08),psd=Array(45).fill(.03);function line(c,d,scatter=false){const x=c.getContext("2d"),w=c.width,h=c.height;x.clearRect(0,0,w,h);x.strokeStyle="#d9dde2";for(let i=0;i<4;i++){let y=8+i*(h-16)/3;x.beginPath();x.moveTo(0,y);x.lineTo(w,y);x.stroke()}if(scatter){x.fillStyle="#ef7895";d.forEach((v,i)=>{let px=i*w/(d.length-1),py=h-6-v*(h-12);x.beginPath();x.arc(px,py,2,0,Math.PI*2);x.fill()})}else{x.strokeStyle="#72b9e8";x.lineWidth=2;x.beginPath();d.forEach((v,i)=>{let px=i*w/(d.length-1),py=h-6-v*(h-12);i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke()}}
-setInterval(()=>{if(s.power){if(s.rough)s.vacuum+=s.turbo?1.8:.65;if(s.vent)s.vacuum-=2.2;s.vacuum=clamp(s.vacuum,0,100);if(s.rough)s.seconds++;let speed=+$("turboSpeed").textContent,target=s.turbo?1500:0;$("turboSpeed").textContent=Math.round(speed+(target-speed)*.18);$("turboTemp").textContent=(24+(s.turbo?19:0)+Math.random()).toFixed(0);$("turboCurrent").textContent=(s.turbo?.58+Math.random()*.08:0).toFixed(2);$("coolerFlow").textContent=(s.cooler?1.8+Math.random()*.3:0).toFixed(1);$("coolerTemp").textContent=(s.cooler?23.8+Math.random()*.8:24.7+Math.random()).toFixed(1);$("mfcMeasured").textContent=(s.mfc?+$("mfcFlow").value/260000+(Math.random()-.5)*.001:0).toFixed(4);pn.push(s.beam?.55+Math.random()*.35:s.mw?.25+Math.random()*.18:.08+Math.random()*.05);psd.push(s.beam?Math.random()*.9:Math.random()*.12)}else{s.vacuum=Math.max(0,s.vacuum-.25);pn.push(.08+Math.random()*.03);psd.push(Math.random()*.05)}pn.shift();psd.shift();let p=.75*Math.pow(10,-s.vacuum/28);$("pressureValue").textContent=p>=.01?p.toFixed(4):p.toExponential(2);line($("pnChart"),pn);line($("psdChart"),psd,true);update()},1000);
+setInterval(() => {
+    if (s.power) {
+        if (s.rough) {
+            s.vacuum +=
+                s.turbo
+                    ? 1.8
+                    : 0.65;
+        }
+
+        if (s.vent) {
+            s.vacuum -= 2.2;
+        }
+
+        s.vacuum =
+            clamp(
+                s.vacuum,
+                0,
+                100
+            );
+
+
+        /* 正常抽真空時才累計時間 */
+        if (
+            s.rough &&
+            !s.vent
+        ) {
+            s.seconds++;
+        }
+
+
+        /* Vent 後真空已接近解除時，時間歸零 */
+        if (
+            s.vent &&
+            s.vacuum <= 10
+        ) {
+            s.seconds = 0;
+        }
+
+        let speed =
+            +$("turboSpeed").textContent;
+
+        let target =
+            s.turbo
+                ? 1500
+                : 0;
+
+        let nextSpeed =
+            speed +
+            (target - speed) * 0.18;
+
+        nextSpeed =
+            Math.min(
+                1500,
+                Math.max(
+                    0,
+                    nextSpeed
+                )
+            );
+
+        $("turboSpeed").textContent =
+            Math.round(nextSpeed);
+
+        $("turboTemp").textContent = (24 + (s.turbo ? 19 : 0) + Math.random()).toFixed(0); $("turboCurrent").textContent = (s.turbo ? .58 + Math.random() * .08 : 0).toFixed(2); $("coolerFlow").textContent = (s.cooler ? 1.8 + Math.random() * .3 : 0).toFixed(1); $("coolerTemp").textContent = (s.cooler ? 23.8 + Math.random() * .8 : 24.7 + Math.random()).toFixed(1); $("mfcMeasured").textContent = (s.mfc ? +$("mfcFlow").value / 260000 + (Math.random() - .5) * .001 : 0).toFixed(4); pn.push(s.beam ? .55 + Math.random() * .35 : s.mw ? .25 + Math.random() * .18 : .08 + Math.random() * .05); psd.push(s.beam ? Math.random() * .9 : Math.random() * .12)
+    } else { s.vacuum = Math.max(0, s.vacuum - .25); pn.push(.08 + Math.random() * .03); psd.push(Math.random() * .05) } pn.shift(); psd.shift(); let p = .75 * Math.pow(10, -s.vacuum / 28); $("pressureValue").textContent = p >= .01 ? p.toFixed(4) : p.toExponential(2); line($("pnChart"), pn); line($("psdChart"), psd, true); update()
+}, 1000);
 /*
  * 將操作面板指令傳送給 iframe 內的 Unity WebGL。
  */

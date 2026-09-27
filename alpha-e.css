@@ -158,11 +158,6 @@ nav a.active {
   line-height: 1.1;
 }
 
-.page-hero p:last-child {
-  max-width: 850px;
-  color: rgba(255, 255, 255, 0.61);
-}
-
 /* =========================
    主內容
 ========================= */
@@ -336,8 +331,8 @@ nav a.active {
   padding: 1px 5px;
   border-radius: 4px;
   background: #767981;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .device header b.on {
@@ -494,8 +489,8 @@ nav a.active {
 ========================= */
 .gasline {
   display: grid;
-  grid-template-columns: 1fr 40px auto;
-  gap: 2px;
+  grid-template-columns: 0.99fr 60px 140px;
+  gap: 3px;
   padding: 5px;
 }
 
@@ -509,6 +504,10 @@ nav a.active {
     background: #44474d;
     color: var(--white);
     font-size: 24px;
+}
+
+.gas select {
+    font-size: 18px;
 }
 
 /* =========================
@@ -559,11 +558,25 @@ nav a.active {
     color: #eeeeee;
 }
 
+.vacuum-test-skip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 120px;
+    height: 45px;
+    opacity: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    z-index: 20;
+}
+
 /* Machine Pressurization 狀態框 */
 
 /* Machine Pressurization：
    標題在左，真空進度條放在標題右邊 */
 .bottom-console > div:first-child {
+    position: relative;
     display: grid;
     grid-template-columns: 380px 220px;
     grid-template-rows: auto 1fr;
@@ -821,13 +834,13 @@ footer {
     }
 }
 
-@media (max-width: 950px) {
+@media (max-width: 599px) {
   .info-grid {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 599px) {
   nav {
     padding: 0 20px;
   }
@@ -1482,7 +1495,7 @@ footer {
    RWD
 ========================= */
 
-@media (max-width: 900px) {
+@media (max-width: 599px) {
 
     .fusion-control-panel {
         grid-template-columns: 1fr;
@@ -1573,15 +1586,17 @@ footer {
 
 .flow-step-text strong {
     color: #fff;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
+     line-height: 1.15;
 }
 
 .flow-step-text span {
     margin-top: 2px;
     color: rgba(255,255,255,.48);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 500;
+     line-height: 1.15;
 }
 
 /* ---------- Connecting Line ---------- */
@@ -1657,7 +1672,7 @@ footer {
    Responsive
 ========================================================= */
 
-@media (max-width: 1050px) {
+@media (max-width: 599px) {
 
     .alpha-flow-steps {
         overflow-x: auto;
@@ -2122,7 +2137,7 @@ footer {
 
 .alpha-info-box > span {
     color: #5ed8ef;
-    font-size: 10px;
+    font-size: 15px;
     font-weight: 700;
 }
 
@@ -2130,7 +2145,7 @@ footer {
 .alpha-info-box p {
     margin: 3px 0 0;
     color: rgba(255,255,255,.65);
-    font-size: 10px;
+    font-size: 13px;
     line-height: 1.35;
 }
 
@@ -2138,7 +2153,7 @@ footer {
    中尺寸畫面
 ========================================================= */
 
-@media (max-width: 850px) {
+@media (max-width: 599px) {
 
     .alpha-workspace {
         grid-template-columns: 1fr;

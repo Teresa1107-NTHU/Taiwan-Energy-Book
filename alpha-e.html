@@ -80,12 +80,9 @@
             Alpha-E 互動教學系統
         </h1>
 
-        <p data-i18n="hero_desc">
-            面板數值、開關、壓力曲線與偵測圖表皆可即時改變，並可把指令傳送到下方 Unity WebGL 模型。
-        </p>
-
     </div>
 </header>
+
 <main class="alpha-container">
     <section class="content-card">
         <div class="card-heading">
@@ -251,7 +248,7 @@
                     <div class="panel-bar">
 
                         <strong data-i18n="panel_location">
-                            Alpha-E
+                            Alpha-E 互動模擬操作面板
                         </strong>
 
                         <div>
@@ -370,9 +367,10 @@
                                     Off
                                 </button>
 
-                                <button data-cmd="turbo:vent">
-                                    Vent
-                                </button>
+                                <button data-cmd="turbo:vent"
+        data-i18n="panel_vent">
+    Vent
+</button>
 
                                 <button data-cmd="turbo:on"
                                         data-i18n="panel_on">
@@ -783,6 +781,12 @@
                                 <h3 data-i18n="panel_pressurization">
                                     Machine Pressurization
                                 </h3>
+
+                                <button id="vacuumTestSkip"
+                                        class="vacuum-test-skip"
+                                        type="button"
+                                        aria-label="Skip vacuum for testing">
+                                </button>
 
                                 <progress id="vacuumProgress"
                                           max="100"

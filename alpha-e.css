@@ -1510,18 +1510,9 @@ footer {
 
 .alpha-flow-header {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
-    margin-bottom: 7px;
-}
-
-.alpha-flow-eyebrow {
-    display: block;
-    margin-bottom: 3px;
-    color: #64d9ef;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .12em;
+    margin-bottom: 5px;
 }
 
 .alpha-flow-header h3 {
@@ -2096,17 +2087,8 @@ footer {
     margin-bottom: 4px;
 }
 
-
-    .alpha-device-info-title > div > span {
-        color: #60d8ef;
-        font-size: 9px;
-        font-weight: 700;
-        letter-spacing: .11em;
-    }
-
-
     .alpha-device-info-title h3 {
-        margin: 3px 0 0;
+        margin: 0;
         color: #fff;
         font-size: 15px;
     }

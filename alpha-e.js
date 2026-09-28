@@ -282,8 +282,11 @@ const translations = {
         alpha_model_status:
             "系統待機",
 
-        camera_controls:
-            "電腦：左鍵拖曳旋轉 ｜ 右鍵拖曳平移 ｜ 滾輪縮放 ｜ R 重設 ｜ 平板：單指旋轉 ｜ 雙指縮放",
+        camera_controls_desktop:
+            "電腦：左鍵拖曳旋轉 ｜ 右鍵拖曳平移 ｜ 滾輪縮放 ｜ R 重設",
+
+        camera_controls_tablet:
+            "平板：單指旋轉 ｜ 雙指縮放",
 
         reset_view_btn:
             "返回視角",
@@ -751,8 +754,11 @@ const translations = {
         alpha_model_status:
             "System Standby",
 
-        camera_controls:
-            "Desktop: Left drag rotate ｜ Right drag pan ｜ Scroll zoom ｜ R reset ｜ Tablet: One-finger rotate ｜ Two-finger pinch zoom",
+        camera_controls_desktop:
+            "Desktop: Left drag rotate ｜ Right drag pan ｜ Scroll zoom ｜ R reset",
+
+        camera_controls_tablet:
+            "Tablet: One-finger rotate ｜ Pinch zoom",
 
         reset_view_btn:
             "Reset View",

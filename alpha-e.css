@@ -2005,24 +2005,23 @@ footer {
 
 /* Unity 標題列 */
 .alpha-unity-header {
-    flex: 0 0 52px;
+    flex: 0 0 62px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding: 4px 11px;
+    padding: 6px 10px;
     border-bottom: 1px solid rgba(255,255,255,.08);
     background: #171d24;
     color: #fff;
 }
 
-
 .alpha-unity-heading {
     min-width: 0;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
-
 
     .alpha-unity-heading > span {
         color: #61d7ee;
@@ -2031,63 +2030,66 @@ footer {
         letter-spacing: .12em;
     }
 
+/* Alpha-E 互動式 3D 模型 */
+.alpha-unity-heading strong {
+    color: #fff;
 
-    .alpha-unity-heading strong {
-        margin-top: 0px;
-        color: #fff;
-        font-size: 13px;
+    font-size: 13px;
+    line-height: 1.2;
+}
+
+/* 操作說明 */
+.alpha-unity-controls {
+    margin-top: 3px;
+    color: rgba(255,255,255,.58);
+    font-size: 8px;
+    line-height: 1.35;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+    .alpha-unity-controls span {
+        display: block;
     }
 
-.alpha-unity-controls {
+.tablet-controls-line {
     margin-top: 1px;
-    color: rgba(255,255,255,.52);
-    font-size: 9px;
-    font-weight: 500;
-    line-height: 1.25;
+}
+
+/* 系統待機 */
+#alphaModelStatus {
+    padding: 5px 7px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.07);
+    color: rgba(255,255,255,.65);
+    font-size: 8px;
     white-space: nowrap;
 }
 
-
-#alphaModelStatus {
-    flex: 0 0 auto;
-    padding: 5px 8px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.08);
-    color: rgba(255,255,255,.6);
-    font-size: 9px;
-}
-
-.alpha-unity-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-}
-
-.alpha-unity-heading {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
+/* 右邊：返回視角 + 系統狀態 */
 .alpha-unity-tools {
+    position: static;
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
+    gap: 6px;
+    z-index: 5;
 }
 
+/* 返回視角按鈕 */
 .alpha-reset-view-btn {
-    border: none;
-    border-radius: 999px;
-    padding: 8px 14px;
-    font-size: 13px;
+    height: 30px;
+    padding: 0 10px;
+    border: 0;
+    border-radius: 7px;
+    background: #63daf4;
+    color: #17343b;
+    font-size: 10px;
     font-weight: 700;
-    cursor: pointer;
-    background: linear-gradient(135deg,#63daf4,#4ec7e8);
-    color: #0b1420;
-    transition: transform .2s ease, opacity .2s ease;
+    white-space: nowrap;
 }
+
 
     .alpha-reset-view-btn:hover {
         transform: translateY(-1px);
@@ -2101,17 +2103,6 @@ footer {
 .alpha-unity-column {
     position: relative;
 }
-
-.alpha-unity-tools {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    z-index: 5;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
 
 /* =========================================================
    Unity iframe

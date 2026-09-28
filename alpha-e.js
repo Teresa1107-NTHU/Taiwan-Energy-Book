@@ -283,7 +283,10 @@ const translations = {
             "系統待機",
 
         camera_controls:
-            "左鍵拖曳：旋轉 ｜ 右鍵拖曳：平移 ｜ 滾輪：縮放 ｜ R：重設",
+            "電腦：左鍵拖曳旋轉 ｜ 右鍵拖曳平移 ｜ 滾輪縮放 ｜ R 重設 ｜ 平板：單指旋轉 ｜ 雙指縮放",
+
+        reset_view_btn:
+            "返回視角",
 
         /* Fusion */
         fusion_title:
@@ -749,7 +752,10 @@ const translations = {
             "System Standby",
 
         camera_controls:
-            "Left Drag: Rotate ｜ Right Drag: Pan ｜ Scroll: Zoom ｜ R: Reset",
+            "Desktop: Left drag rotate ｜ Right drag pan ｜ Scroll zoom ｜ R reset ｜ Tablet: One-finger rotate ｜ Two-finger pinch zoom",
+
+        reset_view_btn:
+            "Reset View",
 
         /* Fusion */
         fusion_title:
@@ -1569,6 +1575,15 @@ function master(on) {
 }
 $("powerOn").onclick = () => master(true);
 $("powerOff").onclick = () => master(false);
+
+$("resetAlphaViewBtn").onclick = () => {
+
+    send(
+        "ResetView",
+        "camera",
+        "reset"
+    );
+};
 
 document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
     const [d, a] = b.dataset.cmd.split(":");
@@ -3427,7 +3442,7 @@ if (alphaUnityColumn) {
                  * 還沒真正看到模型以前
                  * 提前 300px 開始載入。
                  */
-                rootMargin: "300px 0px",
+                rootMargin: "1000px 0px",
 
                 threshold: 0.01
             }

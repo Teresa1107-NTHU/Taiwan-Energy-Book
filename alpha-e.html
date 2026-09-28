@@ -893,23 +893,29 @@
                 <div class="alpha-unity-header">
 
                     <div class="alpha-unity-heading">
-
                         <strong data-i18n="alpha_model">
-                            Alpha-E 3D Model
+                            Alpha-E 互動式 3D 模型
                         </strong>
 
                         <small class="alpha-unity-controls"
                                data-i18n="camera_controls">
-                            左鍵拖曳：旋轉 ｜ 右鍵拖曳：平移 ｜ 滾輪：縮放 ｜ R：重設
+                            左鍵拖曳：旋轉 ｜ 右鍵拖曳：平移 ｜ 滾輪：縮放 ｜ R：重設 ｜ 平板：單指旋轉 ｜ 雙指縮放
                         </small>
-
                     </div>
 
+                    <div class="alpha-unity-tools">
+                        <button id="resetAlphaViewBtn"
+                                class="alpha-reset-view-btn"
+                                type="button"
+                                data-i18n="reset_view_btn">
+                            返回視角
+                        </button>
 
-                    <span id="alphaModelStatus"
-                          data-i18n="alpha_model_status">
-                        系統待機
-                    </span>
+                        <span id="alphaModelStatus"
+                              data-i18n="alpha_model_status">
+                            系統待機
+                        </span>
+                    </div>
 
                 </div>
 

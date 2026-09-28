@@ -2057,6 +2057,61 @@ footer {
     font-size: 9px;
 }
 
+.alpha-unity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.alpha-unity-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.alpha-unity-tools {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.alpha-reset-view-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    background: linear-gradient(135deg,#63daf4,#4ec7e8);
+    color: #0b1420;
+    transition: transform .2s ease, opacity .2s ease;
+}
+
+    .alpha-reset-view-btn:hover {
+        transform: translateY(-1px);
+        opacity: 0.92;
+    }
+
+    .alpha-reset-view-btn:active {
+        transform: translateY(0);
+    }
+
+.alpha-unity-column {
+    position: relative;
+}
+
+.alpha-unity-tools {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 
 /* =========================================================
    Unity iframe

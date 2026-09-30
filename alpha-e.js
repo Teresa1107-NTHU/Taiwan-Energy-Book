@@ -193,9 +193,6 @@ const translations = {
         gas_hydrogen:
             "氫",
 
-        gas_argon:
-            "氬",
-
         panel_vent:
             "洩氣",
 
@@ -274,6 +271,15 @@ const translations = {
 
         gas_supply_not_configured:
             "氣體供應尚未設定。",
+
+        gas_hydrogen_reaction:
+            "對應本模組後續的 p–¹¹B 反應",
+
+        gas_deuterium_reaction:
+            "可用於說明 D–D 等融合反應，目前不對應下方 p–¹¹B 動畫",
+
+        simulation_setpoint:
+            "模擬設定值",
 
         /* Unity */
         alpha_model:
@@ -432,6 +438,9 @@ const translations = {
 
         alert_beam_prerequisites:
             "粒子束啟動前需先完成真空、供氣、冷卻、高壓與微波步驟。",
+
+        alert_hydrogen_required:
+            "目前已建立氘離子束，但本模組後續呈現的是 p–¹¹B 核融合反應。請將燃料改為氫（Hydrogen）後重新設定氣體，才能進入 p–¹¹B 反應示意。",
 
         /* Final UI */
         operation_process:
@@ -665,9 +674,6 @@ const translations = {
         gas_hydrogen:
             "Hydrogen",
 
-        gas_argon:
-            "Argon",
-
         panel_vent:
             "Vent",
 
@@ -746,6 +752,15 @@ const translations = {
 
         gas_supply_not_configured:
             "Gas supply is not configured.",
+
+        gas_hydrogen_reaction:
+            "corresponds to the p–¹¹B reaction demonstrated in the next module",
+
+        gas_deuterium_reaction:
+            "can be used to illustrate reactions such as D–D fusion and does not correspond to the p–¹¹B animation below",
+
+        simulation_setpoint:
+            "Simulation setpoint",
 
         /* Unity */
         alpha_model:
@@ -904,6 +919,9 @@ const translations = {
         alert_beam_prerequisites:
             "Vacuum, gas supply, cooling, high voltage, and microwave steps must be completed before Beam On.",
 
+        alert_hydrogen_required:
+            "A deuterium ion beam has been established, but the next module demonstrates the p–¹¹B fusion reaction. Please select Hydrogen and set up the gas again before proceeding to the p–¹¹B reaction.",
+
         /* Final UI */
         operation_process:
             "OPERATION PROCESS",
@@ -951,9 +969,6 @@ function getGasDisplayName(value) {
 
         case "Hydrogen":
             return t("gas_hydrogen");
-
-        case "Argon":
-            return t("gas_argon");
 
         default:
             return value;
@@ -1164,12 +1179,16 @@ const s = {
     rough: false,
     turbo: false,
     vent: false,
+
     gas: false,
+    gasType: null,
+
     mfc: false,
     cooler: false,
     hv: false,
     mw: false,
     beam: false,
+
     vacuum: 0,
     seconds: 0,
     selected: null
@@ -1181,44 +1200,44 @@ const info = {
 
         rough_pump: [
             "Rough Pump｜前級真空泵",
-            "先排除腔體內大部分氣體，建立前級真空。",
-            "機械泵浦改變腔室容積，將氣體吸入並排出。"
+            "先移除腔體內大部分氣體，建立後續高真空所需的前級真空。",
+            "降低腔體中的氣體密度，使粒子間的隨機碰撞減少，並為渦輪分子泵進一步建立高真空提供必要條件。"
         ],
 
         turbo_pump: [
             "Turbo Pump｜渦輪分子泵",
-            "進一步降低壓力，建立高真空環境。",
-            "高速葉片與氣體分子碰撞，將分子定向送往排氣端。"
+            "進一步降低腔體壓力，建立實驗所需的高真空環境。",
+            "高速旋轉葉片將氣體分子導向排氣端。隨著氣體密度下降，粒子的平均自由程增加，可減少不必要的碰撞，使粒子能量傳遞更容易受到控制。"
         ],
 
         gas_supply: [
             "Gas Supply｜氣體供應",
-            "提供實驗氣體並完成調壓。",
-            "氣瓶中的氣體經調壓後送往 MFC。"
+            "提供核融合實驗所需的燃料氣體，可選擇氫或氘；不同燃料會對應不同的核融合反應。",
+            "氣體經調節後進入系統。氫與氘具有不同的核結構，因此後續形成的離子以及可能發生的核融合反應也不同。"
         ],
 
         gas_mfc: [
             "MFC｜質量流量控制器",
-            "精確控制氣體進入系統的流量。",
-            "感測實際質量流率，再以控制閥閉迴路調節。"
+            "控制燃料氣體進入系統的流量，作為 Gas Injection 的流量調節介面。",
+            "MFC 透過流量量測與控制閥調節氣體供應。本模組面板中的流量數值為互動模擬設定值，不代表 Alpha-E 標準操作參數。"
         ],
 
         cooler: [
             "Cooler｜冷卻系統",
-            "帶走設備運轉產生的熱量。",
-            "冷卻液循環通過熱源並經熱交換器散熱。"
+            "作為 Alpha-E 操作面板中的輔助熱管理設備，用於降低設備運轉時的熱負荷。",
+            "冷卻系統藉由流體循環帶走熱量。"
         ],
 
         high_voltage: [
             "High Voltage｜高壓系統",
-            "提供離子源與電極所需的電位差。",
-            "帶電粒子在電場中受力並獲得動能。"
+            "利用高電壓加速帶電離子，使其獲得較高動能並朝固定靶材運動。",
+            "帶電粒子在電場中受到作用力而加速，將電位能轉換為動能。Alpha-E 採線性加速器概念，使加速後的離子撞擊固定靶材，建立核融合反應所需的碰撞條件。"
         ],
 
         microwave: [
             "Microwave RF｜微波射頻系統",
-            "輸入微波能量，使低壓氣體游離形成電漿。",
-            "自由電子吸收微波能量後碰撞氣體分子造成游離。"
+            "輸入微波能量，使低壓氣體游離形成電漿，並持續提供能量以維持電漿狀態。",
+            "自由電子吸收微波能量後與氣體粒子碰撞，引發游離；持續的微波能量輸入可使粒子保持活化狀態，避免電漿快速衰減。"
         ],
 
         detector: [
@@ -1233,44 +1252,44 @@ const info = {
 
         rough_pump: [
             "Rough Pump",
-            "Removes most of the gas from the chamber to establish a rough vacuum.",
-            "The mechanical pump changes the chamber volume to draw in and exhaust gas."
+            "Removes most of the gas from the chamber to establish the rough vacuum required before high-vacuum pumping.",
+            "Reducing the gas density decreases random particle collisions and provides the conditions required for the turbo pump to establish a higher vacuum."
         ],
 
         turbo_pump: [
             "Turbo Pump",
-            "Further reduces the chamber pressure to establish a high-vacuum environment.",
-            "High-speed rotor blades collide with gas molecules and direct them toward the exhaust side."
+            "Further reduces the chamber pressure to establish the high-vacuum environment required for the experiment.",
+            "High-speed rotor blades direct gas molecules toward the exhaust. As gas density decreases, the particle mean free path increases, reducing unwanted collisions and allowing more controlled energy transfer."
         ],
 
         gas_supply: [
             "Gas Supply",
-            "Supplies the experimental gas and regulates its pressure before it enters the system.",
-            "Gas from the cylinder is pressure-regulated before being delivered to the mass flow controller."
+            "Supplies the fusion fuel gas. Hydrogen or Deuterium can be selected, and different fuels correspond to different fusion reactions.",
+            "The gas is regulated before entering the system. Hydrogen and Deuterium have different nuclear structures, so they form different ions and correspond to different possible fusion reactions."
         ],
 
         gas_mfc: [
             "MFC｜Mass Flow Controller",
-            "Precisely controls the gas flow entering the system.",
-            "The actual mass flow rate is measured and regulated through closed-loop control of the valve."
+            "Controls the flow of fuel gas entering the system as part of the Gas Injection process.",
+            "The MFC regulates gas supply through flow measurement and valve control. The flow values shown on this module are interactive simulation settings and do not represent standard Alpha-E operating parameters."
         ],
 
         cooler: [
             "Cooler｜Cooling System",
-            "Removes heat generated during system operation.",
-            "Coolant circulates through the heat source and transfers the absorbed heat through a heat exchanger."
+            "Serves as an auxiliary thermal-management component in the Alpha-E operating panel.",
+            "The cooling system removes heat through fluid circulation."
         ],
 
         high_voltage: [
             "High Voltage System",
-            "Provides the potential difference required by the ion source and electrodes.",
-            "Charged particles experience force in the electric field and gain kinetic energy."
+            "Uses a high voltage to accelerate charged ions, increasing their kinetic energy and directing them toward a fixed target.",
+            "Charged particles accelerate in an electric field, converting electric potential energy into kinetic energy. Alpha-E uses a linear-accelerator concept in which accelerated ions strike a fixed target to create the collision conditions required for fusion."
         ],
 
         microwave: [
             "Microwave RF System",
-            "Supplies microwave energy to ionize the low-pressure gas and generate plasma.",
-            "Free electrons absorb microwave energy and collide with gas particles, causing ionization."
+            "Supplies microwave energy to ionize the low-pressure gas, generate plasma, and continuously sustain the plasma state.",
+            "Free electrons absorb microwave energy and collide with gas particles, causing ionization. Continuous microwave energy input keeps the particles energized and helps prevent the plasma from decaying."
         ],
 
         detector: [
@@ -1564,6 +1583,8 @@ function master(on) {
         s.vent = false;
 
         s.gas = false;
+        s.gasType = null;
+
         s.mfc = false;
         s.cooler = false;
         s.hv = false;
@@ -1684,9 +1705,11 @@ $("setupGas").onclick = () => {
         return;
     }
 
-    const selectedGas = $("gasType").value;
+    const selectedGas =
+        $("gasType").value;
 
     s.gas = true;
+    s.gasType = selectedGas;
 
     select("gas_supply");
     update();
@@ -1822,17 +1845,15 @@ function restoreAlphaUnityState() {
         );
     }
 
-
     /* Gas Supply */
-    if (s.gas) {
+    if (s.gas && s.gasType) {
 
         send(
             "SetupGas",
             "gas_supply",
-            $("gasType").value
+            s.gasType
         );
     }
-
 
     /* MFC */
     if (s.mfc) {
@@ -2392,8 +2413,14 @@ window.addEventListener(
 
 /*
  * Beam On：
- * 完成所有前置條件後建立 Beam，
- * 並解鎖下方 p–11B Fusion 區域。
+ * 完成所有前置條件後建立離子束。
+ *
+ * Hydrogen：
+ * 建立 Beam 後可進入 p–11B Fusion 示意。
+ *
+ * Deuterium：
+ * 可完成 Alpha-E Beam 建立流程，
+ * 但不解鎖目前的 p–11B Fusion 模組。
  */
 $("beamOn").onclick = () => {
 
@@ -2404,7 +2431,6 @@ $("beamOn").onclick = () => {
         s.mfc &&
         s.cooler &&
         s.vacuum >= 90;
-
 
     if (!beamReady) {
 
@@ -2420,22 +2446,35 @@ $("beamOn").onclick = () => {
 
     update();
 
-    /* 先通知 Alpha-E Unity Beam On */
+
+    /* 建立 Alpha-E 粒子束 */
     send(
         "Beam",
         "beam",
         "on"
     );
 
+
     /*
-     * Beam 已建立。
-     * 接下來即將進入 Fusion，
-     * 立即釋放 Alpha-E Unity，
-     * 避免兩個 WebGL 同時占用 GPU。
+     * Deuterium 可以完成 Alpha-E 前段操作，
+     * 但目前下方動畫為 p–11B，因此需要 Hydrogen。
+     */
+    if (s.gasType !== "Hydrogen") {
+
+        alert(
+            t("alert_hydrogen_required")
+        );
+
+        return;
+    }
+
+
+    /*
+     * Hydrogen Beam 建立完成，
+     * 才進入 p–11B Fusion。
      */
     unloadAlphaUnity();
 
-    /* 顯示 Beam Established 過場 */
     showBeamTransition();
 };
 
@@ -2504,7 +2543,7 @@ function update() {
     $("stepGas").textContent =
         s.gas
             ? `${t("current_gas")}：${getGasDisplayName(
-                $("gasType").value
+                s.gasType
             )}`
             : t("not_configured");
 
@@ -2667,14 +2706,19 @@ function live() {
 
         if (s.gas) {
 
+            const reactionText =
+                s.gasType === "Hydrogen"
+                    ? t("gas_hydrogen_reaction")
+                    : t("gas_deuterium_reaction");
+
             text =
-                `${getGasDisplayName(
-                    $("gasType").value
-                )} ` +
+                `${getGasDisplayName(s.gasType)} ` +
                 `${t("live_gas_configured")}；` +
+                `${reactionText}；` +
                 `${t("live_pressure_setting")} ` +
                 `${$("gasPressure").value}。`;
         }
+
         else {
 
             text =
@@ -2697,7 +2741,7 @@ function live() {
                 ? t("panel_on")
                 : t("panel_off")
             }；` +
-            `${t("live_setpoint")} ` +
+            `${t("simulation_setpoint")}：` +
             `${$("mfcFlow").value} sccm；` +
             `${t("live_measured")} ` +
             `${$("mfcMeasured").textContent}。`;
@@ -2739,6 +2783,7 @@ function live() {
                 ? t("panel_on")
                 : t("panel_off")
             }；` +
+            `${t("simulation_setpoint")}：` +
             `${$("hvVoltage").value} kV / ` +
             `${$("hvCurrent").value} mA。`;
     }
@@ -2764,6 +2809,7 @@ function live() {
                 : t("live_plasma_not_generated")
             }；` +
 
+            `${t("simulation_setpoint")}：` +
             `RF ${$("mwFreq").value} MHz；` +
             `Duty ${$("mwDuty").value}%。`;
     }
@@ -2856,8 +2902,42 @@ setInterval(() => {
             Math.round(nextSpeed);
 
         $("turboTemp").textContent = (24 + (s.turbo ? 19 : 0) + Math.random()).toFixed(0); $("turboCurrent").textContent = (s.turbo ? .58 + Math.random() * .08 : 0).toFixed(2); $("coolerFlow").textContent = (s.cooler ? 1.8 + Math.random() * .3 : 0).toFixed(1); $("coolerTemp").textContent = (s.cooler ? 23.8 + Math.random() * .8 : 24.7 + Math.random()).toFixed(1); $("mfcMeasured").textContent = (s.mfc ? +$("mfcFlow").value / 260000 + (Math.random() - .5) * .001 : 0).toFixed(4); pn.push(s.beam ? .55 + Math.random() * .35 : s.mw ? .25 + Math.random() * .18 : .08 + Math.random() * .05); psd.push(s.beam ? Math.random() * .9 : Math.random() * .12)
-    } else { s.vacuum = Math.max(0, s.vacuum - .25); pn.push(.08 + Math.random() * .03); psd.push(Math.random() * .05) } pn.shift(); psd.shift(); let p = .75 * Math.pow(10, -s.vacuum / 28); $("pressureValue").textContent = p >= .01 ? p.toFixed(4) : p.toExponential(2); line($("pnChart"), pn); line($("psdChart"), psd, true); update()
-}, 1000);
+    } else { s.vacuum = Math.max(0, s.vacuum - .25); pn.push(.08 + Math.random() * .03); psd.push(Math.random() * .05) } pn.shift(); psd.shift();
+
+    /*
+ * Vacuum 教學壓力：
+ * 依企業教材，從接近大氣壓逐步降至約 10^-6 Torr。
+ *
+ * 100 kPa 約等於 750 Torr，
+ * 因此這裡以 750 Torr 作為顯示起點。
+ */
+    const startPressure = 750;
+    const endPressure = 1e-6;
+
+    const vacuumRatio =
+        s.vacuum / 100;
+
+    const p =
+        startPressure *
+        Math.pow(
+            endPressure / startPressure,
+            vacuumRatio
+        );
+
+    $("pressureValue").textContent =
+        p >= 0.01
+            ? p.toFixed(3)
+            : p.toExponential(2);
+
+    line(
+        $("pnChart"), pn);
+
+    line(
+        $("psdChart"), psd, true);
+
+    update()
+},
+    1000);
 /*
  * 將操作面板指令傳送給 iframe 內的 Unity WebGL。
  */

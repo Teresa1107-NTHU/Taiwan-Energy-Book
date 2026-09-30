@@ -60,7 +60,8 @@ const translations = {
         flow_hv_desc: "粒子加速",
 
         flow_plasma: "Plasma",
-        flow_plasma_desc: "微波游離",
+        flow_plasma_desc:
+            "電漿形成與維持",
 
         flow_beam: "Beam",
         flow_beam_desc: "建立粒子束",
@@ -251,8 +252,8 @@ const translations = {
         live_gas_configured:
             "已完成設定",
 
-        live_pressure_setting:
-            "壓力設定",
+        live_gas_setting:
+            "氣體模擬設定值",
 
         live_setpoint:
             "設定",
@@ -442,6 +443,9 @@ const translations = {
         alert_hydrogen_required:
             "目前已建立氘離子束，但本模組後續呈現的是 p–¹¹B 核融合反應。請將燃料改為氫（Hydrogen）後重新設定氣體，才能進入 p–¹¹B 反應示意。",
 
+        alert_vacuum_first:
+            "請先完成高真空建立。",
+            
         /* Final UI */
         operation_process:
             "操作流程",
@@ -526,7 +530,7 @@ const translations = {
             "Plasma",
 
         flow_plasma_desc:
-            "Microwave Ionization",
+            "Plasma Formation & Sustainment",
 
         flow_beam:
             "Beam",
@@ -651,7 +655,7 @@ const translations = {
             "PSD Scatter Dataset",
 
         panel_pressurization:
-            "Machine Pressurization",
+            "Vacuum System Status",
 
         panel_time_under_vacuum:
             "Time Under Vacuum",
@@ -732,8 +736,8 @@ const translations = {
         live_gas_configured:
             "configured",
 
-        live_pressure_setting:
-            "Pressure setting",
+        live_gas_setting:
+            "Gas simulation setting",
 
         live_setpoint:
             "Setpoint",
@@ -921,6 +925,9 @@ const translations = {
 
         alert_hydrogen_required:
             "A deuterium ion beam has been established, but the next module demonstrates the p–¹¹B fusion reaction. Please select Hydrogen and set up the gas again before proceeding to the p–¹¹B reaction.",
+
+        alert_vacuum_first:
+            "Please establish the required high vacuum first.",
 
         /* Final UI */
         operation_process:
@@ -1219,7 +1226,7 @@ const info = {
         gas_mfc: [
             "MFC｜質量流量控制器",
             "控制燃料氣體進入系統的流量，作為 Gas Injection 的流量調節介面。",
-            "MFC 透過流量量測與控制閥調節氣體供應。本模組面板中的流量數值為互動模擬設定值，不代表 Alpha-E 標準操作參數。"
+            "MFC 透過流量量測與控制閥調節氣體供應，面板可設定流量並顯示對應的量測變化。"
         ],
 
         cooler: [
@@ -1242,9 +1249,9 @@ const info = {
 
         detector: [
             "Pressure & Detector｜壓力與偵測",
-            "監測腔體壓力及粒子相關訊號。",
-            "感測器把物理量轉換為電訊號。"
-        ]
+            "用於監測腔體壓力，以及觀察與實驗狀態相關的偵測訊號。",
+            "感測器將物理量轉換為電訊號，並透過圖表呈現變化趨勢。本模組中的 PN 與 PSD 圖形為互動模擬顯示。"
+        ],
     },
 
 
@@ -1271,7 +1278,7 @@ const info = {
         gas_mfc: [
             "MFC｜Mass Flow Controller",
             "Controls the flow of fuel gas entering the system as part of the Gas Injection process.",
-            "The MFC regulates gas supply through flow measurement and valve control. The flow values shown on this module are interactive simulation settings and do not represent standard Alpha-E operating parameters."
+            "The MFC regulates gas supply through flow measurement and valve control, allowing the flow setting and corresponding measured response to be observed on the panel."
         ],
 
         cooler: [
@@ -1294,28 +1301,59 @@ const info = {
 
         detector: [
             "Pressure & Detector",
-            "Monitors chamber pressure and particle-related signals.",
-            "Sensors convert physical quantities into electrical signals for measurement and analysis."
-        ]
+            "Monitors chamber pressure and displays detection signals associated with the experimental state.",
+            "Sensors convert physical quantities into electrical signals, which are visualized as changing trends. The PN and PSD plots in this module are interactive simulation displays."
+        ],
     }
 };
 
 const $=id=>document.getElementById(id);const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 
 /* 教學導引順序：每完成一步，下一個設備才亮起 */
-const guideOrder=["rough_pump","turbo_pump","gas_supply","gas_mfc","cooler","high_voltage","microwave","beam"];
+const guideOrder = [
+    "rough_pump",
+    "turbo_pump",
+    "gas_supply",
+    "gas_mfc",
+    "cooler",
+    "high_voltage",
+    "microwave",
+    "beam"
+];
 
-function guideStatus(){
-  return {
-    rough_pump:s.rough,
-    turbo_pump:s.turbo,
-    gas_supply:s.gas,
-    gas_mfc:s.mfc,
-    cooler:s.cooler,
-    high_voltage:s.hv,
-    microwave:s.mw,
-    beam:s.beam
-  };
+function guideStatus() {
+
+    return {
+
+        rough_pump:
+            s.rough,
+
+        /*
+         * Turbo 啟動後仍需等待高真空建立完成，
+         * Vacuum >= 90 才視為 Vacuum 階段完成。
+         */
+        turbo_pump:
+            s.turbo &&
+            s.vacuum >= 90,
+
+        gas_supply:
+            s.gas,
+
+        gas_mfc:
+            s.mfc,
+
+        cooler:
+            s.cooler,
+
+        high_voltage:
+            s.hv,
+
+        microwave:
+            s.mw,
+
+        beam:
+            s.beam
+    };
 }
 
 function guideElement(id){
@@ -1338,16 +1376,40 @@ function updateGuide(){
 
   if(!s.power)return;
 
-  const status=guideStatus();
-  guideOrder.forEach(id=>{
-    const el=guideElement(id);
-    if(el && status[id]){
-      el.classList.add("is-complete");
-      el.dataset.locked="false";
-    }
-  });
+    const status =
+        guideStatus();
 
-  const next=guideOrder.find(id=>!status[id]);
+    /*
+     * 只將「依順序連續完成」的設備標成 complete。
+     * 避免前置步驟重設後，後段設備仍單獨顯示完成。
+     */
+    let next = null;
+
+    for (const id of guideOrder) {
+
+        const el =
+            guideElement(id);
+
+        if (!next && status[id]) {
+
+            if (el) {
+
+                el.classList.add(
+                    "is-complete"
+                );
+
+                el.dataset.locked =
+                    "false";
+            }
+
+        } else {
+
+            if (!next) {
+                next = id;
+            }
+        }
+    }
+
   if(next){
     const el=guideElement(next);
     if(el){
@@ -1590,6 +1652,7 @@ function master(on) {
         s.hv = false;
         s.mw = false;
         s.beam = false;
+        lockFusionSection();
     }
 
     update();
@@ -1615,14 +1678,106 @@ $("resetAlphaViewBtn").onclick = () => {
 document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
     const [d, a] = b.dataset.cmd.split(":");
     if (a !== "off" && !powered()) return;
-    if (d === "rough") s.rough = a === "on";
+
+    if (d === "rough") {
+
+        s.rough =
+            a === "on";
+
+
+        if (a === "off") {
+
+            if (s.turbo) {
+
+                s.turbo = false;
+
+                send(
+                    "OperateEquipment",
+                    "turbo_pump",
+                    "off"
+                );
+            }
+
+            s.vent = false;
+        }
+    }
+
     if (d === "turbo") {
-        if (a === "on" && !s.rough)
+
+        if (
+            a === "on" &&
+            !s.rough
+        ) {
             return alert(
                 t("alert_rough_first")
             );
-            s.turbo = a === "on"; s.vent = a === "vent"
+        }
+
+
+        if (a === "vent") {
+
+            s.gas = false;
+            s.gasType = null;
+
+            s.mfc = false;
+            s.hv = false;
+            s.mw = false;
+
+            if (s.beam) {
+
+                s.beam = false;
+
+                send(
+                    "Beam",
+                    "beam",
+                    "off"
+                );
+            }
+
+            send(
+                "OperateEquipment",
+                "gas_mfc",
+                "off"
+            );
+
+            send(
+                "OperateEquipment",
+                "high_voltage",
+                "off"
+            );
+
+            send(
+                "OperateEquipment",
+                "microwave",
+                "off"
+            );
+
+            lockFusionSection();
+
+            if (s.rough) {
+
+                s.rough = false;
+
+                send(
+                    "OperateEquipment",
+                    "rough_pump",
+                    "off"
+                );
+            }
+
+            s.turbo = false;
+            s.vent = true;
+        }
+
+        else {
+
+            s.turbo =
+                a === "on";
+
+            s.vent = false;
+        }
     }
+
     if (d === "mfc") {
 
         if (
@@ -1637,15 +1792,119 @@ document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
 
         s.mfc =
             a === "on";
+
+        if (a === "off") {
+            if (s.mw) {
+
+                s.mw = false;
+
+                send(
+                    "OperateEquipment",
+                    "microwave",
+                    "off"
+                );
+            }
+            if (s.beam) {
+
+                s.beam = false;
+
+                send(
+                    "Beam",
+                    "beam",
+                    "off"
+                );
+            }
+            lockFusionSection();
+        }
     }
-if (d === "cooler") s.cooler = a === "on";
-if (d === "hv") {
-    if (a === "on" && !(s.vacuum >= 85 && s.gas && s.cooler))
-        return alert(
-            t("alert_hv_prerequisites")
-        );
-    s.hv = a === "on"
-}
+
+    if (d === "cooler") {
+
+        s.cooler =
+            a === "on";
+
+
+        if (a === "off") {
+            if (s.hv) {
+
+                s.hv = false;
+
+                send(
+                    "OperateEquipment",
+                    "high_voltage",
+                    "off"
+                );
+            }
+            if (s.mw) {
+
+                s.mw = false;
+
+                send(
+                    "OperateEquipment",
+                    "microwave",
+                    "off"
+                );
+            }
+            if (s.beam) {
+
+                s.beam = false;
+
+                send(
+                    "Beam",
+                    "beam",
+                    "off"
+                );
+            }
+            lockFusionSection();
+        }
+    }
+
+    if (d === "hv") {
+
+        if (
+            a === "on" &&
+            !(
+                s.vacuum >= 85 &&
+                s.gas &&
+                s.cooler
+            )
+        ) {
+
+            return alert(
+                t("alert_hv_prerequisites")
+            );
+        }
+
+
+        s.hv =
+            a === "on";
+
+
+        if (a === "off") {
+            if (s.mw) {
+
+                s.mw = false;
+
+                send(
+                    "OperateEquipment",
+                    "microwave",
+                    "off"
+                );
+            }
+            if (s.beam) {
+
+                s.beam = false;
+
+                send(
+                    "Beam",
+                    "beam",
+                    "off"
+                );
+            }
+            lockFusionSection();
+        }
+    }
+
     if (d === "mw") {
 
         if (
@@ -1660,6 +1919,21 @@ if (d === "hv") {
         s.mw =
             a === "on";
 
+        if (
+            a === "off" &&
+            s.beam
+        ) {
+
+            s.beam = false;
+
+            send(
+                "Beam",
+                "beam",
+                "off"
+            );
+
+            lockFusionSection();
+        }
 
         /*
          * Microwave On / Plasma 形成後，
@@ -1705,8 +1979,34 @@ $("setupGas").onclick = () => {
         return;
     }
 
+    if (s.vacuum < 90) {
+
+        alert(
+            t("alert_vacuum_first")
+        );
+
+        return;
+    }
+
     const selectedGas =
         $("gasType").value;
+
+    /*
+     * 重新設定燃料時，
+     * 先清除先前建立的 Beam 狀態。
+     */
+    if (s.beam) {
+
+        s.beam = false;
+
+        send(
+            "Beam",
+            "beam",
+            "off"
+        );
+
+        lockFusionSection();
+    }
 
     s.gas = true;
     s.gasType = selectedGas;
@@ -2046,6 +2346,88 @@ function unlockFusionSection() {
     }, 400);
 }
 
+function lockFusionSection() {
+
+    const shouldResetUnity =
+        fusionUnlocked ||
+        fusionCompleted;
+
+    fusionUnlocked = false;
+    fusionCompleted = false;
+
+    const section =
+        $("fusion-section");
+
+    const overlay =
+        $("fusionLockedOverlay");
+
+
+    if (section) {
+        section.classList.add("locked");
+    }
+
+    if (overlay) {
+        overlay.style.display = "";
+    }
+
+
+    setFusionStatus(
+        "fusion_status_locked"
+    );
+
+    setFusionSectionHint(
+        "fusion_locked_hint"
+    );
+
+
+    $("fusionStart").disabled =
+        true;
+
+    $("fusionPause").disabled =
+        true;
+
+    $("fusionResume").disabled =
+        true;
+
+    $("fusionRestart").disabled =
+        true;
+
+
+    $("fusionEnergyValue").textContent =
+        "0.00";
+
+    $("fusionEnergyProgress").style.width =
+        "0%";
+
+
+    const result =
+        $("fusionResult");
+
+    if (result) {
+
+        result.classList.remove(
+            "active"
+        );
+
+        result.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+    }
+    updateFlowProgress();
+
+    if (
+        shouldResetUnity &&
+        fusionUnityReady
+    ) {
+
+        sendFusion(
+            "RestartFusion",
+            "restart"
+        );
+    }
+}
+
 /*
  * 接收 Fusion WebGL 傳回外層網頁的訊息。
  */
@@ -2192,10 +2574,26 @@ window.addEventListener(
             return;
         }
 
+        /*
+         * Fusion 已鎖定時，
+         * 忽略反應中的 Stage / Status / Energy 訊息，
+         * 避免舊動畫狀態重新改寫網頁。
+         */
+        if (
+            !fusionUnlocked &&
+            (
+                message.type === "FusionStage" ||
+                message.type === "FusionStatus" ||
+                message.type === "FusionEnergy"
+            )
+        ) {
+            return;
+        }
+
         /* =========================
-   Reaction Stage
-   Unity 核融合動畫階段同步
-========================= */
+           Reaction Stage
+           Unity 核融合動畫階段同步
+        ========================= */
 
         if (message.type === "FusionStage") {
 
@@ -2482,13 +2880,15 @@ $("beamOff").onclick = () => {
 
     s.beam = false;
 
-    update();
-
     send(
         "Beam",
         "beam",
         "off"
     );
+
+    lockFusionSection();
+
+    update();
 };
 
 /*
@@ -2668,7 +3068,9 @@ function live() {
                 : t("live_stopped")
             }；` +
             `${t("live_vacuum_progress")} ` +
-            `${s.vacuum.toFixed(0)}%。`;
+            `${s.vacuum.toFixed(0)}%；` +
+            `${t("panel_pressure")} ` +
+            `${$("pressureValue").textContent} Torr。`;
     }
 
 
@@ -2685,13 +3087,17 @@ function live() {
             s.turbo
                 ? t("live_running")
                 : s.vent
-                    ? "Vent"
+                    ? t("panel_vent")
                     : t("live_stopped");
 
         text =
             `${turboStatus}；` +
             `${t("live_rotation_speed")} ` +
-            `${$("turboSpeed").textContent} Hz。`;
+            `${$("turboSpeed").textContent} Hz；` +
+            `${t("live_temperature")} ` +
+            `${$("turboTemp").textContent} °C；` +
+            `${t("panel_current")} ` +
+            `${$("turboCurrent").textContent} A。`;
     }
 
 
@@ -2715,7 +3121,7 @@ function live() {
                 `${getGasDisplayName(s.gasType)} ` +
                 `${t("live_gas_configured")}；` +
                 `${reactionText}；` +
-                `${t("live_pressure_setting")} ` +
+                `${t("live_gas_setting")}：` +
                 `${$("gasPressure").value}。`;
         }
 
@@ -2744,7 +3150,7 @@ function live() {
             `${t("simulation_setpoint")}：` +
             `${$("mfcFlow").value} sccm；` +
             `${t("live_measured")} ` +
-            `${$("mfcMeasured").textContent}。`;
+            `${$("mfcMeasured").textContent} sccm。`;
     }
 
 
@@ -2811,7 +3217,9 @@ function live() {
 
             `${t("simulation_setpoint")}：` +
             `RF ${$("mwFreq").value} MHz；` +
-            `Duty ${$("mwDuty").value}%。`;
+            `Duty ${$("mwDuty").value}%；` +
+            `Pulse ${$("mwPulse").value} Hz；` +
+            `Attenuation ${$("mwAtt").value} Lv。`;
     }
 
 
@@ -2839,13 +3247,34 @@ function live() {
         text;
 }
 const pn=Array(45).fill(.08),psd=Array(45).fill(.03);function line(c,d,scatter=false){const x=c.getContext("2d"),w=c.width,h=c.height;x.clearRect(0,0,w,h);x.strokeStyle="#d9dde2";for(let i=0;i<4;i++){let y=8+i*(h-16)/3;x.beginPath();x.moveTo(0,y);x.lineTo(w,y);x.stroke()}if(scatter){x.fillStyle="#ef7895";d.forEach((v,i)=>{let px=i*w/(d.length-1),py=h-6-v*(h-12);x.beginPath();x.arc(px,py,2,0,Math.PI*2);x.fill()})}else{x.strokeStyle="#72b9e8";x.lineWidth=2;x.beginPath();d.forEach((v,i)=>{let px=i*w/(d.length-1),py=h-6-v*(h-12);i?x.lineTo(px,py):x.moveTo(px,py)});x.stroke()}}
+
 setInterval(() => {
     if (s.power) {
+
+        /*
+         * Rough Pump：
+         * 建立前級真空，但不單獨進入高真空區。
+         *
+         * Turbo Pump：
+         * 在 Rough Pump 已運轉的條件下，
+         * 進一步將真空進度提升至完整高真空。
+         */
         if (s.rough) {
-            s.vacuum +=
-                s.turbo
-                    ? 1.8
-                    : 0.65;
+
+            if (s.turbo) {
+
+                s.vacuum += 1.8;
+
+            } else {
+
+                s.vacuum += 0.65;
+
+                s.vacuum =
+                    Math.min(
+                        s.vacuum,
+                        60
+                    );
+            }
         }
 
         if (s.vent) {
@@ -2859,6 +3288,54 @@ setInterval(() => {
                 100
             );
 
+        /*
+         * 高真空條件失效時，
+         * 自動停止需要高真空環境的後段設備。
+         */
+        if (
+            s.vacuum < 85 &&
+            (
+                s.hv ||
+                s.mw ||
+                s.beam
+            )
+        ) {
+
+            if (s.hv) {
+
+                s.hv = false;
+
+                send(
+                    "OperateEquipment",
+                    "high_voltage",
+                    "off"
+                );
+            }
+
+            if (s.mw) {
+
+                s.mw = false;
+
+                send(
+                    "OperateEquipment",
+                    "microwave",
+                    "off"
+                );
+            }
+
+            if (s.beam) {
+
+                s.beam = false;
+
+                send(
+                    "Beam",
+                    "beam",
+                    "off"
+                );
+            }
+
+            lockFusionSection();
+        }
 
         /* 正常抽真空時才累計時間 */
         if (
@@ -2872,9 +3349,12 @@ setInterval(() => {
         /* Vent 後真空已接近解除時，時間歸零 */
         if (
             s.vent &&
-            s.vacuum <= 10
+            s.vacuum <= 0
         ) {
+
+            s.vacuum = 0;
             s.seconds = 0;
+            s.vent = false;
         }
 
         let speed =
@@ -2901,7 +3381,17 @@ setInterval(() => {
         $("turboSpeed").textContent =
             Math.round(nextSpeed);
 
-        $("turboTemp").textContent = (24 + (s.turbo ? 19 : 0) + Math.random()).toFixed(0); $("turboCurrent").textContent = (s.turbo ? .58 + Math.random() * .08 : 0).toFixed(2); $("coolerFlow").textContent = (s.cooler ? 1.8 + Math.random() * .3 : 0).toFixed(1); $("coolerTemp").textContent = (s.cooler ? 23.8 + Math.random() * .8 : 24.7 + Math.random()).toFixed(1); $("mfcMeasured").textContent = (s.mfc ? +$("mfcFlow").value / 260000 + (Math.random() - .5) * .001 : 0).toFixed(4); pn.push(s.beam ? .55 + Math.random() * .35 : s.mw ? .25 + Math.random() * .18 : .08 + Math.random() * .05); psd.push(s.beam ? Math.random() * .9 : Math.random() * .12)
+        $("turboTemp").textContent = (24 + (s.turbo ? 19 : 0) + Math.random()).toFixed(0); $("turboCurrent").textContent = (s.turbo ? .58 + Math.random() * .08 : 0).toFixed(2); $("coolerFlow").textContent = (s.cooler ? 1.8 + Math.random() * .3 : 0).toFixed(1); $("coolerTemp").textContent = (s.cooler ? 23.8 + Math.random() * .8 : 24.7 + Math.random()).toFixed(1);
+
+        $("mfcMeasured").textContent =
+            (
+                s.mfc
+                    ? +$("mfcFlow").value *
+                    (0.99 + Math.random() * 0.02)
+                    : 0
+            ).toFixed(0);
+
+        pn.push(s.beam ? .55 + Math.random() * .35 : s.mw ? .25 + Math.random() * .18 : .08 + Math.random() * .05); psd.push(s.beam ? Math.random() * .9 : Math.random() * .12)
     } else { s.vacuum = Math.max(0, s.vacuum - .25); pn.push(.08 + Math.random() * .03); psd.push(Math.random() * .05) } pn.shift(); psd.shift();
 
     /*

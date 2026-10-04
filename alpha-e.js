@@ -2002,8 +2002,12 @@ $("resetAlphaViewBtn").onclick = () => {
 };
 
 document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
-    const [d, a] = b.dataset.cmd.split(":");
-    if (a !== "off" && !powered()) return;
+    const [d, a] =
+        b.dataset.cmd.split(":");
+
+    if (!s.power) {
+        return;
+    }
 
     if (d === "rough") {
 

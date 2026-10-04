@@ -217,7 +217,7 @@ const translations = {
             "尚未就緒",
 
         vacuum_wait_next:
-            "請等待真空完成，再進入下一步",
+            "請等待真空完成，再進入下一步。",
 
         current_gas:
             "目前氣體",
@@ -443,7 +443,7 @@ const translations = {
             "需先完成高真空、氣體設定、MFC 供氣與冷卻。",
 
         alert_mw_prerequisites:
-            "需先啟動高壓系統與 MFC。",
+            "需先完成高真空、氣體設定、MFC 供氣、冷卻與高壓系統。",
 
         alert_turbo_first:
             "請先啟動渦輪分子泵。",
@@ -930,7 +930,7 @@ const translations = {
             "High vacuum, gas setup, MFC gas flow, and cooling must be completed first.",
 
         alert_mw_prerequisites:
-            "Please activate High Voltage and the MFC first.",
+            "High vacuum, gas setup, MFC gas flow, cooling, and High Voltage must be completed first.",
 
         alert_turbo_first:
             "Please start the turbo pump first.",

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpha-E 學習挑戰｜臺灣能源互動電子書</title>
+  <link rel="stylesheet" href="student-learning.css">
+</head>
+
+<body>
+
+<nav>
+  <a class="logo" href="index-student.html">Taiwan Energy<span></span></a>
+
+  <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul id="nav-menu">
+    <li><a href="index-student.html#challenge">返回能源探索</a></li>
+    <li><a class="active" href="alpha-e-student-activity.html">Alpha-E 挑戰</a></li>
+    <li><a href="alpha-e.html">Alpha-E 系統</a></li>
+    <li><a href="student-summary.html">學習整理</a></li>
+  </ul>
+</nav>
+
+<header class="summary-hero">
+  <div class="inner">
+    <span class="eyebrow">ALPHA-E LEARNING CHALLENGE</span>
+    <h1>先猜猜看，再進 Alpha-E 找答案</h1>
+    <p>
+      這裡不會直接告訴你答案。先寫下自己的想法，再進入 Alpha-E 實際操作，
+      最後回到這一頁，把你看到的現象說清楚。
+    </p>
+  </div>
+</header>
+
+<main class="container">
+
+  <section>
+    <div class="section-intro">
+      <span class="eyebrow">CHALLENGE 01</span>
+      <h2>為什麼 Alpha-E 一開始要先抽真空？</h2>
+      <p>先用你的直覺回答，再去模型裡觀察。</p>
+    </div>
+
+    <div class="activity-steps">
+
+      <article class="activity-step">
+        <span class="tag">STEP 1 · 先猜猜看</span>
+        <h4>當腔體壓力越來越低時，粒子的平均自由徑會怎麼變？</h4>
+
+        <div class="choice-list" data-radio-group="vacuum_predict">
+          <label class="choice"><input type="radio" name="vacuum_predict" value="longer"> 變長</label>
+          <label class="choice"><input type="radio" name="vacuum_predict" value="shorter"> 變短</label>
+          <label class="choice"><input type="radio" name="vacuum_predict" value="same"> 不變</label>
+          <label class="choice"><input type="radio" name="vacuum_predict" value="unknown"> 我還不確定</label>
+        </div>
+
+        <textarea data-save="vacuum_reason" placeholder="為什麼你這樣猜？"></textarea>
+      </article>
+
+      <article class="activity-step">
+        <span class="tag">STEP 2 · 動手看看</span>
+        <h4>進入 Alpha-E，操作 Power → Rough Pump → Turbo Pump。</h4>
+
+        <p>
+          注意壓力、真空進度、時間和模型上的變化。等真空完成後，再回來記錄你的觀察。
+        </p>
+
+        <a class="btn btn-dark"
+           href="alpha-e.html"
+           target="_blank"
+           rel="noopener"
+           style="margin-top:14px">
+          開啟 Alpha-E
+        </a>
+
+        <textarea data-save="vacuum_observe" placeholder="你看到了哪些變化？"></textarea>
+      </article>
+
+      <article class="activity-step">
+        <span class="tag">STEP 3 · 說說看</span>
+        <h4>為什麼要先建立高真空，才適合進行後面的粒子加速？</h4>
+
+        <p>試著把「壓力」、「粒子碰撞」和「平均自由徑」放在同一段話裡。</p>
+
+        <textarea data-save="vacuum_explain" placeholder="用自己的話解釋……"></textarea>
+      </article>
+
+    </div>
+  </section>
+
+  <section style="margin-top:52px">
+    <div class="section-intro">
+      <span class="eyebrow">CHALLENGE 02</span>
+      <h2>Hydrogen 和 Deuterium 會有什麼不同？</h2>
+      <p>這次要分開觀察「能不能建立粒子束」和「能不能進入 p–¹¹B 反應」。</p>
+    </div>
+
+    <div class="activity-steps">
+
+      <article class="activity-step">
+        <span class="tag">STEP 1 · 先猜猜看</span>
+        <h4>如果選 Deuterium，你覺得 Beam 和 p–¹¹B Fusion 會發生什麼事？</h4>
+
+        <textarea data-save="fuel_predict" placeholder="先分別寫下你對 Beam 與 Fusion 的預測……"></textarea>
+      </article>
+
+      <article class="activity-step">
+        <span class="tag">STEP 2 · 動手看看</span>
+        <h4>先用 Deuterium 完成操作，再換成 Hydrogen 比較。</h4>
+
+        <p>
+          觀察 Beam 是否能建立，以及下方 p–¹¹B 反應區塊是否會解鎖。
+        </p>
+
+        <a class="btn btn-dark"
+           href="alpha-e.html"
+           target="_blank"
+           rel="noopener"
+           style="margin-top:14px">
+          再次開啟 Alpha-E
+        </a>
+
+        <textarea data-save="fuel_observe" placeholder="Deuterium 和 Hydrogen 有什麼不同？"></textarea>
+      </article>
+
+      <article class="activity-step">
+        <span class="tag">STEP 3 · 說說看</span>
+        <h4>為什麼 Deuterium 可以建立離子束，卻不能直接進入這裡的 p–¹¹B 反應？</h4>
+
+        <textarea data-save="fuel_explain" placeholder="試著分開說明「粒子束」和「反應物選擇」……"></textarea>
+      </article>
+
+    </div>
+  </section>
+
+  <section style="margin-top:52px">
+    <div class="section-intro">
+      <span class="eyebrow">QUICK REVIEW</span>
+      <h2>最後把 Alpha-E 的關鍵角色連起來</h2>
+    </div>
+
+    <div class="summary-strip">
+
+      <article class="summary-card">
+        <strong>Vacuum</strong>
+        <p>讓背景氣體變少，降低不必要的碰撞。</p>
+      </article>
+
+      <article class="summary-card">
+        <strong>Fuel</strong>
+        <p>決定系統裡是哪一種粒子，也影響後續可能對應的反應。</p>
+      </article>
+
+      <article class="summary-card">
+        <strong>High Voltage</strong>
+        <p>用電場加速帶電粒子，讓它們獲得更高動能。</p>
+      </article>
+
+      <article class="summary-card">
+        <strong>Microwave</strong>
+        <p>幫助氣體游離並維持電漿狀態。</p>
+      </article>
+
+      <article class="summary-card">
+        <strong>Beam</strong>
+        <p>前面條件完成後，建立可控制的高能離子束。</p>
+      </article>
+
+    </div>
+
+    <div class="phase-footer">
+      <button class="complete-phase-btn" data-complete-section="challenge">
+        完成 Alpha-E 挑戰
+      </button>
+    </div>
+  </section>
+
+  <section style="margin-top:28px">
+    <div class="challenge-panel">
+      <div>
+        <h3>你已經完成 Alpha-E 挑戰</h3>
+        <p>最後一步，把 Alpha-E 放回其他能源系統一起比較。</p>
+      </div>
+
+      <a class="btn btn-primary" href="student-summary.html">前往學習整理</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>臺灣能源互動電子書 © 2026</p>
+  <p>本網站為教育與學術用途開發。</p>
+</footer>
+
+<script src="student-learning.js"></script>
+</body>
+</html>

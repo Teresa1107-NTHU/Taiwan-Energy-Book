@@ -3,116 +3,449 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>臺灣能源互動電子書</title>
-  <link rel="stylesheet" href="style.css">
+  <title>臺灣能源互動電子書｜學生學習版</title>
+  <link rel="stylesheet" href="student-learning.css">
 </head>
+
 <body>
-  <nav>
-    <div class="logo">Taiwan Energy<span></span></div>
-    <button class="nav-toggle" aria-label="開啟選單" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-    <ul id="nav-menu">
-      <li><a href="#thermal">火力</a></li>
-      <li><a href="#wind">風力</a></li>
-      <li><a href="#hydro">水力</a></li>
-      <li><a href="#solar">太陽能</a></li>
-      <li><a href="#nuclear">核能</a></li>
-      <li><a href="#tokamak">核融合</a></li>
-      <li><a href="alpha-e.html">Alpha-E</a></li>
-    </ul>
-  </nav>
 
-  <header>
-    <div class="hero-content">
-      <div class="hero-tag">互動式能源教育平台</div>
-      <h1>探索<em>臺灣</em>的能源未來</h1>
-      <p>結合 Unity WebGL 與互動式 3D 模型，展示臺灣主要發電方式與未來能源科技，提供沉浸式能源教育與虛擬導覽體驗。</p>
-      <a href="#thermal" class="hero-button">開始探索</a>
+<nav>
+  <a class="logo" href="index-student.html">Taiwan Energy<span></span></a>
+
+  <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul id="nav-menu">
+    <li><a href="#start">開始學習</a></li>
+    <li><a href="#explore">能源探索</a></li>
+    <li><a href="#discover">我的發現</a></li>
+    <li><a href="alpha-e-student-activity.html">Alpha-E 挑戰</a></li>
+    <li><a href="student-summary.html">學習整理</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+
+    <div>
+      <span class="eyebrow">TAIWAN ENERGY INTERACTIVE LEARNING</span>
+
+      <h1>
+        一起看看電是怎麼來的，<br>
+        再挑戰<em>核融合</em>
+      </h1>
+
+      <p>
+        你會從生活中常見的火力、風力、水力、太陽能與核能開始，
+        透過 3D 模型觀察不同能源如何轉換，最後再進入 Alpha-E，
+        看看真空、燃料、高壓與微波如何一起建立粒子束與核融合條件。
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#start">開始今天的探索</a>
+        <a class="btn btn-soft" href="alpha-e.html">我想直接看 Alpha-E</a>
+      </div>
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><strong>6+</strong><span>發電技術</span></div>
-      <div class="hero-stat"><strong>3D</strong><span>互動模型</span></div>
-      <div class="hero-stat"><strong>Unity</strong><span>WebGL 技術</span></div>
-      <div class="hero-stat"><strong>免費</strong><span>教育用途</span></div>
+
+    <aside class="hero-panel">
+      <h3>我的學習進度</h3>
+
+      <div class="phase-list">
+        <div class="phase-chip" data-progress-item="start">
+          <b>1</b>
+          <div><strong>先想一想</strong><small>從自己的想法開始</small></div>
+          <span class="phase-status">未完成</span>
+        </div>
+
+        <div class="phase-chip" data-progress-item="explore">
+          <b>2</b>
+          <div><strong>動手探索</strong><small>操作不同能源模型</small></div>
+          <span class="phase-status">未完成</span>
+        </div>
+
+        <div class="phase-chip" data-progress-item="discover">
+          <b>3</b>
+          <div><strong>整理發現</strong><small>把看到的現象說清楚</small></div>
+          <span class="phase-status">未完成</span>
+        </div>
+
+        <div class="phase-chip" data-progress-item="challenge">
+          <b>4</b>
+          <div><strong>進階挑戰</strong><small>進入 Alpha-E</small></div>
+          <span class="phase-status">未完成</span>
+        </div>
+
+        <div class="phase-chip" data-progress-item="review">
+          <b>5</b>
+          <div><strong>完成整理</strong><small>比較與反思</small></div>
+          <span class="phase-status">未完成</span>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+</header>
+
+<main>
+
+  <section id="start" class="container">
+
+    <div class="section-intro">
+      <span class="eyebrow">BEFORE WE START</span>
+      <h2>先別急著找答案，先看看你現在怎麼想</h2>
+      <p>
+        下面沒有立即顯示標準答案。先留下你的想法，等操作完模型後，再回頭看看自己有沒有新的發現。
+      </p>
     </div>
-  </header>
 
-  <main class="container">
-    <section id="thermal" class="energy-section">
-      <div class="section-header"><span class="section-num">01</span><h2>火力發電</h2></div>
-      <p>展示火力發電廠中的鍋爐、汽輪機與發電流程，使用 Unity 建立虛擬導覽系統。</p>
-      <div class="iframe-wrapper">
-        <iframe src="https://teresa1107-nthu.github.io/Thermal-Power-Plant-Unity/" title="火力發電廠 3D 互動模型" loading="lazy" sandbox="allow-scripts allow-same-origin" allowfullscreen></iframe>
+    <div class="activity-grid">
+
+      <article class="activity-card">
+        <h3>你覺得哪些發電方式需要先產生熱，再靠渦輪發電？</h3>
+
+        <div class="choice-list" data-radio-group="start_q1">
+          <label class="choice"><input type="radio" name="start_q1" value="thermal_nuclear"> 火力與核能</label>
+          <label class="choice"><input type="radio" name="start_q1" value="wind_solar"> 風力與太陽能</label>
+          <label class="choice"><input type="radio" name="start_q1" value="all"> 所有發電方式都一樣</label>
+          <label class="choice"><input type="radio" name="start_q1" value="unknown"> 我還不確定</label>
+        </div>
+      </article>
+
+      <article class="activity-card">
+        <h3>你覺得核融合跟火力發電最大的不同是什麼？</h3>
+        <textarea data-save="start_q2" placeholder="用自己的話寫下目前的想法就可以……"></textarea>
+      </article>
+
+    </div>
+
+    <div class="phase-footer">
+      <button class="complete-phase-btn" data-complete-section="start">完成這一段</button>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="section-intro">
+      <span class="eyebrow">TODAY'S GOALS</span>
+      <h2>今天你會學到什麼？</h2>
+      <p>不用一開始就全部記住，只要在探索時注意下面四件事。</p>
+    </div>
+
+    <div class="learning-goals">
+
+      <article class="learning-card">
+        <span>01</span>
+        <h3>不同能源從哪裡來？</h3>
+        <p>看看燃料、水、風、陽光與核反應各自扮演什麼角色。</p>
+      </article>
+
+      <article class="learning-card">
+        <span>02</span>
+        <h3>能量怎麼一步步轉換？</h3>
+        <p>觀察熱能、機械能、光能與電能之間的轉換。</p>
+      </article>
+
+      <article class="learning-card">
+        <span>03</span>
+        <h3>哪些設備最關鍵？</h3>
+        <p>找出渦輪、發電機、反應爐與其他主要設備。</p>
+      </article>
+
+      <article class="learning-card">
+        <span>04</span>
+        <h3>核融合需要哪些條件？</h3>
+        <p>進入 Alpha-E 後認識真空、燃料、高壓、微波、電漿與粒子束。</p>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="explore" class="container">
+
+    <div class="section-intro">
+      <span class="eyebrow">EXPLORE</span>
+      <h2>開始操作模型吧</h2>
+      <p>
+        操作時先不用記很多專有名詞，只要問自己三件事：
+        「能源從哪裡來？」、「經過哪些設備？」、「最後怎麼變成電？」
+      </p>
+    </div>
+
+    <div class="energy-group">
+      <div class="group-title">
+        <h3>先從比較熟悉的發電方式開始</h3>
+        <p>看看火力與核能有哪些相似、又有哪些不同。</p>
       </div>
-    </section>
 
-    <section id="wind" class="energy-section">
-      <div class="section-header"><span class="section-num">02</span><h2>風力發電</h2></div>
-      <p>展示風力發電系統與再生能源應用。</p>
-      <div class="iframe-wrapper">
-        <iframe src="https://3d.energyencyclopedia.com/wind_menu?mode=iframe" title="風力發電 3D 互動模型" loading="lazy" sandbox="allow-scripts allow-same-origin" allowfullscreen></iframe>
+      <div class="energy-grid">
+
+        <article class="energy-card">
+          <div class="energy-card-head">
+            <span>01</span>
+            <h3>火力發電</h3>
+          </div>
+
+          <p>看看燃料燃燒後，熱如何一路帶動蒸氣、汽輪機與發電機。</p>
+
+          <div class="learning-point">
+            <strong>你可以注意</strong>
+            燃料 → 熱 → 蒸氣 → 汽輪機 → 發電機
+          </div>
+
+          <div class="iframe-wrapper">
+            <iframe
+              src="https://teresa1107-nthu.github.io/Thermal-Power-Plant-Unity/"
+              title="火力發電廠 3D 互動模型"
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin"
+              allowfullscreen></iframe>
+          </div>
+        </article>
+
+        <article class="energy-card">
+          <div class="energy-card-head">
+            <span>02</span>
+            <h3>核能發電</h3>
+          </div>
+
+          <p>看看核反應產生熱之後，後面的發電流程和火力有沒有相似的地方。</p>
+
+          <div class="learning-point">
+            <strong>你可以注意</strong>
+            核反應產生的熱，最後是不是也會用到蒸氣與汽輪機？
+          </div>
+
+          <div class="iframe-wrapper">
+            <iframe
+              src="https://3d.energyencyclopedia.com/pwr_npp?mode=iframe"
+              title="核能發電 3D 互動模型"
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin"
+              allowfullscreen></iframe>
+          </div>
+        </article>
+
       </div>
-      <div class="credit">3D content by <a href="https://energyencyclopedia.com/" target="_blank" rel="noopener noreferrer">EnergyEncyclopedia.com</a></div>
-    </section>
+    </div>
 
-    <section id="hydro" class="energy-section">
-      <div class="section-header"><span class="section-num">03</span><h2>水力發電</h2></div>
-      <p>展示水力發電系統與水輪機運作原理。</p>
-      <div class="iframe-wrapper">
-        <iframe src="https://3d.energyencyclopedia.com/hydro_powerplant?mode=iframe" title="水力發電 3D 互動模型" loading="lazy" sandbox="allow-scripts allow-same-origin" allowfullscreen></iframe>
+    <div class="energy-group">
+      <div class="group-title">
+        <h3>再看看不用燃燒的能源</h3>
+        <p>風、水和陽光各自用不同方式提供能量。</p>
       </div>
-      <div class="credit">3D content by <a href="https://energyencyclopedia.com/" target="_blank" rel="noopener noreferrer">EnergyEncyclopedia.com</a></div>
-    </section>
 
-    <section id="solar" class="energy-section">
-      <div class="section-header"><span class="section-num">04</span><h2>太陽能發電</h2></div>
-      <p>展示太陽能板與光電系統技術。</p>
-      <div class="iframe-wrapper">
-        <iframe src="https://3d.energyencyclopedia.com/solar_menu?mode=iframe" title="太陽能發電 3D 互動模型" loading="lazy" sandbox="allow-scripts allow-same-origin" allowfullscreen></iframe>
+      <div class="energy-grid">
+
+        <article class="energy-card">
+          <div class="energy-card-head">
+            <span>03</span>
+            <h3>風力發電</h3>
+          </div>
+
+          <p>看看風怎麼推動葉片，再把轉動變成電。</p>
+
+          <div class="learning-point">
+            <strong>你可以注意</strong>
+            哪些部分會轉？哪個設備最後產生電？
+          </div>
+
+          <div class="iframe-wrapper">
+            <iframe
+              src="https://3d.energyencyclopedia.com/wind_menu?mode=iframe"
+              title="風力發電 3D 互動模型"
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin"
+              allowfullscreen></iframe>
+          </div>
+        </article>
+
+        <article class="energy-card">
+          <div class="energy-card-head">
+            <span>04</span>
+            <h3>水力發電</h3>
+          </div>
+
+          <p>看看水的高度與流動如何帶動水輪機。</p>
+
+          <div class="learning-point">
+            <strong>你可以注意</strong>
+            水流、水輪機與發電機之間是怎麼連起來的？
+          </div>
+
+          <div class="iframe-wrapper">
+            <iframe
+              src="https://3d.energyencyclopedia.com/hydro_powerplant?mode=iframe"
+              title="水力發電 3D 互動模型"
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin"
+              allowfullscreen></iframe>
+          </div>
+        </article>
+
+        <article class="energy-card">
+          <div class="energy-card-head">
+            <span>05</span>
+            <h3>太陽能發電</h3>
+          </div>
+
+          <p>看看陽光怎麼直接變成電，想想它和前面幾種方式有什麼不同。</p>
+
+          <div class="learning-point">
+            <strong>你可以注意</strong>
+            太陽能需要汽輪機嗎？它和風力、水力最大的差別在哪裡？
+          </div>
+
+          <div class="iframe-wrapper">
+            <iframe
+              src="https://3d.energyencyclopedia.com/solar_menu?mode=iframe"
+              title="太陽能發電 3D 互動模型"
+              loading="lazy"
+              sandbox="allow-scripts allow-same-origin"
+              allowfullscreen></iframe>
+          </div>
+        </article>
+
       </div>
-      <div class="credit">3D content by <a href="https://energyencyclopedia.com/" target="_blank" rel="noopener noreferrer">EnergyEncyclopedia.com</a></div>
-    </section>
+    </div>
 
-    <section id="nuclear" class="energy-section">
-      <div class="section-header"><span class="section-num">05</span><h2>核能發電</h2></div>
-      <p>展示核能發電與反應爐運作原理。</p>
-      <div class="iframe-wrapper">
-        <iframe src="https://3d.energyencyclopedia.com/pwr_npp?mode=iframe" title="核能發電 3D 互動模型" loading="lazy" sandbox="allow-scripts allow-same-origin" allowfullscreen></iframe>
+    <div class="phase-footer">
+      <button class="complete-phase-btn" data-complete-section="explore">完成這一段</button>
+    </div>
+  </section>
+
+  <section id="discover" class="container">
+
+    <div class="section-intro">
+      <span class="eyebrow">WHAT DID YOU FIND?</span>
+      <h2>把剛剛看到的現象整理一下</h2>
+      <p>現在不用背定義，先確認自己有沒有看懂每種能源是怎麼把能量送到最後的發電設備。</p>
+    </div>
+
+    <div class="summary-strip">
+
+      <article class="summary-card">
+        <strong>火力</strong>
+        <p>燃料先提供熱，再透過蒸氣與汽輪機帶動發電機。</p>
+      </article>
+
+      <article class="summary-card">
+        <strong>核能</strong>
+        <p>主要差別在熱的來源不是燃燒，而是核反應。</p>
+      </article>
+
+      <article class="summary-card">
+        <strong>風力</strong>
+        <p>風直接推動葉片與機械系統，再帶動發電機。</p>
+      </article>
+
+      <article class="summary-card">
+        <strong>水力</strong>
+        <p>水的位能與流動帶動水輪機，再帶動發電機。</p>
+      </article>
+
+      <article class="summary-card">
+        <strong>太陽能</strong>
+        <p>光可以直接轉換成電，不需要汽輪機。</p>
+      </article>
+
+    </div>
+
+    <div class="reflection-card" style="margin-top:18px">
+      <h3>現在回頭看，你會怎麼重新回答？</h3>
+      <p>核融合和火力發電最大的不同是什麼？</p>
+      <textarea data-save="discover_reflection" placeholder="用你現在的理解重新寫一次……"></textarea>
+    </div>
+
+    <div class="phase-footer">
+      <button class="complete-phase-btn" data-complete-section="discover">完成這一段</button>
+    </div>
+  </section>
+
+  <section id="challenge" class="container">
+
+    <div class="section-intro">
+      <span class="eyebrow">NEXT CHALLENGE</span>
+      <h2>接下來，進入核融合世界</h2>
+      <p>
+        你已經看過不同能源怎麼轉換。下一步要看的不是「一座完整發電廠」，
+        而是核融合實驗要怎麼一步一步建立適合的條件。
+      </p>
+    </div>
+
+    <div class="energy-grid">
+
+      <article class="energy-card">
+        <div class="energy-card-head">
+          <span>06</span>
+          <h3>Tokamak</h3>
+        </div>
+
+        <p>先看看磁場、真空腔體與高溫電漿如何一起出現在核融合裝置中。</p>
+
+        <div class="learning-point">
+          <strong>你可以注意</strong>
+          電漿為什麼需要被控制？磁場在這裡做什麼？
+        </div>
+
+        <div class="iframe-wrapper">
+          <iframe
+            src="https://3d.energyencyclopedia.com/tokamak_building?mode=iframe"
+            title="托克瑪克核融合 3D 互動模型"
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin"
+            allowfullscreen></iframe>
+        </div>
+      </article>
+
+      <article class="energy-card alpha-card">
+        <div class="energy-card-head">
+          <span>07</span>
+          <h3>Alpha-E 挑戰</h3>
+        </div>
+
+        <p>
+          在真正進入 Alpha-E 前，你會先做兩個小預測，
+          接著實際操作原本的 Alpha-E 系統，再回來整理你看到的結果。
+        </p>
+
+        <div class="learning-point">
+          <strong>這次要挑戰兩件事</strong>
+          ① 真空變高時，粒子之間的碰撞會怎麼改變？<br>
+          ② Hydrogen 和 Deuterium 會帶來什麼不同？
+        </div>
+
+        <div class="card-actions">
+          <a class="btn btn-dark"
+             href="alpha-e-student-activity.html"
+             data-mark-section="challenge">
+            開始 Alpha-E 挑戰
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="challenge-panel">
+      <div>
+        <h3>完成所有探索後，就可以做最後整理</h3>
+        <p>把不同能源放在一起比較，看看自己現在能不能清楚說出它們的差異。</p>
       </div>
-      <div class="credit">3D content by <a href="https://energyencyclopedia.com/" target="_blank" rel="noopener noreferrer">EnergyEncyclopedia.com</a></div>
-    </section>
 
-    <section id="tokamak" class="energy-section">
-      <div class="section-header"><span class="section-num">06</span><h2>托克瑪克核融合</h2></div>
-      <p>展示托克瑪克核融合與未來能源技術。</p>
-      <div class="iframe-wrapper">
-        <iframe src="https://3d.energyencyclopedia.com/tokamak_building?mode=iframe" title="托克瑪克核融合 3D 互動模型" loading="lazy" sandbox="allow-scripts allow-same-origin" allowfullscreen></iframe>
-      </div>
-      <div class="credit">3D content by <a href="https://energyencyclopedia.com/" target="_blank" rel="noopener noreferrer">EnergyEncyclopedia.com</a></div>
-    </section>
+      <a class="btn btn-primary" href="student-summary.html">
+        前往學習整理
+      </a>
+    </div>
+  </section>
 
-    <section id="alpha-e" class="energy-section alpha-e-section">
-      <div class="section-header"><span class="section-num">07</span><h2>Alpha-E</h2></div>
-      <p>透過仿真操作面板與 3D 模型，認識 Alpha-E 各子系統、設備功能與實驗操作流程。</p>
-      <a href="alpha-e.html" class="section-button">進入 Alpha-E 教學系統</a>
-    </section>
-  </main>
+</main>
 
-  <footer>
-    <p>臺灣能源互動電子書 © 2026</p>
-    <p>本網站為教育與學術用途開發。</p>
-  </footer>
+<footer>
+  <p>臺灣能源互動電子書 © 2026</p>
+  <p>本網站為教育與學術用途開發。</p>
+</footer>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById('nav-menu').classList.toggle('open');
-    }
-    document.querySelectorAll('#nav-menu a').forEach(a => {
-      a.addEventListener('click', () => {
-        document.getElementById('nav-menu').classList.remove('open');
-      });
-    });
-  </script>
+<script src="student-learning.js"></script>
 </body>
 </html>

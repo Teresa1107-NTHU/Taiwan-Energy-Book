@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的學習整理｜臺灣能源互動電子書</title>
+  <link rel="stylesheet" href="student-learning.css">
+</head>
+
+<body>
+
+<nav>
+  <a class="logo" href="index-student.html">Taiwan Energy<span></span></a>
+
+  <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul id="nav-menu">
+    <li><a href="index-student.html#explore">返回能源探索</a></li>
+    <li><a href="alpha-e-student-activity.html">Alpha-E 挑戰</a></li>
+    <li><a class="active" href="student-summary.html">學習整理</a></li>
+  </ul>
+</nav>
+
+<header class="summary-hero">
+  <div class="inner">
+    <span class="eyebrow">FINAL REVIEW</span>
+    <h1>把今天看到的能源系統放在一起比較</h1>
+    <p>
+      看完這張表之後，再回答下面三個問題。
+      如果有哪一題不確定，可以回到模型再看一次，修正自己的答案。
+    </p>
+  </div>
+</header>
+
+<main class="container">
+
+  <section>
+    <div class="section-intro">
+      <span class="eyebrow">ENERGY OVERVIEW</span>
+      <h2>先看整體差異</h2>
+    </div>
+
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>能源</th>
+            <th>能量從哪裡來</th>
+            <th>大致怎麼轉換</th>
+            <th>你會看到的重要設備</th>
+            <th>比較容易受天候影響嗎？</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>火力</td>
+            <td>燃料</td>
+            <td>化學能 → 熱能 → 機械能 → 電能</td>
+            <td>鍋爐 / HRSG、汽輪機、發電機</td>
+            <td>較低</td>
+          </tr>
+
+          <tr>
+            <td>水力</td>
+            <td>水的位能與流動</td>
+            <td>位能 / 動能 → 機械能 → 電能</td>
+            <td>水輪機、發電機</td>
+            <td>較高</td>
+          </tr>
+
+          <tr>
+            <td>風力</td>
+            <td>風</td>
+            <td>動能 → 機械能 → 電能</td>
+            <td>葉片、發電機</td>
+            <td>較高</td>
+          </tr>
+
+          <tr>
+            <td>太陽能</td>
+            <td>太陽光</td>
+            <td>光能 → 電能</td>
+            <td>太陽能板、逆變器</td>
+            <td>較高</td>
+          </tr>
+
+          <tr>
+            <td>核能</td>
+            <td>核分裂</td>
+            <td>核能 → 熱能 → 機械能 → 電能</td>
+            <td>反應爐、蒸汽系統、汽輪機、發電機</td>
+            <td>較低</td>
+          </tr>
+
+          <tr>
+            <td>Tokamak</td>
+            <td>核融合反應</td>
+            <td>核能 → 後續能量利用</td>
+            <td>真空腔體、磁場系統、電漿</td>
+            <td>較低</td>
+          </tr>
+
+          <tr>
+            <td>Alpha-E</td>
+            <td>核融合實驗條件</td>
+            <td>電能 → 粒子動能 → 核融合反應示意</td>
+            <td>真空、燃料、高壓、微波、粒子束</td>
+            <td>較低</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section style="margin-top:48px">
+    <div class="section-intro">
+      <span class="eyebrow">YOUR TURN</span>
+      <h2>現在換你說說看</h2>
+      <p>不用背課本句子，用你自己的話回答就好。</p>
+    </div>
+
+    <div class="evaluate-grid">
+
+      <article class="reflection-card">
+        <h3>問題 1</h3>
+        <p>火力和核能的熱來源不同，為什麼後面的發電流程卻可以很像？</p>
+        <textarea data-save="review_q1" placeholder="請寫下你的理解……"></textarea>
+      </article>
+
+      <article class="reflection-card">
+        <h3>問題 2</h3>
+        <p>太陽能和風力哪一個不需要靠機械轉動來發電？你是怎麼判斷的？</p>
+        <textarea data-save="review_q2" placeholder="請寫下你的理解……"></textarea>
+      </article>
+
+      <article class="reflection-card">
+        <h3>問題 3</h3>
+        <p>如果 Alpha-E 還沒有建立高真空，為什麼不適合直接進到後面的高壓、微波和 Beam？</p>
+        <textarea data-save="review_q3" placeholder="請用粒子碰撞與真空的概念說明……"></textarea>
+      </article>
+
+    </div>
+
+    <div class="phase-footer">
+      <button id="finishLesson" class="complete-phase-btn">
+        完成今天的學習
+      </button>
+    </div>
+
+    <div id="lessonComplete" class="complete-card" hidden>
+      <div class="icon">✓</div>
+      <h2>完成今天的能源探索！</h2>
+      <p>
+        你已經從日常常見的發電方式一路看到核融合，
+        也完成了 Alpha-E 的操作與比較。現在可以回頭看看一開始的答案，
+        比較自己的想法有沒有改變。
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>臺灣能源互動電子書 © 2026</p>
+  <p>本網站為教育與學術用途開發。</p>
+</footer>
+
+<script src="student-learning.js"></script>
+</body>
+</html>

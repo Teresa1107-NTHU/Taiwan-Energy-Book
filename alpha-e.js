@@ -216,6 +216,9 @@ const translations = {
         vacuum_not_ready:
             "尚未就緒",
 
+        vacuum_wait_next:
+            "請等待真空完成，再進入下一步",
+
         current_gas:
             "目前氣體",
 
@@ -699,6 +702,9 @@ const translations = {
 
         vacuum_not_ready:
             "Not Ready",
+
+        vacuum_wait_next:
+            "Please wait until the vacuum is ready before proceeding to the next step.",
 
         current_gas:
             "Current Gas",
@@ -1227,7 +1233,7 @@ const info = {
         turbo_pump: [
             "Turbo Pump｜渦輪分子泵",
             "進一步降低腔體壓力，建立實驗所需的高真空環境。",
-            "高速旋轉葉片將氣體分子導向排氣端。隨著氣體密度下降，粒子的平均自由程增加，可減少不必要的碰撞，使粒子能量傳遞更容易受到控制。"
+            "高速旋轉葉片將氣體分子導向排氣端。隨著氣體密度下降，粒子的平均自由徑增加，可減少不必要的碰撞，使粒子能量傳遞更容易受到控制。"
         ],
 
         gas_supply: [
@@ -3663,13 +3669,20 @@ function live() {
                     : t("live_stopped");
 
         text =
+            text =
             `${turboStatus}；` +
             `${t("live_rotation_speed")} ` +
             `${$("turboSpeed").textContent} Hz；` +
             `${t("live_temperature")} ` +
             `${$("turboTemp").textContent} °C；` +
             `${t("panel_current")} ` +
-            `${$("turboCurrent").textContent} A。`;
+            `${$("turboCurrent").textContent} A。` +
+            (
+                s.turbo &&
+                    !isVacuumReady()
+                    ? `｜${t("vacuum_wait_next")}`
+                    : ""
+            );
     }
 
 

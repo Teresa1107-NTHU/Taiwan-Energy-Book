@@ -1957,6 +1957,17 @@ function master(on) {
         s.turbo = false;
         s.vent = false;
 
+        /* Power Off 時完全重設真空進度 */
+        s.vacuum = 0;
+        s.seconds = 0;
+
+        $("turboSpeed").textContent = "0";
+        $("turboTemp").textContent = "24";
+        $("turboCurrent").textContent = "0.00";
+
+        $("coolerFlow").textContent = "0.0";
+        $("coolerTemp").textContent = "24.0";
+
         s.gas = false;
         s.gasType = null;
         s.gasSetting = null;
@@ -1966,6 +1977,7 @@ function master(on) {
         s.hv = false;
         s.mw = false;
         s.beam = false;
+
         lockFusionSection();
     }
 

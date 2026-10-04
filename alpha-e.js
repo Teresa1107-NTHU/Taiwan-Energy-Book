@@ -3,11 +3,19 @@ const UNITY_WEBGL_URL = "https://teresa1107-nthu.github.io/Alpha-E/";
 
 /*
  * p–11B Fusion Unity WebGL 網址。
- *
- * 等第二個 Unity 上傳 GitHub Pages 後，
- * 把網址填在這裡。
  */
-const FUSION_WEBGL_URL = "https://teresa1107-nthu.github.io/Unity_Nuclear-Fusion_Project/";
+const FUSION_WEBGL_URL =
+    "https://teresa1107-nthu.github.io/Unity_Nuclear-Fusion_Project/";
+
+const ALPHA_UNITY_ORIGIN =
+    new URL(
+        UNITY_WEBGL_URL
+    ).origin;
+
+const FUSION_UNITY_ORIGIN =
+    new URL(
+        FUSION_WEBGL_URL
+    ).origin;
 
 /* =========================================================
    Language System
@@ -19,11 +27,9 @@ let currentLanguage =
     localStorage.getItem("alphaLanguage")
     || "zh";
 
-
 const translations = {
 
     zh: {
-
         /* Navigation */
         nav_thermal: "火力",
         nav_wind: "風力",
@@ -329,6 +335,9 @@ const translations = {
         fusion_wait_beam:
             "完成 Beam On 後即可進行核融合反應",
 
+        fusion_deuterium_hint:
+            "目前已建立氘離子束；下方模組呈現 p–¹¹B 核融合反應，請改用氫並重新設定氣體。",
+
         fusion_complete:
             "核融合完成",
 
@@ -405,7 +414,6 @@ const translations = {
             "尚未解鎖",
 
         /* Beam Transition */
-
         beam_transition_eyebrow:
             "反應條件已建立",
 
@@ -429,7 +437,7 @@ const translations = {
             "請先完成氣體設定。",
 
         alert_hv_prerequisites:
-            "需先完成高真空、供氣與冷卻。",
+            "需先完成高真空、氣體設定、MFC 供氣與冷卻。",
 
         alert_mw_prerequisites:
             "需先啟動高壓系統與 MFC。",
@@ -472,9 +480,7 @@ const translations = {
             "p–¹¹B 核融合反應模型",
     },
 
-
     en: {
-
         /* Navigation */
         nav_thermal: "Thermal",
         nav_wind: "Wind",
@@ -813,6 +819,9 @@ const translations = {
         fusion_wait_beam:
             "Complete Beam On to begin the fusion reaction.",
 
+        fusion_deuterium_hint:
+            "A deuterium ion beam is established. The module below demonstrates the p–¹¹B fusion reaction; select Hydrogen and set up the gas again to continue.",
+
         fusion_complete:
             "Fusion Complete",
 
@@ -912,7 +921,7 @@ const translations = {
             "Please complete the gas setup first.",
 
         alert_hv_prerequisites:
-            "High vacuum, gas supply, and cooling must be completed first.",
+            "High vacuum, gas setup, MFC gas flow, and cooling must be completed first.",
 
         alert_mw_prerequisites:
             "Please activate High Voltage and the MFC first.",
@@ -1031,9 +1040,9 @@ function refreshFusionLanguage() {
     if (lockHint) {
 
         lockHint.textContent =
-            fusionUnityReady
-                ? t("fusion_model_ready_hint")
-                : t("fusion_wait_beam");
+            t(
+                getFusionLockHintKey()
+            );
     }
 
 
@@ -1144,6 +1153,9 @@ let currentFusionSectionHintKey =
 
 let fusionLoadingPercent = 0;
 
+let beamTransitionTimer = null;
+let beamTransitionUnlockTimer = null;
+
 // Fusion Unity 是否已經開始載入
 let fusionUnityLoaded = false;
 
@@ -1189,6 +1201,7 @@ const s = {
 
     gas: false,
     gasType: null,
+    gasSetting: null,
 
     mfc: false,
     cooler: false,
@@ -1307,7 +1320,81 @@ const info = {
     }
 };
 
-const $=id=>document.getElementById(id);const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const $ = id => document.getElementById(id);
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+/*
+ * Alpha-E 教學模擬中的高真空完成條件。
+ * 所有流程、互鎖與狀態顯示統一使用此判斷。
+ */
+function isVacuumReady() {
+
+    return (
+        s.rough &&
+        s.turbo &&
+        s.vacuum >= 90
+    );
+}
+
+/*
+ * 數值輸入防呆：
+ * 1. 空白或無效值 → 回到預設值
+ * 2. 小於 min → 修正為 min
+ * 3. 大於 max → 修正為 max
+ */
+function sanitizeNumberInput(input) {
+
+    if (!input) {
+        return null;
+    }
+
+
+    const min =
+        input.min !== ""
+            ? Number(input.min)
+            : -Infinity;
+
+    const max =
+        input.max !== ""
+            ? Number(input.max)
+            : Infinity;
+
+
+    let value =
+        input.valueAsNumber;
+
+
+    /*
+     * type="number" 空白時，
+     * valueAsNumber 會是 NaN。
+     */
+    if (!Number.isFinite(value)) {
+
+        value =
+            Number(input.defaultValue);
+
+    }
+
+
+    if (!Number.isFinite(value)) {
+        value = 0;
+    }
+
+
+    value =
+        clamp(
+            value,
+            min,
+            max
+        );
+
+
+    input.value =
+        value;
+
+
+    return value;
+}
 
 /* 教學導引順序：每完成一步，下一個設備才亮起 */
 const guideOrder = [
@@ -1333,8 +1420,7 @@ function guideStatus() {
          * Vacuum >= 90 才視為 Vacuum 階段完成。
          */
         turbo_pump:
-            s.turbo &&
-            s.vacuum >= 90,
+            isVacuumReady(),
 
         gas_supply:
             s.gas,
@@ -1418,12 +1504,81 @@ function updateGuide(){
     }
   }
 
-  /* Off 按鈕保持可用，方便停止已啟動設備 */
-  document.querySelectorAll('[data-cmd$=":off"]').forEach(btn=>{
-    const card=btn.closest("[data-device]");
-    if(card && card.classList.contains("is-complete")) btn.style.pointerEvents="auto";
-  });
-  $("beamOff").dataset.locked="false";
+    /*
+     * 已經實際啟動的設備，
+    * 即使前置流程失效，
+   * Off 按鈕仍必須保持可操作。
+   */
+    const activeDevices = {
+
+        rough:
+            s.rough,
+
+        turbo:
+            s.turbo,
+
+        mfc:
+            s.mfc,
+
+        cooler:
+            s.cooler,
+
+        hv:
+            s.hv,
+
+        mw:
+            s.mw
+    };
+
+
+    document
+        .querySelectorAll(
+            '[data-cmd$=":off"]'
+        )
+        .forEach(btn => {
+
+            const command =
+                btn.dataset.cmd;
+
+            if (!command) {
+                return;
+            }
+
+
+            const [device] =
+                command.split(":");
+
+            const isActive =
+                activeDevices[device] === true;
+
+
+            if (isActive) {
+
+                btn.dataset.locked =
+                    "false";
+
+                btn.style.pointerEvents =
+                    "auto";
+
+            }
+            else {
+
+                /*
+                 * 清除上一輪可能留下的
+                 * pointer-events: auto。
+                 */
+                btn.style.pointerEvents =
+                    "";
+            }
+        });
+
+
+    /*
+     * Beam Off 永遠允許操作，
+     * 避免 Beam 狀態異常時無法停止。
+     */
+    $("beamOff").dataset.locked =
+        "false";
 }
 
 /* =========================================================
@@ -1432,59 +1587,92 @@ function updateGuide(){
 
 function updateFlowProgress() {
 
+    /*
+ * 各階段的「實際狀態」。
+ *
+ * 下面會再依照流程順序判斷，
+ * 只有前面的步驟都完成後，
+ * 後面的步驟才會顯示 Complete。
+ */
     const flow = [
         {
             id: "power",
-            complete: s.power
+            stateComplete:
+                s.power
         },
 
         {
             id: "vacuum",
-            complete: s.vacuum >= 90
+            stateComplete:
+                isVacuumReady()
         },
 
         {
             id: "gas",
-            complete: s.gas && s.mfc
+            stateComplete:
+                s.gas &&
+                s.mfc
         },
 
         {
             id: "cooling",
-            complete: s.cooler
+            stateComplete:
+                s.cooler
         },
 
         {
             id: "high_voltage",
-            complete: s.hv
+            stateComplete:
+                s.hv
         },
 
         {
             id: "plasma",
-            complete: s.mw
+            stateComplete:
+                s.mw
         },
 
         {
             id: "beam",
-            complete: s.beam
+            stateComplete:
+                s.beam
         },
 
         {
             id: "fusion",
-            complete: fusionCompleted
+            stateComplete:
+                fusionCompleted
         }
     ];
 
+
+    /*
+     * 流程必須依序完成。
+     *
+     * 即使某個後段設備仍然保持 On，
+     * 只要前置步驟失效，
+     * 後面的流程就不再顯示 Complete。
+     */
+    let previousComplete = true;
+
+    flow.forEach(step => {
+
+        step.complete =
+            previousComplete &&
+            step.stateComplete;
+
+        previousComplete =
+            step.complete;
+    });
 
     /* 找出第一個尚未完成的步驟 */
     let currentIndex =
         flow.findIndex(step => !step.complete);
 
-
     /* 全部完成 */
     if (currentIndex === -1) {
         currentIndex = flow.length - 1;
     }
-
 
     flow.forEach((step, index) => {
 
@@ -1494,7 +1682,6 @@ function updateFlowProgress() {
             );
 
         if (!element) return;
-
 
         element.classList.remove(
             "current",
@@ -1630,6 +1817,65 @@ function powered() {
 }
 
 /*
+ * 高真空條件失效時，
+ * 立即停止依賴高真空的後段系統。
+ *
+ * Gas 設定與 Cooler 保留。
+ */
+function shutdownVacuumDependentSystems() {
+
+    if (s.beam) {
+
+        s.beam = false;
+
+        send(
+            "Beam",
+            "beam",
+            "off"
+        );
+    }
+
+
+    if (s.mw) {
+
+        s.mw = false;
+
+        send(
+            "OperateEquipment",
+            "microwave",
+            "off"
+        );
+    }
+
+
+    if (s.hv) {
+
+        s.hv = false;
+
+        send(
+            "OperateEquipment",
+            "high_voltage",
+            "off"
+        );
+    }
+
+
+    if (s.mfc) {
+
+        s.mfc = false;
+
+        send(
+            "OperateEquipment",
+            "gas_mfc",
+            "off"
+        );
+    }
+
+
+    lockFusionSection();
+}
+
+/*
  * 控制整台 Alpha-E 的 Power On / Off，
  * 並將電源指令傳送給 Unity WebGL。
  */
@@ -1640,12 +1886,74 @@ function master(on) {
     $("powerOn").classList.toggle("active", on);
 
     if (!on) {
+
+        /*
+ * Power Off 前，
+ * 明確通知 Unity 關閉所有已啟動設備。
+ */
+        if (s.beam) {
+            send(
+                "Beam",
+                "beam",
+                "off"
+            );
+        }
+
+        if (s.mw) {
+            send(
+                "OperateEquipment",
+                "microwave",
+                "off"
+            );
+        }
+
+        if (s.hv) {
+            send(
+                "OperateEquipment",
+                "high_voltage",
+                "off"
+            );
+        }
+
+        if (s.cooler) {
+            send(
+                "OperateEquipment",
+                "cooler",
+                "off"
+            );
+        }
+
+        if (s.mfc) {
+            send(
+                "OperateEquipment",
+                "gas_mfc",
+                "off"
+            );
+        }
+
+        if (s.turbo) {
+            send(
+                "OperateEquipment",
+                "turbo_pump",
+                "off"
+            );
+        }
+
+        if (s.rough) {
+            send(
+                "OperateEquipment",
+                "rough_pump",
+                "off"
+            );
+        }
+
         s.rough = false;
         s.turbo = false;
         s.vent = false;
 
         s.gas = false;
         s.gasType = null;
+        s.gasSetting = null;
 
         s.mfc = false;
         s.cooler = false;
@@ -1698,7 +2006,14 @@ document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
                 );
             }
 
+
             s.vent = false;
+
+            /*
+             * Rough Pump 關閉後，
+             * 高真空條件立即失效。
+             */
+            shutdownVacuumDependentSystems();
         }
     }
 
@@ -1708,52 +2023,33 @@ document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
             a === "on" &&
             !s.rough
         ) {
+
             return alert(
                 t("alert_rough_first")
             );
         }
 
-
         if (a === "vent") {
 
+            /*
+             * Vent 開始前，
+             * 先停止所有依賴高真空的後段系統。
+             */
+            shutdownVacuumDependentSystems();
+
+
+            /*
+             * 洩氣代表本次供氣條件結束，
+             * 清除 Gas 設定。
+             */
             s.gas = false;
             s.gasType = null;
+            s.gasSetting = null;
 
-            s.mfc = false;
-            s.hv = false;
-            s.mw = false;
 
-            if (s.beam) {
-
-                s.beam = false;
-
-                send(
-                    "Beam",
-                    "beam",
-                    "off"
-                );
-            }
-
-            send(
-                "OperateEquipment",
-                "gas_mfc",
-                "off"
-            );
-
-            send(
-                "OperateEquipment",
-                "high_voltage",
-                "off"
-            );
-
-            send(
-                "OperateEquipment",
-                "microwave",
-                "off"
-            );
-
-            lockFusionSection();
-
+            /*
+             * Vent 時停止 Rough Pump。
+             */
             if (s.rough) {
 
                 s.rough = false;
@@ -1765,6 +2061,11 @@ document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
                 );
             }
 
+
+            /*
+             * Turbo Pump 停止，
+             * 並進入 Vent 狀態。
+             */
             s.turbo = false;
             s.vent = true;
         }
@@ -1775,11 +2076,25 @@ document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
                 a === "on";
 
             s.vent = false;
+
+
+            if (a === "off") {
+
+                /*
+                 * Turbo Pump 關閉後，
+                 * 高真空條件立即失效。
+                 */
+                shutdownVacuumDependentSystems();
+            }
         }
     }
 
     if (d === "mfc") {
 
+        /*
+         * MFC On 前，
+         * 必須先完成 Gas Setup。
+         */
         if (
             a === "on" &&
             !s.gas
@@ -1790,41 +2105,31 @@ document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
             );
         }
 
+
+        /*
+         * MFC On 前，
+         * 高真空也必須仍然成立。
+         */
+        if (
+            a === "on" &&
+            !isVacuumReady()
+        ) {
+
+            return alert(
+                t("alert_vacuum_first")
+            );
+        }
+
+
         s.mfc =
             a === "on";
 
         if (a === "off") {
-            if (s.mw) {
 
-                s.mw = false;
-
-                send(
-                    "OperateEquipment",
-                    "microwave",
-                    "off"
-                );
-            }
-            if (s.beam) {
-
-                s.beam = false;
-
-                send(
-                    "Beam",
-                    "beam",
-                    "off"
-                );
-            }
-            lockFusionSection();
-        }
-    }
-
-    if (d === "cooler") {
-
-        s.cooler =
-            a === "on";
-
-
-        if (a === "off") {
+            /*
+             * MFC 關閉後，
+             * High Voltage 的供氣前置條件失效。
+             */
             if (s.hv) {
 
                 s.hv = false;
@@ -1835,6 +2140,8 @@ document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
                     "off"
                 );
             }
+
+
             if (s.mw) {
 
                 s.mw = false;
@@ -1845,10 +2152,50 @@ document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
                     "off"
                 );
             }
+
+
             if (s.beam) {
 
                 s.beam = false;
 
+                send(
+                    "Beam",
+                    "beam",
+                    "off"
+                );
+            }
+
+
+            lockFusionSection();
+        }
+    }
+
+    if (d === "cooler") {
+
+        s.cooler =
+            a === "on";
+
+        if (a === "off") {
+            if (s.hv) {
+                s.hv = false;
+                send(
+                    "OperateEquipment",
+                    "high_voltage",
+                    "off"
+                );
+            }
+
+            if (s.mw) {
+                s.mw = false;
+                send(
+                    "OperateEquipment",
+                    "microwave",
+                    "off"
+                );
+            }
+
+            if (s.beam) {
+                s.beam = false;
                 send(
                     "Beam",
                     "beam",
@@ -1864,8 +2211,9 @@ document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
         if (
             a === "on" &&
             !(
-                s.vacuum >= 85 &&
+                isVacuumReady() &&
                 s.gas &&
+                s.mfc &&
                 s.cooler
             )
         ) {
@@ -1874,7 +2222,6 @@ document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
                 t("alert_hv_prerequisites")
             );
         }
-
 
         s.hv =
             a === "on";
@@ -1909,8 +2256,15 @@ document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
 
         if (
             a === "on" &&
-            !(s.hv && s.mfc)
+            !(
+                isVacuumReady() &&
+                s.gas &&
+                s.mfc &&
+                s.cooler &&
+                s.hv
+            )
         ) {
+
             return alert(
                 t("alert_mw_prerequisites")
             );
@@ -1919,18 +2273,18 @@ document.querySelectorAll("[data-cmd]").forEach(b => b.onclick = () => {
         s.mw =
             a === "on";
 
-        if (
-            a === "off" &&
-            s.beam
-        ) {
+        if (a === "off") {
 
-            s.beam = false;
+            if (s.beam) {
 
-            send(
-                "Beam",
-                "beam",
-                "off"
-            );
+                s.beam = false;
+
+                send(
+                    "Beam",
+                    "beam",
+                    "off"
+                );
+            }
 
             lockFusionSection();
         }
@@ -1979,7 +2333,7 @@ $("setupGas").onclick = () => {
         return;
     }
 
-    if (s.vacuum < 90) {
+    if (!isVacuumReady()) {
 
         alert(
             t("alert_vacuum_first")
@@ -1992,8 +2346,8 @@ $("setupGas").onclick = () => {
         $("gasType").value;
 
     /*
-     * 重新設定燃料時，
-     * 先清除先前建立的 Beam 狀態。
+     * 重新設定 Gas 前，
+     * 先停止依賴原本供氣條件的後段設備。
      */
     if (s.beam) {
 
@@ -2004,12 +2358,60 @@ $("setupGas").onclick = () => {
             "beam",
             "off"
         );
-
-        lockFusionSection();
     }
 
+    if (s.mw) {
+
+        s.mw = false;
+
+        send(
+            "OperateEquipment",
+            "microwave",
+            "off"
+        );
+    }
+
+    if (s.hv) {
+
+        s.hv = false;
+
+        send(
+            "OperateEquipment",
+            "high_voltage",
+            "off"
+        );
+    }
+
+    if (s.mfc) {
+
+        s.mfc = false;
+
+        send(
+            "OperateEquipment",
+            "gas_mfc",
+            "off"
+        );
+    }
+
+    /*
+     * 重新設定 Gas 代表重新建立反應條件，
+     * 因此 Fusion 一律先回到鎖定狀態。
+     */
+    lockFusionSection();
+
+    const gasSetting =
+        sanitizeNumberInput(
+            $("gasPressure")
+        );
+
+
     s.gas = true;
-    s.gasType = selectedGas;
+
+    s.gasType =
+        selectedGas;
+
+    s.gasSetting =
+        gasSetting;
 
     select("gas_supply");
     update();
@@ -2020,6 +2422,58 @@ $("setupGas").onclick = () => {
         selectedGas
     );
 };
+
+/*
+ * 面板設定值變更時，
+ * 立即更新下方 Current Status。
+ */
+[
+    "gasPressure",
+    "mfcFlow",
+    "hvVoltage",
+    "hvCurrent",
+    "mwDuty",
+    "mwPulse",
+    "mwFreq",
+    "mwAtt"
+].forEach(id => {
+
+    const input =
+        $(id);
+
+    if (!input) {
+        return;
+    }
+
+
+    /*
+     * 輸入過程中：
+     * 即時更新 Current Status。
+     */
+    input.addEventListener(
+        "input",
+        () => {
+            live();
+        }
+    );
+
+
+    /*
+     * 輸入完成後：
+     * 將數值限制在 HTML 設定的 min / max 範圍。
+     */
+    input.addEventListener(
+        "change",
+        () => {
+
+            sanitizeNumberInput(
+                input
+            );
+
+            live();
+        }
+    );
+});
 
 /* =========================================================
    測試用：快速完成真空
@@ -2038,8 +2492,55 @@ $("vacuumTestSkip").onclick = () => {
     s.vacuum = 100;
     s.seconds = 60;
 
+
+    send(
+        "OperateEquipment",
+        "rough_pump",
+        "on"
+    );
+
+    send(
+        "OperateEquipment",
+        "turbo_pump",
+        "on"
+    );
+
+
     update();
 };
+
+/*
+ * 判斷目前是否仍符合
+ * p–¹¹B Fusion 解鎖條件。
+ */
+function canUnlockFusion() {
+
+    return (
+        s.power &&
+        s.beam &&
+        s.hv &&
+        s.mw &&
+        s.mfc &&
+        s.cooler &&
+        isVacuumReady() &&
+        s.gas &&
+        s.gasType === "Hydrogen"
+    );
+}
+function getFusionLockHintKey() {
+
+    if (
+        s.beam &&
+        s.gasType === "Deuterium"
+    ) {
+        return "fusion_deuterium_hint";
+    }
+
+
+    return fusionUnityReady
+        ? "fusion_model_ready_hint"
+        : "fusion_wait_beam";
+}
 
 /*
  * Beam 建立完成後的教學過場。
@@ -2057,11 +2558,12 @@ function showBeamTransition() {
        直接進入 Fusion，避免流程卡住 */
     if (!transition) {
 
-        unlockFusionSection();
+        if (canUnlockFusion()) {
+            unlockFusionSection();
+        }
 
         return;
     }
-
 
     transition.classList.add(
         "active"
@@ -2072,11 +2574,11 @@ function showBeamTransition() {
         "false"
     );
 
-
     /*
      * 顯示約 1.5 秒
      */
-    setTimeout(() => {
+    beamTransitionTimer =
+        setTimeout(() => {
 
         transition.classList.remove(
             "active"
@@ -2087,17 +2589,24 @@ function showBeamTransition() {
             "true"
         );
 
-
         /*
          * 等淡出開始後再進 Fusion，
          * 畫面會比較自然。
          */
-        setTimeout(() => {
+            beamTransitionUnlockTimer =
+                setTimeout(() => {
+
+            /*
+             * 過場期間操作條件可能已改變，
+             * 因此真正解鎖前再確認一次。
+             */
+            if (!canUnlockFusion()) {
+                return;
+            }
 
             unlockFusionSection();
 
         }, 250);
-
 
     }, 1500);
 }
@@ -2199,6 +2708,17 @@ function restoreAlphaUnityState() {
     }
 
 
+    /* Beam */
+    if (s.beam) {
+
+        send(
+            "Beam",
+            "beam",
+            "on"
+        );
+    }
+
+
     console.log(
         "Alpha-E Unity 狀態恢復完成 ✓"
     );
@@ -2215,6 +2735,22 @@ window.addEventListener(
         const message =
             event.data;
 
+        const alphaFrame =
+            $("alphaUnity");
+
+
+        /*
+         * 只接受目前 Alpha-E iframe
+         * 傳回的訊息。
+         */
+        if (
+            !alphaFrame ||
+            event.source !== alphaFrame.contentWindow
+        ) {
+            return;
+        }
+
+
         if (
             !message ||
             message.source !== "alpha-unity"
@@ -2224,7 +2760,7 @@ window.addEventListener(
 
 
         /*
-         * Alpha-E Unity 已經載入完成。
+         * Alpha-E Unity 已完成初始化。
          */
         if (
             message.type === "AlphaReady"
@@ -2234,13 +2770,7 @@ window.addEventListener(
                 "Alpha-E Unity Ready ✓"
             );
 
-
-            /*
-             * Unity 已經真正初始化完成，
-             * 現在可以安全恢復目前設備狀態。
-             */
             restoreAlphaUnityState();
-
 
             return;
         }
@@ -2254,8 +2784,8 @@ window.addEventListener(
 /*
  * Beam On 完成後解鎖 Fusion 區域。
  *
- * Fusion Unity 在網頁開啟時就已經預先載入，
- * 所以這裡不再重新設定 iframe src。
+ * Fusion Unity 會在 Microwave On 階段開始背景載入，
+ * 因此這裡不再重新設定 iframe src。
  */
 function unlockFusionSection() {
 
@@ -2348,6 +2878,8 @@ function unlockFusionSection() {
 
 function lockFusionSection() {
 
+    hideBeamTransition();
+
     const shouldResetUnity =
         fusionUnlocked ||
         fusionCompleted;
@@ -2435,7 +2967,22 @@ window.addEventListener(
     "message",
     function (event) {
 
-        const message = event.data;
+        const message =
+            event.data;
+
+        const fusionFrame =
+            $("fusionUnity");
+
+        /*
+         * 只接受目前 Fusion iframe
+         * 傳回的訊息。
+         */
+        if (
+            !fusionFrame ||
+            event.source !== fusionFrame.contentWindow
+        ) {
+            return;
+        }
 
         if (
             !message ||
@@ -2539,7 +3086,9 @@ window.addEventListener(
             if (!fusionUnlocked) {
 
                 $("fusionLockHint").textContent =
-                    t("fusion_model_ready_hint");
+                    t(
+                        getFusionLockHintKey()
+                    );
 
                 return;
             }
@@ -2824,11 +3373,12 @@ $("beamOn").onclick = () => {
 
     const beamReady =
         s.power &&
+        s.gas &&
         s.hv &&
         s.mw &&
         s.mfc &&
         s.cooler &&
-        s.vacuum >= 90;
+        isVacuumReady();
 
     if (!beamReady) {
 
@@ -2858,6 +3408,23 @@ $("beamOn").onclick = () => {
      * 但目前下方動畫為 p–11B，因此需要 Hydrogen。
      */
     if (s.gasType !== "Hydrogen") {
+
+        const lockHint =
+            $("fusionLockHint");
+
+        if (lockHint) {
+
+            lockHint.textContent =
+                t(
+                    "fusion_deuterium_hint"
+                );
+        }
+
+
+        setFusionSectionHint(
+            "fusion_deuterium_hint"
+        );
+
 
         alert(
             t("alert_hydrogen_required")
@@ -2914,14 +3481,17 @@ function update() {
 
     $("vacuumProgress").value = s.vacuum;
 
+    const vacuumReady =
+        isVacuumReady();
+
     $("vacuumReady").textContent =
-        s.vacuum >= 90
+        vacuumReady
             ? t("vacuum_ready")
             : t("vacuum_not_ready");
 
     $("vacuumReady").classList.toggle(
         "ready",
-        s.vacuum >= 90
+        vacuumReady
     );
 
     $("vacuumTime").textContent =
@@ -2935,7 +3505,6 @@ function update() {
             s.seconds % 60
         ).padStart(2, "0");
 
-
     /* =========================
        Experiment Setup
     ========================= */
@@ -2947,29 +3516,30 @@ function update() {
             )}`
             : t("not_configured");
 
-
     $("stepHv").textContent =
         s.hv
             ? t("high_voltage_on")
             : (
-                s.vacuum >= 85 &&
+                isVacuumReady() &&
                 s.gas &&
+                s.mfc &&
                 s.cooler
             )
                 ? t("ready_to_start")
                 : t("prerequisites_incomplete");
 
-
     $("stepMw").textContent =
         s.mw
             ? t("microwave_plasma_on")
             : (
-                s.hv &&
-                s.mfc
+                isVacuumReady() &&
+                s.gas &&
+                s.mfc &&
+                s.cooler &&
+                s.hv
             )
                 ? t("ready_to_start")
                 : t("prerequisites_incomplete");
-
 
     /* =========================
        Plasma
@@ -2999,11 +3569,13 @@ function update() {
     ========================= */
 
     const beamReady =
+        s.power &&
+        s.gas &&
         s.hv &&
         s.mw &&
         s.mfc &&
         s.cooler &&
-        s.vacuum >= 90;
+        isVacuumReady();
 
     $("beamOn").classList.toggle(
         "enabled",
@@ -3122,7 +3694,7 @@ function live() {
                 `${t("live_gas_configured")}；` +
                 `${reactionText}；` +
                 `${t("live_gas_setting")}：` +
-                `${$("gasPressure").value}。`;
+                `${s.gasSetting}。`;
         }
 
         else {
@@ -3252,32 +3824,55 @@ setInterval(() => {
     if (s.power) {
 
         /*
-         * Rough Pump：
-         * 建立前級真空，但不單獨進入高真空區。
+         * Vacuum 狀態：
          *
-         * Turbo Pump：
-         * 在 Rough Pump 已運轉的條件下，
-         * 進一步將真空進度提升至完整高真空。
+         * Rough + Turbo：
+         * 持續建立高真空。
+         *
+         * Rough only：
+         * 若目前低於 60%，逐步建立前級真空；
+         * 若原本已高於 60%，則逐步回落至前級真空區。
+         *
+         * Pumps Off：
+         * 真空逐漸流失。
+         *
+         * Vent：
+         * 快速解除真空。
          */
-        if (s.rough) {
+        if (
+            s.rough &&
+            s.turbo
+        ) {
 
-            if (s.turbo) {
+            s.vacuum += 1.8;
 
-                s.vacuum += 1.8;
+        }
+        else if (s.rough) {
 
-            } else {
-
-                s.vacuum += 0.65;
-
+            if (s.vacuum < 60) {
                 s.vacuum =
                     Math.min(
-                        s.vacuum,
-                        60
+                        60,
+                        s.vacuum + 0.65
+                    );
+            }
+
+            else if (s.vacuum > 60) {
+                s.vacuum =
+                    Math.max(
+                        60,
+                        s.vacuum - 0.25
                     );
             }
         }
+        else if (!s.vent) {
+
+            s.vacuum -= 0.25;
+        }
+
 
         if (s.vent) {
+
             s.vacuum -= 2.2;
         }
 
@@ -3290,51 +3885,19 @@ setInterval(() => {
 
         /*
          * 高真空條件失效時，
-         * 自動停止需要高真空環境的後段設備。
+         * timer 再做一次保險檢查。
          */
         if (
-            s.vacuum < 85 &&
+            !isVacuumReady() &&
             (
+                s.mfc ||
                 s.hv ||
                 s.mw ||
                 s.beam
             )
         ) {
 
-            if (s.hv) {
-
-                s.hv = false;
-
-                send(
-                    "OperateEquipment",
-                    "high_voltage",
-                    "off"
-                );
-            }
-
-            if (s.mw) {
-
-                s.mw = false;
-
-                send(
-                    "OperateEquipment",
-                    "microwave",
-                    "off"
-                );
-            }
-
-            if (s.beam) {
-
-                s.beam = false;
-
-                send(
-                    "Beam",
-                    "beam",
-                    "off"
-                );
-            }
-
-            lockFusionSection();
+            shutdownVacuumDependentSystems();
         }
 
         /* 正常抽真空時才累計時間 */
@@ -3383,12 +3946,23 @@ setInterval(() => {
 
         $("turboTemp").textContent = (24 + (s.turbo ? 19 : 0) + Math.random()).toFixed(0); $("turboCurrent").textContent = (s.turbo ? .58 + Math.random() * .08 : 0).toFixed(2); $("coolerFlow").textContent = (s.cooler ? 1.8 + Math.random() * .3 : 0).toFixed(1); $("coolerTemp").textContent = (s.cooler ? 23.8 + Math.random() * .8 : 24.7 + Math.random()).toFixed(1);
 
+        const mfcSetpoint =
+            $("mfcFlow").valueAsNumber;
+
+
         $("mfcMeasured").textContent =
             (
-                s.mfc
-                    ? +$("mfcFlow").value *
-                    (0.99 + Math.random() * 0.02)
+                s.mfc &&
+                    Number.isFinite(mfcSetpoint)
+
+                    ? mfcSetpoint *
+                    (
+                        0.99 +
+                        Math.random() * 0.02
+                    )
+
                     : 0
+
             ).toFixed(0);
 
         pn.push(s.beam ? .55 + Math.random() * .35 : s.mw ? .25 + Math.random() * .18 : .08 + Math.random() * .05); psd.push(s.beam ? Math.random() * .9 : Math.random() * .12)
@@ -3460,7 +4034,7 @@ function send(type, equipmentId = "", action = "") {
 
     unityFrame.contentWindow.postMessage(
         message,
-        "*"
+        ALPHA_UNITY_ORIGIN
     );
 }
 
@@ -3521,7 +4095,7 @@ function sendFusion(
 
     fusionFrame.contentWindow.postMessage(
         message,
-        "*"
+        FUSION_UNITY_ORIGIN
     );
 
 
@@ -3536,9 +4110,18 @@ function sendFusion(
  * 3. 鎖住 Pause / Resume。
  */
 function completeFusionReaction() {
+    /*
+     * Unity 可能同時送出
+     * FusionStage = FINISHED
+     * 與 FusionStatus = complete / finished。
+     *
+     * 若已完成，就不再重複執行結果流程。
+     */
+    if (fusionCompleted) {
+        return;
+    }
 
     fusionCompleted = true;
-
 
     /* =========================
        Fusion 控制面板
@@ -3774,10 +4357,22 @@ $("fusionRestart").onclick = () => {
 
 $("fusionReplay").onclick = () => {
 
+    /*
+     * 先確認 Unity 有成功接收到 Restart。
+     */
+    const sent = sendFusion(
+        "RestartFusion",
+        "restart"
+    );
+
+    if (!sent) {
+        return;
+    }
+
+
     fusionCompleted = false;
 
 
-    /* 隱藏結果卡 */
     const result =
         $("fusionResult");
 
@@ -3794,18 +4389,6 @@ $("fusionReplay").onclick = () => {
     }
 
 
-    /* 先 Reset Unity */
-    const sent = sendFusion(
-        "RestartFusion",
-        "restart"
-    );
-
-    if (!sent) {
-        return;
-    }
-
-
-    /* 重設 HTML 儀表板 */
     setFusionStatus(
         "fusion_status_ready"
     );
@@ -3816,7 +4399,6 @@ $("fusionReplay").onclick = () => {
     $("fusionEnergyProgress")
         .style.width =
         "0%";
-
 
     $("fusionStart").disabled =
         false;
@@ -3830,11 +4412,9 @@ $("fusionReplay").onclick = () => {
     $("fusionRestart").disabled =
         false;
 
-
     updateFlowProgress();
 
 
-    /* 回到 Fusion 模型上方 */
     $("fusion-section")
         .scrollIntoView({
             behavior: "smooth",
@@ -4109,6 +4689,47 @@ function resizeAlphaPanel() {
             0,
             (containerHeight - scaledHeight) / 2
         ) + "px";
+}
+function hideBeamTransition() {
+
+    if (beamTransitionTimer) {
+
+        clearTimeout(
+            beamTransitionTimer
+        );
+
+        beamTransitionTimer =
+            null;
+    }
+
+
+    if (beamTransitionUnlockTimer) {
+
+        clearTimeout(
+            beamTransitionUnlockTimer
+        );
+
+        beamTransitionUnlockTimer =
+            null;
+    }
+
+
+    const transition =
+        $("beamTransition");
+
+    if (!transition) {
+        return;
+    }
+
+
+    transition.classList.remove(
+        "active"
+    );
+
+    transition.setAttribute(
+        "aria-hidden",
+        "true"
+    );
 }
 
 $("langToggle").onclick = () => {

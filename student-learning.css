@@ -595,32 +595,33 @@ footer{
     overflow: hidden;
 }
 
-    .knowledge-card summary {
-        position: relative;
-        padding: 16px 48px 16px 18px;
-        cursor: pointer;
-        list-style: none;
-        font-weight: 700;
-        background: #ffffff;
-    }
+.knowledge-card summary {
+    position: relative;
+    padding: 16px 48px 16px 18px;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 700;
+    background: #ffffff;
+}
 
-        .knowledge-card summary::-webkit-details-marker {
-            display: none;
-        }
+.knowledge-card summary::-webkit-details-marker {
+    display: none;
+}
 
-        .knowledge-card summary::after {
-            content: "¡Ï";
-            position: absolute;
-            right: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.2rem;
-            color: #6c757d;
-        }
+.knowledge-card summary::after {
+    content: "+";
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #6c757d;
+    transition: transform 0.2s ease;
+}
 
-    .knowledge-card[open] summary::after {
-        content: "¡Ð";
-    }
+.knowledge-card[open] summary::after {
+    transform: translateY(-50%) rotate(45deg);
+}
 
     .knowledge-card summary span {
         display: block;

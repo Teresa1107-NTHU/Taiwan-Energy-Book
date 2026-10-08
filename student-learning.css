@@ -582,3 +582,94 @@ footer{
   .challenge-panel{grid-template-columns:1fr}
   footer{flex-direction:column;text-align:center}
 }
+
+/* =========================
+   探索後知識整理卡
+========================= */
+
+.knowledge-card {
+    margin: 18px 22px 22px;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    background: #f8f9fa;
+    overflow: hidden;
+}
+
+    .knowledge-card summary {
+        position: relative;
+        padding: 16px 48px 16px 18px;
+        cursor: pointer;
+        list-style: none;
+        font-weight: 700;
+        background: #ffffff;
+    }
+
+        .knowledge-card summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .knowledge-card summary::after {
+            content: "＋";
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+
+    .knowledge-card[open] summary::after {
+        content: "－";
+    }
+
+    .knowledge-card summary span {
+        display: block;
+        margin-bottom: 3px;
+        color: #8a939b;
+        font-size: 0.74rem;
+        letter-spacing: 0.08em;
+    }
+
+.knowledge-card-content {
+    padding: 18px;
+    border-top: 1px solid #e9ecef;
+}
+
+    .knowledge-card-content p {
+        color: #495057;
+        line-height: 1.85;
+    }
+
+.energy-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 18px 0;
+}
+
+    .energy-flow span {
+        padding: 8px 14px;
+        border-radius: 10px;
+        background: #ffffff;
+        border: 1px solid #dee2e6;
+        font-weight: 700;
+    }
+
+    .energy-flow b {
+        color: #adb5bd;
+    }
+
+.think-note {
+    margin-top: 14px;
+    padding: 14px 16px;
+    border-left: 3px solid #fbbf24;
+    border-radius: 8px;
+    background: #fff;
+    color: #495057;
+}
+
+    .think-note strong {
+        color: #0d1117;
+    }

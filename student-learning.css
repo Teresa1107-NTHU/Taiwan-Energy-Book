@@ -761,3 +761,61 @@ footer{
         text-align: center;
     }
 }
+
+/* =========================
+   Tokamak ·§©À¾ã²z
+========================= */
+
+.concept-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 18px 0;
+}
+
+.concept-flow span {
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    background: #ffffff;
+    font-weight: 700;
+    font-size: 0.88rem;
+}
+
+.concept-flow b {
+    color: #adb5bd;
+}
+
+.concept-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.concept-mini-card {
+    padding: 14px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.concept-mini-card strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #0d1117;
+}
+
+.concept-mini-card p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.86rem;
+}
+
+@media(max-width:768px) {
+    .concept-grid {
+        grid-template-columns: 1fr;
+    }
+}

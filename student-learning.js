@@ -77,26 +77,29 @@ function refreshProgress(){
     }
   });
 
-  document.querySelectorAll("[data-complete-section]").forEach(btn=>{
-    const section = btn.dataset.completeSection;
-    const done = isSectionDone(section);
+    document.querySelectorAll("[data-complete-section]").forEach(btn => {
+        const section = btn.dataset.completeSection;
+        const done = isSectionDone(section);
 
-    btn.classList.toggle("done", done);
-    btn.textContent = done ? "這一段已完成 ✓" : "完成這一段";
-  });
+        btn.classList.toggle("done", done);
+
+        if (section === "challenge") {
+            btn.textContent = done
+                ? "Alpha-E 挑戰已完成 ✓"
+                : "完成 Alpha-E 挑戰";
+        } else {
+            btn.textContent = done
+                ? "這一段已完成 ✓"
+                : "完成這一段";
+        }
+    });
 }
 
-document.querySelectorAll("[data-complete-section]").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    const section = btn.dataset.completeSection;
-    setSectionDone(section, !isSectionDone(section));
-  });
-});
-
-document.querySelectorAll("[data-mark-section]").forEach(link=>{
-  link.addEventListener("click",()=>{
-    setSectionDone(link.dataset.markSection, true);
-  });
+document.querySelectorAll("[data-complete-section]").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const section = btn.dataset.completeSection;
+        setSectionDone(section, !isSectionDone(section));
+    });
 });
 
 refreshProgress();

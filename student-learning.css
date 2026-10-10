@@ -905,3 +905,24 @@ footer{
     border: 0;
     overflow: hidden;
 }
+
+/* =========================
+   3D 模型來源標示
+========================= */
+
+.model-credit {
+    padding: 8px 22px 0;
+    color: #8a939b;
+    font-size: 0.72rem;
+    text-align: right;
+}
+
+.model-credit a {
+    color: #6c757d;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.model-credit a:hover {
+    color: #0d1117;
+}

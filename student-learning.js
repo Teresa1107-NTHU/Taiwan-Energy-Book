@@ -161,3 +161,5 @@ function setThermalGas(value) {
         value: String(value)
     }, "*");
 }
+
+console.log("THERMAL JS LOADED");

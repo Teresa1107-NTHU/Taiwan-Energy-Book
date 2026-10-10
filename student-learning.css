@@ -945,3 +945,121 @@ footer{
 .thermal-test-controls button:hover{
   background:#f8f9fa;
 }
+
+/* =========================
+   火力發電互動控制面板
+========================= */
+
+.thermal-control-panel {
+    padding: 20px 22px;
+    border-top: 1px solid var(--line);
+    background: #ffffff;
+}
+
+.thermal-step-info {
+    margin-bottom: 18px;
+}
+
+.thermal-step-info > span {
+    display: inline-block;
+    margin-bottom: 6px;
+    color: #8a939b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.thermal-step-info h4 {
+    margin: 0 0 6px;
+    color: #0d1117;
+    font-size: 1.05rem;
+}
+
+.thermal-step-info p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.88rem;
+    line-height: 1.75;
+}
+
+.thermal-control-row {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 22px;
+    align-items: end;
+}
+
+.thermal-tour-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.thermal-tour-buttons button {
+    min-width: 72px;
+    min-height: 38px;
+    padding: 7px 14px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #0d1117;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.thermal-tour-buttons button:hover:not(:disabled) {
+    border-color: #adb5bd;
+    background: #f8f9fa;
+    transform: translateY(-1px);
+}
+
+.thermal-tour-buttons button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#thermalNextBtn {
+    border-color: #0d1117;
+    background: #0d1117;
+    color: #ffffff;
+}
+
+#thermalNextBtn:hover {
+    background: #242a31;
+}
+
+.thermal-gas-control {
+    width: 100%;
+    max-width: 320px;
+    justify-self: end;
+}
+
+.thermal-gas-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+    color: #6c757d;
+    font-size: 0.82rem;
+}
+
+.thermal-gas-head strong {
+    color: #0d1117;
+}
+
+#thermalGasSlider {
+    width: 100%;
+    accent-color: #0d1117;
+}
+
+@media(max-width:768px) {
+    .thermal-control-row {
+        grid-template-columns: 1fr;
+    }
+
+    .thermal-gas-control {
+        max-width: none;
+        justify-self: stretch;
+    }
+}

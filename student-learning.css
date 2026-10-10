@@ -893,3 +893,7 @@ footer{
         grid-template-columns: 1fr;
     }
 }
+
+.thermal-unity-wrapper iframe {
+    aspect-ratio: 16 / 10;
+}

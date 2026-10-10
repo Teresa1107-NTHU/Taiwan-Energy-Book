@@ -127,3 +127,14 @@ if(isSectionDone("review")){
     complete.hidden = false;
   }
 }
+
+function sendThermalCommand(command) {
+    const iframe = document.getElementById("thermalUnity");
+
+    if (!iframe || !iframe.contentWindow) return;
+
+    iframe.contentWindow.postMessage({
+        type: "THERMAL_COMMAND",
+        command: command
+    }, "*");
+}

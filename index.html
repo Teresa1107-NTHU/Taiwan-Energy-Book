@@ -104,7 +104,7 @@
       <article class="activity-card">
         <h3>你覺得哪些發電方式需要先產生熱，再靠渦輪發電？</h3>
 
-        <div class="choice-list" data-radio-group="start_q1">
+        <div class="choice-list" data-radio-group="start_q1"> <!-- radio -> 單選 -->
           <label class="choice"><input type="radio" name="start_q1" value="thermal_nuclear"> 火力與核能</label>
           <label class="choice"><input type="radio" name="start_q1" value="wind_solar"> 風力與太陽能</label>
           <label class="choice"><input type="radio" name="start_q1" value="all"> 所有發電方式都一樣</label>
@@ -196,13 +196,27 @@
                   </div>
 
                   <div class="iframe-wrapper thermal-unity-wrapper">
-                      <iframe src="https://teresa1107-nthu.github.io/Thermal-Power-Plant-Unity/?v=2"
+                      <iframe id="thermalUnity"
+                              src="https://teresa1107-nthu.github.io/Thermal-Power-Plant-Unity/?v=3"
                               title="火力發電廠 3D 互動模型"
                               loading="lazy"
                               scrolling="no"
                               sandbox="allow-scripts allow-same-origin"
                               allowfullscreen>
                       </iframe>
+                      <div class="thermal-test-controls">
+                          <button type="button" onclick="sendThermalCommand('GAS')">
+                              燃料
+                          </button>
+
+                          <button type="button" onclick="sendThermalCommand('BOILER')">
+                              鍋爐 / HRSG
+                          </button>
+
+                          <button type="button" onclick="sendThermalCommand('STEAM')">
+                              汽輪機
+                          </button>
+                      </div>
                   </div>
 
                   <details class="knowledge-card">

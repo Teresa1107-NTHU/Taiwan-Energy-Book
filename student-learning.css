@@ -894,6 +894,14 @@ footer{
     }
 }
 
+.thermal-unity-wrapper {
+    overflow: hidden;
+}
+
 .thermal-unity-wrapper iframe {
+    display: block;
+    width: 100%;
     aspect-ratio: 16 / 10;
+    border: 0;
+    overflow: hidden;
 }

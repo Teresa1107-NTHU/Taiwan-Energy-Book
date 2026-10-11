@@ -1052,12 +1052,92 @@
                 磁場又如何幫助控制這些帶電粒子的運動？
             </div>
 
-            <div class="iframe-wrapper">
-                <iframe src="https://3d.energyencyclopedia.com/tokamak_building?mode=iframe"
-                        title="托克瑪克核融合 3D 互動模型"
-                        loading="lazy"
-                        sandbox="allow-scripts allow-same-origin"
-                        allowfullscreen></iframe>
+            <!-- =========================
+         Tokamak 互動導覽
+    ========================= -->
+
+            <div class="tokamak-learning-module">
+
+                <div class="tokamak-model-frame">
+
+                    <!-- EnergyEncyclopedia 3D 模型 -->
+                    <div class="iframe-wrapper tokamak-model-wrapper">
+
+                        <iframe id="tokamakModel"
+                                src="https://3d.energyencyclopedia.com/tokamak/reactor"
+                                title="Tokamak 反應器 3D 互動模型"
+                                loading="lazy"
+                                sandbox="allow-scripts allow-same-origin"
+                                allowfullscreen>
+                        </iframe>
+
+                    </div>
+
+
+                    <!-- 手動中文導覽控制列 -->
+                    <div class="tokamak-inline-controls">
+
+                        <div class="tokamak-inline-buttons">
+
+                            <button id="tokamakPrevBtn"
+                                    class="tokamak-secondary-btn"
+                                    type="button"
+                                    onclick="tokamakPrevious()"
+                                    disabled>
+                                上一步
+                            </button>
+
+                            <button id="tokamakNextBtn"
+                                    class="tokamak-primary-btn"
+                                    type="button"
+                                    onclick="tokamakNext()">
+                                開始
+                            </button>
+
+                            <button class="tokamak-secondary-btn"
+                                    type="button"
+                                    onclick="tokamakReset()">
+                                重設
+                            </button>
+
+                        </div>
+
+                        <div class="tokamak-guide-hint">
+                            上方按一次「Next view」，下方也按一次「下一步」
+                        </div>
+
+                    </div>
+
+
+                    <!-- 中文步驟說明 -->
+                    <div class="tokamak-inline-info">
+
+                        <div class="tokamak-step-meta">
+
+                            <span id="tokamakStepNumber">
+                                準備開始
+                            </span>
+
+                            <span id="tokamakEnergyTag"
+                                  class="tokamak-energy-tag">
+                                核融合條件：真空、電漿與磁場
+                            </span>
+
+                        </div>
+
+                        <h4 id="tokamakStepTitle">
+                            Tokamak 核融合反應器
+                        </h4>
+
+                        <p id="tokamakStepDescription">
+                            請使用上方模型中的「Next view」依序觀看各設備，
+                            並搭配下方中文步驟了解 Tokamak 如何建立與控制核融合所需的環境。
+                        </p>
+
+                    </div>
+
+                </div>
+
             </div>
 
             <div class="model-credit">

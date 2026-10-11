@@ -1904,3 +1904,173 @@ footer{
         aspect-ratio: 16 / 10;
     }
 }
+
+/* =========================================================
+   Tokamak 中文導覽
+========================================================= */
+
+.tokamak-learning-module {
+    background: #ffffff;
+}
+
+.tokamak-model-frame {
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: #ffffff;
+}
+
+
+/* =========================
+   模型
+========================= */
+
+.tokamak-model-wrapper {
+    overflow: hidden;
+    background: #11161d;
+}
+
+    .tokamak-model-wrapper iframe {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 8.5;
+        border: 0;
+    }
+
+
+/* =========================
+   控制列
+========================= */
+
+.tokamak-inline-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-top: 1px solid #d9dde2;
+    border-bottom: 1px solid #d9dde2;
+    background: #6f6861;
+}
+
+.tokamak-inline-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+    .tokamak-inline-buttons button {
+        min-width: 72px;
+        height: 34px;
+        padding: 5px 12px;
+        border-radius: 18px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        transition: .2s;
+    }
+
+.tokamak-primary-btn,
+.tokamak-secondary-btn {
+    border: 1px solid rgba(255,255,255,.7);
+    background: rgba(255,255,255,.9);
+    color: #495057;
+}
+
+    .tokamak-primary-btn:hover:not(:disabled),
+    .tokamak-secondary-btn:hover:not(:disabled) {
+        background: #ffffff;
+    }
+
+.tokamak-inline-buttons button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   右側操作提醒
+========================= */
+
+.tokamak-guide-hint {
+    color: rgba(255,255,255,.78);
+    font-size: .68rem;
+}
+
+
+/* =========================
+   中文說明
+========================= */
+
+.tokamak-inline-info {
+    padding: 12px 14px 14px;
+    background: #d5d2cf;
+}
+
+.tokamak-step-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+#tokamakStepNumber {
+    color: #6b7280;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .09em;
+}
+
+.tokamak-energy-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.68);
+    color: #555;
+    font-size: .66rem;
+    font-weight: 700;
+}
+
+.tokamak-inline-info h4 {
+    margin: 0 0 5px;
+    color: #111827;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.tokamak-inline-info p {
+    margin: 0;
+    color: #374151;
+    font-size: 1rem;
+    line-height: 1.75;
+    font-weight: 500;
+}
+
+
+/* =========================
+   Tablet
+========================= */
+
+@media(max-width:768px) {
+
+    .tokamak-inline-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tokamak-inline-buttons {
+        width: 100%;
+    }
+
+        .tokamak-inline-buttons button {
+            flex: 1;
+        }
+
+    .tokamak-guide-hint {
+        text-align: left;
+    }
+
+    .tokamak-model-wrapper iframe {
+        aspect-ratio: 16 / 10;
+    }
+}

@@ -1422,7 +1422,6 @@ function updateHydroPanel() {
         return;
     }
 
-
     // =========================
     // 導覽中
     // =========================
@@ -1432,7 +1431,6 @@ function updateHydroPanel() {
         hydroCurrentStep
         ];
 
-
     number.textContent =
         `STEP ${hydroCurrentStep + 1} / ${hydroSteps.length}`;
     title.textContent =
@@ -1441,23 +1439,19 @@ function updateHydroPanel() {
     description.textContent =
         step.description;
 
-
     if (energy) {
         energy.textContent =
             step.energy;
     }
-
 
     if (prevBtn) {
         prevBtn.disabled =
             hydroCurrentStep === 0;
     }
 
-
     const isLastStep =
         hydroCurrentStep ===
         hydroSteps.length - 1;
-
 
     if (nextBtn) {
 
@@ -1480,11 +1474,9 @@ function updateHydroPanel() {
     }
 }
 
-
 // =====================================================
 // 頁面載入時初始化
 // =====================================================
-
 document.addEventListener(
     "DOMContentLoaded",
     () => {
@@ -1497,14 +1489,12 @@ document.addEventListener(
             hydroCurrentStep = -1;
             updateHydroPanel();
         }
-
     }
 );
 
 // =====================================================
 // 太陽光電手動文字導覽
 // =====================================================
-
 const solarSteps = [
 
     {
@@ -1597,14 +1587,11 @@ const solarSteps = [
 
 ];
 
-
 let solarCurrentStep = -1;
-
 
 // =====================================================
 // 下一步
 // =====================================================
-
 function solarNext() {
 
     if (
@@ -1615,15 +1602,12 @@ function solarNext() {
     }
 
     solarCurrentStep++;
-
     updateSolarPanel();
 }
-
 
 // =====================================================
 // 上一步
 // =====================================================
-
 function solarPrevious() {
 
     if (solarCurrentStep <= 0) {
@@ -1631,15 +1615,12 @@ function solarPrevious() {
     }
 
     solarCurrentStep--;
-
     updateSolarPanel();
 }
-
 
 // =====================================================
 // 重設
 // =====================================================
-
 function solarReset() {
 
     solarCurrentStep = -1;
@@ -1647,11 +1628,9 @@ function solarReset() {
     updateSolarPanel();
 }
 
-
 // =====================================================
 // 更新太陽光電中文導覽
 // =====================================================
-
 function updateSolarPanel() {
 
     const number =
@@ -1684,7 +1663,6 @@ function updateSolarPanel() {
             "solarNextBtn"
         );
 
-
     if (
         !number ||
         !title ||
@@ -1693,11 +1671,9 @@ function updateSolarPanel() {
         return;
     }
 
-
     // =========================
     // 尚未開始
     // =========================
-
     if (solarCurrentStep < 0) {
 
         number.textContent =
@@ -1723,20 +1699,16 @@ function updateSolarPanel() {
             nextBtn.textContent =
                 "開始導覽";
         }
-
         return;
     }
-
 
     // =========================
     // 導覽中
     // =========================
-
     const step =
         solarSteps[
         solarCurrentStep
         ];
-
 
     number.textContent =
         `STEP ${solarCurrentStep + 1} / ${solarSteps.length}`;
@@ -1747,22 +1719,399 @@ function updateSolarPanel() {
     description.textContent =
         step.description;
 
-
     if (energy) {
         energy.textContent =
             step.energy;
     }
-
 
     if (prevBtn) {
         prevBtn.disabled =
             solarCurrentStep === 0;
     }
 
-
     const isLastStep =
         solarCurrentStep ===
         solarSteps.length - 1;
+
+    if (nextBtn) {
+
+        if (isLastStep) {
+
+            nextBtn.textContent =
+                "導覽完成 ✓";
+
+            nextBtn.disabled =
+                true;
+
+        } else {
+
+            nextBtn.textContent =
+                "下一步";
+
+            nextBtn.disabled =
+                false;
+        }
+    }
+}
+
+// =====================================================
+// 頁面載入時初始化
+// =====================================================
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        if (
+            document.getElementById(
+                "solarStepNumber"
+            )
+        ) {
+            solarCurrentStep = -1;
+            updateSolarPanel();
+        }
+
+    }
+);
+
+// =====================================================
+// Tokamak 手動中文導覽
+// =====================================================
+
+const tokamakSteps = [
+
+    {
+        title: "低溫恆溫器",
+        description:
+            "低溫恆溫器（Cryostat）是一個大型高真空壓力容器，包覆 Tokamak 的真空容器與超導磁鐵，提供高真空與低溫環境。",
+        energy:
+            "真空與低溫環境"
+    },
+
+    {
+        title: "真空容器",
+        description:
+            "真空容器是一個甜甜圈形的鋼製容器，也是高溫電漿所在的主要空間。它提供高真空環境，並支撐偏濾器與包層等內部設備。",
+        energy:
+            "高真空環境"
+    },
+
+    {
+        title: "屏蔽塊",
+        description:
+            "屏蔽塊安裝在真空容器內壁，可以協助阻擋核融合反應產生的高能中子，同時支撐第一壁面板，並利用冷卻水帶走熱量。",
+        energy:
+            "屏蔽與散熱"
+    },
+
+    {
+        title: "第一壁面板",
+        description:
+            "第一壁面板直接面向高溫電漿，因此必須承受很高的熱負載。它也是保護真空容器內部結構的重要第一道表面。",
+        energy:
+            "承受電漿熱負載"
+    },
+
+    {
+        title: "包層",
+        description:
+            "真空容器內壁覆蓋著包層模組，用來保護真空容器與超導磁鐵，降低核融合產生的高能中子與熱量對設備造成的影響。",
+        energy:
+            "中子屏蔽與散熱"
+    },
+
+    {
+        title: "真空容器開口",
+        description:
+            "真空容器設有多個開口（Port），讓加熱設備、診斷系統、真空設備與維修裝置可以進入或連接真空容器。",
+        energy:
+            "設備連接與操作"
+    },
+
+    {
+        title: "ELM 控制線圈",
+        description:
+            "ELM 控制線圈會產生特定的磁場擾動，協助降低電漿邊緣出現某些不穩定現象的機會，使電漿更容易受到控制。",
+        energy:
+            "電漿穩定控制"
+    },
+
+    {
+        title: "垂直穩定線圈",
+        description:
+            "垂直穩定線圈位於 Tokamak 上下兩側，可以快速調整磁場，協助維持電漿在垂直方向上的穩定位置。",
+        energy:
+            "電漿位置控制"
+    },
+
+    {
+        title: "真空容器內線圈",
+        description:
+            "真空容器內部還設有額外的控制線圈，用來提供更快速與精細的磁場調整，協助控制電漿的位置與形狀。",
+        energy:
+            "磁場控制"
+    },
+
+    {
+        title: "磁場修正線圈",
+        description:
+            "修正線圈用來補償實際磁場中的微小誤差，使 Tokamak 內部形成的磁場更接近設計值，提升電漿控制的穩定性。",
+        energy:
+            "磁場修正"
+    },
+
+    {
+        title: "預壓支撐結構",
+        description:
+            "中央螺線管運作時會產生非常大的電磁力，因此需要強固的預壓支撐結構固定線圈，避免線圈彼此分離或產生過大的變形。",
+        energy:
+            "結構支撐"
+    },
+
+    {
+        title: "中央定位系統",
+        description:
+            "中央定位系統是中央螺線管支撐結構的一部分，負責讓中央螺線管保持在真空容器中心的正確位置。",
+        energy:
+            "結構定位"
+    },
+
+    {
+        title: "中央螺線管",
+        description:
+            "中央螺線管可以在電漿中感應出強大的電流。這個電流是建立與維持 Tokamak 電漿的重要條件之一。",
+        energy:
+            "產生電漿電流"
+    },
+
+    {
+        title: "環向磁場線圈",
+        description:
+            "環向磁場線圈（Toroidal Field Magnets）環繞真空容器，產生沿著甜甜圈方向的強磁場，主要作用是限制帶電的電漿粒子。",
+        energy:
+            "磁場約束電漿"
+    },
+
+    {
+        title: "極向磁場線圈",
+        description:
+            "極向磁場線圈（Poloidal Field Magnets）位於環向磁場線圈外側，可以協助調整電漿的形狀與位置，並提高電漿的穩定性。",
+        energy:
+            "塑形與穩定電漿"
+    },
+
+    {
+        title: "磁鐵供應系統",
+        description:
+            "磁鐵供應系統負責向超導磁鐵提供電流與低溫冷卻介質，使大型磁鐵能維持超導狀態並持續產生強磁場。",
+        energy:
+            "超導磁鐵供電與冷卻"
+    },
+
+    {
+        title: "偏濾器",
+        description:
+            "偏濾器（Divertor）位於 Tokamak 底部，負責排出電漿中的熱量與融合反應產生的雜質，減少污染並保護真空容器內壁。",
+        energy:
+            "排熱與移除雜質"
+    },
+
+    {
+        title: "偏濾器中央穹頂",
+        description:
+            "中央穹頂位於偏濾器中央，形狀配合磁場分布，用來保護偏濾器其他零件，降低電漿異常移動時造成的熱負載。",
+        energy:
+            "設備保護"
+    },
+
+    {
+        title: "垂直靶板",
+        description:
+            "垂直靶板是偏濾器中直接面對高能粒子的元件，需要承受非常高的熱負載，因此使用耐高溫材料並搭配水冷系統。",
+        energy:
+            "承受粒子與熱負載"
+    },
+
+    {
+        title: "偏濾器支撐結構",
+        description:
+            "偏濾器的支撐結構負責固定偏濾器各部件，使它們能在高熱負載與複雜的 Tokamak 環境中維持正確位置。",
+        energy:
+            "結構支撐"
+    },
+
+    {
+        title: "冷卻系統",
+        description:
+            "Tokamak 的冷卻水系統會帶走真空容器、包層與偏濾器吸收的熱量，避免設備溫度過高，維持系統安全運作。",
+        energy:
+            "移除多餘熱量"
+    }
+
+];
+
+
+let tokamakCurrentStep = -1;
+
+
+// =====================================================
+// 下一步
+// =====================================================
+
+function tokamakNext() {
+
+    if (
+        tokamakCurrentStep >=
+        tokamakSteps.length - 1
+    ) {
+        return;
+    }
+
+    tokamakCurrentStep++;
+
+    updateTokamakPanel();
+}
+
+
+// =====================================================
+// 上一步
+// =====================================================
+
+function tokamakPrevious() {
+
+    if (tokamakCurrentStep <= 0) {
+        return;
+    }
+
+    tokamakCurrentStep--;
+
+    updateTokamakPanel();
+}
+
+
+// =====================================================
+// 重設
+// =====================================================
+
+function tokamakReset() {
+
+    tokamakCurrentStep = -1;
+
+    updateTokamakPanel();
+}
+
+
+// =====================================================
+// 更新 Tokamak 中文導覽
+// =====================================================
+
+function updateTokamakPanel() {
+
+    const number =
+        document.getElementById(
+            "tokamakStepNumber"
+        );
+
+    const title =
+        document.getElementById(
+            "tokamakStepTitle"
+        );
+
+    const description =
+        document.getElementById(
+            "tokamakStepDescription"
+        );
+
+    const energy =
+        document.getElementById(
+            "tokamakEnergyTag"
+        );
+
+    const prevBtn =
+        document.getElementById(
+            "tokamakPrevBtn"
+        );
+
+    const nextBtn =
+        document.getElementById(
+            "tokamakNextBtn"
+        );
+
+
+    if (
+        !number ||
+        !title ||
+        !description
+    ) {
+        return;
+    }
+
+
+    // =========================
+    // 尚未開始
+    // =========================
+
+    if (tokamakCurrentStep < 0) {
+
+        number.textContent =
+            "準備開始";
+
+        title.textContent =
+            "Tokamak 核融合反應器";
+
+        description.textContent =
+            "請使用上方模型中的「Next view」依序觀看各設備，並搭配下方中文步驟了解 Tokamak 如何建立與控制核融合所需的環境。";
+
+        if (energy) {
+            energy.textContent =
+                "核融合條件：真空、電漿與磁場";
+        }
+
+        if (prevBtn) {
+            prevBtn.disabled = true;
+        }
+
+        if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.textContent =
+                "開始導覽";
+        }
+
+        return;
+    }
+
+
+    // =========================
+    // 導覽中
+    // =========================
+
+    const step =
+        tokamakSteps[
+        tokamakCurrentStep
+        ];
+
+    number.textContent =
+        `STEP ${tokamakCurrentStep + 1} / ${tokamakSteps.length}`;
+
+    title.textContent =
+        step.title;
+
+    description.textContent =
+        step.description;
+
+    if (energy) {
+        energy.textContent =
+            step.energy;
+    }
+
+    if (prevBtn) {
+        prevBtn.disabled =
+            tokamakCurrentStep === 0;
+    }
+
+
+    const isLastStep =
+        tokamakCurrentStep ===
+        tokamakSteps.length - 1;
 
 
     if (nextBtn) {
@@ -1797,11 +2146,11 @@ document.addEventListener(
 
         if (
             document.getElementById(
-                "solarStepNumber"
+                "tokamakStepNumber"
             )
         ) {
-            solarCurrentStep = -1;
-            updateSolarPanel();
+            tokamakCurrentStep = -1;
+            updateTokamakPanel();
         }
 
     }

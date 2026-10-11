@@ -927,66 +927,222 @@ footer{
     color: #0d1117;
 }
 
-.thermal-test-controls{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  padding:0 22px 18px;
-}
+/* =========================================================
+   火力發電互動學習模組
+========================================================= */
 
-.thermal-test-controls button{
-  padding:9px 14px;
-  border:1px solid #dee2e6;
-  border-radius:8px;
-  background:#fff;
-  font-weight:700;
-}
-
-.thermal-test-controls button:hover{
-  background:#f8f9fa;
-}
-
-/* =========================
-   火力發電互動控制面板
-========================= */
-
-.thermal-control-panel {
-    padding: 20px 22px;
+.thermal-learning-module {
     border-top: 1px solid var(--line);
     background: #ffffff;
 }
+
+
+/* =========================
+   Unity 3D 模型
+========================= */
+
+.thermal-unity-wrapper {
+    overflow: hidden;
+    border-top: 0;
+    background: #11161d;
+}
+
+    .thermal-unity-wrapper iframe {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        border: 0;
+        overflow: hidden;
+    }
+
+
+/* =========================
+   控制面板
+========================= */
+
+.thermal-control-panel {
+    padding: 22px;
+    border-top: 1px solid #e9ecef;
+    background: #ffffff;
+}
+
+
+/* =========================
+   Step 說明
+========================= */
 
 .thermal-step-info {
     margin-bottom: 18px;
 }
 
-.thermal-step-info > span {
-    display: inline-block;
-    margin-bottom: 6px;
+.thermal-step-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 7px;
+}
+
+#thermalStepNumber {
     color: #8a939b;
     font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+}
+
+.thermal-energy-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: #f1f3f5;
+    color: #59636d;
+    font-size: 0.72rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
 }
 
 .thermal-step-info h4 {
     margin: 0 0 6px;
     color: #0d1117;
-    font-size: 1.05rem;
+    font-size: 1.08rem;
 }
 
 .thermal-step-info p {
     margin: 0;
     color: #6c757d;
     font-size: 0.88rem;
-    line-height: 1.75;
+    line-height: 1.8;
 }
 
-.thermal-control-row {
+
+/* =========================
+   開始前提示
+========================= */
+
+.thermal-start-hint {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding: 13px 14px;
+    border: 1px solid #f1dfaa;
+    border-radius: 12px;
+    background: #fffaf0;
+    transition: 0.2s ease;
+}
+
+    .thermal-start-hint.ready {
+        border-color: #cde8c5;
+        background: #f5fbf3;
+    }
+
+.thermal-hint-icon {
+    flex: 0 0 auto;
     display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 22px;
-    align-items: end;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #fbbf24;
+    color: #0d1117;
+    font-size: 0.7rem;
+    font-weight: 800;
+}
+
+.thermal-start-hint.ready .thermal-hint-icon {
+    background: #dff5d7;
+    color: #24451d;
+}
+
+.thermal-start-hint strong {
+    display: block;
+    margin-bottom: 2px;
+    color: #0d1117;
+    font-size: 0.84rem;
+}
+
+.thermal-start-hint p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.78rem;
+    line-height: 1.65;
+}
+
+
+/* =========================
+   Gas Input
+========================= */
+
+.thermal-gas-control {
+    padding: 15px 16px 13px;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    background: #f8f9fa;
+}
+
+.thermal-gas-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+    .thermal-gas-head > div:first-child {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .thermal-gas-head strong {
+        color: #0d1117;
+        font-size: 0.86rem;
+    }
+
+    .thermal-gas-head > div:first-child span {
+        color: #8a939b;
+        font-size: 0.72rem;
+    }
+
+.thermal-gas-value {
+    min-width: 58px;
+    text-align: right;
+    color: #0d1117;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+
+/* Range slider */
+
+#thermalGasSlider {
+    width: 100%;
+    height: 6px;
+    margin: 5px 0;
+    accent-color: #0d1117;
+    cursor: pointer;
+}
+
+.thermal-gas-scale {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3px;
+    color: #adb5bd;
+    font-size: 0.68rem;
+}
+
+
+/* =========================
+   下方按鈕
+========================= */
+
+.thermal-control-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-top: 18px;
 }
 
 .thermal-tour-buttons {
@@ -995,62 +1151,106 @@ footer{
     flex-wrap: wrap;
 }
 
-.thermal-tour-buttons button {
-    min-width: 72px;
-    min-height: 38px;
-    padding: 7px 14px;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    background: #ffffff;
-    color: #0d1117;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.2s;
-}
+    .thermal-tour-buttons button {
+        min-height: 40px;
+        padding: 8px 15px;
+        border-radius: 9px;
+        font-size: 0.82rem;
+        font-weight: 700;
+        transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+    }
 
-.thermal-tour-buttons button:hover:not(:disabled) {
-    border-color: #adb5bd;
-    background: #f8f9fa;
-    transform: translateY(-1px);
-}
+        .thermal-tour-buttons button:not(:disabled):hover {
+            transform: translateY(-1px);
+        }
 
-.thermal-tour-buttons button:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
 
-#thermalNextBtn {
-    border-color: #0d1117;
+/* 主要按鈕 */
+
+.thermal-primary-btn {
+    border: 1px solid #0d1117;
     background: #0d1117;
     color: #ffffff;
 }
 
-#thermalNextBtn:hover {
-    background: #242a31;
-}
+    .thermal-primary-btn:hover:not(:disabled) {
+        background: #252b32;
+    }
 
-.thermal-gas-control {
-    width: 100%;
-    max-width: 320px;
-    justify-self: end;
-}
 
-.thermal-gas-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 7px;
-    color: #6c757d;
-    font-size: 0.82rem;
-}
+/* 次要按鈕 */
 
-.thermal-gas-head strong {
+.thermal-secondary-btn {
+    border: 1px solid #dee2e6;
+    background: #ffffff;
     color: #0d1117;
 }
 
-#thermalGasSlider {
-    width: 100%;
-    accent-color: #0d1117;
+    .thermal-secondary-btn:hover:not(:disabled) {
+        border-color: #adb5bd;
+        background: #f8f9fa;
+    }
+
+
+/* Disabled */
+
+.thermal-tour-buttons button:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* 右側進度文字 */
+
+.thermal-progress-text {
+    color: #8a939b;
+    font-size: 0.75rem;
+    text-align: right;
+}
+
+
+/* =========================
+   導覽完成
+========================= */
+
+.thermal-control-panel.complete .thermal-progress-text {
+    color: #42783a;
+    font-weight: 700;
+}
+
+.thermal-control-panel.complete .thermal-energy-tag {
+    background: #dff5d7;
+    color: #24451d;
+}
+
+
+/* =========================
+   Tablet / Mobile
+========================= */
+
+@media(max-width:768px) {
+
+    .thermal-control-panel {
+        padding: 18px;
+    }
+
+    .thermal-control-bottom {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .thermal-tour-buttons {
+        width: 100%;
+    }
+
+        .thermal-tour-buttons button {
+            flex: 1;
+        }
+
+    .thermal-progress-text {
+        text-align: left;
+    }
 }
 
 @media(max-width:768px) {

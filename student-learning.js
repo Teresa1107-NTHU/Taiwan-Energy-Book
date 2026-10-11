@@ -3,72 +3,634 @@
 // =====================================================
 
 const thermalSteps = [
+
     {
         title: "液化天然氣儲槽",
         description:
-            "儲存液化天然氣，在燃料送入發電系統前提供天然氣供應。"
+            "液化天然氣在送入發電系統前先儲存在儲槽中。天然氣本身儲存著化學能，是這套發電系統最初的能量來源。",
+        energy:
+            "化學能"
     },
 
     {
         title: "熱回收蒸汽產生器",
         description:
-            "利用天然氣燃燒所產生的熱能加熱水並產生蒸氣，供後續蒸汽渦輪機使用。"
+            "天然氣燃燒後釋放熱能，熱回收蒸汽產生器利用這些熱量加熱水並產生高溫蒸氣。",
+        energy:
+            "化學能 → 熱能"
     },
 
     {
         title: "蒸汽渦輪機",
         description:
-            "高壓蒸氣推動渦輪機旋轉，將熱能轉換成旋轉的機械能。"
+            "高壓蒸氣推動渦輪機旋轉，使蒸氣所攜帶的能量轉換成旋轉的機械能。",
+        energy:
+            "熱能 → 機械能"
     },
 
     {
         title: "煙囪",
         description:
-            "燃燒後的廢氣經由煙囪排出。天然氣發電相較於燃煤發電，產生的污染排放通常較少。"
+            "天然氣燃燒後產生的廢氣經由煙囪排出。煙囪主要負責排放燃燒後的氣體，並不是產生電能的設備。",
+        energy:
+            "燃燒後氣體排放"
     },
 
     {
         title: "冷凝器",
         description:
-            "蒸氣通過渦輪機後進入冷凝器，被冷卻並凝結回水，使水能夠繼續在發電系統中循環使用。"
+            "蒸氣通過渦輪機後進入冷凝器，被冷卻並凝結回水，使水可以再次進入蒸汽循環。",
+        energy:
+            "蒸氣 → 水"
     },
 
     {
         title: "給水泵",
         description:
-            "給水泵將冷凝後的水送回熱回收蒸汽產生器，使蒸汽循環能夠持續進行。"
+            "給水泵將冷凝後的水送回熱回收蒸汽產生器，使工作流體可以持續循環使用。",
+        energy:
+            "水循環"
     },
 
     {
         title: "冷卻塔",
         description:
-            "冷卻塔移除循環水系統中的多餘熱量，並將部分熱量以水蒸氣的形式釋放到大氣中。"
+            "冷卻塔將循環水中的多餘熱量排放到環境中，協助降低冷卻水的溫度。",
+        energy:
+            "移除多餘熱量"
     },
 
     {
         title: "冷卻水泵",
         description:
-            "冷卻水泵使冷卻水在冷凝器與冷卻塔之間循環，協助維持系統穩定的散熱與運作。"
+            "冷卻水泵讓冷卻水在冷凝器與冷卻塔之間循環，協助冷凝器持續帶走蒸氣中的熱量。",
+        energy:
+            "冷卻循環"
     },
 
     {
         title: "發電機",
         description:
-            "發電機利用電磁感應，將渦輪機的旋轉機械能轉換成電能。"
+            "汽輪機帶動發電機旋轉，發電機利用電磁感應將旋轉的機械能轉換成電能。",
+        energy:
+            "機械能 → 電能"
     },
 
     {
         title: "變壓器",
         description:
-            "變壓器調整電力的電壓，使產生的電能能夠更有效率地進行輸電與配電。"
+            "發電機產生電力後，變壓器會調整電壓，使電能更適合進行後續的輸電與配電。",
+        energy:
+            "電能傳輸"
     },
 
     {
         title: "電力負載",
         description:
-            "發電廠產生的電能最後送到電力負載使用。在這個模型中，燈泡亮度會隨天然氣輸入量改變。"
+            "電能最後送到用電端。在模型中，燈泡代表電力負載；天然氣輸入量改變時，也可以觀察輸出效果的變化。",
+        energy:
+            "電能 → 使用"
     }
+
 ];
+
+
+let thermalCurrentStep = -1;
+
+
+// =====================================================
+// 傳送一般控制指令給 Unity
+// =====================================================
+
+function sendThermalCommand(command) {
+
+    const iframe =
+        document.getElementById("thermalUnity");
+
+    if (
+        !iframe ||
+        !iframe.contentWindow
+    ) {
+        return;
+    }
+
+    iframe.contentWindow.postMessage(
+        {
+            type: "THERMAL_COMMAND",
+            command: command
+        },
+        "*"
+    );
+}
+
+
+// =====================================================
+// 下一步
+// =====================================================
+
+function thermalNext() {
+
+    const slider =
+        document.getElementById(
+            "thermalGasSlider"
+        );
+
+    const gasValue =
+        slider
+            ? Number(slider.value)
+            : 0;
+
+
+    /*
+     * 第一次開始前，
+     * 必須先有天然氣輸入。
+     */
+    if (
+        thermalCurrentStep === -1 &&
+        gasValue <= 0
+    ) {
+        showThermalGasHint(false);
+        return;
+    }
+
+
+    /*
+     * 已經在最後一步就不再往後。
+     */
+    if (
+        thermalCurrentStep >=
+        thermalSteps.length - 1
+    ) {
+        return;
+    }
+
+
+    thermalCurrentStep++;
+
+
+    /*
+     * 告訴 Unity 前進一步。
+     */
+    sendThermalCommand("NEXT");
+
+
+    /*
+     * 更新網頁內容。
+     */
+    updateThermalPanel();
+}
+
+
+// =====================================================
+// 上一步
+// =====================================================
+
+function thermalPrevious() {
+
+    if (thermalCurrentStep <= 0) {
+        return;
+    }
+
+    thermalCurrentStep--;
+
+    sendThermalCommand("PREVIOUS");
+
+    updateThermalPanel();
+}
+
+
+// =====================================================
+// 重設
+// =====================================================
+
+function thermalReset() {
+
+    thermalCurrentStep = -1;
+
+    sendThermalCommand("RESET");
+
+
+    /*
+     * Gas Input 回到 0。
+     */
+    const slider =
+        document.getElementById(
+            "thermalGasSlider"
+        );
+
+    if (slider) {
+        slider.value = 0;
+    }
+
+    setThermalGas(0);
+
+    updateThermalPanel();
+}
+
+
+// =====================================================
+// 更新網頁說明
+// =====================================================
+
+function updateThermalPanel() {
+
+    const number =
+        document.getElementById(
+            "thermalStepNumber"
+        );
+
+    const title =
+        document.getElementById(
+            "thermalStepTitle"
+        );
+
+    const description =
+        document.getElementById(
+            "thermalStepDescription"
+        );
+
+    const energyTag =
+        document.getElementById(
+            "thermalEnergyTag"
+        );
+
+    const prevBtn =
+        document.getElementById(
+            "thermalPrevBtn"
+        );
+
+    const nextBtn =
+        document.getElementById(
+            "thermalNextBtn"
+        );
+
+    const progress =
+        document.getElementById(
+            "thermalProgressText"
+        );
+
+    const panel =
+        document.querySelector(
+            ".thermal-control-panel"
+        );
+
+
+    if (
+        !number ||
+        !title ||
+        !description
+    ) {
+        return;
+    }
+
+
+    // =========================
+    // 尚未開始
+    // =========================
+
+    if (thermalCurrentStep < 0) {
+
+        number.textContent =
+            "準備開始";
+
+        title.textContent =
+            "天然氣火力發電";
+
+        description.textContent =
+            "先調整下方的 Gas Input，讓天然氣進入系統，再開始觀察發電流程。";
+
+        if (energyTag) {
+            energyTag.textContent =
+                "能量來源：天然氣";
+        }
+
+        if (prevBtn) {
+            prevBtn.disabled = true;
+        }
+
+
+        /*
+         * 是否可以開始，
+         * 由目前 Gas Input 判斷。
+         */
+        const slider =
+            document.getElementById(
+                "thermalGasSlider"
+            );
+
+        const gasValue =
+            slider
+                ? Number(slider.value)
+                : 0;
+
+        if (nextBtn) {
+            nextBtn.disabled =
+                gasValue <= 0;
+
+            nextBtn.textContent =
+                "開始導覽";
+        }
+
+        if (progress) {
+            progress.textContent =
+                gasValue > 0
+                    ? "已設定天然氣輸入，可以開始導覽"
+                    : "調整天然氣輸入後即可開始";
+        }
+
+        if (panel) {
+            panel.classList.remove(
+                "complete"
+            );
+        }
+
+        return;
+    }
+
+
+    // =========================
+    // 導覽中
+    // =========================
+
+    const step =
+        thermalSteps[
+        thermalCurrentStep
+        ];
+
+
+    number.textContent =
+        `STEP ${thermalCurrentStep + 1} / ${thermalSteps.length}`;
+
+    title.textContent =
+        step.title;
+
+    description.textContent =
+        step.description;
+
+
+    if (energyTag) {
+        energyTag.textContent =
+            step.energy;
+    }
+
+
+    if (prevBtn) {
+        prevBtn.disabled =
+            thermalCurrentStep === 0;
+    }
+
+
+    // =========================
+    // 最後一步
+    // =========================
+
+    const isLastStep =
+        thermalCurrentStep ===
+        thermalSteps.length - 1;
+
+
+    if (nextBtn) {
+
+        if (isLastStep) {
+
+            nextBtn.textContent =
+                "導覽完成 ✓";
+
+            nextBtn.disabled =
+                true;
+
+        } else {
+
+            nextBtn.textContent =
+                "下一步";
+
+            nextBtn.disabled =
+                false;
+        }
+    }
+
+
+    if (progress) {
+
+        progress.textContent =
+            isLastStep
+                ? "你已經完成火力發電流程導覽"
+                : `正在查看第 ${thermalCurrentStep + 1} 個設備`;
+    }
+
+
+    if (panel) {
+
+        panel.classList.toggle(
+            "complete",
+            isLastStep
+        );
+    }
+}
+
+
+// =====================================================
+// Gas Input Slider
+// =====================================================
+
+function setThermalGas(value) {
+
+    const numericValue =
+        Number(value);
+
+
+    // =========================
+    // 更新百分比文字
+    // =========================
+
+    const valueText =
+        document.getElementById(
+            "thermalGasValue"
+        );
+
+    if (valueText) {
+        valueText.textContent =
+            Math.round(numericValue);
+    }
+
+
+    // =========================
+    // 傳給 Unity
+    // =========================
+
+    const iframe =
+        document.getElementById(
+            "thermalUnity"
+        );
+
+    if (
+        iframe &&
+        iframe.contentWindow
+    ) {
+
+        iframe.contentWindow.postMessage(
+            {
+                type: "THERMAL_GAS",
+                value:
+                    String(numericValue)
+            },
+            "*"
+        );
+    }
+
+
+    // =========================
+    // 更新開始提示
+    // =========================
+
+    showThermalGasHint(
+        numericValue > 0
+    );
+
+
+    /*
+     * 如果還沒開始，
+     * Gas Input > 0 後解鎖開始按鈕。
+     */
+    if (thermalCurrentStep < 0) {
+
+        const nextBtn =
+            document.getElementById(
+                "thermalNextBtn"
+            );
+
+        const progress =
+            document.getElementById(
+                "thermalProgressText"
+            );
+
+        if (nextBtn) {
+
+            nextBtn.disabled =
+                numericValue <= 0;
+        }
+
+        if (progress) {
+
+            progress.textContent =
+                numericValue > 0
+                    ? "已設定天然氣輸入，可以開始導覽"
+                    : "調整天然氣輸入後即可開始";
+        }
+    }
+}
+
+
+// =====================================================
+// Gas Input 提示狀態
+// =====================================================
+
+function showThermalGasHint(ready) {
+
+    const hint =
+        document.getElementById(
+            "thermalStartHint"
+        );
+
+    if (!hint) {
+        return;
+    }
+
+
+    hint.classList.toggle(
+        "ready",
+        ready
+    );
+
+
+    const strong =
+        hint.querySelector(
+            "strong"
+        );
+
+    const text =
+        hint.querySelector(
+            "p"
+        );
+
+    const icon =
+        hint.querySelector(
+            ".thermal-hint-icon"
+        );
+
+
+    if (ready) {
+
+        if (icon) {
+            icon.textContent =
+                "✓";
+        }
+
+        if (strong) {
+            strong.textContent =
+                "天然氣輸入已設定";
+        }
+
+        if (text) {
+            text.textContent =
+                "現在可以按下「開始導覽」，逐步觀察天然氣如何轉換成最後的電能。";
+        }
+
+    } else {
+
+        if (icon) {
+            icon.textContent =
+                "01";
+        }
+
+        if (strong) {
+            strong.textContent =
+                "先設定天然氣輸入量";
+        }
+
+        if (text) {
+            text.textContent =
+                "拖曳 Gas Input 滑桿到大於 0%，再開始觀察發電流程。";
+        }
+    }
+}
+
+
+// =====================================================
+// 頁面載入時初始化火力控制面板
+// =====================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const slider =
+            document.getElementById(
+                "thermalGasSlider"
+            );
+
+        if (!slider) {
+            return;
+        }
+
+
+        /*
+         * 一開始固定從 0% 開始。
+         */
+        slider.value = 0;
+
+        thermalCurrentStep = -1;
+
+        updateThermalPanel();
+
+        showThermalGasHint(false);
+    }
+);
+
+
+console.log(
+    "THERMAL LEARNING MODULE LOADED"
+);
 
 let thermalCurrentStep = -1;
 

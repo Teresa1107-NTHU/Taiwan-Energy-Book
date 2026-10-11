@@ -195,34 +195,111 @@
                       燃料 → 熱 → 蒸氣 → 汽輪機 → 發電機
                   </div>
 
-                  <div class="iframe-wrapper thermal-unity-wrapper">
-                      <iframe id="thermalUnity"
-                              src="https://teresa1107-nthu.github.io/Thermal-Power-Plant-Unity/?v=3"
-                              title="火力發電廠 3D 互動模型"
-                              loading="lazy"
-                              scrolling="no"
-                              sandbox="allow-scripts allow-same-origin"
-                              allowfullscreen>
-                      </iframe>
+                  <!-- =========================
+         火力發電 3D 互動模型
+    ========================= -->
+
+                  <div class="thermal-learning-module">
+
+                      <!-- Unity 只顯示 3D 模型 -->
+                      <div class="iframe-wrapper thermal-unity-wrapper">
+                          <iframe id="thermalUnity"
+                                  src="https://teresa1107-nthu.github.io/Thermal-Power-Plant-Unity/?v=5"
+                                  title="火力發電廠 3D 互動模型"
+                                  loading="lazy"
+                                  scrolling="no"
+                                  sandbox="allow-scripts allow-same-origin"
+                                  allowfullscreen>
+                          </iframe>
+                      </div>
+
+
+                      <!-- 網頁控制面板 -->
                       <div class="thermal-control-panel">
 
+                          <!-- Step 資訊 -->
                           <div class="thermal-step-info">
-                              <span id="thermalStepNumber">準備開始</span>
+
+                              <div class="thermal-step-meta">
+                                  <span id="thermalStepNumber">
+                                      準備開始
+                                  </span>
+
+                                  <span id="thermalEnergyTag"
+                                        class="thermal-energy-tag">
+                                      能量來源：天然氣
+                                  </span>
+                              </div>
 
                               <h4 id="thermalStepTitle">
                                   天然氣火力發電
                               </h4>
 
                               <p id="thermalStepDescription">
-                                  按下「開始」進入火力發電流程。
+                                  先調整下方的 Gas Input，讓天然氣進入系統，再開始觀察發電流程。
                               </p>
+
                           </div>
 
-                          <div class="thermal-control-row">
+
+                          <!-- 啟動提示 -->
+                          <div id="thermalStartHint"
+                               class="thermal-start-hint">
+
+                              <span class="thermal-hint-icon">01</span>
+
+                              <div>
+                                  <strong>先設定天然氣輸入量</strong>
+                                  <p>
+                                      拖曳 Gas Input 滑桿到大於 0%。
+                                      觀察輸入量改變後，再開始逐步查看發電系統。
+                                  </p>
+                              </div>
+
+                          </div>
+
+
+                          <!-- Gas Input -->
+                          <div class="thermal-gas-control">
+
+                              <div class="thermal-gas-head">
+
+                                  <div>
+                                      <strong>Gas Input</strong>
+                                      <span>天然氣輸入量</span>
+                                  </div>
+
+                                  <div class="thermal-gas-value">
+                                      <span id="thermalGasValue">0</span>%
+                                  </div>
+
+                              </div>
+
+                              <input id="thermalGasSlider"
+                                     type="range"
+                                     min="0"
+                                     max="100"
+                                     value="0"
+                                     step="1"
+                                     aria-label="天然氣輸入量"
+                                     oninput="setThermalGas(this.value)">
+
+                              <div class="thermal-gas-scale">
+                                  <span>0%</span>
+                                  <span>50%</span>
+                                  <span>100%</span>
+                              </div>
+
+                          </div>
+
+
+                          <!-- 導覽控制 -->
+                          <div class="thermal-control-bottom">
 
                               <div class="thermal-tour-buttons">
 
                                   <button id="thermalPrevBtn"
+                                          class="thermal-secondary-btn"
                                           type="button"
                                           onclick="thermalPrevious()"
                                           disabled>
@@ -230,37 +307,26 @@
                                   </button>
 
                                   <button id="thermalNextBtn"
+                                          class="thermal-primary-btn"
                                           type="button"
-                                          onclick="thermalNext()">
-                                      開始
+                                          onclick="thermalNext()"
+                                          disabled>
+                                      開始導覽
                                   </button>
 
-                                  <button type="button"
+                                  <button class="thermal-secondary-btn"
+                                          type="button"
                                           onclick="thermalReset()">
                                       重設
                                   </button>
 
                               </div>
 
-                              <div class="thermal-gas-control">
-                                  <div class="thermal-gas-head">
-                                      <span>Gas Input</span>
-                                      <strong>
-                                          <span id="thermalGasValue">50</span>%
-                                      </strong>
-                                  </div>
-
-                                  <input id="thermalGasSlider"
-                                         type="range"
-                                         min="0"
-                                         max="100"
-                                         value="50"
-                                         step="1"
-                                         oninput="setThermalGas(this.value)">
+                              <div id="thermalProgressText"
+                                   class="thermal-progress-text">
+                                  調整天然氣輸入後即可開始
                               </div>
-
                           </div>
-
                       </div>
                   </div>
 

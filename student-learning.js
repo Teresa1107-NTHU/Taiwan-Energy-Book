@@ -789,7 +789,7 @@ function updateNuclearPanel() {
             "壓水式核能發電";
 
         description.textContent =
-            "播放上方導覽影片，再搭配下方步驟整理核能發電的能量轉換過程。";
+            "請使用上方模型中的「Next view」依序觀看各設備，並搭配下方中文步驟整理核能發電流程。";
 
         if (energy) {
             energy.textContent =
@@ -802,7 +802,7 @@ function updateNuclearPanel() {
 
         if (nextBtn) {
             nextBtn.disabled = false;
-            nextBtn.textContent = "開始";
+            nextBtn.textContent = "開始導覽";
         }
 
         return;

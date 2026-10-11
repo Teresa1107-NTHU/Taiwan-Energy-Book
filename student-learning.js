@@ -569,3 +569,270 @@ function updateThermalHint() {
     text.textContent =
         "試著把 Gas Input 分別調低與調高，觀察燈泡亮度與系統運作有什麼變化。你覺得燃料輸入量和發電輸出之間有什麼關係？";
 }
+
+    // =====================================================
+// 核能發電手動文字導覽
+// =====================================================
+
+const nuclearSteps = [
+
+    {
+        title: "核能發電廠與反應爐",
+        description:
+            "核能發電的核心設備是反應爐。反應爐內包含核燃料組件，是核分裂產生熱能的主要場所。",
+        energy:
+            "核能發電的熱源"
+    },
+
+    {
+        title: "高壓一次側冷卻水",
+        description:
+            "壓水式反應爐中的水維持在很高的壓力，使水在高溫下仍能保持液態，並負責帶走反應爐產生的熱。",
+        energy:
+            "熱能傳遞"
+    },
+
+    {
+        title: "核分裂產生熱能",
+        description:
+            "反應爐核心內的核燃料發生核分裂並釋放能量。這些能量轉換成熱，將流經燃料棒周圍的水加熱。",
+        energy:
+            "核能 → 熱能"
+    },
+
+    {
+        title: "一次側把熱送到蒸汽產生器",
+        description:
+            "高溫的一次側冷卻水由反應爐流向蒸汽產生器，將核分裂產生的熱帶到下一個循環。",
+        energy:
+            "熱能傳遞"
+    },
+
+    {
+        title: "產生蒸汽並推動汽輪機",
+        description:
+            "一次側高溫水的熱量穿過蒸汽產生器內的管壁，傳給壓力較低的二次側水，使水變成蒸汽。蒸汽經過除濕後送往汽輪機，推動汽輪機旋轉。",
+        energy:
+            "熱能 → 機械能"
+    },
+
+    {
+        title: "發電機產生電能",
+        description:
+            "汽輪機與發電機連接在同一轉軸上。汽輪機旋轉時會帶動發電機，將旋轉的機械能轉換成交流電。",
+        energy:
+            "機械能 → 電能"
+    },
+
+    {
+        title: "變壓與送入電網",
+        description:
+            "發電機產生的電力會再經過變壓器調整電壓，使電能適合進行後續輸送與配送到電網中。",
+        energy:
+            "電能 → 輸電"
+    }
+
+];
+
+
+let nuclearCurrentStep = -1;
+
+
+// =====================================================
+// 下一步
+// =====================================================
+
+function nuclearNext() {
+
+    if (
+        nuclearCurrentStep >=
+        nuclearSteps.length - 1
+    ) {
+        return;
+    }
+
+    nuclearCurrentStep++;
+
+    updateNuclearPanel();
+}
+
+
+// =====================================================
+// 上一步
+// =====================================================
+
+function nuclearPrevious() {
+
+    if (nuclearCurrentStep <= 0) {
+        return;
+    }
+
+    nuclearCurrentStep--;
+
+    updateNuclearPanel();
+}
+
+
+// =====================================================
+// 重設
+// =====================================================
+
+function nuclearReset() {
+
+    nuclearCurrentStep = -1;
+
+    updateNuclearPanel();
+}
+
+
+// =====================================================
+// 更新核能文字導覽
+// =====================================================
+
+function updateNuclearPanel() {
+
+    const number =
+        document.getElementById(
+            "nuclearStepNumber"
+        );
+
+    const title =
+        document.getElementById(
+            "nuclearStepTitle"
+        );
+
+    const description =
+        document.getElementById(
+            "nuclearStepDescription"
+        );
+
+    const energy =
+        document.getElementById(
+            "nuclearEnergyTag"
+        );
+
+    const prevBtn =
+        document.getElementById(
+            "nuclearPrevBtn"
+        );
+
+    const nextBtn =
+        document.getElementById(
+            "nuclearNextBtn"
+        );
+
+
+    if (
+        !number ||
+        !title ||
+        !description
+    ) {
+        return;
+    }
+
+
+    // =========================
+    // 尚未開始
+    // =========================
+
+    if (nuclearCurrentStep < 0) {
+
+        number.textContent =
+            "準備開始";
+
+        title.textContent =
+            "壓水式核能發電";
+
+        description.textContent =
+            "播放上方導覽影片，再搭配下方步驟整理核能發電的能量轉換過程。";
+
+        if (energy) {
+            energy.textContent =
+                "能量來源：核分裂";
+        }
+
+        if (prevBtn) {
+            prevBtn.disabled = true;
+        }
+
+        if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.textContent = "開始";
+        }
+
+        return;
+    }
+
+
+    // =========================
+    // 導覽中
+    // =========================
+
+    const step =
+        nuclearSteps[
+            nuclearCurrentStep
+        ];
+
+
+    number.textContent =
+        `STEP ${nuclearCurrentStep + 1} / ${nuclearSteps.length}`;
+
+    title.textContent =
+        step.title;
+
+    description.textContent =
+        step.description;
+
+    if (energy) {
+        energy.textContent =
+            step.energy;
+    }
+
+
+    if (prevBtn) {
+        prevBtn.disabled =
+            nuclearCurrentStep === 0;
+    }
+
+
+    const isLastStep =
+        nuclearCurrentStep ===
+        nuclearSteps.length - 1;
+
+
+    if (nextBtn) {
+
+        if (isLastStep) {
+
+            nextBtn.textContent =
+                "導覽完成 ✓";
+
+            nextBtn.disabled = true;
+
+        } else {
+
+            nextBtn.textContent =
+                "下一步";
+
+            nextBtn.disabled = false;
+        }
+    }
+}
+
+
+// 頁面載入時初始化
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        if (
+            document.getElementById(
+                "nuclearStepNumber"
+            )
+        ) {
+            nuclearCurrentStep = -1;
+            updateNuclearPanel();
+        }
+
+    }
+);

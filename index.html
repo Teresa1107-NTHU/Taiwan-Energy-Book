@@ -356,14 +356,89 @@
                       核反應產生的熱，最後是不是也會用到蒸氣與汽輪機？
                   </div>
 
-                  <div class="iframe-wrapper">
-                      <iframe src="https://3d.energyencyclopedia.com/pwr_npp?mode=iframe"
-                              title="核能發電 3D 互動模型"
-                              loading="lazy"
-                              sandbox="allow-scripts allow-same-origin"
-                              allowfullscreen></iframe>
+                  <!-- =========================
+                       核能發電互動導覽
+                  ========================= -->
+
+                  <div class="nuclear-learning-module">
+
+                      <div class="nuclear-model-frame">
+
+                          <!-- 原本 EnergyEncyclopedia 影片 / 3D 模型 -->
+                          <div class="iframe-wrapper nuclear-model-wrapper">
+                              <iframe id="nuclearModel"
+                                      src="https://3d.energyencyclopedia.com/npp-pwr/"
+                                      title="壓水式核能發電 3D 互動模型"
+                                      loading="lazy"
+                                      sandbox="allow-scripts allow-same-origin"
+                                      allowfullscreen>
+                              </iframe>
+                          </div>
+
+
+                          <!-- 手動文字導覽控制列 -->
+                          <div class="nuclear-inline-controls">
+
+                              <div class="nuclear-inline-buttons">
+
+                                  <button id="nuclearPrevBtn"
+                                          class="nuclear-secondary-btn"
+                                          type="button"
+                                          onclick="nuclearPrevious()"
+                                          disabled>
+                                      上一步
+                                  </button>
+
+                                  <button id="nuclearNextBtn"
+                                          class="nuclear-primary-btn"
+                                          type="button"
+                                          onclick="nuclearNext()">
+                                      開始
+                                  </button>
+
+                                  <button class="nuclear-secondary-btn"
+                                          type="button"
+                                          onclick="nuclearReset()">
+                                      重設
+                                  </button>
+
+                              </div>
+
+                              <div class="nuclear-video-hint">
+                                  可搭配上方導覽影片一起觀看
+                              </div>
+
+                          </div>
+
+
+                          <!-- 中文步驟說明 -->
+                          <div class="nuclear-inline-info">
+
+                              <div class="nuclear-step-meta">
+
+                                  <span id="nuclearStepNumber">
+                                      準備開始
+                                  </span>
+
+                                  <span id="nuclearEnergyTag"
+                                        class="nuclear-energy-tag">
+                                      能量來源：核分裂
+                                  </span>
+
+                              </div>
+
+                              <h4 id="nuclearStepTitle">
+                                  壓水式核能發電
+                              </h4>
+
+                              <p id="nuclearStepDescription">
+                                  播放上方導覽影片，再搭配下方步驟整理核能發電的能量轉換過程。
+                              </p>
+                          </div>
+                      </div>
                   </div>
 
+                  <!-- 來源標示保留 -->
                   <div class="model-credit">
                       Credit:
                       <a href="https://energyencyclopedia.com/"

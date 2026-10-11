@@ -1500,3 +1500,309 @@ document.addEventListener(
 
     }
 );
+
+// =====================================================
+// 太陽光電手動文字導覽
+// =====================================================
+
+const solarSteps = [
+
+    {
+        title: "你知道嗎？",
+        description:
+            "大規模太陽光電發電需要相當大的設置面積。模型資料指出，1000 MW 的太陽光電發電廠大約需要 50 平方公里的土地，因此空間也是規劃太陽光電時需要考量的重要條件。",
+        energy:
+            "延伸認識"
+    },
+
+    {
+        title: "太陽能板",
+        description:
+            "許多太陽能電池會組合成完整的太陽能板。太陽能板接收陽光後產生電流，而產生的電流大小會受到接收到的光量影響。",
+        energy:
+            "光能 → 電能"
+    },
+
+    {
+        title: "光伏電池",
+        description:
+            "光伏電池是太陽光電發電的核心元件，主要由半導體材料構成。當半導體吸收光的能量後，能量會傳遞給電子，使電子移動並形成電流。",
+        energy:
+            "光能 → 電能"
+    },
+
+    {
+        title: "逆變器",
+        description:
+            "太陽能板產生的是直流電，但電網使用交流電，因此需要逆變器將直流電轉換成交流電，讓產生的電力能進一步送往電力系統。",
+        energy:
+            "直流電 → 交流電"
+    },
+
+    {
+        title: "支撐結構",
+        description:
+            "支撐結構負責固定太陽能板，並讓面板以適合的方向與角度接收陽光。有些系統使用固定式支架，也有能追蹤太陽位置的可動式設計。",
+        energy:
+            "提升光能利用"
+    },
+
+    {
+        title: "地下電纜",
+        description:
+            "經過逆變器轉換後的交流電，會透過地下電纜送往變電站，將各區太陽能板產生的電力集中並繼續傳輸。",
+        energy:
+            "交流電傳輸"
+    },
+
+    {
+        title: "電力輸出",
+        description:
+            "完成轉換與輸電設備處理後，太陽光電發電廠會把產生的交流電向外輸出，準備送入電網供使用者使用。",
+        energy:
+            "電能 → 電網"
+    },
+
+    {
+        title: "變電站",
+        description:
+            "太陽光電發電廠要連接電網，需要透過變電站提高電壓，使電力更適合輸送。變電站也包含量測、控制與電力開關等設備。",
+        energy:
+            "升壓與輸電"
+    },
+
+    {
+        title: "圍欄",
+        description:
+            "太陽光電場周圍設置圍欄，可以避免未經允許的人員或動物進入，協助保護發電設備與場區安全。",
+        energy:
+            "場域安全"
+    },
+
+    {
+        title: "草地",
+        description:
+            "太陽能板之間可能會有自然生長的草地，但植被需要適當管理，避免草木過高遮住太陽能板，同時也要方便後續維修與管理。",
+        energy:
+            "場域維護"
+    },
+
+    {
+        title: "間隔空間",
+        description:
+            "太陽能板列與列之間需要保留適當空間，除了降低彼此遮蔭，也讓維修、清潔設備與車輛可以在場區內通行。",
+        energy:
+            "避免遮蔭與方便維護"
+    }
+
+];
+
+
+let solarCurrentStep = -1;
+
+
+// =====================================================
+// 下一步
+// =====================================================
+
+function solarNext() {
+
+    if (
+        solarCurrentStep >=
+        solarSteps.length - 1
+    ) {
+        return;
+    }
+
+    solarCurrentStep++;
+
+    updateSolarPanel();
+}
+
+
+// =====================================================
+// 上一步
+// =====================================================
+
+function solarPrevious() {
+
+    if (solarCurrentStep <= 0) {
+        return;
+    }
+
+    solarCurrentStep--;
+
+    updateSolarPanel();
+}
+
+
+// =====================================================
+// 重設
+// =====================================================
+
+function solarReset() {
+
+    solarCurrentStep = -1;
+
+    updateSolarPanel();
+}
+
+
+// =====================================================
+// 更新太陽光電中文導覽
+// =====================================================
+
+function updateSolarPanel() {
+
+    const number =
+        document.getElementById(
+            "solarStepNumber"
+        );
+
+    const title =
+        document.getElementById(
+            "solarStepTitle"
+        );
+
+    const description =
+        document.getElementById(
+            "solarStepDescription"
+        );
+
+    const energy =
+        document.getElementById(
+            "solarEnergyTag"
+        );
+
+    const prevBtn =
+        document.getElementById(
+            "solarPrevBtn"
+        );
+
+    const nextBtn =
+        document.getElementById(
+            "solarNextBtn"
+        );
+
+
+    if (
+        !number ||
+        !title ||
+        !description
+    ) {
+        return;
+    }
+
+
+    // =========================
+    // 尚未開始
+    // =========================
+
+    if (solarCurrentStep < 0) {
+
+        number.textContent =
+            "準備開始";
+
+        title.textContent =
+            "太陽光電發電";
+
+        description.textContent =
+            "請使用上方模型中的「Next view」依序觀看各設備，並搭配下方中文步驟了解陽光如何轉換成電能，再送往電網。";
+
+        if (energy) {
+            energy.textContent =
+                "能量來源：陽光";
+        }
+
+        if (prevBtn) {
+            prevBtn.disabled = true;
+        }
+
+        if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.textContent =
+                "開始導覽";
+        }
+
+        return;
+    }
+
+
+    // =========================
+    // 導覽中
+    // =========================
+
+    const step =
+        solarSteps[
+        solarCurrentStep
+        ];
+
+
+    number.textContent =
+        `STEP ${solarCurrentStep + 1} / ${solarSteps.length}`;
+
+    title.textContent =
+        step.title;
+
+    description.textContent =
+        step.description;
+
+
+    if (energy) {
+        energy.textContent =
+            step.energy;
+    }
+
+
+    if (prevBtn) {
+        prevBtn.disabled =
+            solarCurrentStep === 0;
+    }
+
+
+    const isLastStep =
+        solarCurrentStep ===
+        solarSteps.length - 1;
+
+
+    if (nextBtn) {
+
+        if (isLastStep) {
+
+            nextBtn.textContent =
+                "導覽完成 ✓";
+
+            nextBtn.disabled =
+                true;
+
+        } else {
+
+            nextBtn.textContent =
+                "下一步";
+
+            nextBtn.disabled =
+                false;
+        }
+    }
+}
+
+
+// =====================================================
+// 頁面載入時初始化
+// =====================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        if (
+            document.getElementById(
+                "solarStepNumber"
+            )
+        ) {
+            solarCurrentStep = -1;
+            updateSolarPanel();
+        }
+
+    }
+);

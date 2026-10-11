@@ -773,26 +773,114 @@
               </article>
 
               <article class="energy-card">
+
                   <div class="energy-card-head">
                       <span>05</span>
                       <h3>太陽能發電</h3>
                   </div>
 
-                  <p>看看陽光怎麼直接變成電，想想它和前面幾種方式有什麼不同。</p>
+                  <p>
+                      看看陽光如何被太陽能板轉換成電能，
+                      再經過逆變器與變電設備送往電網。
+                  </p>
 
                   <div class="learning-point">
                       <strong>你可以注意</strong>
-                      太陽能需要汽輪機嗎？它和風力、水力最大的差別在哪裡？
+                      太陽光電需要汽輪機嗎？
+                      光能轉換成電能後，還要經過哪些設備才能送入電網？
                   </div>
 
-                  <div class="iframe-wrapper">
-                      <iframe src="https://3d.energyencyclopedia.com/solar_menu?mode=iframe"
-                              title="太陽能發電 3D 互動模型"
-                              loading="lazy"
-                              sandbox="allow-scripts allow-same-origin"
-                              allowfullscreen></iframe>
+
+                  <!-- =========================
+         太陽光電互動導覽
+    ========================= -->
+
+                  <div class="solar-learning-module">
+
+                      <div class="solar-model-frame">
+
+                          <!-- EnergyEncyclopedia 3D 模型 -->
+                          <div class="iframe-wrapper solar-model-wrapper">
+
+                              <iframe id="solarModel"
+                                      src="https://3d.energyencyclopedia.com/solar/photovoltaic"
+                                      title="太陽光電發電廠 3D 互動模型"
+                                      loading="lazy"
+                                      sandbox="allow-scripts allow-same-origin"
+                                      allowfullscreen>
+                              </iframe>
+
+                          </div>
+
+
+                          <!-- 手動中文導覽控制列 -->
+                          <div class="solar-inline-controls">
+
+                              <div class="solar-inline-buttons">
+
+                                  <button id="solarPrevBtn"
+                                          class="solar-secondary-btn"
+                                          type="button"
+                                          onclick="solarPrevious()"
+                                          disabled>
+                                      上一步
+                                  </button>
+
+                                  <button id="solarNextBtn"
+                                          class="solar-primary-btn"
+                                          type="button"
+                                          onclick="solarNext()">
+                                      開始
+                                  </button>
+
+                                  <button class="solar-secondary-btn"
+                                          type="button"
+                                          onclick="solarReset()">
+                                      重設
+                                  </button>
+
+                              </div>
+
+                              <div class="solar-guide-hint">
+                                  上方按一次「Next view」，下方也按一次「下一步」
+                              </div>
+
+                          </div>
+
+
+                          <!-- 中文步驟說明 -->
+                          <div class="solar-inline-info">
+
+                              <div class="solar-step-meta">
+
+                                  <span id="solarStepNumber">
+                                      準備開始
+                                  </span>
+
+                                  <span id="solarEnergyTag"
+                                        class="solar-energy-tag">
+                                      能量來源：陽光
+                                  </span>
+
+                              </div>
+
+                              <h4 id="solarStepTitle">
+                                  太陽光電發電
+                              </h4>
+
+                              <p id="solarStepDescription">
+                                  請使用上方模型中的「Next view」依序觀看各設備，
+                                  並搭配下方中文步驟了解陽光如何轉換成電能，再送往電網。
+                              </p>
+
+                          </div>
+
+                      </div>
+
                   </div>
 
+
+                  <!-- 來源標示 -->
                   <div class="model-credit">
                       Credit:
                       <a href="https://energyencyclopedia.com/"
@@ -802,32 +890,45 @@
                       </a>
                   </div>
 
+
+                  <!-- 探索後整理 -->
                   <details class="knowledge-card">
+
                       <summary>
                           <span>探索後整理</span>
                           看看太陽光電中的能量怎麼轉換
                       </summary>
 
                       <div class="knowledge-card-content">
+
                           <p>
                               太陽光電與火力、核能、風力或水力不同，
                               光伏元件可以將<strong>光能直接轉換成電能</strong>，
-                              不需要先透過汽輪機、水輪機或風機等旋轉機械設備。
+                              不需要先經過汽輪機、水輪機或風機等旋轉機械設備。
+                              太陽能板產生的直流電，再經過逆變器轉換成交流電，
+                              才能進一步輸送與使用。
                           </p>
 
                           <div class="energy-flow">
                               <span>光能</span>
                               <b>→</b>
-                              <span>電能</span>
+                              <span>直流電</span>
+                              <b>→</b>
+                              <span>交流電</span>
+                              <b>→</b>
+                              <span>電網</span>
                           </div>
 
                           <div class="think-note">
                               <strong>再想一下：</strong>
-                              如果雲量增加，使到達太陽能板的太陽輻射減少，
-                              在其他條件相近時，輸出功率可能會怎麼改變？
+                              如果雲量增加，使到達太陽能板的光量減少，
+                              太陽能板產生的電流與發電輸出可能會怎麼改變？
                           </div>
+
                       </div>
+
                   </details>
+
               </article>
           </div>
       </div>
@@ -1092,6 +1193,6 @@
     </p>
 </footer>
 
-<script src="student-learning.js?v=5"></script>
+<script src="student-learning.js?v=6"></script>
 </body>
 </html>

@@ -1734,3 +1734,173 @@ footer{
         aspect-ratio: 16 / 10;
     }
 }
+
+/* =========================================================
+   太陽光電中文導覽
+========================================================= */
+
+.solar-learning-module {
+    background: #ffffff;
+}
+
+.solar-model-frame {
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: #ffffff;
+}
+
+
+/* =========================
+   模型
+========================= */
+
+.solar-model-wrapper {
+    overflow: hidden;
+    background: #11161d;
+}
+
+    .solar-model-wrapper iframe {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 8.5;
+        border: 0;
+    }
+
+
+/* =========================
+   控制列
+========================= */
+
+.solar-inline-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-top: 1px solid #d9dde2;
+    border-bottom: 1px solid #d9dde2;
+    background: #6f6861;
+}
+
+.solar-inline-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+    .solar-inline-buttons button {
+        min-width: 72px;
+        height: 34px;
+        padding: 5px 12px;
+        border-radius: 18px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        transition: .2s;
+    }
+
+.solar-primary-btn,
+.solar-secondary-btn {
+    border: 1px solid rgba(255,255,255,.7);
+    background: rgba(255,255,255,.9);
+    color: #495057;
+}
+
+    .solar-primary-btn:hover:not(:disabled),
+    .solar-secondary-btn:hover:not(:disabled) {
+        background: #ffffff;
+    }
+
+.solar-inline-buttons button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   右側操作提醒
+========================= */
+
+.solar-guide-hint {
+    color: rgba(255,255,255,.78);
+    font-size: .68rem;
+}
+
+
+/* =========================
+   中文說明
+========================= */
+
+.solar-inline-info {
+    padding: 12px 14px 14px;
+    background: #d5d2cf;
+}
+
+.solar-step-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+#solarStepNumber {
+    color: #6b7280;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .09em;
+}
+
+.solar-energy-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.68);
+    color: #555;
+    font-size: .66rem;
+    font-weight: 700;
+}
+
+.solar-inline-info h4 {
+    margin: 0 0 5px;
+    color: #111827;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.solar-inline-info p {
+    margin: 0;
+    color: #374151;
+    font-size: 1rem;
+    line-height: 1.75;
+    font-weight: 500;
+}
+
+
+/* =========================
+   Tablet
+========================= */
+
+@media(max-width:768px) {
+
+    .solar-inline-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .solar-inline-buttons {
+        width: 100%;
+    }
+
+        .solar-inline-buttons button {
+            flex: 1;
+        }
+
+    .solar-guide-hint {
+        text-align: left;
+    }
+
+    .solar-model-wrapper iframe {
+        aspect-ratio: 16 / 10;
+    }
+}

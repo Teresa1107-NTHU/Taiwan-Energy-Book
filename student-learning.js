@@ -361,32 +361,35 @@ function updateThermalPanel() {
     // =========================
     // 最後一步
     // =========================
-
     const isLastStep =
         thermalCurrentStep ===
         thermalSteps.length - 1;
 
-
     if (nextBtn) {
+
+        const slider =
+            document.getElementById("thermalGasSlider");
+
+        const gasValue =
+            slider ? Number(slider.value) : 0;
 
         if (isLastStep) {
 
             nextBtn.textContent =
                 "導覽完成 ✓";
 
-            nextBtn.disabled =
-                true;
+            nextBtn.disabled = true;
 
         } else {
 
             nextBtn.textContent =
                 "下一步";
 
+            // Gas = 0 時維持鎖定
             nextBtn.disabled =
-                false;
+                gasValue <= 0;
         }
     }
-
 
     if (progress) {
 
@@ -395,7 +398,6 @@ function updateThermalPanel() {
                 ? "你已經完成火力發電流程導覽"
                 : `正在查看第 ${thermalCurrentStep + 1} 個設備`;
     }
-
 
     if (panel) {
 
@@ -465,81 +467,6 @@ function setThermalGas(value) {
     }
     updateThermalHint();
 }
-
-// =====================================================
-// Gas Input 提示狀態
-// =====================================================
-
-function showThermalGasHint(ready) {
-
-    const hint =
-        document.getElementById(
-            "thermalStartHint"
-        );
-
-    if (!hint) {
-        return;
-    }
-
-
-    hint.classList.toggle(
-        "ready",
-        ready
-    );
-
-
-    const strong =
-        hint.querySelector(
-            "strong"
-        );
-
-    const text =
-        hint.querySelector(
-            "p"
-        );
-
-    const icon =
-        hint.querySelector(
-            ".thermal-hint-icon"
-        );
-
-
-    if (ready) {
-
-        if (icon) {
-            icon.textContent =
-                "✓";
-        }
-
-        if (strong) {
-            strong.textContent =
-                "天然氣輸入已設定";
-        }
-
-        if (text) {
-            text.textContent =
-                "現在可以按下「開始導覽」，逐步觀察天然氣如何轉換成最後的電能。";
-        }
-
-    } else {
-
-        if (icon) {
-            icon.textContent =
-                "01";
-        }
-
-        if (strong) {
-            strong.textContent =
-                "先設定天然氣輸入量";
-        }
-
-        if (text) {
-            text.textContent =
-                "拖曳 Gas Input 滑桿到大於 0%，再開始觀察發電流程。";
-        }
-    }
-}
-
 
 // =====================================================
 // 頁面載入時初始化火力控制面板
@@ -638,7 +565,7 @@ function updateThermalHint() {
     // 導覽完成
     hint.classList.add("complete");
     icon.textContent = "✓";
-    title.textContent = "你已完成火力發電導覽";
+    title.textContent = "你已完成火力發電導覽，最後再比較一次";
     text.textContent =
-        "現在可以再拉拉看滑桿，比較天然氣輸入量改變時，模型中的系統運作與燈泡亮度有什麼差異。";
+        "試著把 Gas Input 分別調低與調高，觀察燈泡亮度與系統運作有什麼變化。你覺得燃料輸入量和發電輸出之間有什麼關係？";
 }

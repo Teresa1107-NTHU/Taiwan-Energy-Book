@@ -206,7 +206,7 @@
                           <!-- Unity 模型 -->
                           <div class="thermal-unity-wrapper">
                               <iframe id="thermalUnity"
-                                      src="https://teresa1107-nthu.github.io/Thermal-Power-Plant-Unity/?v=5"
+                                      src="https://teresa1107-nthu.github.io/Thermal-Power-Plant-Unity/"
                                       title="火力發電廠 3D 互動模型"
                                       loading="lazy"
                                       scrolling="no"
@@ -502,12 +502,92 @@
                       哪些部分會轉？風的動能在哪裡轉成機械能？最後哪個設備產生電？
                   </div>
 
-                  <div class="iframe-wrapper">
-                      <iframe src="https://3d.energyencyclopedia.com/wind_menu?mode=iframe"
-                              title="風力發電 3D 互動模型"
-                              loading="lazy"
-                              sandbox="allow-scripts allow-same-origin"
-                              allowfullscreen></iframe>
+                  <!-- =========================
+         風力發電互動導覽
+    ========================= -->
+
+                  <div class="wind-learning-module">
+
+                      <div class="wind-model-frame">
+
+                          <!-- EnergyEncyclopedia 3D 模型 -->
+                          <div class="iframe-wrapper wind-model-wrapper">
+
+                              <iframe id="windModel"
+                                      src="https://3d.energyencyclopedia.com/wind-energy/horizontal-axis-turbine"
+                                      title="水平軸風力發電機 3D 互動模型"
+                                      loading="lazy"
+                                      sandbox="allow-scripts allow-same-origin"
+                                      allowfullscreen>
+                              </iframe>
+
+                          </div>
+
+
+                          <!-- 手動中文導覽控制列 -->
+                          <div class="wind-inline-controls">
+
+                              <div class="wind-inline-buttons">
+
+                                  <button id="windPrevBtn"
+                                          class="wind-secondary-btn"
+                                          type="button"
+                                          onclick="windPrevious()"
+                                          disabled>
+                                      上一步
+                                  </button>
+
+                                  <button id="windNextBtn"
+                                          class="wind-primary-btn"
+                                          type="button"
+                                          onclick="windNext()">
+                                      開始
+                                  </button>
+
+                                  <button class="wind-secondary-btn"
+                                          type="button"
+                                          onclick="windReset()">
+                                      重設
+                                  </button>
+
+                              </div>
+
+                              <div class="wind-guide-hint">
+                                  上方按一次「Next view」，下方也按一次「下一步」
+                              </div>
+
+                          </div>
+
+
+                          <!-- 中文步驟說明 -->
+                          <div class="wind-inline-info">
+
+                              <div class="wind-step-meta">
+
+                                  <span id="windStepNumber">
+                                      準備開始
+                                  </span>
+
+                                  <span id="windEnergyTag"
+                                        class="wind-energy-tag">
+                                      能量來源：風
+                                  </span>
+
+                              </div>
+
+                              <h4 id="windStepTitle">
+                                  水平軸風力發電機
+                              </h4>
+
+                              <p id="windStepDescription">
+                                  請使用上方模型中的「Next view」依序觀看各設備，
+                                  並搭配下方中文步驟了解風力發電的運作方式。
+                              </p>
+
+                          </div>
+
+                      </div>
+
                   </div>
 
                   <div class="model-credit">

@@ -881,3 +881,333 @@ document.addEventListener(
 
     }
 );
+
+// =====================================================
+// 風力發電手動文字導覽
+// =====================================================
+
+const windSteps = [
+
+    {
+        title: "主軸",
+        description:
+            "主軸是風力機傳動系統的一部分，與轉子相連。這支低速主軸會隨著葉片與轉子旋轉，將旋轉的機械能傳往後續設備。",
+        energy:
+            "旋轉機械能傳遞"
+    },
+
+    {
+        title: "主軸軸承",
+        description:
+            "主軸軸承支撐旋轉中的低速主軸，並減少零件運動時產生的摩擦，使轉子傳來的力量能穩定地傳遞。",
+        energy:
+            "支撐與減少摩擦"
+    },
+
+    {
+        title: "轉子",
+        description:
+            "轉子主要由葉片與輪轂組成，並與主軸連接。風吹動葉片後，轉子開始旋轉，將風的動能轉換成旋轉的機械能。",
+        energy:
+            "風的動能 → 機械能"
+    },
+
+    {
+        title: "葉片",
+        description:
+            "風流過葉片時，葉片兩側的氣流與壓力差會產生升力與阻力。當升力作用使轉子旋轉時，風的動能便開始轉換成旋轉的機械能。",
+        energy:
+            "風的動能 → 機械能"
+    },
+
+    {
+        title: "葉片變槳系統",
+        description:
+            "變槳系統可以調整葉片相對於風的角度，以控制轉子的轉速與取得的風能。當風速過高時，也能調整葉片角度來降低負載並保護風力機。",
+        energy:
+            "控制風能擷取"
+    },
+
+    {
+        title: "塔架",
+        description:
+            "塔架支撐風力機的機艙與轉子，讓葉片能位於較高的位置。通常高度越高，越有機會接觸到較穩定且較強的風。",
+        energy:
+            "結構支撐"
+    },
+
+    {
+        title: "偏航驅動系統",
+        description:
+            "偏航驅動系統會旋轉機艙，使風力機能朝向目前的風向，讓葉片維持較適合取得風能的方向。",
+        energy:
+            "風向控制"
+    },
+
+    {
+        title: "齒輪箱",
+        description:
+            "齒輪箱利用不同齒輪將低速主軸的旋轉轉換成較適合發電機使用的轉速，再把旋轉的機械能傳到發電機。",
+        energy:
+            "機械能傳遞"
+    },
+
+    {
+        title: "發電機",
+        description:
+            "葉片與轉子的旋轉經由主軸和齒輪箱傳到發電機。發電機利用磁場與線圈之間的相對運動，把旋轉的機械能轉換成電能。",
+        energy:
+            "機械能 → 電能"
+    },
+
+    {
+        title: "轉子煞車",
+        description:
+            "需要停止風力機時，可利用葉片變槳降低受風作用，再由轉子煞車協助固定轉子。它也能在維修時作為停車煞車使用。",
+        energy:
+            "停止與安全"
+    },
+
+    {
+        title: "風速計",
+        description:
+            "風速計用來測量風速。控制系統會利用這些資料調整葉片角度，使風力機在不同風速下能更有效率且安全地運轉。",
+        energy:
+            "風速偵測"
+    },
+
+    {
+        title: "風向標",
+        description:
+            "風向標用來測量風向，並將資訊提供給偏航驅動系統，使機艙與轉子能轉向適合的方向面對來風。",
+        energy:
+            "風向偵測"
+    },
+
+    {
+        title: "機艙",
+        description:
+            "機艙位於塔架頂端，內部容納風力發電的重要設備，例如主軸、齒輪箱與發電機，是旋轉機械能傳遞與發電的主要設備區。",
+        energy:
+            "發電設備區"
+    },
+
+    {
+        title: "你知道嗎？",
+        description:
+            "大型風力機的葉片可以非常長，有些葉片長度甚至超過 100 公尺。較大的葉片能掃過更大的面積，因此可以從風中取得更多能量。",
+        energy:
+            "延伸認識"
+    }
+
+];
+
+
+let windCurrentStep = -1;
+
+
+// =====================================================
+// 下一步
+// =====================================================
+
+function windNext() {
+
+    if (
+        windCurrentStep >=
+        windSteps.length - 1
+    ) {
+        return;
+    }
+
+    windCurrentStep++;
+
+    updateWindPanel();
+}
+
+
+// =====================================================
+// 上一步
+// =====================================================
+
+function windPrevious() {
+
+    if (windCurrentStep <= 0) {
+        return;
+    }
+
+    windCurrentStep--;
+
+    updateWindPanel();
+}
+
+
+// =====================================================
+// 重設
+// =====================================================
+
+function windReset() {
+
+    windCurrentStep = -1;
+
+    updateWindPanel();
+}
+
+
+// =====================================================
+// 更新風力中文導覽
+// =====================================================
+
+function updateWindPanel() {
+
+    const number =
+        document.getElementById(
+            "windStepNumber"
+        );
+
+    const title =
+        document.getElementById(
+            "windStepTitle"
+        );
+
+    const description =
+        document.getElementById(
+            "windStepDescription"
+        );
+
+    const energy =
+        document.getElementById(
+            "windEnergyTag"
+        );
+
+    const prevBtn =
+        document.getElementById(
+            "windPrevBtn"
+        );
+
+    const nextBtn =
+        document.getElementById(
+            "windNextBtn"
+        );
+
+
+    if (
+        !number ||
+        !title ||
+        !description
+    ) {
+        return;
+    }
+
+
+    // =========================
+    // 尚未開始
+    // =========================
+
+    if (windCurrentStep < 0) {
+
+        number.textContent =
+            "準備開始";
+
+        title.textContent =
+            "水平軸風力發電機";
+
+        description.textContent =
+            "請使用上方模型中的「Next view」依序觀看各設備，並搭配下方中文步驟了解風力發電的運作方式。";
+
+        if (energy) {
+            energy.textContent =
+                "能量來源：風";
+        }
+
+        if (prevBtn) {
+            prevBtn.disabled = true;
+        }
+
+        if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.textContent =
+                "開始導覽";
+        }
+
+        return;
+    }
+
+
+    // =========================
+    // 導覽中
+    // =========================
+
+    const step =
+        windSteps[
+        windCurrentStep
+        ];
+
+
+    number.textContent =
+        `STEP ${windCurrentStep + 1} / ${windSteps.length}`;
+
+    title.textContent =
+        step.title;
+
+    description.textContent =
+        step.description;
+
+
+    if (energy) {
+        energy.textContent =
+            step.energy;
+    }
+
+
+    if (prevBtn) {
+        prevBtn.disabled =
+            windCurrentStep === 0;
+    }
+
+
+    const isLastStep =
+        windCurrentStep ===
+        windSteps.length - 1;
+
+
+    if (nextBtn) {
+
+        if (isLastStep) {
+
+            nextBtn.textContent =
+                "導覽完成 ✓";
+
+            nextBtn.disabled =
+                true;
+
+        } else {
+
+            nextBtn.textContent =
+                "下一步";
+
+            nextBtn.disabled =
+                false;
+        }
+    }
+}
+
+
+// =====================================================
+// 頁面載入時初始化
+// =====================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        if (
+            document.getElementById(
+                "windStepNumber"
+            )
+        ) {
+            windCurrentStep = -1;
+            updateWindPanel();
+        }
+
+    }
+);

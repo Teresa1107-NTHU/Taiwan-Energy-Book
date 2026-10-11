@@ -223,8 +223,8 @@ function thermalReset() {
     }
 
     setThermalGas(0);
-
     updateThermalPanel();
+    updateThermalHint();
 }
 
 
@@ -426,6 +426,8 @@ function updateThermalPanel() {
             isLastStep
         );
     }
+
+    updateThermalHint();
 }
 
 
@@ -434,92 +436,37 @@ function updateThermalPanel() {
 // =====================================================
 
 function setThermalGas(value) {
-
-    const numericValue =
-        Number(value);
-
-
-    // =========================
-    // 更新百分比文字
-    // =========================
-
-    const valueText =
-        document.getElementById(
-            "thermalGasValue"
-        );
+    const valueText = document.getElementById("thermalGasValue");
+    const nextBtn = document.getElementById("thermalNextBtn");
+    const progressText = document.getElementById("thermalProgressText");
 
     if (valueText) {
-        valueText.textContent =
-            Math.round(numericValue);
+        valueText.textContent = value;
     }
 
+    const iframe = document.getElementById("thermalUnity");
 
-    // =========================
-    // 傳給 Unity
-    // =========================
-
-    const iframe =
-        document.getElementById(
-            "thermalUnity"
-        );
-
-    if (
-        iframe &&
-        iframe.contentWindow
-    ) {
-
-        iframe.contentWindow.postMessage(
-            {
-                type: "THERMAL_GAS",
-                value:
-                    String(numericValue)
-            },
-            "*"
-        );
+    if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({
+            type: "THERMAL_GAS",
+            value: String(value)
+        }, "*");
     }
 
-
-    // =========================
-    // 更新開始提示
-    // =========================
-
-    showThermalGasHint(
-        numericValue > 0
-    );
-
-
-    /*
-     * 如果還沒開始，
-     * Gas Input > 0 後解鎖開始按鈕。
-     */
-    if (thermalCurrentStep < 0) {
-
-        const nextBtn =
-            document.getElementById(
-                "thermalNextBtn"
-            );
-
-        const progress =
-            document.getElementById(
-                "thermalProgressText"
-            );
-
-        if (nextBtn) {
-
-            nextBtn.disabled =
-                numericValue <= 0;
-        }
-
-        if (progress) {
-
-            progress.textContent =
-                numericValue > 0
-                    ? "已設定天然氣輸入，可以開始導覽"
-                    : "調整天然氣輸入後即可開始";
-        }
+    // 還沒開始時，Gas > 0 才能開始
+    if (thermalCurrentStep < 0 && nextBtn) {
+        nextBtn.disabled = Number(value) <= 0;
     }
+
+    if (thermalCurrentStep < 0 && progressText) {
+        progressText.textContent =
+            Number(value) > 0
+                ? "天然氣已進入系統，可以開始導覽"
+                : "請先調整天然氣輸入量";
+    }
+
+    updateThermalHint();
 }
-
 
 // =====================================================
 // Gas Input 提示狀態
@@ -631,3 +578,51 @@ document.addEventListener("DOMContentLoaded", () => {
 console.log(
     "THERMAL LEARNING MODULE LOADED"
 );
+
+function updateThermalHint() {
+    const hint = document.getElementById("thermalStartHint");
+    const icon = document.getElementById("thermalHintIcon");
+    const title = document.getElementById("thermalHintTitle");
+    const text = document.getElementById("thermalHintText");
+    const slider = document.getElementById("thermalGasSlider");
+
+    if (!hint || !icon || !title || !text || !slider) return;
+
+    const gasValue = parseInt(slider.value, 10) || 0;
+
+    hint.classList.remove("ready", "started", "complete");
+
+    // 尚未開始
+    if (thermalCurrentStep < 0) {
+        if (gasValue <= 0) {
+            icon.textContent = "01";
+            title.textContent = "先設定天然氣輸入量";
+            text.textContent =
+                "拖曳 Gas Input 滑桿到大於 0%。觀察輸入量改變後，再開始逐步查看發電系統。";
+        } else {
+            hint.classList.add("ready");
+            icon.textContent = "✓";
+            title.textContent = "天然氣輸入已設定";
+            text.textContent =
+                "現在可以按下「開始導覽」，逐步觀察天然氣如何轉換成最後的電能。";
+        }
+        return;
+    }
+
+    // 導覽進行中
+    if (thermalCurrentStep >= 0 && thermalCurrentStep < thermalSteps.length - 1) {
+        hint.classList.add("started");
+        icon.textContent = "↔";
+        title.textContent = "試著拉動滑桿比較看看";
+        text.textContent =
+            "你已經開始導覽了。可以一邊逐步觀察設備，一邊拖拉 Gas Input 滑桿，看看天然氣輸入量不同時，系統運作與輸出效果有什麼差別。";
+        return;
+    }
+
+    // 導覽完成
+    hint.classList.add("complete");
+    icon.textContent = "✓";
+    title.textContent = "你已完成火力發電導覽";
+    text.textContent =
+        "現在可以再拉拉看滑桿，比較天然氣輸入量改變時，模型中的系統運作與燈泡亮度有什麼差異。";
+}

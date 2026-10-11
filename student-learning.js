@@ -600,32 +600,32 @@ function showThermalGasHint(ready) {
 // 頁面載入時初始化火力控制面板
 // =====================================================
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-        const slider =
-            document.getElementById(
-                "thermalGasSlider"
-            );
+    const slider =
+        document.getElementById("thermalGasSlider");
 
-        if (!slider) {
-            return;
-        }
-
-
-        /*
-         * 一開始固定從 0% 開始。
-         */
-        slider.value = 0;
-
-        thermalCurrentStep = -1;
-
-        updateThermalPanel();
-
-        showThermalGasHint(false);
+    if (!slider) {
+        return;
     }
-);
+
+    // 初始狀態
+    slider.value = 0;
+    thermalCurrentStep = -1;
+
+    // 正式綁定 Gas Input 滑桿
+    slider.addEventListener("input", () => {
+        setThermalGas(slider.value);
+    });
+
+    slider.addEventListener("change", () => {
+        setThermalGas(slider.value);
+    });
+
+    // 初始化介面
+    setThermalGas(0);
+    updateThermalPanel();
+});
 
 
 console.log(

@@ -127,36 +127,23 @@ function sendThermalCommand(command) {
 // =====================================================
 // 下一步
 // =====================================================
-
 function thermalNext() {
 
     const slider =
-        document.getElementById(
-            "thermalGasSlider"
-        );
+        document.getElementById("thermalGasSlider");
 
     const gasValue =
-        slider
-            ? Number(slider.value)
-            : 0;
+        slider ? Number(slider.value) : 0;
 
 
-    /*
-     * 第一次開始前，
-     * 必須先有天然氣輸入。
-     */
-    if (
-        thermalCurrentStep === -1 &&
-        gasValue <= 0
-    ) {
-        showThermalGasHint(false);
+    // Gas Input = 0 時，不允許繼續導覽
+    if (gasValue <= 0) {
+        updateThermalHint();
         return;
     }
 
 
-    /*
-     * 已經在最後一步就不再往後。
-     */
+    // 已經到最後一步
     if (
         thermalCurrentStep >=
         thermalSteps.length - 1
@@ -167,19 +154,10 @@ function thermalNext() {
 
     thermalCurrentStep++;
 
-
-    /*
-     * 告訴 Unity 前進一步。
-     */
     sendThermalCommand("NEXT");
 
-
-    /*
-     * 更新網頁內容。
-     */
     updateThermalPanel();
 }
-
 
 // =====================================================
 // 上一步
@@ -434,37 +412,57 @@ function updateThermalPanel() {
 // =====================================================
 // Gas Input Slider
 // =====================================================
-
 function setThermalGas(value) {
-    const valueText = document.getElementById("thermalGasValue");
-    const nextBtn = document.getElementById("thermalNextBtn");
-    const progressText = document.getElementById("thermalProgressText");
+
+    const numericValue =
+        Number(value);
+
+    const valueText =
+        document.getElementById("thermalGasValue");
 
     if (valueText) {
-        valueText.textContent = value;
+        valueText.textContent =
+            Math.round(numericValue);
     }
 
-    const iframe = document.getElementById("thermalUnity");
 
-    if (iframe && iframe.contentWindow) {
-        iframe.contentWindow.postMessage({
-            type: "THERMAL_GAS",
-            value: String(value)
-        }, "*");
+    // 傳給 Unity
+    const iframe =
+        document.getElementById("thermalUnity");
+
+    if (
+        iframe &&
+        iframe.contentWindow
+    ) {
+        iframe.contentWindow.postMessage(
+            {
+                type: "THERMAL_GAS",
+                value: String(numericValue)
+            },
+            "*"
+        );
     }
 
-    // 還沒開始時，Gas > 0 才能開始
-    if (thermalCurrentStep < 0 && nextBtn) {
-        nextBtn.disabled = Number(value) <= 0;
-    }
 
-    if (thermalCurrentStep < 0 && progressText) {
-        progressText.textContent =
-            Number(value) > 0
-                ? "天然氣已進入系統，可以開始導覽"
-                : "請先調整天然氣輸入量";
-    }
+    // =========================
+    // 控制下一步按鈕
+    // =========================
 
+    const nextBtn =
+        document.getElementById("thermalNextBtn");
+
+    const isLastStep =
+        thermalCurrentStep === thermalSteps.length - 1;
+
+    if (nextBtn) {
+
+        if (isLastStep) {
+            nextBtn.disabled = true;
+        } else {
+            nextBtn.disabled =
+                numericValue <= 0;
+        }
+    }
     updateThermalHint();
 }
 
@@ -606,6 +604,24 @@ function updateThermalHint() {
             text.textContent =
                 "現在可以按下「開始導覽」，逐步觀察天然氣如何轉換成最後的電能。";
         }
+        return;
+    }
+
+    // 導覽已開始，但 Gas Input 被拉回 0
+    if (
+        thermalCurrentStep >= 0 &&
+        gasValue <= 0
+    ) {
+        hint.classList.add("started");
+
+        icon.textContent = "!";
+
+        title.textContent =
+            "天然氣輸入已停止";
+
+        text.textContent =
+            "Gas Input 現在是 0%。請重新調高天然氣輸入量，系統恢復運作後才能繼續下一步。";
+
         return;
     }
 

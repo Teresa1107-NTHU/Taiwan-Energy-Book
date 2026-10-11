@@ -1211,3 +1211,292 @@ document.addEventListener(
 
     }
 );
+
+// =====================================================
+// 水力發電手動文字導覽
+// =====================================================
+
+const hydroSteps = [
+
+    {
+        title: "卡布蘭水輪機",
+        description:
+            "卡布蘭水輪機可以調整導葉與轉輪葉片的角度，適合用於水頭較低、流量較大的水力發電環境。水流推動葉片旋轉，將水流的能量轉換成旋轉的機械能。",
+        energy:
+            "水流動能 → 機械能"
+    },
+
+    {
+        title: "發電機",
+        description:
+            "水輪機旋轉時會帶動發電機轉子。發電機利用電磁感應，將水輪機提供的旋轉機械能轉換成電能。",
+        energy:
+            "機械能 → 電能"
+    },
+
+    {
+        title: "壩體",
+        description:
+            "壩體橫跨河流並攔蓄水量，使上游形成水庫，同時建立水位高度差。這個高度差讓水具有可用來發電的重力位能。",
+        energy:
+            "建立水位差"
+    },
+
+    {
+        title: "進水口設施",
+        description:
+            "進水口設施將水庫中的水導入壓力水管，通常包含攔污柵與閘門，可以控制水流並在需要時停止水流進入水輪機。",
+        energy:
+            "控制水流"
+    },
+
+    {
+        title: "蓄水庫",
+        description:
+            "蓄水庫儲存大量位於較高位置的水。高處的水具有重力位能，水庫的水位與放水流量也會影響可供發電使用的能量。",
+        energy:
+            "重力位能"
+    },
+
+    {
+        title: "變壓器",
+        description:
+            "發電機產生電力後，變壓器會提高電壓，使電力更適合輸送到電網，並降低長距離輸電時的能量損失。",
+        energy:
+            "電能傳輸"
+    },
+
+    {
+        title: "壓力水管",
+        description:
+            "壓力水管將水庫中的水送往水輪機。水從較高處往較低處流動時，重力位能逐漸轉換成水流的動能。",
+        energy:
+            "重力位能 → 動能"
+    },
+
+    {
+        title: "尾水管",
+        description:
+            "尾水管位於水輪機出口下方，負責將通過水輪機後的水導向下游，同時協助提高水輪機的能量利用效率。",
+        energy:
+            "水流排出"
+    },
+
+    {
+        title: "下游水庫",
+        description:
+            "水通過水輪機後會流入下游水庫。在抽蓄式水力發電系統中，也可以在需要時利用幫浦將下游的水送回上游水庫，再次儲存能量。",
+        energy:
+            "水循環與儲能"
+    }
+
+];
+
+
+let hydroCurrentStep = -1;
+
+
+// =====================================================
+// 下一步
+// =====================================================
+
+function hydroNext() {
+
+    if (
+        hydroCurrentStep >=
+        hydroSteps.length - 1
+    ) {
+        return;
+    }
+
+    hydroCurrentStep++;
+
+    updateHydroPanel();
+}
+
+
+// =====================================================
+// 上一步
+// =====================================================
+
+function hydroPrevious() {
+
+    if (hydroCurrentStep <= 0) {
+        return;
+    }
+
+    hydroCurrentStep--;
+
+    updateHydroPanel();
+}
+
+
+// =====================================================
+// 重設
+// =====================================================
+
+function hydroReset() {
+
+    hydroCurrentStep = -1;
+
+    updateHydroPanel();
+}
+
+
+// =====================================================
+// 更新水力中文導覽
+// =====================================================
+
+function updateHydroPanel() {
+
+    const number =
+        document.getElementById(
+            "hydroStepNumber"
+        );
+
+    const title =
+        document.getElementById(
+            "hydroStepTitle"
+        );
+
+    const description =
+        document.getElementById(
+            "hydroStepDescription"
+        );
+
+    const energy =
+        document.getElementById(
+            "hydroEnergyTag"
+        );
+
+    const prevBtn =
+        document.getElementById(
+            "hydroPrevBtn"
+        );
+
+    const nextBtn =
+        document.getElementById(
+            "hydroNextBtn"
+        );
+
+
+    if (
+        !number ||
+        !title ||
+        !description
+    ) {
+        return;
+    }
+
+
+    // =========================
+    // 尚未開始
+    // =========================
+
+    if (hydroCurrentStep < 0) {
+
+        number.textContent =
+            "準備開始";
+
+        title.textContent =
+            "水力發電";
+
+        description.textContent =
+            "請使用上方模型中的「Next view」依序觀看各設備，並搭配下方中文步驟了解水如何帶動水輪機並產生電能。";
+
+        if (energy) {
+            energy.textContent =
+                "能量來源：高處的水";
+        }
+
+        if (prevBtn) {
+            prevBtn.disabled = true;
+        }
+
+        if (nextBtn) {
+            nextBtn.disabled = false;
+            nextBtn.textContent =
+                "開始導覽";
+        }
+
+        return;
+    }
+
+
+    // =========================
+    // 導覽中
+    // =========================
+
+    const step =
+        hydroSteps[
+        hydroCurrentStep
+        ];
+
+
+    number.textContent =
+        `STEP ${hydroCurrentStep + 1} / ${hydroSteps.length}`;
+    title.textContent =
+        step.title;
+
+    description.textContent =
+        step.description;
+
+
+    if (energy) {
+        energy.textContent =
+            step.energy;
+    }
+
+
+    if (prevBtn) {
+        prevBtn.disabled =
+            hydroCurrentStep === 0;
+    }
+
+
+    const isLastStep =
+        hydroCurrentStep ===
+        hydroSteps.length - 1;
+
+
+    if (nextBtn) {
+
+        if (isLastStep) {
+
+            nextBtn.textContent =
+                "導覽完成 ✓";
+
+            nextBtn.disabled =
+                true;
+
+        } else {
+
+            nextBtn.textContent =
+                "下一步";
+
+            nextBtn.disabled =
+                false;
+        }
+    }
+}
+
+
+// =====================================================
+// 頁面載入時初始化
+// =====================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        if (
+            document.getElementById(
+                "hydroStepNumber"
+            )
+        ) {
+            hydroCurrentStep = -1;
+            updateHydroPanel();
+        }
+
+    }
+);

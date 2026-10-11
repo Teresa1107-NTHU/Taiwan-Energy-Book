@@ -642,12 +642,92 @@
                       水流、水輪機與發電機之間是怎麼連起來的？
                   </div>
 
-                  <div class="iframe-wrapper">
-                      <iframe src="https://3d.energyencyclopedia.com/hydro_powerplant?mode=iframe"
-                              title="水力發電 3D 互動模型"
-                              loading="lazy"
-                              sandbox="allow-scripts allow-same-origin"
-                              allowfullscreen></iframe>
+                  <!-- =========================
+         水力發電互動導覽
+    ========================= -->
+
+                  <div class="hydro-learning-module">
+
+                      <div class="hydro-model-frame">
+
+                          <!-- EnergyEncyclopedia 3D 模型 -->
+                          <div class="iframe-wrapper hydro-model-wrapper">
+
+                              <iframe id="hydroModel"
+                                      src="https://3d.energyencyclopedia.com/hydro_power_house"
+                                      title="水力發電廠 3D 互動模型"
+                                      loading="lazy"
+                                      sandbox="allow-scripts allow-same-origin"
+                                      allowfullscreen>
+                              </iframe>
+
+                          </div>
+
+
+                          <!-- 手動中文導覽控制列 -->
+                          <div class="hydro-inline-controls">
+
+                              <div class="hydro-inline-buttons">
+
+                                  <button id="hydroPrevBtn"
+                                          class="hydro-secondary-btn"
+                                          type="button"
+                                          onclick="hydroPrevious()"
+                                          disabled>
+                                      上一步
+                                  </button>
+
+                                  <button id="hydroNextBtn"
+                                          class="hydro-primary-btn"
+                                          type="button"
+                                          onclick="hydroNext()">
+                                      開始
+                                  </button>
+
+                                  <button class="hydro-secondary-btn"
+                                          type="button"
+                                          onclick="hydroReset()">
+                                      重設
+                                  </button>
+
+                              </div>
+
+                              <div class="hydro-guide-hint">
+                                  上方按一次「Next view」，下方也按一次「下一步」
+                              </div>
+
+                          </div>
+
+
+                          <!-- 中文步驟說明 -->
+                          <div class="hydro-inline-info">
+
+                              <div class="hydro-step-meta">
+
+                                  <span id="hydroStepNumber">
+                                      準備開始
+                                  </span>
+
+                                  <span id="hydroEnergyTag"
+                                        class="hydro-energy-tag">
+                                      能量來源：高處的水
+                                  </span>
+
+                              </div>
+
+                              <h4 id="hydroStepTitle">
+                                  水力發電
+                              </h4>
+
+                              <p id="hydroStepDescription">
+                                  請使用上方模型中的「Next view」依序觀看各設備，
+                                  並搭配下方中文步驟了解水如何帶動水輪機並產生電能。
+                              </p>
+
+                          </div>
+
+                      </div>
+
                   </div>
 
                   <div class="model-credit">

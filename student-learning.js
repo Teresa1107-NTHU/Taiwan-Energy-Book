@@ -2155,3 +2155,94 @@ document.addEventListener(
 
     }
 );
+
+// =====================================================
+// 學習階段完成按鈕
+// =====================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const completeButtons =
+        document.querySelectorAll(
+            ".complete-phase-btn[data-complete-section]"
+        );
+
+    completeButtons.forEach((button) => {
+
+        const section =
+            button.dataset.completeSection;
+
+        // 讀取先前完成狀態
+        const saved =
+            localStorage.getItem(
+                `energy_progress_${section}`
+            );
+
+        if (saved === "done") {
+            setSectionCompleted(
+                section,
+                button
+            );
+        }
+
+        // 點擊完成
+        button.addEventListener(
+            "click",
+            () => {
+
+                localStorage.setItem(
+                    `energy_progress_${section}`,
+                    "done"
+                );
+
+                setSectionCompleted(
+                    section,
+                    button
+                );
+            }
+        );
+
+    });
+
+});
+
+
+// =====================================================
+// 更新完成狀態
+// =====================================================
+
+function setSectionCompleted(
+    section,
+    button
+) {
+
+    if (button) {
+
+        button.classList.add("done");
+
+        button.textContent =
+            "已完成 ✓";
+    }
+
+
+    // 更新首頁右上角進度
+    const progressItem =
+        document.querySelector(
+            `[data-progress-item="${section}"]`
+        );
+
+    if (progressItem) {
+
+        progressItem.classList.add("done");
+
+        const status =
+            progressItem.querySelector(
+                ".phase-status"
+            );
+
+        if (status) {
+            status.textContent =
+                "已完成";
+        }
+    }
+}

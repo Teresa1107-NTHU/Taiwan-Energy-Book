@@ -2156,7 +2156,7 @@ document.addEventListener(
     }
 );
 
-/// =====================================================
+// =====================================================
 // 學習階段完成按鈕（可取消完成）
 // =====================================================
 
@@ -2175,64 +2175,49 @@ document.addEventListener("DOMContentLoaded", () => {
         const key =
             `energy_progress_${section}`;
 
-        // 讀取先前狀態
+        // 讀取原本的完成狀態
         const saved =
             localStorage.getItem(key);
 
-        if (saved === "done") {
-            setSectionCompleted(
-                section,
-                button,
-                true
-            );
-        } else {
-            setSectionCompleted(
-                section,
-                button,
-                false
-            );
-        }
+        setSectionCompleted(
+            section,
+            button,
+            saved === "done"
+        );
 
 
         // 點擊時切換完成 / 未完成
-        button.addEventListener(
-            "click",
-            () => {
+        button.addEventListener("click", () => {
 
-                const currentlyDone =
-                    button.classList.contains(
-                        "done"
-                    );
+            const currentlyDone =
+                button.classList.contains("done");
 
-                if (currentlyDone) {
+            if (currentlyDone) {
 
-                    // 取消完成
-                    localStorage.removeItem(key);
+                localStorage.removeItem(key);
 
-                    setSectionCompleted(
-                        section,
-                        button,
-                        false
-                    );
+                setSectionCompleted(
+                    section,
+                    button,
+                    false
+                );
 
-                } else {
+            } else {
 
-                    // 設為完成
-                    localStorage.setItem(
-                        key,
-                        "done"
-                    );
+                localStorage.setItem(
+                    key,
+                    "done"
+                );
 
-                    setSectionCompleted(
-                        section,
-                        button,
-                        true
-                    );
-
-                }
+                setSectionCompleted(
+                    section,
+                    button,
+                    true
+                );
 
             }
-        );
+
+        });
 
     });
 
@@ -2263,7 +2248,6 @@ function setSectionCompleted(
     }
 
 
-    // 更新右上角進度
     const progressItem =
         document.querySelector(
             `[data-progress-item="${section}"]`
@@ -2293,42 +2277,147 @@ function setSectionCompleted(
 
 
 // =====================================================
-// 更新完成狀態
+// 學習答案自動儲存
 // =====================================================
 
-function setSectionCompleted(
-    section,
-    button
-) {
+document.addEventListener("DOMContentLoaded", () => {
 
-    if (button) {
+    // =================================================
+    // textarea / 一般文字輸入
+    // =================================================
 
-        button.classList.add("done");
-
-        button.textContent =
-            "已完成 ✓";
-    }
-
-
-    // 更新首頁右上角進度
-    const progressItem =
-        document.querySelector(
-            `[data-progress-item="${section}"]`
+    const saveFields =
+        document.querySelectorAll(
+            "textarea[data-save], input[data-save]"
         );
 
-    if (progressItem) {
+    saveFields.forEach((field) => {
 
-        progressItem.classList.add("done");
+        const saveName =
+            field.dataset.save;
 
-        const status =
-            progressItem.querySelector(
-                ".phase-status"
+        if (!saveName) return;
+
+        const key =
+            `energy_answer_${saveName}`;
+
+
+        // -----------------------------
+        // 載入以前的答案
+        // -----------------------------
+
+        const savedValue =
+            localStorage.getItem(key);
+
+        if (savedValue !== null) {
+            field.value = savedValue;
+        }
+
+
+        // -----------------------------
+        // 打字時立即儲存
+        // -----------------------------
+
+        field.addEventListener(
+            "input",
+            () => {
+
+                localStorage.setItem(
+                    key,
+                    field.value
+                );
+
+            }
+        );
+
+
+        // -----------------------------
+        // 失去焦點時再保險存一次
+        // -----------------------------
+
+        field.addEventListener(
+            "change",
+            () => {
+
+                localStorage.setItem(
+                    key,
+                    field.value
+                );
+
+            }
+        );
+
+    });
+
+
+    // =================================================
+    // Radio 單選題
+    // =================================================
+
+    const radioGroups =
+        document.querySelectorAll(
+            "[data-radio-group]"
+        );
+
+    radioGroups.forEach((group) => {
+
+        const groupName =
+            group.dataset.radioGroup;
+
+        if (!groupName) return;
+
+        const key =
+            `energy_answer_${groupName}`;
+
+        const radios =
+            group.querySelectorAll(
+                'input[type="radio"]'
             );
 
-        if (status) {
-            status.textContent =
-                "已完成";
-        }
-    }
-}
 
+        // -----------------------------
+        // 載入以前的答案
+        // -----------------------------
+
+        const savedValue =
+            localStorage.getItem(key);
+
+        if (savedValue !== null) {
+
+            radios.forEach((radio) => {
+
+                radio.checked =
+                    radio.value === savedValue;
+
+            });
+
+        }
+
+
+        // -----------------------------
+        // 選擇答案時儲存
+        // -----------------------------
+
+        radios.forEach((radio) => {
+
+            radio.addEventListener(
+                "change",
+                () => {
+
+                    if (radio.checked) {
+
+                        localStorage.setItem(
+                            key,
+                            radio.value
+                        );
+
+                    }
+
+                }
+            );
+
+        });
+
+    });
+
+});

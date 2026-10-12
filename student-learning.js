@@ -2156,8 +2156,8 @@ document.addEventListener(
     }
 );
 
-// =====================================================
-// 學習階段完成按鈕
+/// =====================================================
+// 學習階段完成按鈕（可取消完成）
 // =====================================================
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -2172,39 +2172,124 @@ document.addEventListener("DOMContentLoaded", () => {
         const section =
             button.dataset.completeSection;
 
-        // 讀取先前完成狀態
+        const key =
+            `energy_progress_${section}`;
+
+        // 讀取先前狀態
         const saved =
-            localStorage.getItem(
-                `energy_progress_${section}`
-            );
+            localStorage.getItem(key);
 
         if (saved === "done") {
             setSectionCompleted(
                 section,
-                button
+                button,
+                true
+            );
+        } else {
+            setSectionCompleted(
+                section,
+                button,
+                false
             );
         }
 
-        // 點擊完成
+
+        // 點擊時切換完成 / 未完成
         button.addEventListener(
             "click",
             () => {
 
-                localStorage.setItem(
-                    `energy_progress_${section}`,
-                    "done"
-                );
+                const currentlyDone =
+                    button.classList.contains(
+                        "done"
+                    );
 
-                setSectionCompleted(
-                    section,
-                    button
-                );
+                if (currentlyDone) {
+
+                    // 取消完成
+                    localStorage.removeItem(key);
+
+                    setSectionCompleted(
+                        section,
+                        button,
+                        false
+                    );
+
+                } else {
+
+                    // 設為完成
+                    localStorage.setItem(
+                        key,
+                        "done"
+                    );
+
+                    setSectionCompleted(
+                        section,
+                        button,
+                        true
+                    );
+
+                }
+
             }
         );
 
     });
 
 });
+
+
+// =====================================================
+// 更新完成狀態
+// =====================================================
+
+function setSectionCompleted(
+    section,
+    button,
+    isDone
+) {
+
+    if (button) {
+
+        button.classList.toggle(
+            "done",
+            isDone
+        );
+
+        button.textContent =
+            isDone
+                ? "已完成 ✓"
+                : "完成這一段";
+    }
+
+
+    // 更新右上角進度
+    const progressItem =
+        document.querySelector(
+            `[data-progress-item="${section}"]`
+        );
+
+    if (progressItem) {
+
+        progressItem.classList.toggle(
+            "done",
+            isDone
+        );
+
+        const status =
+            progressItem.querySelector(
+                ".phase-status"
+            );
+
+        if (status) {
+
+            status.textContent =
+                isDone
+                    ? "已完成"
+                    : "未完成";
+        }
+    }
+}
 
 
 // =====================================================
@@ -2246,3 +2331,4 @@ function setSectionCompleted(
         }
     }
 }
+

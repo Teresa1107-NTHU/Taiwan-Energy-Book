@@ -2607,37 +2607,35 @@ footer{
     gap: 8px;
 }
 
+.wind-button-grid button {
+    width: 100%;
+    min-width: 0;
+    height: 36px;
+    padding: 5px 10px;
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 18px;
+    background: rgba(255,255,255,.9);
+    color: #495057;
+    font-size: .78rem;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: .2s;
+}
 
-    .wind-button-grid button {
-        width: 100%;
-        min-width: 0;
-        height: 36px;
-        padding: 5px 12px;
-        border: 1px solid rgba(255,255,255,.7);
-        border-radius: 18px;
-        background: rgba(255,255,255,.9);
-        color: #495057;
-        font-size: .78rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: .2s;
-    }
+.wind-button-grid button:hover:not(:disabled) {
+    background: #ffffff;
+}
 
 
-        .wind-button-grid button:hover:not(:disabled) {
-            background: #ffffff;
-        }
-
-
-        .wind-button-grid button:disabled {
-            opacity: .45;
-            cursor: not-allowed;
-        }
+.wind-button-grid button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
 
 /* =========================================================
    模型頁桌機版：右側說明固定寬度
 ========================================================= */
-
 .module-workspace {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 300px;
@@ -2653,17 +2651,16 @@ footer{
 /* =========================================================
    平板橫向 / 小型筆電
 ========================================================= */
-
 @media(max-width:1280px) {
 
     .module-workspace {
-        grid-template-columns: minmax(0, 1fr) 270px;
+        grid-template-columns: minmax(0, 1fr) 280px;
         gap: 8px;
     }
 
     .wind-control-column {
-        width: 270px;
-        min-width: 270px;
+        width: 280px;
+        min-width: 280px;
     }
 }
 

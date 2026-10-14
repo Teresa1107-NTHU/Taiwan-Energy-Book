@@ -2662,7 +2662,7 @@ footer{
 
     /* 優先保住左側模型寬度 */
     .module-workspace {
-        grid-template-columns: minmax(760px, 1fr) minmax(180px, 1fr);
+        grid-template-columns: minmax(800px, 1fr) minmax(180px, 1fr);
         gap: 6px;
     }
 

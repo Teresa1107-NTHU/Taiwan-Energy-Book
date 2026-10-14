@@ -2794,7 +2794,7 @@ footer{
    平板橫向 / 小筆電
 ========================= */
 
-@media (max-width:1400px) and (min-width:901px) {
+@media (max-width:1600px) and (min-width:901px) {
 
     .module-page .container {
         width: 98%;

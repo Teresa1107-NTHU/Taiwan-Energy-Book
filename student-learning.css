@@ -1,4 +1,6 @@
-
+/* =========================================================
+   全網站基礎：顏色、Nav、首頁、按鈕、卡片、Footer、RWD
+========================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=DM+Sans:wght@400;500;600;700&display=swap');
 
 :root{
@@ -920,18 +922,6 @@ footer{
     }
 }
 
-.thermal-unity-wrapper {
-    overflow: hidden;
-}
-
-.thermal-unity-wrapper iframe {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    border: 0;
-    overflow: hidden;
-}
-
 /* =========================
    3D �ҫ��ӷ��Х�
 ========================= */
@@ -1430,140 +1420,6 @@ footer{
         aspect-ratio: 16 / 10;
     }
 }
-
-/* =========================================================
-   ���O�o�q�������
-========================================================= */
-
-.wind-learning-module {
-    background: #ffffff;
-}
-
-.wind-model-frame {
-    overflow: hidden;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    background: #ffffff;
-}
-
-
-/* �ҫ� */
-
-.wind-model-wrapper {
-    overflow: hidden;
-    background: #11161d;
-}
-
-    .wind-model-wrapper iframe {
-        display: block;
-        width: 100%;
-        aspect-ratio: 16 / 8.5;
-        border: 0;
-    }
-
-
-/* ����C */
-
-.wind-inline-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-    border-top: 1px solid #d9dde2;
-    border-bottom: 1px solid #d9dde2;
-    background: #6f6861;
-}
-
-.wind-inline-buttons {
-    display: flex;
-    gap: 6px;
-}
-
-    .wind-inline-buttons button {
-        min-width: 72px;
-        height: 34px;
-        padding: 5px 12px;
-        border-radius: 18px;
-        font-size: 0.75rem;
-        font-weight: 700;
-        transition: .2s;
-    }
-
-.wind-primary-btn,
-.wind-secondary-btn {
-    border: 1px solid rgba(255,255,255,.7);
-    background: rgba(255,255,255,.9);
-    color: #495057;
-}
-
-    .wind-primary-btn:hover:not(:disabled),
-    .wind-secondary-btn:hover:not(:disabled) {
-        background: #ffffff;
-    }
-
-.wind-inline-buttons button:disabled {
-    opacity: .45;
-    cursor: not-allowed;
-}
-
-
-/* �k���ާ@���� */
-
-.wind-guide-hint {
-    color: rgba(255,255,255,.78);
-    font-size: .68rem;
-}
-
-
-/* ���廡�� */
-
-.wind-inline-info {
-    padding: 12px 14px 14px;
-    background: #d5d2cf;
-}
-
-.wind-step-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 4px;
-}
-
-#windStepNumber {
-    color: #6b7280;
-    font-size: .8rem;
-    font-weight: 800;
-    letter-spacing: .09em;
-}
-
-.wind-energy-tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 2px 8px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.68);
-    color: #555;
-    font-size: .66rem;
-    font-weight: 700;
-}
-
-.wind-inline-info h4 {
-    margin: 0 0 5px;
-    color: #111827;
-    font-size: 1rem;
-    font-weight: 800;
-}
-
-.wind-inline-info p {
-    margin: 0;
-    color: #374151;
-    font-size: 1rem;
-    line-height: 1.75;
-    font-weight: 500;
-}
-
 
 /* Tablet */
 
@@ -2461,18 +2317,6 @@ footer{
     padding-bottom: 18px;
 }
 
-/* =========================================================
-   能源模型：左模型 / 右控制
-========================================================= */
-
-.module-workspace {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 320px;
-    gap: 18px;
-    align-items: stretch;
-}
-
-
 /* 左側模型 */
 
 .module-model-column {
@@ -2507,16 +2351,15 @@ footer{
 
 
 /* 右側操作區 */
-
 .module-control-column {
     display: flex;
     flex-direction: column;
+    min-width: 0;
     overflow: hidden;
     border: 1px solid #dfe3e6;
     border-radius: 14px;
     background: #ffffff;
 }
-
 
     /* 說明放上面 */
 
@@ -2578,14 +2421,6 @@ footer{
         .thermal-unity-wrapper iframe {
             min-height: 420px;
         }
-
-    .wind-model-shell {
-        min-height: 420px;
-    }
-
-    .wind-model-shell iframe {
-        min-height: 420px;
-    }
 }
 
 /* =========================================================
@@ -2725,15 +2560,15 @@ footer{
     line-height: 1.4;
 }
 
-
 .wind-title-en {
-    display: inline-block;
-    margin-left: 8px;
+    display: block;
+    margin-top: 3px;
+    margin-left: 0;
     color: #6f7880;
     font-size: .88rem;
     font-weight: 700;
+    line-height: 1.4;
 }
-
 
 #windStepDescription {
     margin: 0;
@@ -2799,53 +2634,45 @@ footer{
             cursor: not-allowed;
         }
 
-/* =========================
-   Tablet
-========================= */
-
-@media(max-width:900px) {
-    .wind-model-shell,
-    .wind-model-shell iframe {
-        height: 560px;
-        min-height: 560px;
-    }
-}
-
-@media(max-width:600px) {
-    .wind-model-shell,
-    .wind-model-shell iframe {
-        height: 480px;
-        min-height: 480px;
-    }
-}
-
 /* =========================================================
    模型頁桌機版：右側說明固定寬度
 ========================================================= */
 
 .module-workspace {
     display: grid;
-
-    grid-template-columns:
-        minmax(0, 1fr)
-        320px;
-
-    gap: 18px;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 8px;
     align-items: stretch;
 }
 
-
 .wind-control-column {
-    width: 320px;
-    min-width: 320px;
+    width: 300px;
+    min-width: 300px;
+}
+
+/* =========================================================
+   平板橫向 / 小型筆電
+========================================================= */
+
+@media(max-width:1280px) {
+
+    .module-workspace {
+        grid-template-columns: minmax(0, 1fr) 270px;
+        gap: 8px;
+    }
+
+    .wind-control-column {
+        width: 270px;
+        min-width: 270px;
+    }
 }
 
 
 /* =========================================================
-   小型筆電 / 平板：改成上下排列
+   平板直向 / 小螢幕：上下排列
 ========================================================= */
 
-@media(max-width:1100px) {
+@media(max-width:900px) {
 
     .module-workspace {
         grid-template-columns: 1fr;
@@ -2855,5 +2682,4 @@ footer{
         width: 100%;
         min-width: 0;
     }
-
 }

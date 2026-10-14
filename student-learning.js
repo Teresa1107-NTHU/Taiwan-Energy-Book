@@ -3271,3 +3271,128 @@ function refreshHomeRoute() {
                 };
     }
 }
+
+/* =========================================================
+   各能源模組共用：小試身手
+========================================================= */
+
+function initMiniQuizzes() {
+
+    document
+        .querySelectorAll("[data-mini-quiz]")
+        .forEach(card => {
+
+            const quizKey =
+                card.dataset.quizKey;
+
+            if (!quizKey) return;
+
+            const radios =
+                card.querySelectorAll(
+                    `input[name="${quizKey}"]`
+                );
+
+            const saveBtn =
+                card.querySelector(
+                    ".quiz-save-btn"
+                );
+
+            const status =
+                card.querySelector(
+                    ".quiz-save-status"
+                );
+
+
+            // -------------------------
+            // 還原之前的作答
+            // -------------------------
+
+            const savedAnswer =
+                localStorage.getItem(
+                    `energy_quiz_${quizKey}`
+                );
+
+            if (savedAnswer) {
+
+                const savedRadio =
+                    card.querySelector(
+                        `input[value="${savedAnswer}"]`
+                    );
+
+                if (savedRadio) {
+                    savedRadio.checked = true;
+                }
+
+                if (status) {
+                    status.textContent =
+                        "已儲存答案";
+                }
+            }
+
+
+            // -------------------------
+            // 儲存答案
+            // -------------------------
+
+            if (saveBtn) {
+
+                saveBtn.addEventListener(
+                    "click",
+                    () => {
+
+                        const selected =
+                            card.querySelector(
+                                `input[name="${quizKey}"]:checked`
+                            );
+
+                        if (!selected) {
+
+                            if (status) {
+                                status.textContent =
+                                    "請先選擇一個答案";
+                            }
+
+                            return;
+                        }
+
+
+                        localStorage.setItem(
+                            `energy_quiz_${quizKey}`,
+                            selected.value
+                        );
+
+
+                        if (status) {
+                            status.textContent =
+                                "答案已儲存 ✓";
+                        }
+
+                    }
+                );
+            }
+
+        });
+}
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initMiniQuizzes
+);
+
+const MINI_QUIZ_ANSWERS = {
+    thermal_quiz_1: {
+        answer: "C",
+        explanation: "……"
+    },
+
+    nuclear_quiz_1: {
+        answer: "D",
+        explanation: "……"
+    },
+
+    wind_quiz_1: {
+        answer: "B",
+        explanation:
+            "風力發電主要將風的動能轉成旋轉機械能，再由發電機轉成電能。"
+    }
+};

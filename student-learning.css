@@ -659,50 +659,6 @@ footer{
         letter-spacing: 0.08em;
     }
 
-.knowledge-card-content {
-    padding: 18px;
-    border-top: 1px solid #e9ecef;
-}
-
-    .knowledge-card-content p {
-        color: #495057;
-        line-height: 1.85;
-    }
-
-.energy-flow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin: 18px 0;
-}
-
-    .energy-flow span {
-        padding: 8px 14px;
-        border-radius: 10px;
-        background: #ffffff;
-        border: 1px solid #dee2e6;
-        font-weight: 700;
-    }
-
-    .energy-flow b {
-        color: #adb5bd;
-    }
-
-.think-note {
-    margin-top: 14px;
-    padding: 14px 16px;
-    border-left: 3px solid #fbbf24;
-    border-radius: 8px;
-    background: #fff;
-    color: #495057;
-}
-
-    .think-note strong {
-        color: #0d1117;
-    }
-
 /* =========================
    �֤��� / �ֿĦX�����α�
 ========================= */
@@ -1960,57 +1916,6 @@ footer{
 /* =========================================================
    �O�W�෽����
 ========================================================= */
-
-.taiwan-note {
-    margin: 18px 0;
-    padding: 16px 18px;
-    border: 1px solid #dce4e8;
-    border-radius: 12px;
-    background: #f5f8f9;
-}
-
-.taiwan-note-head {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    flex-wrap: wrap;
-    margin-bottom: 8px;
-}
-
-    .taiwan-note-head span {
-        display: inline-flex;
-        align-items: center;
-        padding: 3px 8px;
-        border-radius: 999px;
-        background: #dff1f4;
-        color: #28798a;
-        font-size: .68rem;
-        font-weight: 800;
-        letter-spacing: .08em;
-    }
-
-    .taiwan-note-head strong {
-        color: #0d1117;
-        font-size: .94rem;
-    }
-
-.taiwan-note p {
-    margin: 0;
-    color: #4f5962;
-    font-size: .88rem;
-    line-height: 1.8;
-}
-
-.taiwan-note .policy-note {
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px dashed #d6dee2;
-}
-
-    .taiwan-note .policy-note b {
-        color: #0d1117;
-    }
-
 .future-note {
     background: #fffaf0;
     border-color: #f1dfaa;
@@ -2592,10 +2497,6 @@ footer{
    永久展開的探索後整理
 ========================================================= */
 
-.knowledge-card-static {
-    margin-top: 24px;
-}
-
 .model-page-wide {
     width: min(1320px, 96%);
 }
@@ -2610,15 +2511,6 @@ footer{
     background: #ffffff;
 }
 
-
-.knowledge-helper-title {
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    margin-bottom: 10px;
-}
-
-
 .knowledge-helper-icon {
     display: grid;
     place-items: center;
@@ -2629,26 +2521,6 @@ footer{
     background: #eef8fa;
     font-size: 1.35rem;
 }
-
-
-.knowledge-helper-title strong {
-    display: block;
-    color: #17212b;
-    font-size: 1.15rem;
-    font-weight: 800;
-    line-height: 1.35;
-}
-
-
-.knowledge-helper-title small {
-    display: block;
-    margin-top: 1px;
-    color: #8a939b;
-    font-size: .65rem;
-    font-weight: 800;
-    letter-spacing: .09em;
-}
-
 
 .knowledge-card-static-head h3 {
     margin: 0;
@@ -2986,4 +2858,288 @@ footer{
         width: 100%;
         min-width: 0;
     }
+}
+
+/* =========================================================
+   風力頁－能源小幫手區塊優化
+========================================================= */
+
+.knowledge-card-static {
+    margin-top: 24px;
+    border: 1px solid #d7e1e8;
+    border-radius: 18px;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(13, 17, 23, 0.04);
+}
+
+.knowledge-card-static-head {
+    padding: 20px 22px 18px;
+    border-bottom: 1px solid #e5ebef;
+    background: linear-gradient(180deg, #f7fbfd 0%, #ffffff 100%);
+}
+
+.knowledge-helper-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.knowledge-helper-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #d9f3fa 0%, #eefbff 100%);
+    font-size: 1.35rem;
+    box-shadow: inset 0 0 0 1px #c8eaf2;
+}
+
+.knowledge-helper-title strong {
+    display: block;
+    color: #0f172a;
+    font-size: 1.45rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.knowledge-helper-title small {
+    display: block;
+    margin-top: 2px;
+    color: #28798a;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.knowledge-card-static-head h3 {
+    margin: 0;
+    color: #1f2937;
+    font-size: 1.12rem;
+    font-weight: 800;
+    line-height: 1.5;
+}
+
+.knowledge-card-content {
+    padding: 22px;
+    border-top: 0;
+    background: #ffffff;
+}
+
+.knowledge-card-content p {
+    color: #374151;
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+.knowledge-card-content strong {
+    color: #111827;
+    font-weight: 800;
+}
+
+.helper-intro {
+    color: #334155;
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+.energy-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 22px 0 26px;
+}
+
+.energy-flow span {
+    padding: 10px 16px;
+    border-radius: 12px;
+    background: #f9fcff;
+    border: 1px solid #cfdde6;
+    color: #0f172a;
+    font-weight: 800;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.energy-flow b {
+    color: #6b7280;
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.taiwan-note {
+    margin: 18px 0 22px;
+    padding: 18px 18px 16px;
+    border: 1px solid #d7e5eb;
+    border-radius: 14px;
+    background: #f7fbfc;
+}
+
+.taiwan-note-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+
+.taiwan-note-head span {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #d8eef3;
+    color: #1d6f82;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.taiwan-note-head strong {
+    color: #111827;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.taiwan-note p {
+    color: #374151;
+    font-size: 0.96rem;
+    line-height: 1.85;
+}
+
+.taiwan-note .policy-note {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #cfd8dd;
+}
+
+.think-note {
+    margin-top: 18px;
+    padding: 16px 18px;
+    border-left: 5px solid #f59e0b;
+    border-radius: 12px;
+    background: #fff8eb;
+    color: #4b5563;
+}
+
+.think-note-title {
+    margin-bottom: 8px;
+    color: #111827;
+    font-size: 1.02rem;
+    font-weight: 800;
+}
+
+.think-note p {
+    margin: 0;
+    color: #374151;
+    line-height: 1.85;
+}
+
+.think-note strong {
+    color: #111827;
+    font-weight: 800;
+}
+
+/* =========================================================
+   共用：小試身手
+========================================================= */
+
+.mini-quiz-card {
+    margin-top: 24px;
+    padding: 20px;
+    border: 2px solid #d9e7ec;
+    border-radius: 16px;
+    background: linear-gradient(
+        180deg,
+        #f8fcff 0%,
+        #ffffff 100%
+    );
+}
+
+.mini-quiz-head {
+    margin-bottom: 14px;
+}
+
+.mini-quiz-head span {
+    display: inline-block;
+    margin-bottom: 5px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #dff4fb;
+    color: #1e7488;
+    font-size: .76rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+}
+
+.mini-quiz-head h4 {
+    margin: 0;
+    color: #111827;
+    font-size: 1.08rem;
+    font-weight: 800;
+}
+
+.mini-quiz-question {
+    margin-bottom: 14px;
+    color: #1f2937;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.8;
+}
+
+.quiz-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 9px;
+    padding: 12px 14px;
+    border: 1px solid #d6e2e8;
+    border-radius: 12px;
+    background: #ffffff;
+    cursor: pointer;
+    transition: .18s ease;
+}
+
+.quiz-option:hover {
+    border-color: #9fd3e1;
+    background: #f8fdff;
+}
+
+.quiz-option input {
+    margin-top: 5px;
+}
+
+.quiz-option span {
+    color: #374151;
+    line-height: 1.7;
+}
+
+.mini-quiz-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.quiz-save-btn {
+    min-height: 40px;
+    padding: 9px 16px;
+    border: 0;
+    border-radius: 10px;
+    background: #0f172a;
+    color: #ffffff;
+    font-weight: 800;
+}
+
+.quiz-save-btn:hover {
+    background: #1e293b;
+}
+
+.quiz-save-status {
+    color: #39752d;
+    font-size: .84rem;
+    font-weight: 700;
 }

@@ -2467,7 +2467,7 @@ footer{
 
 .module-workspace {
     display: grid;
-    grid-template-columns: minmax(800px, 1fr) minmax(300px, 340px);
+    grid-template-columns: minmax(0, 1fr) 320px;
     gap: 18px;
     align-items: stretch;
 }
@@ -2569,11 +2569,6 @@ footer{
 /* 平板改上下 */
 
 @media(max-width:900px) {
-
-    .module-workspace {
-        grid-template-columns: 1fr;
-    }
-
     .module-model-column
     .thermal-unity-wrapper {
         min-height: 420px;
@@ -2771,7 +2766,6 @@ footer{
     background: #6f6861;
 }
 
-
 .wind-button-grid {
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -2823,4 +2817,43 @@ footer{
         height: 480px;
         min-height: 480px;
     }
+}
+
+/* =========================================================
+   模型頁桌機版：右側說明固定寬度
+========================================================= */
+
+.module-workspace {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        320px;
+
+    gap: 18px;
+    align-items: stretch;
+}
+
+
+.wind-control-column {
+    width: 320px;
+    min-width: 320px;
+}
+
+
+/* =========================================================
+   小型筆電 / 平板：改成上下排列
+========================================================= */
+
+@media(max-width:1100px) {
+
+    .module-workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .wind-control-column {
+        width: 100%;
+        min-width: 0;
+    }
+
 }

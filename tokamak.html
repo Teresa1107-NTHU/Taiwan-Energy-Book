@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tokamak｜臺灣能源互動電子書</title>
+  <link rel="stylesheet" href="student-learning.css?v=9">
+</head>
+<body class="module-page" data-page-requires="emerging">
+
+<nav>
+  <a class="logo" href="index.html">Taiwan Energy<span></span></a>
+  <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu"><li><a href="index.html#start">開始學習</a></li><li><a href="index.html#explore">傳統能源</a></li><li><a href="index.html#discover">整理發現</a></li><li><a class="active" href="index.html#emerging">新興能源</a></li><li><a href="student-summary.html">學習整理</a></li></ul>
+</nav>
+
+
+<header class="summary-hero">
+  <div class="inner">
+    <span class="eyebrow">EMERGING ENERGY 01</span>
+    <h1>Tokamak</h1>
+    <p>認識真空、高溫電漿與磁場如何共同建立核融合研究所需的條件。</p>
+  </div>
+</header>
+
+<section class="container route-container">
+  <div data-learning-route></div>
+</section>
+
+<main class="container module-main">
+  <div class="module-focus-note">
+    <strong>本頁學習方式</strong>
+    <span>操作模型與中文導覽 → 展開「探索後整理」→ 完成本頁。</span>
+  </div>
+
+  <article class="energy-card">
+<div class="energy-card-head">
+<span>06</span>
+<h3>Tokamak</h3>
+</div>
+<p>
+                觀察 Tokamak 如何利用高溫電漿、真空環境與磁場，
+                建立適合核融合反應的條件。
+            </p>
+<div class="learning-point">
+<strong>你可以注意</strong>
+                為什麼核融合需要高溫電漿？
+                磁場又如何幫助控制這些帶電粒子的運動？
+            </div>
+<!-- =========================
+         Tokamak 互動導覽
+    ========================= -->
+<div class="tokamak-learning-module">
+<div class="tokamak-model-frame">
+<!-- EnergyEncyclopedia 3D 模型 -->
+<div class="iframe-wrapper tokamak-model-wrapper">
+<iframe allowfullscreen="" id="tokamakModel" loading="lazy" sandbox="allow-scripts allow-same-origin" src="https://3d.energyencyclopedia.com/tokamak/reactor" title="Tokamak 反應器 3D 互動模型">
+</iframe>
+</div>
+<!-- 手動中文導覽控制列 -->
+<div class="tokamak-inline-controls">
+<div class="tokamak-inline-buttons">
+<button class="tokamak-secondary-btn" disabled="" id="tokamakPrevBtn" onclick="tokamakPrevious()" type="button">
+                                上一步
+                            </button>
+<button class="tokamak-primary-btn" id="tokamakNextBtn" onclick="tokamakNext()" type="button">
+                                開始
+                            </button>
+<button class="tokamak-secondary-btn" onclick="tokamakReset()" type="button">
+                                重設
+                            </button>
+</div>
+<div class="tokamak-guide-hint">
+                            上方按一次「Next view」，下方也按一次「下一步」
+                        </div>
+</div>
+<!-- 中文步驟說明 -->
+<div class="tokamak-inline-info">
+<div class="tokamak-step-meta">
+<span id="tokamakStepNumber">
+                                準備開始
+                            </span>
+<span class="tokamak-energy-tag" id="tokamakEnergyTag">
+                                核融合條件：真空、電漿與磁場
+                            </span>
+</div>
+<h4 id="tokamakStepTitle">
+                            Tokamak 核融合反應器
+                        </h4>
+<p id="tokamakStepDescription">
+                            請使用上方模型中的「Next view」依序觀看各設備，
+                            並搭配下方中文步驟了解 Tokamak 如何建立與控制核融合所需的環境。
+                        </p>
+</div>
+</div>
+</div>
+<div class="model-credit">
+                Credit:
+                <a href="https://energyencyclopedia.com/" rel="noopener noreferrer" target="_blank">
+                    EnergyEncyclopedia.com
+                </a>
+</div>
+<details class="knowledge-card">
+<summary>
+<span>探索後整理</span>
+                    看看 Tokamak 為什麼需要高溫電漿與磁場
+                </summary>
+<div class="knowledge-card-content">
+<p>
+                        核融合要發生，兩個帶正電的原子核必須彼此非常接近。
+                        但原子核之間會受到
+                        <strong>庫侖斥力</strong>，
+                        因此需要讓粒子具有足夠高的能量，
+                        才能提高它們接近彼此並發生核融合的機會。
+                    </p>
+<div class="concept-flow">
+<span>提高粒子能量</span>
+<b>→</b>
+<span>更有機會克服排斥</span>
+<b>→</b>
+<span>接近到核力作用範圍</span>
+<b>→</b>
+<span>提高融合機率</span>
+</div>
+<p>
+                        在極高溫下，原子中的電子會與原子核分離，
+                        形成由帶電粒子組成的
+                        <strong>電漿</strong>。
+                        因為這些粒子帶電，所以可以利用
+                        <strong>磁場</strong>
+                        影響它們的運動方向，
+                        協助把高溫電漿限制在一定範圍內。
+                    </p>
+<div class="concept-grid">
+<div class="concept-mini-card">
+<strong>高溫</strong>
+<p>提高粒子的平均動能。</p>
+</div>
+<div class="concept-mini-card">
+<strong>電漿</strong>
+<p>由帶電粒子組成的高能狀態。</p>
+</div>
+<div class="concept-mini-card">
+<strong>磁場</strong>
+<p>影響帶電粒子的運動，協助約束電漿。</p>
+</div>
+<div class="concept-mini-card">
+<strong>真空</strong>
+<p>減少背景氣體造成的不必要碰撞與能量損失。</p>
+</div>
+</div>
+<div class="think-note">
+<strong>再想一下：</strong>
+                        如果 Tokamak 中的磁場無法有效控制電漿，
+                        最直接可能發生什麼情況？
+                    </div>
+</div>
+<div class="taiwan-note future-note">
+<div class="taiwan-note-head">
+<span>FUTURE ENERGY</span>
+<strong>核融合目前不是臺灣現行商業發電來源</strong>
+</div>
+<p>
+                        前面看到的火力、風力、水力與太陽光電，都已經實際參與電力供應；
+                        Tokamak 與 Alpha-E 則用來認識核融合研究與未來能源技術。
+                        核融合目前仍處於研究與技術發展階段，
+                        因此這裡的學習重點是理解「如何創造適合核融合的條件」，
+                        而不是把它視為目前已經商轉的發電方式。
+                    </p>
+</div>
+</details>
+</article>
+
+  <div class="module-navigation">
+    <a class="btn btn-dark" href="index.html#emerging">← 返回新興能源</a>
+    <button class="complete-phase-btn" data-complete-section="tokamak" data-default-label="完成Tokamak">
+      完成Tokamak
+    </button>
+    <a class="btn btn-primary" href="alpha-e-student-activity.html">下一站：Alpha-E →</a>
+  </div>
+</main>
+
+<footer>
+  <p>臺灣能源互動電子書 © 2026</p>
+  <p>本網站為教育與學術用途開發。</p>
+</footer>
+<script src="student-learning.js?v=9"></script>
+</body>
+</html>

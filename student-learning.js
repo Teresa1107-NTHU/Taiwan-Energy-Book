@@ -242,6 +242,11 @@ function updateThermalPanel() {
             "thermalNextBtn"
         );
 
+    const resetBtn =
+        document.getElementById(
+            "thermalResetBtn"
+        );
+
     const progress =
         document.getElementById(
             "thermalProgressText"
@@ -267,6 +272,10 @@ function updateThermalPanel() {
     // =========================
 
     if (thermalCurrentStep < 0) {
+
+        if (resetBtn) {
+            resetBtn.disabled = true;
+        }
 
         number.textContent =
             "準備開始";
@@ -335,6 +344,9 @@ function updateThermalPanel() {
         thermalCurrentStep
         ];
 
+    if (resetBtn) {
+        resetBtn.disabled = false;
+    }
 
     number.textContent =
         `STEP ${thermalCurrentStep + 1} / ${thermalSteps.length}`;
@@ -883,13 +895,18 @@ document.addEventListener(
 );
 
 // =====================================================
-// 風力發電手動文字導覽
+// 風力發電自動同步導覽
+// 使用已測試成功的 3d-Pro postMessage 控制方式
 // =====================================================
+
+const WIND_MODEL_URL =
+    "https://my-3d-proxy.loveleehom9.workers.dev/wind-energy/horizontal-axis-turbine";
 
 const windSteps = [
 
     {
         title: "主軸",
+        english: "Main Shaft",
         description:
             "主軸是風力機傳動系統的一部分，與轉子相連。這支低速主軸會隨著葉片與轉子旋轉，將旋轉的機械能傳往後續設備。",
         energy:
@@ -898,6 +915,7 @@ const windSteps = [
 
     {
         title: "主軸軸承",
+        english: "Main Shaft Bearing",
         description:
             "主軸軸承支撐旋轉中的低速主軸，並減少零件運動時產生的摩擦，使轉子傳來的力量能穩定地傳遞。",
         energy:
@@ -906,6 +924,7 @@ const windSteps = [
 
     {
         title: "轉子",
+        english: "Rotor",
         description:
             "轉子主要由葉片與輪轂組成，並與主軸連接。風吹動葉片後，轉子開始旋轉，將風的動能轉換成旋轉的機械能。",
         energy:
@@ -914,6 +933,7 @@ const windSteps = [
 
     {
         title: "葉片",
+        english: "Blades",
         description:
             "風流過葉片時，葉片兩側的氣流與壓力差會產生升力與阻力。當升力作用使轉子旋轉時，風的動能便開始轉換成旋轉的機械能。",
         energy:
@@ -922,6 +942,7 @@ const windSteps = [
 
     {
         title: "葉片變槳系統",
+        english: "Blade Pitch",
         description:
             "變槳系統可以調整葉片相對於風的角度，以控制轉子的轉速與取得的風能。當風速過高時，也能調整葉片角度來降低負載並保護風力機。",
         energy:
@@ -930,6 +951,7 @@ const windSteps = [
 
     {
         title: "塔架",
+        english: "Tower",
         description:
             "塔架支撐風力機的機艙與轉子，讓葉片能位於較高的位置。通常高度越高，越有機會接觸到較穩定且較強的風。",
         energy:
@@ -938,6 +960,7 @@ const windSteps = [
 
     {
         title: "偏航驅動系統",
+        english: "Yaw Drive",
         description:
             "偏航驅動系統會旋轉機艙，使風力機能朝向目前的風向，讓葉片維持較適合取得風能的方向。",
         energy:
@@ -946,6 +969,7 @@ const windSteps = [
 
     {
         title: "齒輪箱",
+        english: "Gearbox",
         description:
             "齒輪箱利用不同齒輪將低速主軸的旋轉轉換成較適合發電機使用的轉速，再把旋轉的機械能傳到發電機。",
         energy:
@@ -954,6 +978,7 @@ const windSteps = [
 
     {
         title: "發電機",
+        english: "Electric Generator",
         description:
             "葉片與轉子的旋轉經由主軸和齒輪箱傳到發電機。發電機利用磁場與線圈之間的相對運動，把旋轉的機械能轉換成電能。",
         energy:
@@ -962,6 +987,7 @@ const windSteps = [
 
     {
         title: "轉子煞車",
+        english: "Rotor Brake",
         description:
             "需要停止風力機時，可利用葉片變槳降低受風作用，再由轉子煞車協助固定轉子。它也能在維修時作為停車煞車使用。",
         energy:
@@ -970,6 +996,7 @@ const windSteps = [
 
     {
         title: "風速計",
+        english: "Anemometer",
         description:
             "風速計用來測量風速。控制系統會利用這些資料調整葉片角度，使風力機在不同風速下能更有效率且安全地運轉。",
         energy:
@@ -978,6 +1005,7 @@ const windSteps = [
 
     {
         title: "風向標",
+        english: "Wind Vane",
         description:
             "風向標用來測量風向，並將資訊提供給偏航驅動系統，使機艙與轉子能轉向適合的方向面對來風。",
         energy:
@@ -986,6 +1014,7 @@ const windSteps = [
 
     {
         title: "機艙",
+        english: "Nacelle",
         description:
             "機艙位於塔架頂端，內部容納風力發電的重要設備，例如主軸、齒輪箱與發電機，是旋轉機械能傳遞與發電的主要設備區。",
         energy:
@@ -994,6 +1023,7 @@ const windSteps = [
 
     {
         title: "你知道嗎？",
+        english: "Did You Know?",
         description:
             "大型風力機的葉片可以非常長，有些葉片長度甚至超過 100 公尺。較大的葉片能掃過更大的面積，因此可以從風中取得更多能量。",
         energy:
@@ -1002,8 +1032,66 @@ const windSteps = [
 
 ];
 
-
 let windCurrentStep = -1;
+
+// =====================================================
+// 取得風力 iframe
+// =====================================================
+
+function getWindIframe() {
+
+    return document.getElementById(
+        "windModel"
+    );
+
+}
+
+
+// =====================================================
+// 傳送控制訊號給 EnergyEncyclopedia
+// 每次只送一次，不額外模擬 click
+// =====================================================
+
+function sendWindAction(action) {
+
+    const iframe =
+        getWindIframe();
+
+
+    if (
+        !iframe ||
+        !iframe.contentWindow
+    ) {
+
+        console.warn(
+            "Wind iframe 尚未準備完成"
+        );
+
+        return false;
+
+    }
+
+
+    iframe.focus();
+
+    iframe.contentWindow.focus();
+
+
+    iframe.contentWindow.postMessage(
+        action,
+        "*"
+    );
+
+
+    console.log(
+        "Wind postMessage:",
+        action
+    );
+
+
+    return true;
+
+}
 
 
 // =====================================================
@@ -1019,9 +1107,25 @@ function windNext() {
         return;
     }
 
-    windCurrentStep++;
+
+    /*
+     * 先控制模型。
+     * 成功送出後中文步驟才 +1。
+     */
+    if (
+        !sendWindAction(
+            "ACTION_NEXT_STEP"
+        )
+    ) {
+        return;
+    }
+
+
+    windCurrentStep += 1;
+
 
     updateWindPanel();
+
 }
 
 
@@ -1031,13 +1135,27 @@ function windNext() {
 
 function windPrevious() {
 
-    if (windCurrentStep <= 0) {
+    if (
+        windCurrentStep <= 0
+    ) {
         return;
     }
 
-    windCurrentStep--;
+
+    if (
+        !sendWindAction(
+            "ACTION_PREV_STEP"
+        )
+    ) {
+        return;
+    }
+
+
+    windCurrentStep -= 1;
+
 
     updateWindPanel();
+
 }
 
 
@@ -1047,14 +1165,69 @@ function windPrevious() {
 
 function windReset() {
 
-    windCurrentStep = -1;
+    const wrapper =
+        document.getElementById(
+            "windViewerWrapper"
+        );
+
+
+    if (!wrapper) {
+        return;
+    }
+
+
+    const oldIframe =
+        getWindIframe();
+
+
+    if (oldIframe) {
+        oldIframe.remove();
+    }
+
+
+    const iframe =
+        document.createElement(
+            "iframe"
+        );
+
+
+    iframe.id =
+        "windModel";
+
+
+    iframe.src =
+        WIND_MODEL_URL;
+
+
+    iframe.title =
+        "水平軸風力發電機 3D 互動模型";
+
+
+    iframe.allowFullscreen =
+        true;
+
+
+    wrapper.appendChild(
+        iframe
+    );
+
+
+    windCurrentStep =
+        -1;
+
+
+    bindWindIframeLoad(
+        iframe
+    );
+
 
     updateWindPanel();
+
 }
 
 
 // =====================================================
-// 更新風力中文導覽
+// 更新右側中文說明
 // =====================================================
 
 function updateWindPanel() {
@@ -1079,17 +1252,25 @@ function updateWindPanel() {
             "windEnergyTag"
         );
 
-    const prevBtn =
+    const prev =
         document.getElementById(
             "windPrevBtn"
         );
 
-    const nextBtn =
+    const next =
         document.getElementById(
             "windNextBtn"
         );
 
+    const reset =
+        document.getElementById(
+            "windResetBtn"
+        );
 
+    /*
+     * 其他頁沒有 wind 元件時直接離開。
+     * 因為這支 student-learning.js 是共用 JS。
+     */
     if (
         !number ||
         !title ||
@@ -1098,40 +1279,52 @@ function updateWindPanel() {
         return;
     }
 
-
     // =========================
     // 尚未開始
     // =========================
 
-    if (windCurrentStep < 0) {
+    if (
+        windCurrentStep < 0
+    ) {
 
         number.textContent =
             "準備開始";
 
-        title.textContent =
-            "水平軸風力發電機";
+        title.innerHTML =
+            `水平軸風力發電機
+            <span class="wind-title-en">
+                Horizontal-Axis Wind Turbine
+            </span>`;
 
         description.textContent =
-            "請使用上方模型中的「Next view」依序觀看各設備，並搭配下方中文步驟了解風力發電的運作方式。";
+            "模型初始畫面為 All components view，可先觀察各設備的位置與標籤。按下「開始導覽」後，模型與右側中文說明會同步前進一步。";
 
         if (energy) {
             energy.textContent =
                 "能量來源：風";
         }
 
-        if (prevBtn) {
-            prevBtn.disabled = true;
+        if (prev) {
+            prev.disabled =
+                true;
         }
 
-        if (nextBtn) {
-            nextBtn.disabled = false;
-            nextBtn.textContent =
+        if (next) {
+
+            next.disabled =
+                false;
+
+            next.textContent =
                 "開始導覽";
+        }
+
+        if (reset) {
+            reset.disabled =
+                true;
         }
 
         return;
     }
-
 
     // =========================
     // 導覽中
@@ -1142,72 +1335,186 @@ function updateWindPanel() {
         windCurrentStep
         ];
 
-
     number.textContent =
         `STEP ${windCurrentStep + 1} / ${windSteps.length}`;
 
-    title.textContent =
-        step.title;
+    title.innerHTML =
+        `${step.title}
+     <span class="wind-title-en">
+         ${step.english}
+     </span>`;
 
     description.textContent =
         step.description;
-
 
     if (energy) {
         energy.textContent =
             step.energy;
     }
 
+    const allowBackAndReset =
+        windCurrentStep >= 1;
 
-    if (prevBtn) {
-        prevBtn.disabled =
-            windCurrentStep === 0;
+    if (prev) {
+
+        prev.disabled =
+            !allowBackAndReset;
+
     }
 
+    if (reset) {
 
-    const isLastStep =
+        reset.disabled =
+            !allowBackAndReset;
+
+    }
+
+    const last =
         windCurrentStep ===
         windSteps.length - 1;
 
 
-    if (nextBtn) {
+    if (next) {
 
-        if (isLastStep) {
+        next.disabled =
+            last;
 
-            nextBtn.textContent =
-                "導覽完成 ✓";
 
-            nextBtn.disabled =
-                true;
+        next.textContent =
+            last
+                ? "導覽完成 ✓"
+                : "下一步";
 
-        } else {
-
-            nextBtn.textContent =
-                "下一步";
-
-            nextBtn.disabled =
-                false;
-        }
     }
+}
+
+// =====================================================
+// iframe 載入狀態
+// =====================================================
+
+function bindWindIframeLoad(
+    iframe
+) {
+
+    const status =
+        document.getElementById(
+            "windModelStatus"
+        );
+
+
+    if (!iframe) {
+        return;
+    }
+
+
+    if (status) {
+
+        status.classList.remove(
+            "ready"
+        );
+
+
+        status.textContent =
+            "正在載入風力 3D 模型……";
+
+    }
+
+
+    iframe.addEventListener(
+        "load",
+        () => {
+
+            if (status) {
+
+                status.textContent =
+                    "3D 模型已載入";
+
+
+                setTimeout(
+                    () => {
+
+                        status.classList.add(
+                            "ready"
+                        );
+
+                    },
+                    500
+                );
+
+            }
+
+
+            console.log(
+                "Wind model loaded"
+            );
+
+        }
+    );
+
 }
 
 
 // =====================================================
-// 頁面載入時初始化
+// 頁面初始化
 // =====================================================
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        if (
-            document.getElementById(
-                "windStepNumber"
-            )
-        ) {
-            windCurrentStep = -1;
-            updateWindPanel();
+        const iframe =
+            getWindIframe();
+
+
+        /*
+         * 只有 wind.html 才會有這個 iframe。
+         * 其他頁面不受影響。
+         */
+        if (!iframe) {
+            return;
         }
+
+
+        bindWindIframeLoad(
+            iframe
+        );
+
+
+        document
+            .getElementById(
+                "windPrevBtn"
+            )
+            ?.addEventListener(
+                "click",
+                windPrevious
+            );
+
+
+        document
+            .getElementById(
+                "windNextBtn"
+            )
+            ?.addEventListener(
+                "click",
+                windNext
+            );
+
+
+        document
+            .getElementById(
+                "windResetBtn"
+            )
+            ?.addEventListener(
+                "click",
+                windReset
+            );
+
+
+        windCurrentStep =
+            -1;
+
+
+        updateWindPanel();
 
     }
 );
@@ -2156,268 +2463,791 @@ document.addEventListener(
     }
 );
 
+
 // =====================================================
-// 學習階段完成按鈕（可取消完成）
+// V9 共用學習狀態、答案保存、學習路線、解鎖
 // =====================================================
 
-document.addEventListener("DOMContentLoaded", () => {
+const TRADITIONAL_MODULES = [
+    { key: "thermal", label: "火力", href: "thermal.html" },
+    { key: "nuclear", label: "核能", href: "nuclear.html" },
+    { key: "wind", label: "風力", href: "wind.html" },
+    { key: "hydro", label: "水力", href: "hydro.html" },
+    { key: "solar", label: "太陽光電", href: "solar.html" }
+];
 
-    const completeButtons =
-        document.querySelectorAll(
-            ".complete-phase-btn[data-complete-section]"
-        );
+const EMERGING_MODULES = [
+    { key: "tokamak", label: "Tokamak", href: "tokamak.html" },
+    { key: "challenge", label: "Alpha-E", href: "alpha-e-student-activity.html" }
+];
 
-    completeButtons.forEach((button) => {
+function progressKey(key) { return `energy_progress_${key}`; }
+function isDone(key) { return localStorage.getItem(progressKey(key)) === "done"; }
+function setDone(key, done) {
+    if (done) localStorage.setItem(progressKey(key), "done");
+    else localStorage.removeItem(progressKey(key));
+}
+function countDone(list) { return list.filter(item => isDone(item.key)).length; }
+function traditionalComplete() { return countDone(TRADITIONAL_MODULES) === 5; }
+function discoverUnlocked() { return traditionalComplete(); }
+function emergingUnlocked() { return discoverUnlocked() && isDone("discover"); }
+function alphaUnlocked() { return emergingUnlocked() && isDone("tokamak"); }
+function finalUnlocked() { return alphaUnlocked() && isDone("challenge"); }
 
-        const section =
-            button.dataset.completeSection;
+function showLearningToast(message) {
+    const old = document.querySelector(".learning-toast");
+    if (old) old.remove();
+    const toast = document.createElement("div");
+    toast.className = "learning-toast";
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2600);
+}
 
-        const key =
-            `energy_progress_${section}`;
+function createRouteLink({ href, label, number, subtitle, status, done, locked, subitems }) {
+    const wrapper = document.createElement("div");
+    wrapper.className = `route-stage${done ? " done" : ""}${locked ? " locked" : ""}`;
 
-        // 讀取原本的完成狀態
-        const saved =
-            localStorage.getItem(key);
+    const main = document.createElement(locked ? "button" : "a");
+    main.className = "route-stage";
+    if (!locked) main.href = href;
+    else {
+        main.type = "button";
+        main.addEventListener("click", () => showLearningToast(status));
+    }
 
-        setSectionCompleted(
-            section,
-            button,
-            saved === "done"
-        );
+    main.innerHTML = `
+      <span class="route-stage-main">
+        <span class="route-stage-num">${done ? "✓" : number}</span>
+        <span class="route-stage-text"><strong>${label}</strong><small>${subtitle}</small></span>
+        <span class="route-stage-status">${status}</span>
+      </span>`;
 
+    wrapper.appendChild(main);
 
-        // 點擊時切換完成 / 未完成
-        button.addEventListener("click", () => {
-
-            const currentlyDone =
-                button.classList.contains("done");
-
-            if (currentlyDone) {
-
-                localStorage.removeItem(key);
-
-                setSectionCompleted(
-                    section,
-                    button,
-                    false
-                );
-
+    if (subitems?.length) {
+        const row = document.createElement("div");
+        row.className = "route-subitems";
+        subitems.forEach(item => {
+            const sub = document.createElement(item.locked ? "button" : "a");
+            sub.className = `route-subitem${item.done ? " done" : ""}${item.locked ? " locked" : ""}`;
+            sub.innerHTML = `${item.done ? "✓" : item.locked ? "🔒" : "○"} ${item.label}`;
+            if (item.locked) {
+                sub.type = "button";
+                sub.addEventListener("click", () => showLearningToast(item.message || "尚未解鎖"));
             } else {
+                sub.href = item.href;
+            }
+            row.appendChild(sub);
+        });
+        wrapper.appendChild(row);
+    }
+    return wrapper;
+}
 
-                localStorage.setItem(
-                    key,
-                    "done"
+function renderLearningRoute() {
+
+    const hosts =
+        document.querySelectorAll(
+            "[data-learning-route]"
+        );
+
+    if (!hosts.length) return;
+
+
+    const traditionalCount =
+        countDone(TRADITIONAL_MODULES);
+
+    const emergingCount =
+        countDone(EMERGING_MODULES);
+
+
+    // 判斷目前是不是首頁
+
+    hosts.forEach(host => {
+
+        host.innerHTML = "";
+
+
+        const route =
+            document.createElement("div");
+
+        route.className =
+            "learning-route";
+
+
+        // 首頁展開，其餘頁面預設收起
+        if (!isHome) {
+            route.classList.add(
+                "route-collapsed"
+            );
+        }
+
+
+        // =========================
+        // 標題列
+        // =========================
+
+        const header =
+            document.createElement("button");
+
+        header.type =
+            "button";
+
+        header.className =
+            "learning-route-head route-toggle";
+
+
+        header.innerHTML = `
+            <div>
+                <h3>
+                    我的學習路線
+                </h3>
+
+                <p>
+                    點擊查看目前進度與可前往的學習階段
+                </p>
+            </div>
+
+            <div class="route-head-right">
+
+                <span class="route-overall">
+                    傳統能源 ${traditionalCount}/5
+                </span>
+
+                <span class="route-toggle-icon">
+                    ${isHome ? "－" : "＋"}
+                </span>
+
+            </div>
+        `;
+
+
+        route.appendChild(
+            header
+        );
+
+
+        // =========================
+        // 內容區
+        // =========================
+
+        const content =
+            document.createElement("div");
+
+        content.className =
+            "learning-route-content";
+
+
+        const list =
+            document.createElement("div");
+
+        list.className =
+            "route-stage-list";
+
+
+        list.appendChild(
+            createRouteLink({
+
+                href:
+                    "index.html#start",
+
+                label:
+                    "先想一想",
+
+                number:
+                    "1",
+
+                subtitle:
+                    "留下原本的想法",
+
+                status:
+                    isDone("start")
+                        ? "已完成"
+                        : "未完成",
+
+                done:
+                    isDone("start"),
+
+                locked:
+                    false
+            })
+        );
+
+
+        list.appendChild(
+            createRouteLink({
+
+                href:
+                    "index.html#explore",
+
+                label:
+                    "傳統能源探索",
+
+                number:
+                    "2",
+
+                subtitle:
+                    "火力、核能、風力、水力、太陽光電",
+
+                status:
+                    `已完成 ${traditionalCount} / 5`,
+
+                done:
+                    traditionalCount === 5,
+
+                locked:
+                    false,
+
+                subitems:
+                    TRADITIONAL_MODULES.map(
+                        item => ({
+
+                            ...item,
+
+                            done:
+                                isDone(
+                                    item.key
+                                ),
+
+                            locked:
+                                false
+
+                        })
+                    )
+            })
+        );
+
+
+        list.appendChild(
+            createRouteLink({
+
+                href:
+                    "index.html#discover",
+
+                label:
+                    "整理發現",
+
+                number:
+                    "3",
+
+                subtitle:
+                    "比較五種能源與臺灣電力角色",
+
+                status:
+                    discoverUnlocked()
+                        ? (
+                            isDone("discover")
+                                ? "已完成"
+                                : "已解鎖"
+                        )
+                        : "完成 5 / 5 後解鎖",
+
+                done:
+                    isDone("discover"),
+
+                locked:
+                    !discoverUnlocked()
+            })
+        );
+
+
+        list.appendChild(
+            createRouteLink({
+
+                href:
+                    "index.html#emerging",
+
+                label:
+                    "新興能源",
+
+                number:
+                    "4",
+
+                subtitle:
+                    "Tokamak 與 Alpha-E",
+
+                status:
+                    emergingUnlocked()
+                        ? `已完成 ${emergingCount} / 2`
+                        : "完成整理發現後解鎖",
+
+                done:
+                    emergingCount === 2,
+
+                locked:
+                    !emergingUnlocked(),
+
+                subitems: [
+
+                    {
+                        label:
+                            "Tokamak",
+
+                        href:
+                            "tokamak.html",
+
+                        done:
+                            isDone(
+                                "tokamak"
+                            ),
+
+                        locked:
+                            !emergingUnlocked(),
+
+                        message:
+                            "請先完成五種傳統能源與整理發現。"
+                    },
+
+                    {
+                        label:
+                            "Alpha-E",
+
+                        href:
+                            "alpha-e-student-activity.html",
+
+                        done:
+                            isDone(
+                                "challenge"
+                            ),
+
+                        locked:
+                            !alphaUnlocked(),
+
+                        message:
+                            emergingUnlocked()
+                                ? "請先完成 Tokamak，再進入 Alpha-E。"
+                                : "請先完成前面的學習階段。"
+                    }
+
+                ]
+            })
+        );
+
+
+        list.appendChild(
+            createRouteLink({
+
+                href:
+                    "student-summary.html",
+
+                label:
+                    "學習整理",
+
+                number:
+                    "5",
+
+                subtitle:
+                    "七個模組最終比較與反思",
+
+                status:
+                    finalUnlocked()
+                        ? (
+                            isDone("review")
+                                ? "已完成"
+                                : "已解鎖"
+                        )
+                        : "完成新興能源 2 / 2 後解鎖",
+
+                done:
+                    isDone("review"),
+
+                locked:
+                    !finalUnlocked()
+            })
+        );
+
+
+        content.appendChild(
+            list
+        );
+
+        route.appendChild(
+            content
+        );
+
+        host.appendChild(
+            route
+        );
+
+
+        // =========================
+        // 收合功能
+        // =========================
+
+        header.addEventListener(
+            "click",
+            () => {
+
+                route.classList.toggle(
+                    "route-collapsed"
                 );
 
-                setSectionCompleted(
-                    section,
-                    button,
-                    true
-                );
+                const icon =
+                    header.querySelector(
+                        ".route-toggle-icon"
+                    );
+
+                if (icon) {
+
+                    icon.textContent =
+                        route.classList.contains(
+                            "route-collapsed"
+                        )
+                            ? "＋"
+                            : "－";
+                }
 
             }
-
-        });
+        );
 
     });
 
+}
+
+function refreshModuleCards() {
+    document.querySelectorAll("[data-module-card]").forEach(card => {
+        const key = card.dataset.moduleCard;
+        const status = card.querySelector(".module-card-status");
+        card.classList.toggle("done", isDone(key));
+        if (status && isDone(key)) status.textContent = "已完成 ✓";
+    });
+
+    const t = document.getElementById("traditionalProgressText");
+    if (t) t.textContent = `已完成 ${countDone(TRADITIONAL_MODULES)} / 5`;
+
+    const e = document.getElementById("emergingProgressText");
+    if (e) e.textContent = `已完成 ${countDone(EMERGING_MODULES)} / 2`;
+}
+
+function blockAlphaClick(event) {
+    if (!alphaUnlocked()) {
+        event.preventDefault();
+        showLearningToast("請先完成 Tokamak，再進入 Alpha-E。");
+    }
+}
+
+function refreshGates() {
+    const discover = document.querySelector('[data-gate="discover"]');
+    if (discover) discover.classList.toggle("is-locked", !discoverUnlocked());
+
+    const emerging = document.querySelector('[data-gate="emerging"]');
+    if (emerging) emerging.classList.toggle("is-locked", !emergingUnlocked());
+
+    const finalGate = document.querySelector('[data-gate="final"]');
+    if (finalGate) finalGate.classList.toggle("is-locked", !finalUnlocked());
+
+    document.querySelectorAll('[data-link-requires="alpha"]').forEach(link => {
+        const locked = !alphaUnlocked();
+        link.classList.toggle("locked", locked);
+        const status = link.querySelector(".module-card-status");
+        if (locked) {
+            link.addEventListener("click", blockAlphaClick);
+            if (status && !isDone("challenge")) status.textContent = "完成 Tokamak 後解鎖";
+        } else {
+            link.removeEventListener("click", blockAlphaClick);
+            if (status && !isDone("challenge")) status.textContent = "開始探索 →";
+        }
+    });
+}
+
+function refreshAllLearningUI() {
+
+    renderLearningRoute();
+
+    refreshHomeRoute();
+
+    refreshModuleCards();
+
+    refreshGates();
+}
+
+function updateCompletionButton(button, key, done) {
+    const defaultLabel = button.dataset.defaultLabel || "完成這一段";
+    button.classList.toggle("done", done);
+    button.textContent = done ? "已完成 ✓（再按一次可取消）" : defaultLabel;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".complete-phase-btn[data-complete-section]").forEach(button => {
+        const key = button.dataset.completeSection;
+        updateCompletionButton(button, key, isDone(key));
+        button.addEventListener("click", () => {
+            const newState = !isDone(key);
+            setDone(key, newState);
+            updateCompletionButton(button, key, newState);
+
+            if (key === "review") {
+                const completeCard = document.getElementById("lessonComplete");
+                if (completeCard) completeCard.hidden = !newState;
+            }
+            refreshAllLearningUI();
+        });
+    });
+
+    const completeCard = document.getElementById("lessonComplete");
+    if (completeCard) completeCard.hidden = !isDone("review");
+
+    document.querySelectorAll("textarea[data-save], input[data-save]").forEach(field => {
+        const saveName = field.dataset.save;
+        if (!saveName) return;
+        const key = `energy_answer_${saveName}`;
+        const saved = localStorage.getItem(key);
+        if (saved !== null) field.value = saved;
+        const save = () => localStorage.setItem(key, field.value);
+        field.addEventListener("input", save);
+        field.addEventListener("change", save);
+    });
+
+    document.querySelectorAll("[data-radio-group]").forEach(group => {
+        const groupName = group.dataset.radioGroup;
+        if (!groupName) return;
+        const key = `energy_answer_${groupName}`;
+        const radios = group.querySelectorAll('input[type="radio"]');
+        const saved = localStorage.getItem(key);
+        if (saved !== null) radios.forEach(radio => radio.checked = radio.value === saved);
+        radios.forEach(radio => radio.addEventListener("change", () => {
+            if (radio.checked) localStorage.setItem(key, radio.value);
+        }));
+    });
+
+    refreshAllLearningUI();
+
+    const requirement = document.body.dataset.pageRequires;
+    if (requirement === "emerging" && !emergingUnlocked()) {
+        showPageLock("Tokamak 尚未解鎖","請先完成五種傳統能源探索與「整理發現」。","index.html#discover");
+    }
+    if (requirement === "alpha" && !alphaUnlocked()) {
+        showPageLock("Alpha-E 尚未解鎖","請先完成 Tokamak，再進入 Alpha-E 挑戰。","index.html#emerging");
+    }
+    if (requirement === "final" && !finalUnlocked()) {
+        showPageLock("學習整理尚未解鎖","請先完成 Tokamak 與 Alpha-E 兩個新興能源模組。","index.html#emerging");
+    }
 });
 
+function showPageLock(title, message, backHref) {
+    const overlay = document.createElement("div");
+    overlay.className = "page-lock-overlay";
+    overlay.innerHTML = `
+      <div class="page-lock-card">
+        <div style="font-size:1.5rem;">🔒</div>
+        <h2>${title}</h2>
+        <p>${message}</p>
+        <a class="btn btn-dark" href="${backHref}">回到學習路線</a>
+      </div>`;
+    document.body.appendChild(overlay);
+}
 
-// =====================================================
-// 更新完成狀態
-// =====================================================
+function refreshHomeRoute() {
 
-function setSectionCompleted(
-    section,
-    button,
-    isDone
-) {
-
-    if (button) {
-
-        button.classList.toggle(
-            "done",
-            isDone
-        );
-
-        button.textContent =
-            isDone
-                ? "已完成 ✓"
-                : "完成這一段";
-    }
-
-
-    const progressItem =
+    const start =
         document.querySelector(
-            `[data-progress-item="${section}"]`
+            '[data-home-route="start"]'
         );
 
-    if (progressItem) {
-
-        progressItem.classList.toggle(
-            "done",
-            isDone
+    const traditional =
+        document.querySelector(
+            '[data-home-route="traditional"]'
         );
+
+    const discover =
+        document.querySelector(
+            '[data-home-route="discover"]'
+        );
+
+    const emerging =
+        document.querySelector(
+            '[data-home-route="emerging"]'
+        );
+
+    const summary =
+        document.querySelector(
+            '[data-home-route="summary"]'
+        );
+
+
+    const traditionalCount =
+        countDone(
+            TRADITIONAL_MODULES
+        );
+
+    const emergingCount =
+        countDone(
+            EMERGING_MODULES
+        );
+
+
+    // 1 先想一想
+    if (start) {
 
         const status =
-            progressItem.querySelector(
+            start.querySelector(
                 ".phase-status"
             );
 
-        if (status) {
+        start.classList.toggle(
+            "done",
+            isDone("start")
+        );
 
+        if (status) {
             status.textContent =
-                isDone
+                isDone("start")
                     ? "已完成"
                     : "未完成";
         }
     }
+
+
+    // 2 傳統能源
+    if (traditional) {
+
+        const status =
+            traditional.querySelector(
+                ".phase-status"
+            );
+
+        traditional.classList.toggle(
+            "done",
+            traditionalCount === 5
+        );
+
+        if (status) {
+            status.textContent =
+                `已完成 ${traditionalCount} / 5`;
+        }
+    }
+
+
+    // 3 整理發現
+    if (discover) {
+
+        const status =
+            discover.querySelector(
+                ".phase-status"
+            );
+
+        const unlocked =
+            discoverUnlocked();
+
+        discover.classList.toggle(
+            "done",
+            isDone("discover")
+        );
+
+        discover.classList.toggle(
+            "locked",
+            !unlocked
+        );
+
+        if (status) {
+
+            status.textContent =
+                !unlocked
+                    ? "尚未解鎖"
+                    : isDone("discover")
+                        ? "已完成"
+                        : "已解鎖";
+        }
+
+        discover.onclick =
+            unlocked
+                ? null
+                : (event) => {
+
+                    event.preventDefault();
+
+                    showLearningToast(
+                        "請先完成五種傳統能源。"
+                    );
+                };
+    }
+
+
+    // 4 新興能源
+    if (emerging) {
+
+        const status =
+            emerging.querySelector(
+                ".phase-status"
+            );
+
+        const unlocked =
+            emergingUnlocked();
+
+        emerging.classList.toggle(
+            "done",
+            emergingCount === 2
+        );
+
+        emerging.classList.toggle(
+            "locked",
+            !unlocked
+        );
+
+        if (status) {
+
+            status.textContent =
+                unlocked
+                    ? `已完成 ${emergingCount} / 2`
+                    : "尚未解鎖";
+        }
+
+        emerging.onclick =
+            unlocked
+                ? null
+                : (event) => {
+
+                    event.preventDefault();
+
+                    showLearningToast(
+                        "請先完成「整理發現」。"
+                    );
+                };
+    }
+
+
+    // 5 最終整理
+    if (summary) {
+
+        const status =
+            summary.querySelector(
+                ".phase-status"
+            );
+
+        const unlocked =
+            finalUnlocked();
+
+        summary.classList.toggle(
+            "done",
+            isDone("review")
+        );
+
+        summary.classList.toggle(
+            "locked",
+            !unlocked
+        );
+
+        if (status) {
+
+            status.textContent =
+                !unlocked
+                    ? "尚未解鎖"
+                    : isDone("review")
+                        ? "已完成"
+                        : "已解鎖";
+        }
+
+        summary.onclick =
+            unlocked
+                ? null
+                : (event) => {
+
+                    event.preventDefault();
+
+                    showLearningToast(
+                        "請先完成 Tokamak 與 Alpha-E。"
+                    );
+                };
+    }
 }
-
-
-// =====================================================
-// 學習答案自動儲存
-// =====================================================
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    // =================================================
-    // textarea / 一般文字輸入
-    // =================================================
-
-    const saveFields =
-        document.querySelectorAll(
-            "textarea[data-save], input[data-save]"
-        );
-
-    saveFields.forEach((field) => {
-
-        const saveName =
-            field.dataset.save;
-
-        if (!saveName) return;
-
-        const key =
-            `energy_answer_${saveName}`;
-
-
-        // -----------------------------
-        // 載入以前的答案
-        // -----------------------------
-
-        const savedValue =
-            localStorage.getItem(key);
-
-        if (savedValue !== null) {
-            field.value = savedValue;
-        }
-
-
-        // -----------------------------
-        // 打字時立即儲存
-        // -----------------------------
-
-        field.addEventListener(
-            "input",
-            () => {
-
-                localStorage.setItem(
-                    key,
-                    field.value
-                );
-
-            }
-        );
-
-
-        // -----------------------------
-        // 失去焦點時再保險存一次
-        // -----------------------------
-
-        field.addEventListener(
-            "change",
-            () => {
-
-                localStorage.setItem(
-                    key,
-                    field.value
-                );
-
-            }
-        );
-
-    });
-
-
-    // =================================================
-    // Radio 單選題
-    // =================================================
-
-    const radioGroups =
-        document.querySelectorAll(
-            "[data-radio-group]"
-        );
-
-    radioGroups.forEach((group) => {
-
-        const groupName =
-            group.dataset.radioGroup;
-
-        if (!groupName) return;
-
-        const key =
-            `energy_answer_${groupName}`;
-
-        const radios =
-            group.querySelectorAll(
-                'input[type="radio"]'
-            );
-
-
-        // -----------------------------
-        // 載入以前的答案
-        // -----------------------------
-
-        const savedValue =
-            localStorage.getItem(key);
-
-        if (savedValue !== null) {
-
-            radios.forEach((radio) => {
-
-                radio.checked =
-                    radio.value === savedValue;
-
-            });
-
-        }
-
-
-        // -----------------------------
-        // 選擇答案時儲存
-        // -----------------------------
-
-        radios.forEach((radio) => {
-
-            radio.addEventListener(
-                "change",
-                () => {
-
-                    if (radio.checked) {
-
-                        localStorage.setItem(
-                            key,
-                            radio.value
-                        );
-
-                    }
-
-                }
-            );
-
-        });
-
-    });
-
-});

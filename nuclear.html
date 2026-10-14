@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>核能發電｜臺灣能源互動電子書</title>
+  <link rel="stylesheet" href="student-learning.css?v=9">
+</head>
+<body class="module-page">
+
+<nav>
+  <a class="logo" href="index.html">Taiwan Energy<span></span></a>
+  <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu"><li><a href="index.html#start">開始學習</a></li><li><a class="active" href="index.html#explore">傳統能源</a></li><li><a href="index.html#discover">整理發現</a></li><li><a href="index.html#emerging">新興能源</a></li><li><a href="student-summary.html">學習整理</a></li></ul>
+</nav>
+
+
+<header class="summary-hero">
+  <div class="inner">
+    <span class="eyebrow">TRADITIONAL ENERGY 02</span>
+    <h1>核能發電</h1>
+    <p>觀察核分裂產生的熱，如何透過蒸汽系統、汽輪機與發電機完成發電。</p>
+  </div>
+</header>
+
+<section class="container route-container">
+  <div data-learning-route></div>
+</section>
+
+<main class="container module-main">
+  <div class="module-focus-note">
+    <strong>本頁學習方式</strong>
+    <span>操作模型與中文導覽 → 展開「探索後整理」→ 完成本頁。</span>
+  </div>
+
+  <article class="energy-card">
+<div class="energy-card-head">
+<span>02</span>
+<h3>核能發電</h3>
+</div>
+<p>看看核反應產生熱之後，後面的發電流程和火力有沒有相似的地方。</p>
+<div class="learning-point">
+<strong>你可以注意</strong>
+                      核反應產生的熱，最後是不是也會用到蒸氣與汽輪機？
+                  </div>
+
+<!-- =========================
+                     核能發電互動導覽
+                ========================= -->
+<div class="nuclear-learning-module">
+<div class="nuclear-model-frame">
+<!-- EnergyEncyclopedia 3D 模型導覽 -->
+<div class="iframe-wrapper nuclear-model-wrapper">
+<iframe allowfullscreen="" id="nuclearModel" loading="lazy" sandbox="allow-scripts allow-same-origin" src="https://3d.energyencyclopedia.com/npp-pwr/" title="壓水式核能發電 3D 互動模型">
+</iframe>
+</div>
+<!-- 手動文字導覽控制列 -->
+<div class="nuclear-inline-controls">
+<div class="nuclear-inline-buttons">
+<button class="nuclear-secondary-btn" disabled="" id="nuclearPrevBtn" onclick="nuclearPrevious()" type="button">
+                                      上一步
+                                  </button>
+<button class="nuclear-primary-btn" id="nuclearNextBtn" onclick="nuclearNext()" type="button">
+                                      開始
+                                  </button>
+<button class="nuclear-secondary-btn" onclick="nuclearReset()" type="button">
+                                      重設
+                                  </button>
+</div>
+<div class="nuclear-video-hint">
+                                  上方按一次「Next view」，下方也按一次「下一步」
+                              </div>
+</div>
+<!-- 中文步驟說明 -->
+<div class="nuclear-inline-info">
+<div class="nuclear-step-meta">
+<span id="nuclearStepNumber">
+                                      準備開始
+                                  </span>
+<span class="nuclear-energy-tag" id="nuclearEnergyTag">
+                                      能量來源：核分裂
+                                  </span>
+</div>
+<h4 id="nuclearStepTitle">
+                                  壓水式核能發電
+                              </h4>
+<p id="nuclearStepDescription">
+                                  請使用上方模型中的「Next view」依序觀看各設備，
+                                  並搭配下方中文步驟整理核能發電流程。
+                              </p>
+</div>
+</div>
+</div>
+
+<!-- 來源標示保留 -->
+<div class="model-credit">
+                      Credit:
+                      <a href="https://energyencyclopedia.com/" rel="noopener noreferrer" target="_blank">
+                          EnergyEncyclopedia.com
+                      </a>
+</div>
+<details class="knowledge-card">
+<summary>
+<span>探索後整理</span>
+                          看看核能發電中的能量怎麼轉換
+                      </summary>
+<div class="knowledge-card-content">
+<p>
+                              現行核能發電主要利用
+                              <strong>核分裂</strong>釋放能量並產生熱，
+                              再利用熱能產生蒸氣。
+                              蒸氣推動汽輪機旋轉，最後由發電機將機械能轉換成電能。
+                          </p>
+<div class="energy-flow">
+<span>核能</span>
+<b>→</b>
+<span>熱能</span>
+<b>→</b>
+<span>機械能</span>
+<b>→</b>
+<span>電能</span>
+</div>
+<div class="taiwan-note">
+<div class="taiwan-note-head">
+<span>TAIWAN</span>
+<strong>臺灣曾長期使用核能發電</strong>
+</div>
+<p>
+                                  臺灣曾有核一、核二與核三等核能發電廠。
+                                  最後一部商轉中的核能機組──核三 2 號機，
+                                  已於 2025 年 5 月停止運轉；目前核一、核二與核三均進入除役階段。
+                              </p>
+<p class="policy-note">
+<b>值得思考：</b>
+                                  核能的討論除了發電效率之外，
+                                  還會涉及核能安全、核廢料處理、供電穩定、
+                                  碳排放及能源政策等不同面向。
+                              </p>
+</div>
+<div class="think-note">
+<strong>再想一下：</strong>
+                              核能與火力都可能使用蒸氣、汽輪機與發電機，
+                              那麼兩者最主要的差異發生在哪一個階段？
+                          </div>
+</div>
+</details>
+</article>
+
+  <div class="module-navigation">
+    <a class="btn btn-dark" href="thermal.html">← 火力發電</a>
+    <button class="complete-phase-btn" data-complete-section="nuclear" data-default-label="完成核能發電">
+      完成核能發電
+    </button>
+    <a class="btn btn-primary" href="wind.html">下一站：風力發電 →</a>
+  </div>
+</main>
+
+<footer>
+  <p>臺灣能源互動電子書 © 2026</p>
+  <p>本網站為教育與學術用途開發。</p>
+</footer>
+<script src="student-learning.js?v=9"></script>
+</body>
+</html>

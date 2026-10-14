@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>火力發電｜臺灣能源互動電子書</title>
+  <link rel="stylesheet" href="student-learning.css?v=9">
+</head>
+<body class="module-page">
+
+<nav>
+  <a class="logo" href="index.html">Taiwan Energy<span></span></a>
+  <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu"><li><a href="index.html#start">開始學習</a></li><li><a class="active" href="index.html#explore">傳統能源</a></li><li><a href="index.html#discover">整理發現</a></li><li><a href="index.html#emerging">新興能源</a></li><li><a href="student-summary.html">學習整理</a></li></ul>
+</nav>
+
+
+<header class="summary-hero">
+  <div class="inner">
+    <span class="eyebrow">TRADITIONAL ENERGY 01</span>
+    <h1>火力發電</h1>
+    <p>從天然氣燃燒開始，觀察化學能如何經過熱能與機械能，最後轉換成電能。</p>
+  </div>
+</header>
+
+<section class="container route-container">
+  <div data-learning-route></div>
+</section>
+
+<main class="container module-main">
+  <div class="module-focus-note">
+    <strong>本頁學習方式</strong>
+    <span>操作模型與中文導覽 → 展開「探索後整理」→ 完成本頁。</span>
+  </div>
+
+  <article class="energy-card">
+<div class="energy-card-head">
+<span>01</span>
+<h3>火力發電</h3>
+</div>
+<p>看看燃料燃燒後，熱如何一路帶動蒸氣、汽輪機與發電機。</p>
+<div class="learning-point">
+<strong>你可以注意</strong>
+                      燃料 → 熱 → 蒸氣 → 汽輪機 → 發電機
+                  </div>
+<!-- =========================
+                     火力發電 3D 互動模型
+                ========================= -->
+<div class="thermal-learning-module">
+
+    <div class="module-workspace">
+
+        <!-- =========================
+             左側：3D 模型
+        ========================= -->
+        <div class="module-model-column">
+
+            <div class="thermal-model-frame">
+
+                <div class="thermal-unity-wrapper">
+
+                    <iframe id="thermalUnity"
+                            src="https://teresa1107-nthu.github.io/Thermal-Power-Plant-Unity/"
+                            title="火力發電廠 3D 互動模型"
+                            loading="lazy"
+                            scrolling="no"
+                            allowfullscreen
+                            sandbox="allow-scripts allow-same-origin">
+                    </iframe>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             右側：操作與說明
+        ========================= -->
+        <aside class="module-control-column">
+
+            <div class="thermal-inline-info">
+
+                <div class="thermal-step-meta">
+
+                    <span id="thermalStepNumber">
+                        準備開始
+                    </span>
+
+                    <span class="thermal-energy-tag"
+                          id="thermalEnergyTag">
+
+                        能量來源：天然氣
+
+                    </span>
+
+                </div>
+
+
+                <h4 id="thermalStepTitle">
+                    天然氣火力發電
+                </h4>
+
+
+                <p id="thermalStepDescription">
+
+                    先調整 Gas Input，
+                    讓天然氣進入系統，
+                    再按下「開始導覽」。
+
+                </p>
+
+
+                <div class="thermal-start-hint"
+                     id="thermalStartHint">
+
+                    <span class="thermal-hint-icon"
+                          id="thermalHintIcon">
+
+                        01
+
+                    </span>
+
+                    <div>
+
+                        <strong id="thermalHintTitle">
+
+                            先設定天然氣輸入量
+
+                        </strong>
+
+                        <p id="thermalHintText">
+
+                            拖曳 Gas Input
+                            滑桿到大於 0%。
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 控制按鈕 -->
+
+            <div class="thermal-inline-controls">
+
+                <div class="thermal-inline-buttons">
+
+                    <button id="thermalPrevBtn"
+                            class="thermal-secondary-btn"
+                            type="button"
+                            onclick="thermalPrevious()"
+                            disabled>
+
+                        上一步
+
+                    </button>
+
+
+                    <button id="thermalNextBtn"
+                            class="thermal-primary-btn"
+                            type="button"
+                            onclick="thermalNext()"
+                            disabled>
+
+                        開始導覽
+
+                    </button>
+
+
+                    <button id="thermalResetBtn"
+                            class="thermal-secondary-btn"
+                            onclick="thermalReset()"
+                            type="button"
+                            disabled>
+                        重設
+                    </button>
+
+                </div>
+
+
+                <div class="thermal-inline-gas">
+
+                    <div class="thermal-inline-gas-head">
+
+                        <span>
+                            Gas Input
+                        </span>
+
+                        <strong>
+                            <span id="thermalGasValue">
+                                0
+                            </span>%
+                        </strong>
+
+                    </div>
+
+
+                    <input id="thermalGasSlider"
+                           type="range"
+                           min="0"
+                           max="100"
+                           step="1"
+                           value="0"
+                           aria-label="天然氣輸入量">
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</div>
+
+<section class="knowledge-card knowledge-card-static">
+
+    <div class="knowledge-card-static-head">
+
+        <span>
+            探索後整理
+        </span>
+
+        <h3>
+            看看火力發電中的能量怎麼轉換
+        </h3>
+
+    </div>
+    <div class="knowledge-card-content">
+        <p>
+            火力發電是利用燃料中儲存的
+            <strong>化學能</strong>，
+            經過燃燒轉換成
+            <strong>熱能</strong>。
+            熱能使水產生高溫蒸氣，蒸氣再推動汽輪機旋轉，
+            最後由發電機將旋轉的機械能轉換成電能。
+        </p>
+        <div class="energy-flow">
+            <span>化學能</span>
+            <b>→</b>
+            <span>熱能</span>
+            <b>→</b>
+            <span>機械能</span>
+            <b>→</b>
+            <span>電能</span>
+        </div>
+        <div class="taiwan-note">
+            <div class="taiwan-note-head">
+                <span>TAIWAN</span>
+                <strong>在臺灣，火力發電仍是主要電力來源</strong>
+            </div>
+            <p>
+                臺灣目前的火力發電主要包含燃氣與燃煤。
+                2025 年燃氣發電約占全臺發電量 47.7%，燃煤約占 35.3%。
+                因此即使再生能源持續增加，火力發電目前仍負責相當大的供電量。
+            </p>
+            <p class="policy-note">
+                <b>能源轉型：</b>
+                現階段政策方向包括降低燃煤、增加再生能源，
+                並以燃氣機組配合電力需求及再生能源出力變化。
+            </p>
+        </div>
+        <div class="think-note">
+            <strong>再想一下：</strong>
+            如果燃料正常燃燒、蒸氣也正常產生，
+            但發電機沒有獲得足夠的旋轉機械能，
+            你會先檢查哪一個能量轉換階段？
+        </div>
+    </div>
+</section>
+
+</article>
+
+  <div class="module-navigation">
+    <a class="btn btn-dark" href="index.html#explore">← 返回能源總覽</a>
+    <button class="complete-phase-btn" data-complete-section="thermal" data-default-label="完成火力發電">
+      完成火力發電
+    </button>
+    <a class="btn btn-primary" href="nuclear.html">下一站：核能發電 →</a>
+  </div>
+</main>
+
+<footer>
+  <p>臺灣能源互動電子書 © 2026</p>
+  <p>本網站為教育與學術用途開發。</p>
+</footer>
+<script src="student-learning.js?v=9"></script>
+</body>
+</html>

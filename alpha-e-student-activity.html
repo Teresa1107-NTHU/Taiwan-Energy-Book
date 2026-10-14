@@ -1,340 +1,264 @@
 <!DOCTYPE html>
+
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alpha-E 學習挑戰｜臺灣能源互動電子書</title>
-  <link rel="stylesheet" href="student-learning.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Alpha-E 學習挑戰｜臺灣能源互動電子書</title>
+<link href="student-learning.css?v=9" rel="stylesheet"/>
 </head>
-
-<body>
-
+<body data-page-requires="alpha">
 <nav>
-    <a class="logo" href="index.html">Taiwan Energy<span></span></a>
-
-  <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-
-  <ul id="nav-menu">
-      <li><a href="index.html#challenge">返回能源探索</a></li>
-    <li><a class="active" href="alpha-e-student-activity.html">Alpha-E 挑戰</a></li>
-    <li><a href="alpha-e.html">Alpha-E 系統</a></li>
-    <li><a href="student-summary.html">學習整理</a></li>
-  </ul>
+<a class="logo" href="index.html">Taiwan Energy<span></span></a>
+<button aria-label="開啟選單" class="nav-toggle" onclick="toggleMenu()" type="button">
+<span></span><span></span><span></span>
+</button>
+<ul id="nav-menu"><li><a href="index.html#start">開始學習</a></li><li><a href="index.html#explore">傳統能源</a></li><li><a href="index.html#discover">整理發現</a></li><li><a class="active" href="index.html#emerging">新興能源</a></li><li><a href="student-summary.html">學習整理</a></li></ul>
 </nav>
-
 <header class="summary-hero">
-  <div class="inner">
-    <span class="eyebrow">ALPHA-E LEARNING CHALLENGE</span>
-    <h1>先猜猜看，再進 Alpha-E 找答案</h1>
-    <p>
+<div class="inner">
+<span class="eyebrow">ALPHA-E LEARNING CHALLENGE</span>
+<h1>先猜猜看，再進 Alpha-E 找答案</h1>
+<p>
       這裡不會直接告訴你答案。先寫下自己的想法，再進入 Alpha-E 實際操作，
       最後回到這一頁，把你看到的現象說清楚。
     </p>
-  </div>
-</header>
-
+</div>
+</header><section class="container route-container"><div data-learning-route=""></div></section>
 <section class="container">
-
-    <div class="section-intro">
-        <span class="eyebrow">BEFORE THE CHALLENGE</span>
-        <h2>挑戰前，先掌握兩個基本概念</h2>
-        <p>
+<div class="section-intro">
+<span class="eyebrow">BEFORE THE CHALLENGE</span>
+<h2>挑戰前，先掌握兩個基本概念</h2>
+<p>
             在進入 Alpha-E 操作前，先了解核融合是什麼，
             以及為什麼讓原子核彼此接近並不容易。
             其他答案留到挑戰中自己找。
         </p>
-    </div>
-
-    <div class="fusion-core-grid">
-
-        <article class="fusion-core-card">
-            <span>01</span>
-            <h3>核融合是什麼？</h3>
-            <p>
+</div>
+<div class="fusion-core-grid">
+<article class="fusion-core-card">
+<span>01</span>
+<h3>核融合是什麼？</h3>
+<p>
                 核融合是兩個較輕的原子核，在適當條件下結合形成新的原子核，
                 並可能伴隨能量釋放。
             </p>
-        </article>
-
-        <article class="fusion-core-card">
-            <span>02</span>
-            <h3>為什麼核融合不容易？</h3>
-            <p>
+</article>
+<article class="fusion-core-card">
+<span>02</span>
+<h3>為什麼核融合不容易？</h3>
+<p>
                 原子核都帶正電，彼此接近時會受到庫侖斥力。
                 因此必須讓粒子具有足夠高的能量，
                 才能提高它們接近到核力作用範圍的機會。
             </p>
-        </article>
-    </div>
+</article>
+</div>
 </section>
-
 <main class="container">
-
-  <section>
-    <div class="section-intro">
-      <span class="eyebrow">CHALLENGE 01</span>
-      <h2>為什麼 Alpha-E 的粒子加速環境需要低壓、低碰撞？</h2>
-      <p>
+<section>
+<div class="section-intro">
+<span class="eyebrow">CHALLENGE 01</span>
+<h2>為什麼 Alpha-E 的粒子加速環境需要低壓、低碰撞？</h2>
+<p>
           先預測當腔體壓力降低時，背景粒子碰撞與平均自由徑會如何改變，
           再進入 Alpha-E 觀察這些條件如何幫助粒子束建立。
       </p>
-    </div>
-
-    <div class="activity-steps">
-
-        <article class="activity-step">
-            <span class="tag">STEP 1 · 先猜猜看</span>
-            <h4>
+</div>
+<div class="activity-steps">
+<article class="activity-step">
+<span class="tag">STEP 1 · 先猜猜看</span>
+<h4>
                 當腔體壓力降低、背景氣體密度減少時，
                 粒子的碰撞機率與平均自由徑最可能如何改變？
             </h4>
-
-            <div class="choice-list" data-radio-group="vacuum_predict">
-                <label class="choice">
-                    <input type="radio" name="vacuum_predict" value="collision_down_path_up">
+<div class="choice-list" data-radio-group="vacuum_predict">
+<label class="choice">
+<input name="vacuum_predict" type="radio" value="collision_down_path_up"/>
                     碰撞機率降低，平均自由徑增加
                 </label>
-
-                <label class="choice">
-                    <input type="radio" name="vacuum_predict" value="collision_up_path_up">
+<label class="choice">
+<input name="vacuum_predict" type="radio" value="collision_up_path_up"/>
                     碰撞機率增加，平均自由徑增加
                 </label>
-
-                <label class="choice">
-                    <input type="radio" name="vacuum_predict" value="collision_down_path_down">
+<label class="choice">
+<input name="vacuum_predict" type="radio" value="collision_down_path_down"/>
                     碰撞機率降低，平均自由徑縮短
                 </label>
-
-                <label class="choice">
-                    <input type="radio" name="vacuum_predict" value="unknown">
+<label class="choice">
+<input name="vacuum_predict" type="radio" value="unknown"/>
                     我還不確定
                 </label>
-            </div>
-
-            <textarea data-save="vacuum_reason" placeholder="為什麼你這樣猜？"></textarea>
-        </article>
-
-      <article class="activity-step">
-        <span class="tag">STEP 2 · 動手看看</span>
-        <h4>進入 Alpha-E，操作 Power → Rough Pump → Turbo Pump。</h4>
-
-        <p>
+</div>
+<textarea data-save="vacuum_reason" placeholder="為什麼你這樣猜？"></textarea>
+</article>
+<article class="activity-step">
+<span class="tag">STEP 2 · 動手看看</span>
+<h4>進入 Alpha-E，操作 Power → Rough Pump → Turbo Pump。</h4>
+<p>
           注意壓力、真空進度、時間和模型上的變化。等真空完成後，再回來記錄你的觀察。
         </p>
-
-        <a class="btn btn-dark"
-           href="alpha-e.html"
-           target="_blank"
-           rel="noopener"
-           style="margin-top:14px">
+<a class="btn btn-dark" href="alpha-e.html" rel="noopener" style="margin-top:14px" target="_blank">
           開啟 Alpha-E
         </a>
-
-        <textarea data-save="vacuum_observe" placeholder="你看到了哪些變化？"></textarea>
-      </article>
-
-      <article class="activity-step">
-          <span class="tag">STEP 3 · 說說看</span>
-          <h4>
+<textarea data-save="vacuum_observe" placeholder="你看到了哪些變化？"></textarea>
+</article>
+<article class="activity-step">
+<span class="tag">STEP 3 · 說說看</span>
+<h4>
               為什麼降低背景氣體密度，有助於高能粒子在核融合實驗中維持較有效的運動？
           </h4>
-
-          <p>
+<p>
               試著使用「壓力」、「背景氣體」、「碰撞」和「平均自由徑」來說明。
           </p>
-
-          <textarea data-save="vacuum_explain" placeholder="用自己的話解釋……"></textarea>
-      </article>
-
-    </div>
-  </section>
-
-  <section style="margin-top:52px">
-      <div class="section-intro">
-          <span class="eyebrow">CHALLENGE 02</span>
-          <h2>不同核種，會對應相同的核融合反應嗎？</h2>
-
-          <p>
+<textarea data-save="vacuum_explain" placeholder="用自己的話解釋……"></textarea>
+</article>
+</div>
+</section>
+<section style="margin-top:52px">
+<div class="section-intro">
+<span class="eyebrow">CHALLENGE 02</span>
+<h2>不同核種，會對應相同的核融合反應嗎？</h2>
+<p>
               這次要比較「能不能形成粒子束」與
               「能不能符合特定核融合反應的反應物條件」。
           </p>
-      </div>
-
-    <div class="activity-steps">
-
-        <article class="activity-step">
-            <span class="tag">STEP 1 · 先猜猜看</span>
-            <h4>
+</div>
+<div class="activity-steps">
+<article class="activity-step">
+<span class="tag">STEP 1 · 先猜猜看</span>
+<h4>
                 如果把入射粒子從 Hydrogen 改成 Deuterium，
                 即使兩者都能形成離子束，你認為還能視為相同的 p–¹¹B 核融合反應嗎？
             </h4>
-
-            <textarea data-save="fuel_predict"
-                      placeholder="先寫下你的預測，以及你判斷的理由……"></textarea>
-        </article>
-
-        <article class="activity-step">
-            <span class="tag">STEP 2 · 動手看看</span>
-            <h4>
+<textarea data-save="fuel_predict" placeholder="先寫下你的預測，以及你判斷的理由……"></textarea>
+</article>
+<article class="activity-step">
+<span class="tag">STEP 2 · 動手看看</span>
+<h4>
                 分別使用 Deuterium 與 Hydrogen 完成操作，觀察兩者的差異。
             </h4>
-
-            <p>
+<p>
                 比較兩種情況下 Beam 是否能建立，
                 以及 p–¹¹B 反應是否符合啟動條件。
             </p>
-
-            <a class="btn btn-dark"
-               href="alpha-e.html"
-               target="_blank"
-               rel="noopener"
-               style="margin-top:14px">
+<a class="btn btn-dark" href="alpha-e.html" rel="noopener" style="margin-top:14px" target="_blank">
                 再次開啟 Alpha-E
             </a>
-
-            <textarea data-save="fuel_observe" placeholder="Deuterium 和 Hydrogen 有什麼不同？"></textarea>
-        </article>
-
-        <article class="activity-step">
-            <span class="tag">STEP 3 · 說說看</span>
-            <h4>
+<textarea data-save="fuel_observe" placeholder="Deuterium 和 Hydrogen 有什麼不同？"></textarea>
+</article>
+<article class="activity-step">
+<span class="tag">STEP 3 · 說說看</span>
+<h4>
                 為什麼「能形成高能離子束」不代表「一定能發生指定的 p–¹¹B 核融合反應」？
             </h4>
-
-            <textarea data-save="fuel_explain"
-                      placeholder="試著從『核種』、『反應物』與『核反應種類』來說明……"></textarea>
-        </article>
-
-    </div>
-  </section>
-
-    <section style="margin-top:32px">
-
-    <div class="concept-bridge">
-        <div class="concept-bridge-head">
-            <span>挑戰後整理</span>
-            <h3>為什麼換一種粒子，反應就可能不同？</h3>
-            <p>
+<textarea data-save="fuel_explain" placeholder="試著從『核種』、『反應物』與『核反應種類』來說明……"></textarea>
+</article>
+</div>
+</section>
+<section style="margin-top:32px">
+<div class="concept-bridge">
+<div class="concept-bridge-head">
+<span>挑戰後整理</span>
+<h3>為什麼換一種粒子，反應就可能不同？</h3>
+<p>
                 剛剛的比較告訴我們：
                 「能形成高能粒子束」與「符合某一特定核融合反應」是兩件不同的事。
             </p>
-        </div>
-
-        <div class="fusion-core-grid" style="margin-top:18px">
-
-            <article class="fusion-core-card">
-                <span>01</span>
-                <h3>核種會影響核反應</h3>
-                <p>
+</div>
+<div class="fusion-core-grid" style="margin-top:18px">
+<article class="fusion-core-card">
+<span>01</span>
+<h3>核種會影響核反應</h3>
+<p>
                     核融合反應會受到參與反應核種的影響。
                     改變入射粒子的種類，可能改變可發生的反應與反應產物。
                 </p>
-            </article>
-
-            <article class="fusion-core-card">
-                <span>02</span>
-                <h3>高能量並不是唯一條件</h3>
-                <p>
+</article>
+<article class="fusion-core-card">
+<span>02</span>
+<h3>高能量並不是唯一條件</h3>
+<p>
                     粒子具有足夠能量可以提高接近其他原子核的機會，
                     但要發生指定反應，還必須符合相對應的反應物組合。
                 </p>
-            </article>
-
-            <article class="fusion-core-card">
-                <span>03</span>
-                <h3>本教材的 p–¹¹B</h3>
-                <p>
+</article>
+<article class="fusion-core-card">
+<span>03</span>
+<h3>本教材的 p–¹¹B</h3>
+<p>
                     p 代表質子，¹¹B 代表硼-11。
                     本教材呈現的 p–¹¹B 反應最終形成三個 α 粒子並釋放能量。
                 </p>
-            </article>
-
-        </div>
-
-        <div class="fusion-reaction">
-            <strong>p + ¹¹B → 3α + energy</strong>
-        </div>
-    </div>
-
+</article>
+</div>
+<div class="fusion-reaction">
+<strong>p + ¹¹B → 3α + energy</strong>
+</div>
+</div>
 </section>
-
-  <section style="margin-top:52px">
-      <div class="section-intro">
-          <span class="eyebrow">QUICK REVIEW</span>
-          <h2>最後把核融合的關鍵概念連起來</h2>
-      </div>
-
-      <div class="summary-strip">
-
-          <article class="summary-card">
-              <strong>原子核之間的排斥</strong>
-              <p>
+<section style="margin-top:52px">
+<div class="section-intro">
+<span class="eyebrow">QUICK REVIEW</span>
+<h2>最後把核融合的關鍵概念連起來</h2>
+</div>
+<div class="summary-strip">
+<article class="summary-card">
+<strong>原子核之間的排斥</strong>
+<p>
                   帶正電的原子核彼此接近時會受到庫侖斥力，
                   因此核融合需要粒子具有足夠高的能量。
               </p>
-          </article>
-
-          <article class="summary-card">
-              <strong>高能粒子</strong>
-              <p>
+</article>
+<article class="summary-card">
+<strong>高能粒子</strong>
+<p>
                   粒子具有較高動能時，
                   更有機會接近到核力可以發揮作用的極短距離。
               </p>
-          </article>
-
-          <article class="summary-card">
-              <strong>低碰撞環境</strong>
-              <p>
+</article>
+<article class="summary-card">
+<strong>低碰撞環境</strong>
+<p>
                   降低背景氣體密度，可以減少非必要碰撞，
                   並增加粒子的平均自由徑。
               </p>
-          </article>
-
-          <article class="summary-card">
-              <strong>核種很重要</strong>
-              <p>
+</article>
+<article class="summary-card">
+<strong>核種很重要</strong>
+<p>
                   不同原子核會對應不同的核反應與產物，
                   不能只看粒子能量是否足夠。
               </p>
-          </article>
-
-          <article class="summary-card">
-              <strong>p–¹¹B 核融合</strong>
-              <p>
+</article>
+<article class="summary-card">
+<strong>p–¹¹B 核融合</strong>
+<p>
                   本教材中的反應由質子與硼-11 參與，
                   最終可形成三個 α 粒子並釋放能量。
               </p>
-          </article>
-
-      </div>
-
-      <div class="phase-footer">
-          <button class="complete-phase-btn" data-complete-section="challenge">
+</article>
+</div>
+<div class="phase-footer">
+<button class="complete-phase-btn" data-complete-section="challenge" data-default-label="完成 Alpha-E 挑戰">
               完成 Alpha-E 挑戰
           </button>
-      </div>
-  </section>
-
-  <section style="margin-top:28px">
-    <div class="challenge-panel">
-      <div>
-        <h3>你已經完成 Alpha-E 挑戰</h3>
-        <p>最後一步，把 Alpha-E 放回其他能源系統一起比較。</p>
-      </div>
-
-      <a class="btn btn-primary" href="student-summary.html">前往學習整理</a>
-    </div>
-  </section>
-
+</div>
+</section>
+<section style="margin-top:28px">
+<div class="challenge-panel">
+<div>
+<h3>你已經完成 Alpha-E 挑戰</h3>
+<p>最後一步，把 Alpha-E 放回其他能源系統一起比較。</p>
+</div>
+<a class="btn btn-primary" href="student-summary.html">前往學習整理</a>
+</div>
+</section>
 </main>
-
 <footer>
-  <p>臺灣能源互動電子書 © 2026</p>
-  <p>本網站為教育與學術用途開發。</p>
+<p>臺灣能源互動電子書 © 2026</p>
+<p>本網站為教育與學術用途開發。</p>
 </footer>
-
-<script src="student-learning.js?v=7"></script>
+<script src="student-learning.js?v=9"></script>
 </body>
 </html>

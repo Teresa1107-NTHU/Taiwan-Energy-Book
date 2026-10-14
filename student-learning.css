@@ -175,6 +175,32 @@ nav a.active{
 
 .hero-panel h3{margin-bottom:14px}
 
+/* =========================================================
+   é¦–é å­¸ç¿’è·¯ç·š
+========================================================= */
+
+.route-home-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.route-home-link:hover {
+    background: rgba(255,255,255,.08);
+}
+
+.route-home-link.locked {
+    opacity: .45;
+    cursor: pointer;
+}
+
+.route-home-link.locked:hover {
+    background: rgba(255,255,255,.05);
+}
+
+.route-home-link.done .phase-status {
+    color: #a5f28f;
+}
+
 .phase-list{
   display:grid;
   gap:10px;
@@ -584,7 +610,7 @@ footer{
 }
 
 /* =========================
-   ±´¯Á«áª¾ÃÑ¾ã²z¥d
+   ï¿½ï¿½ï¿½ï¿½ï¿½áª¾ï¿½Ñ¾ï¿½zï¿½d
 ========================= */
 
 .knowledge-card {
@@ -676,7 +702,7 @@ footer{
     }
 
 /* =========================
-   ®Ö¤Àµõ / ®Ö¿Ä¦X·§©À»Î±µ
+   ï¿½Ö¤ï¿½ï¿½ï¿½ / ï¿½Ö¿Ä¦Xï¿½ï¿½ï¿½ï¿½ï¿½Î±ï¿½
 ========================= */
 
 .concept-bridge {
@@ -763,7 +789,7 @@ footer{
 }
 
 /* =========================
-   Tokamak ·§©À¾ã²z
+   Tokamak ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½z
 ========================= */
 
 .concept-flow {
@@ -821,7 +847,7 @@ footer{
 }
 
 /* =========================
-   ®Ö¿Ä¦X®Ö¤ßª¾ÃÑ
+   ï¿½Ö¿Ä¦Xï¿½Ö¤ßªï¿½ï¿½ï¿½
 ========================= */
 
 .fusion-core-grid {
@@ -907,7 +933,7 @@ footer{
 }
 
 /* =========================
-   3D ¼Ò«¬¨Ó·½¼Ğ¥Ü
+   3D ï¿½Ò«ï¿½ï¿½Ó·ï¿½ï¿½Ğ¥ï¿½
 ========================= */
 
 .model-credit {
@@ -927,7 +953,7 @@ footer{
     color: #0d1117;
 }
 /* =========================================================
-   ¤õ¤Oµo¹q¼Ò«¬®Ø
+   ï¿½ï¿½ï¿½Oï¿½oï¿½qï¿½Ò«ï¿½ï¿½ï¿½
 ========================================================= */
 
 .thermal-learning-module {
@@ -942,7 +968,7 @@ footer{
 }
 
 /* =========================
-   Unity ¼Ò«¬
+   Unity ï¿½Ò«ï¿½
 ========================= */
 
 .thermal-unity-wrapper {
@@ -958,7 +984,7 @@ footer{
 }
 
 /* =========================
-   ¼Ò«¬®Ø¤º±±¨î¦C
+   ï¿½Ò«ï¿½ï¿½Ø¤ï¿½ï¿½ï¿½ï¿½ï¿½C
 ========================= */
 
 .thermal-inline-controls {
@@ -972,7 +998,7 @@ footer{
     background: #6f6861;
 }
 
-/* «ö¶s */
+/* ï¿½ï¿½ï¿½s */
 
 .thermal-inline-buttons {
     display: flex;
@@ -1038,7 +1064,7 @@ footer{
 
 
 /* =========================
-   ¼Ò«¬®Ø¤º»¡©ú¤å¦r
+   ï¿½Ò«ï¿½ï¿½Ø¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½r
 ========================= */
 
 .thermal-inline-info {
@@ -1103,7 +1129,7 @@ footer{
 
 
 /* =========================
-   ´£¥Ü
+   ï¿½ï¿½ï¿½ï¿½
 ========================= */
 
 .thermal-start-hint {
@@ -1180,7 +1206,7 @@ footer{
 
 
 /* =========================
-   ¶i«×¤å¦r
+   ï¿½iï¿½×¤ï¿½r
 ========================= */
 
 .thermal-progress-text {
@@ -1228,7 +1254,7 @@ footer{
 }
 
 /* =========================================================
-   ®Ö¯àµo¹q¤å¦r¾ÉÄı
+   ï¿½Ö¯ï¿½oï¿½qï¿½ï¿½rï¿½ï¿½ï¿½ï¿½
 ========================================================= */
 
 .nuclear-learning-module {
@@ -1244,7 +1270,7 @@ footer{
 
 
 /* =========================
-   EnergyEncyclopedia ¼Ò«¬
+   EnergyEncyclopedia ï¿½Ò«ï¿½
 ========================= */
 
 .nuclear-model-wrapper {
@@ -1261,7 +1287,7 @@ footer{
 
 
 /* =========================
-   ¼Ò«¬¤U¤è±±¨î¦C
+   ï¿½Ò«ï¿½ï¿½Uï¿½è±±ï¿½ï¿½C
 ========================= */
 
 .nuclear-inline-controls {
@@ -1313,7 +1339,7 @@ footer{
 }
 
 
-/* ¥k°¼´£¥Ü */
+/* ï¿½kï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 
 .nuclear-video-hint {
     color: rgba(255,255,255,.78);
@@ -1322,7 +1348,7 @@ footer{
 
 
 /* =========================
-   ¤¤¤å»¡©ú°Ï
+   ï¿½ï¿½ï¿½å»¡ï¿½ï¿½ï¿½ï¿½
 ========================= */
 
 .nuclear-inline-info {
@@ -1406,7 +1432,7 @@ footer{
 }
 
 /* =========================================================
-   ­·¤Oµo¹q¤¤¤å¾ÉÄı
+   ï¿½ï¿½ï¿½Oï¿½oï¿½qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ========================================================= */
 
 .wind-learning-module {
@@ -1421,7 +1447,7 @@ footer{
 }
 
 
-/* ¼Ò«¬ */
+/* ï¿½Ò«ï¿½ */
 
 .wind-model-wrapper {
     overflow: hidden;
@@ -1436,7 +1462,7 @@ footer{
     }
 
 
-/* ±±¨î¦C */
+/* ï¿½ï¿½ï¿½ï¿½C */
 
 .wind-inline-controls {
     display: flex;
@@ -1482,7 +1508,7 @@ footer{
 }
 
 
-/* ¥k°¼¾Ş§@´£¿ô */
+/* ï¿½kï¿½ï¿½ï¿½Ş§@ï¿½ï¿½ï¿½ï¿½ */
 
 .wind-guide-hint {
     color: rgba(255,255,255,.78);
@@ -1490,7 +1516,7 @@ footer{
 }
 
 
-/* ¤¤¤å»¡©ú */
+/* ï¿½ï¿½ï¿½å»¡ï¿½ï¿½ */
 
 .wind-inline-info {
     padding: 12px 14px 14px;
@@ -1566,7 +1592,7 @@ footer{
 }
 
 /* =========================================================
-   ¤ô¤Oµo¹q¤¤¤å¾ÉÄı
+   ï¿½ï¿½ï¿½Oï¿½oï¿½qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ========================================================= */
 
 .hydro-learning-module {
@@ -1582,7 +1608,7 @@ footer{
 
 
 /* =========================
-   ¼Ò«¬
+   ï¿½Ò«ï¿½
 ========================= */
 
 .hydro-model-wrapper {
@@ -1599,7 +1625,7 @@ footer{
 
 
 /* =========================
-   ±±¨î¦C
+   ï¿½ï¿½ï¿½ï¿½C
 ========================= */
 
 .hydro-inline-controls {
@@ -1647,7 +1673,7 @@ footer{
 
 
 /* =========================
-   ¥k°¼¾Ş§@´£¿ô
+   ï¿½kï¿½ï¿½ï¿½Ş§@ï¿½ï¿½ï¿½ï¿½
 ========================= */
 
 .hydro-guide-hint {
@@ -1657,7 +1683,7 @@ footer{
 
 
 /* =========================
-   ¤¤¤å»¡©ú
+   ï¿½ï¿½ï¿½å»¡ï¿½ï¿½
 ========================= */
 
 .hydro-inline-info {
@@ -1736,7 +1762,7 @@ footer{
 }
 
 /* =========================================================
-   ¤Ó¶§¥ú¹q¤¤¤å¾ÉÄı
+   ï¿½Ó¶ï¿½ï¿½ï¿½ï¿½qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ========================================================= */
 
 .solar-learning-module {
@@ -1752,7 +1778,7 @@ footer{
 
 
 /* =========================
-   ¼Ò«¬
+   ï¿½Ò«ï¿½
 ========================= */
 
 .solar-model-wrapper {
@@ -1769,7 +1795,7 @@ footer{
 
 
 /* =========================
-   ±±¨î¦C
+   ï¿½ï¿½ï¿½ï¿½C
 ========================= */
 
 .solar-inline-controls {
@@ -1817,7 +1843,7 @@ footer{
 
 
 /* =========================
-   ¥k°¼¾Ş§@´£¿ô
+   ï¿½kï¿½ï¿½ï¿½Ş§@ï¿½ï¿½ï¿½ï¿½
 ========================= */
 
 .solar-guide-hint {
@@ -1827,7 +1853,7 @@ footer{
 
 
 /* =========================
-   ¤¤¤å»¡©ú
+   ï¿½ï¿½ï¿½å»¡ï¿½ï¿½
 ========================= */
 
 .solar-inline-info {
@@ -1906,7 +1932,7 @@ footer{
 }
 
 /* =========================================================
-   Tokamak ¤¤¤å¾ÉÄı
+   Tokamak ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ========================================================= */
 
 .tokamak-learning-module {
@@ -1922,7 +1948,7 @@ footer{
 
 
 /* =========================
-   ¼Ò«¬
+   ï¿½Ò«ï¿½
 ========================= */
 
 .tokamak-model-wrapper {
@@ -1939,7 +1965,7 @@ footer{
 
 
 /* =========================
-   ±±¨î¦C
+   ï¿½ï¿½ï¿½ï¿½C
 ========================= */
 
 .tokamak-inline-controls {
@@ -1987,7 +2013,7 @@ footer{
 
 
 /* =========================
-   ¥k°¼¾Ş§@´£¿ô
+   ï¿½kï¿½ï¿½ï¿½Ş§@ï¿½ï¿½ï¿½ï¿½
 ========================= */
 
 .tokamak-guide-hint {
@@ -1997,7 +2023,7 @@ footer{
 
 
 /* =========================
-   ¤¤¤å»¡©ú
+   ï¿½ï¿½ï¿½å»¡ï¿½ï¿½
 ========================= */
 
 .tokamak-inline-info {
@@ -2076,7 +2102,7 @@ footer{
 }
 
 /* =========================================================
-   »OÆW¯à·½±¡¹Ò
+   ï¿½Oï¿½Wï¿½à·½ï¿½ï¿½ï¿½ï¿½
 ========================================================= */
 
 .taiwan-note {
@@ -2141,7 +2167,7 @@ footer{
 
 
 /* =========================================================
-   »OÆWµo¹qµ²ºc
+   ï¿½Oï¿½Wï¿½oï¿½qï¿½ï¿½ï¿½c
 ========================================================= */
 
 .taiwan-energy-context {
@@ -2227,7 +2253,7 @@ footer{
 
 
 /* =========================================================
-   ¯à·½¨ú±Ë
+   ï¿½à·½ï¿½ï¿½ï¿½ï¿½
 ========================================================= */
 
 .energy-tradeoff-card {
@@ -2314,5 +2340,484 @@ footer{
 
     .taiwan-energy-context {
         padding: 20px;
+    }
+}
+
+/* =========================================================
+   V9ï¼šæ‹†é å¼å­¸ç¿’æµç¨‹ / å­¸ç¿’è·¯ç·š / è§£é–æ©Ÿåˆ¶
+========================================================= */
+
+.route-container{padding-top:28px;padding-bottom:0}
+.learning-route{border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden}
+.learning-route-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:18px 20px 12px}
+.learning-route-head h3{margin:0;font-size:1rem}
+.learning-route-head p{margin:3px 0 0;color:var(--muted);font-size:.78rem}
+.route-overall{white-space:nowrap;color:#28798a;font-size:.78rem;font-weight:800}
+.route-stage-list{display:grid;gap:1px;background:var(--line)}
+.route-stage{display:block;width:100%;border:0;background:#fff;color:var(--black);text-decoration:none;text-align:left}
+.route-stage-main{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;padding:11px 16px}
+.route-stage-num{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#eef4f6;color:#28798a;font-size:.72rem;font-weight:900}
+.route-stage-text strong{display:block;font-size:.9rem}
+.route-stage-text small{display:block;margin-top:1px;color:#8a939b;font-size:.72rem}
+.route-stage-status{color:#6c757d;font-size:.76rem;font-weight:700}
+.route-stage.done .route-stage-num{background:#dff5d7;color:#24451d}
+.route-stage.done .route-stage-status{color:#39752d}
+.route-stage.locked{cursor:pointer;opacity:.57}
+.route-stage.locked .route-stage-num{background:#f2f3f4;color:#8a939b}
+.route-subitems{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 12px 60px;background:#fff}
+.route-subitem{display:inline-flex;align-items:center;gap:5px;min-height:30px;padding:5px 9px;border:1px solid #e4e8eb;border-radius:999px;background:#fafbfb;color:#5c6670;text-decoration:none;font-size:.7rem;font-weight:700}
+.route-subitem.done{border-color:#cce5c3;background:#eff9ec;color:#39752d}
+.route-subitem.locked{opacity:.5;cursor:pointer}
+
+.energy-menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.energy-menu-card{display:block;padding:22px;border:1px solid var(--line);border-radius:16px;background:#fff;text-decoration:none;transition:.18s ease}
+.energy-menu-card:hover{transform:translateY(-2px);border-color:#cfd6dc;box-shadow:0 10px 28px rgba(13,17,23,.06)}
+.energy-menu-card > span{display:inline-block;margin-bottom:9px;color:#8a939b;font-size:.74rem;font-weight:800;letter-spacing:.08em}
+.energy-menu-card h3{margin-bottom:6px;font-size:1.12rem}
+.energy-menu-card p{color:var(--muted);font-size:.88rem;line-height:1.7}
+.energy-menu-card .module-card-status{display:block;margin-top:14px;color:#28798a;font-size:.82rem}
+.energy-menu-card.done{border-color:#cce5c3;background:#fbfef9}
+.energy-menu-card.done .module-card-status{color:#39752d}
+.energy-menu-card.locked{opacity:.55;cursor:pointer}
+
+.section-progress-line{display:flex;justify-content:space-between;gap:16px;align-items:center;margin:0 0 16px;padding:12px 15px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:.86rem}
+.section-progress-line span{color:#28798a;font-weight:800}
+
+.gated-section{position:relative}
+.gated-section .gate-message{display:none}
+.gated-section.is-locked .gated-content{display:none}
+.gated-section.is-locked .gate-message{display:flex;align-items:flex-start;gap:12px;padding:22px;border:1px dashed #d6dce1;border-radius:16px;background:#f5f7f8;color:#6c757d}
+.gate-message > span{font-size:1.25rem;line-height:1.4}
+.gate-message strong{display:block;color:#303840;margin-bottom:3px}
+.gate-message p{margin:0;font-size:.88rem}
+.compact-gate{padding-top:20px}
+
+.module-main{padding-top:30px}
+.module-main .energy-card{max-width:100%}
+.module-focus-note{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px;padding:13px 16px;border-left:3px solid var(--cyan);border-radius:8px;background:#fff;color:#56616b;font-size:.86rem}
+.module-focus-note strong{color:#0d1117}
+.module-navigation{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-top:28px;padding-top:22px;border-top:1px solid var(--line)}
+.module-navigation > :last-child{justify-self:end}
+
+.page-lock-overlay{position:fixed;inset:var(--nav) 0 0;z-index:900;display:grid;place-items:center;padding:24px;background:rgba(248,249,250,.96);backdrop-filter:blur(4px)}
+.page-lock-card{width:min(560px,92vw);padding:28px;border:1px solid var(--line);border-radius:18px;background:#fff;box-shadow:0 18px 50px rgba(13,17,23,.12);text-align:center}
+.page-lock-card h2{margin:8px 0}
+.page-lock-card p{margin-bottom:18px;color:var(--muted)}
+
+.learning-toast{position:fixed;right:22px;bottom:22px;z-index:2000;max-width:360px;padding:12px 15px;border-radius:10px;background:#0d1117;color:#fff;font-size:.84rem;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+
+.compare-table td:first-child{font-weight:800}
+
+@media(max-width:980px){.energy-menu-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+  .route-stage-main{grid-template-columns:30px 1fr}
+  .route-stage-status{grid-column:2}
+  .route-subitems{padding-left:56px}
+  .energy-menu-grid{grid-template-columns:1fr}
+  .module-navigation{grid-template-columns:1fr}
+  .module-navigation > *{width:100%;justify-self:stretch!important;text-align:center}
+}
+
+/* =========================================================
+   å­¸ç¿’è·¯ç·šæ”¶åˆ
+========================================================= */
+
+.route-toggle {
+    width: 100%;
+    border: 0;
+    cursor: pointer;
+    text-align: left;
+}
+
+.route-head-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.route-toggle-icon {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #f1f3f5;
+    color: #495057;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.learning-route-content {
+    display: block;
+}
+
+.learning-route.route-collapsed
+.learning-route-content {
+    display: none;
+}
+
+.learning-route.route-collapsed
+.learning-route-head {
+    padding-bottom: 18px;
+}
+
+/* =========================================================
+   èƒ½æºæ¨¡å‹ï¼šå·¦æ¨¡å‹ / å³æ§åˆ¶
+========================================================= */
+
+.module-workspace {
+    display: grid;
+    grid-template-columns: minmax(800px, 1fr) minmax(300px, 340px);
+    gap: 18px;
+    align-items: stretch;
+}
+
+
+/* å·¦å´æ¨¡å‹ */
+
+.module-model-column {
+    min-width: 0;
+}
+
+    .module-model-column
+    .thermal-model-frame {
+        height: 100%;
+    }
+
+    .module-model-column
+    .thermal-unity-wrapper {
+        height: 100%;
+        min-height: 460px;
+        border-radius: 14px;
+        overflow: hidden;
+    }
+
+        .module-model-column
+        .thermal-unity-wrapper iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 460px;
+            /*
+     * ä¸å†ä½¿ç”¨è¶…é«˜çš„ aspect-ratioï¼Œ
+     * è®“æ¨¡å‹é™åˆ¶åœ¨ä¸€å€‹ç•«é¢é™„è¿‘ã€‚
+     */
+            aspect-ratio: auto;
+            border: 0;
+        }
+
+
+/* å³å´æ“ä½œå€ */
+
+.module-control-column {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid #dfe3e6;
+    border-radius: 14px;
+    background: #ffffff;
+}
+
+
+    /* èªªæ˜æ”¾ä¸Šé¢ */
+
+    .module-control-column
+    .thermal-inline-info {
+        flex: 1;
+        padding: 20px;
+        background: #f4f2ef;
+    }
+
+
+    /* æŒ‰éˆ•å’Œ slider æ”¾ä¸‹é¢ */
+
+    .module-control-column
+    .thermal-inline-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        padding: 16px;
+        background: #6f6861;
+    }
+
+
+    /* ä¸‰é¡†æŒ‰éˆ•æ’å¥½ */
+
+    .module-control-column
+    .thermal-inline-buttons {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+
+        .module-control-column
+        .thermal-inline-buttons button {
+            width: 100%;
+            min-width: 0;
+        }
+
+
+    /* æç¤ºä¸è¦å¤ªå·¨å¤§ */
+
+    .module-control-column
+    .thermal-start-hint {
+        margin-top: 18px;
+        margin-bottom: 0;
+    }
+
+
+/* å¹³æ¿æ”¹ä¸Šä¸‹ */
+
+@media(max-width:900px) {
+
+    .module-workspace {
+        grid-template-columns: 1fr;
+    }
+
+    .module-model-column
+    .thermal-unity-wrapper {
+        min-height: 420px;
+    }
+
+        .module-model-column
+        .thermal-unity-wrapper iframe {
+            min-height: 420px;
+        }
+
+    .wind-model-shell {
+        min-height: 420px;
+    }
+
+    .wind-model-shell iframe {
+        min-height: 420px;
+    }
+}
+
+/* =========================================================
+   æ°¸ä¹…å±•é–‹çš„æ¢ç´¢å¾Œæ•´ç†
+========================================================= */
+
+.knowledge-card-static {
+    margin-top: 24px;
+}
+
+.knowledge-card-static-head {
+    padding: 18px;
+    border-bottom: 1px solid #e9ecef;
+    background: #ffffff;
+}
+
+    .knowledge-card-static-head span {
+        display: block;
+        margin-bottom: 4px;
+        color: #8a939b;
+        font-size: .74rem;
+        font-weight: 800;
+        letter-spacing: .08em;
+    }
+
+    .knowledge-card-static-head h3 {
+        margin: 0;
+        font-size: 1rem;
+    }
+
+.model-page-wide {
+    width: min(1320px, 96%);
+}
+
+/* =========================================================
+   é¢¨åŠ›æ­£å¼é 
+   æ’ç‰ˆæ¯”ç…§ç«åŠ›ç™¼é›»
+========================================================= */
+
+.wind-learning-module {
+    background: #ffffff;
+}
+
+
+/* =========================
+   å·¦å´æ¨¡å‹
+========================= */
+
+.wind-model-frame {
+    height: 100%;
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: #ffffff;
+}
+
+
+.wind-model-shell {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 460px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #11161d;
+}
+
+
+    .wind-model-shell iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 460px;
+        border: 0;
+        background: #11161d;
+    }
+
+
+/* =========================
+   æ¨¡å‹è¼‰å…¥æç¤º
+========================= */
+
+.model-loading {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    z-index: 2;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: rgba(0,0,0,.68);
+    color: #ffffff;
+    font-size: .76rem;
+    pointer-events: none;
+    transition: opacity .2s ease;
+}
+
+
+    .model-loading.ready {
+        opacity: 0;
+    }
+
+
+/* =========================
+   å³å´èªªæ˜
+========================= */
+
+.wind-guide-content {
+    flex: 1;
+    padding: 20px;
+    background: #f4f2ef;
+}
+
+
+.wind-step-meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+
+#windStepNumber {
+    color: #6b7280;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .09em;
+}
+
+
+#windStepTitle {
+    margin: 0 0 10px;
+    color: #111827;
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+
+.wind-title-en {
+    display: inline-block;
+    margin-left: 8px;
+    color: #6f7880;
+    font-size: .88rem;
+    font-weight: 700;
+}
+
+
+#windStepDescription {
+    margin: 0;
+    color: #374151;
+    font-size: .95rem;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+
+.wind-energy-tag {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 16px;
+    padding: 6px 11px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.72);
+    color: #28798a;
+    font-size: .84rem;
+    font-weight: 800;
+}
+
+
+/* =========================
+   æ§åˆ¶å€
+========================= */
+
+.wind-controls {
+    padding: 16px;
+    background: #6f6861;
+}
+
+
+.wind-button-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 8px;
+}
+
+
+    .wind-button-grid button {
+        width: 100%;
+        min-width: 0;
+        height: 36px;
+        padding: 5px 12px;
+        border: 1px solid rgba(255,255,255,.7);
+        border-radius: 18px;
+        background: rgba(255,255,255,.9);
+        color: #495057;
+        font-size: .78rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: .2s;
+    }
+
+
+        .wind-button-grid button:hover:not(:disabled) {
+            background: #ffffff;
+        }
+
+
+        .wind-button-grid button:disabled {
+            opacity: .45;
+            cursor: not-allowed;
+        }
+
+/* =========================
+   Tablet
+========================= */
+
+@media(max-width:900px) {
+
+    .wind-model-shell,
+    .wind-model-shell iframe {
+        min-height: 420px;
+    }
+}
+
+
+@media(max-width:600px) {
+
+    .wind-button-grid {
+        grid-template-columns: 1fr;
     }
 }

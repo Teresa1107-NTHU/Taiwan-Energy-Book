@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>水力發電｜臺灣能源互動電子書</title>
+  <link rel="stylesheet" href="student-learning.css?v=9">
+</head>
+<body class="module-page">
+
+<nav>
+  <a class="logo" href="index.html">Taiwan Energy<span></span></a>
+  <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu"><li><a href="index.html#start">開始學習</a></li><li><a class="active" href="index.html#explore">傳統能源</a></li><li><a href="index.html#discover">整理發現</a></li><li><a href="index.html#emerging">新興能源</a></li><li><a href="student-summary.html">學習整理</a></li></ul>
+</nav>
+
+
+<header class="summary-hero">
+  <div class="inner">
+    <span class="eyebrow">TRADITIONAL ENERGY 04</span>
+    <h1>水力發電</h1>
+    <p>從水位差與水流開始，觀察重力位能如何轉換並帶動水輪機發電。</p>
+  </div>
+</header>
+
+<section class="container route-container">
+  <div data-learning-route></div>
+</section>
+
+<main class="container module-main">
+  <div class="module-focus-note">
+    <strong>本頁學習方式</strong>
+    <span>操作模型與中文導覽 → 展開「探索後整理」→ 完成本頁。</span>
+  </div>
+
+  <article class="energy-card">
+<div class="energy-card-head">
+<span>04</span>
+<h3>水力發電</h3>
+</div>
+<p>看看水的高度與流動如何帶動水輪機。</p>
+<div class="learning-point">
+<strong>你可以注意</strong>
+                      水流、水輪機與發電機之間是怎麼連起來的？
+                  </div>
+<!-- =========================
+                     水力發電互動導覽
+                ========================= -->
+<div class="hydro-learning-module">
+<div class="hydro-model-frame">
+<!-- EnergyEncyclopedia 3D 模型 -->
+<div class="iframe-wrapper hydro-model-wrapper">
+<iframe allowfullscreen="" id="hydroModel" loading="lazy" sandbox="allow-scripts allow-same-origin" src="https://3d.energyencyclopedia.com/hydro_power_house" title="水力發電廠 3D 互動模型">
+</iframe>
+</div>
+<!-- 手動中文導覽控制列 -->
+<div class="hydro-inline-controls">
+<div class="hydro-inline-buttons">
+<button class="hydro-secondary-btn" disabled="" id="hydroPrevBtn" onclick="hydroPrevious()" type="button">
+                                      上一步
+                                  </button>
+<button class="hydro-primary-btn" id="hydroNextBtn" onclick="hydroNext()" type="button">
+                                      開始
+                                  </button>
+<button class="hydro-secondary-btn" onclick="hydroReset()" type="button">
+                                      重設
+                                  </button>
+</div>
+<div class="hydro-guide-hint">
+                                  上方按一次「Next view」，下方也按一次「下一步」
+                              </div>
+</div>
+<!-- 中文步驟說明 -->
+<div class="hydro-inline-info">
+<div class="hydro-step-meta">
+<span id="hydroStepNumber">
+                                      準備開始
+                                  </span>
+<span class="hydro-energy-tag" id="hydroEnergyTag">
+                                      能量來源：高處的水
+                                  </span>
+</div>
+<h4 id="hydroStepTitle">
+                                  水力發電
+                              </h4>
+<p id="hydroStepDescription">
+                                  請使用上方模型中的「Next view」依序觀看各設備，
+                                  並搭配下方中文步驟了解水如何帶動水輪機並產生電能。
+                              </p>
+</div>
+</div>
+</div>
+<div class="model-credit">
+                      Credit:
+                      <a href="https://energyencyclopedia.com/" rel="noopener noreferrer" target="_blank">
+                          EnergyEncyclopedia.com
+                      </a>
+</div>
+<details class="knowledge-card">
+<summary>
+<span>探索後整理</span>
+                          看看水力發電中的能量怎麼轉換
+                      </summary>
+<div class="knowledge-card-content">
+<p>
+                              位於較高處的水具有<strong>重力位能</strong>。
+                              水向低處流動時，部分位能轉換成水流的動能；
+                              水流再將能量傳遞給水輪機，使水輪機旋轉，
+                              最後由發電機產生電能。
+                          </p>
+<div class="energy-flow">
+<span>重力位能</span>
+<b>→</b>
+<span>動能</span>
+<b>→</b>
+<span>機械能</span>
+<b>→</b>
+<span>電能</span>
+</div>
+<div class="taiwan-note">
+<div class="taiwan-note-head">
+<span>TAIWAN</span>
+<strong>臺灣的水力發電，還肩負「儲能」任務</strong>
+</div>
+<p>
+                                  臺灣山地多、河川坡度大，水力發電很早就是重要的電力來源。
+                                  現在除了傳統水力之外，日月潭周邊的大觀與明潭抽蓄水力系統，
+                                  也具有重要的電力調度功能。
+                              </p>
+<p class="policy-note">
+<b>抽蓄水力：</b>
+                                  電力較充足時把水抽回高處儲存，
+                                  用電需求較高時再放水發電。
+                                  因此它很像一座大型的「水力電池」。
+                              </p>
+</div>
+<div class="think-note">
+<strong>再想一下：</strong>
+                              如果水庫仍然有水，但水位差或流量下降，
+                              發電能力是否一定能維持不變？
+                          </div>
+</div>
+</details>
+</article>
+
+  <div class="module-navigation">
+    <a class="btn btn-dark" href="wind.html">← 風力發電</a>
+    <button class="complete-phase-btn" data-complete-section="hydro" data-default-label="完成水力發電">
+      完成水力發電
+    </button>
+    <a class="btn btn-primary" href="solar.html">下一站：太陽光電 →</a>
+  </div>
+</main>
+
+<footer>
+  <p>臺灣能源互動電子書 © 2026</p>
+  <p>本網站為教育與學術用途開發。</p>
+</footer>
+<script src="student-learning.js?v=9"></script>
+</body>
+</html>

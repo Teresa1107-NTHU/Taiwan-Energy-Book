@@ -2431,28 +2431,66 @@ footer{
     margin-top: 24px;
 }
 
+.model-page-wide {
+    width: min(1320px, 96%);
+}
+
+/* =========================================================
+   能源小幫手
+========================================================= */
+
 .knowledge-card-static-head {
-    padding: 18px;
+    padding: 20px 22px;
     border-bottom: 1px solid #e9ecef;
     background: #ffffff;
 }
 
-    .knowledge-card-static-head span {
-        display: block;
-        margin-bottom: 4px;
-        color: #8a939b;
-        font-size: .74rem;
-        font-weight: 800;
-        letter-spacing: .08em;
-    }
 
-    .knowledge-card-static-head h3 {
-        margin: 0;
-        font-size: 1rem;
-    }
+.knowledge-helper-title {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 10px;
+}
 
-.model-page-wide {
-    width: min(1320px, 96%);
+
+.knowledge-helper-icon {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    flex: 0 0 42px;
+    border-radius: 12px;
+    background: #eef8fa;
+    font-size: 1.35rem;
+}
+
+
+.knowledge-helper-title strong {
+    display: block;
+    color: #17212b;
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1.35;
+}
+
+
+.knowledge-helper-title small {
+    display: block;
+    margin-top: 1px;
+    color: #8a939b;
+    font-size: .65rem;
+    font-weight: 800;
+    letter-spacing: .09em;
+}
+
+
+.knowledge-card-static-head h3 {
+    margin: 0;
+    color: #374151;
+    font-size: .98rem;
+    font-weight: 700;
+    line-height: 1.6;
 }
 
 /* =========================================================

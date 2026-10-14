@@ -1,130 +1,82 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>風力發電｜臺灣能源互動電子書</title>
-  <link rel="stylesheet" href="student-learning.css?v=10">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>風力發電｜臺灣能源互動電子書</title>
+    <link rel="stylesheet" href="student-learning.css?v=10">
 </head>
 <body class="module-page">
 
-<nav>
-  <a class="logo" href="index.html">Taiwan Energy<span></span></a>
-  <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-  <ul id="nav-menu"><li><a href="index.html#start">開始學習</a></li><li><a class="active" href="index.html#explore">傳統能源</a></li><li><a href="index.html#discover">整理發現</a></li><li><a href="index.html#emerging">新興能源</a></li><li><a href="student-summary.html">學習整理</a></li></ul>
-</nav>
+    <nav>
+        <a class="logo" href="index.html">Taiwan Energy<span></span></a>
+        <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+        <ul id="nav-menu"><li><a href="index.html#start">開始學習</a></li><li><a class="active" href="index.html#explore">傳統能源</a></li><li><a href="index.html#discover">整理發現</a></li><li><a href="index.html#emerging">新興能源</a></li><li><a href="student-summary.html">學習整理</a></li></ul>
+    </nav>
 
 
-<header class="summary-hero">
-  <div class="inner">
-    <span class="eyebrow">TRADITIONAL ENERGY 03</span>
-    <h1>風力發電</h1>
-    <p>觀察風如何推動葉片，把空氣動能轉換成旋轉機械能，再產生電力。</p>
-  </div>
-</header>
-
-<section class="container route-container">
-  <div data-learning-route></div>
-</section>
-
-<main class="container module-main">
-    <div class="module-focus-note">
-        <strong>本頁學習方式</strong>
-        <span>操作模型與中文導覽 → 查看「探索後整理」→ 完成本頁。</span>
-    </div>
-
-    <article class="energy-card">
-        <div class="energy-card-head">
-            <span>03</span>
-            <h3>風力發電</h3>
+    <header class="summary-hero">
+        <div class="inner">
+            <span class="eyebrow">TRADITIONAL ENERGY 03</span>
+            <h1>風力發電</h1>
+            <p>觀察風如何推動葉片，把空氣動能轉換成旋轉機械能，再產生電力。</p>
         </div>
-        <p>看看風怎麼推動葉片，再把轉動變成電。</p>
-        <div class="learning-point">
-            <strong>你可以注意</strong>
-            哪些部分會轉？風的動能在哪裡轉成機械能？最後哪個設備產生電？
+    </header>
+
+    <section class="container route-container">
+        <div data-learning-route></div>
+    </section>
+
+    <main class="container module-main">
+        <div class="module-focus-note">
+            <strong>本頁學習方式</strong>
+            <span>操作模型與中文導覽 → 查看「能源小幫手」→ 完成本頁。</span>
         </div>
-        
-        <!-- =========================
-         風力發電 3D 互動導覽
-        ========================= -->
 
-        <div class="wind-learning-module">
+        <article class="energy-card">
+            <div class="energy-card-head">
+                <span>03</span>
+                <h3>風力發電</h3>
+            </div>
+            <p>看看風怎麼推動葉片，再把轉動變成電。</p>
+            <div class="learning-point">
+                <strong>你可以注意</strong>
+                哪些部分會轉？風的動能在哪裡轉成機械能？最後哪個設備產生電？
+            </div>
 
-            <div class="module-workspace">
-
-                <!-- =========================
-                 左側：3D 模型
+            <!-- =========================
+             風力發電 3D 互動導覽
             ========================= -->
 
-                <div class="module-model-column">
+            <div class="wind-learning-module">
 
-                    <div class="wind-model-frame">
+                <div class="module-workspace">
 
-                        <div class="wind-model-shell"
-                             id="windViewerWrapper">
+                    <!-- =========================
+                         左側：3D 模型
+                    ========================= -->
 
-                            <div class="model-loading"
-                                 id="windModelStatus">
-                                正在載入風力 3D 模型……
+                    <div class="module-model-column">
+
+                        <div class="wind-model-frame">
+
+                            <div class="wind-model-shell"
+                                 id="windViewerWrapper">
+
+                                <div class="model-loading"
+                                     id="windModelStatus">
+                                    正在載入風力 3D 模型……
+                                </div>
+
+                                <iframe id="windModel"
+                                        src="https://my-3d-proxy.loveleehom9.workers.dev/wind-energy/horizontal-axis-turbine"
+                                        title="水平軸風力發電機 3D 互動模型"
+                                        allowfullscreen>
+                                </iframe>
+
                             </div>
-
-                            <iframe id="windModel"
-                                    src="https://my-3d-proxy.loveleehom9.workers.dev/wind-energy/horizontal-axis-turbine"
-                                    title="水平軸風力發電機 3D 互動模型"
-                                    allowfullscreen>
-                            </iframe>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- =========================
-                 右側：中文導覽與控制
-            ========================= -->
-
-                <aside class="module-control-column wind-control-column">
-
-                    <div class="wind-guide-content">
-
-                        <div class="wind-step-meta">
-
-                            <span id="windStepNumber">
-                                準備開始
-                            </span>
-
-                        </div>
-
-
-                        <h2 id="windStepTitle">
-
-                            水平軸風力發電機
-
-                            <span class="wind-title-en">
-                                Horizontal-Axis Wind Turbine
-                            </span>
-
-                        </h2>
-
-
-                        <p id="windStepDescription">
-
-                            模型初始畫面為 All components view，
-                            可先觀察各設備的位置與標籤。
-                            按下「開始導覽」後，
-                            模型與右側中文說明會同步前進。
-
-                        </p>
-
-
-                        <div class="wind-energy-tag"
-                             id="windEnergyTag">
-
-                            能量來源：風
 
                         </div>
 
@@ -132,114 +84,172 @@
 
 
                     <!-- =========================
-                     控制按鈕
-                ========================= -->
+                         右側：中文導覽與控制
+                    ========================= -->
 
-                    <div class="wind-controls">
+                    <aside class="module-control-column wind-control-column">
 
-                        <div class="wind-button-grid">
+                        <div class="wind-guide-content">
 
-                            <button id="windPrevBtn"
-                                    class="wind-prev"
-                                    type="button"
-                                    disabled>
+                            <div class="wind-step-meta">
 
-                                上一步
+                                <span id="windStepNumber">
+                                    準備開始
+                                </span>
 
-                            </button>
-
-
-                            <button id="windNextBtn"
-                                    class="wind-next"
-                                    type="button">
-
-                                開始導覽
-
-                            </button>
+                            </div>
 
 
-                            <button id="windResetBtn"
-                                    class="wind-reset"
-                                    type="button"
-                                    disabled>
+                            <h2 id="windStepTitle">
 
-                                重設
+                                水平軸風力發電機
 
-                            </button>
+                                <span class="wind-title-en">
+                                    Horizontal-Axis Wind Turbine
+                                </span>
+
+                            </h2>
+
+
+                            <p id="windStepDescription">
+
+                                模型初始畫面為 All components view，
+                                可先觀察各設備的位置與標籤。
+                                按下「開始導覽」後，
+                                模型與右側中文說明會同步前進。
+
+                            </p>
+
+
+                            <div class="wind-energy-tag"
+                                 id="windEnergyTag">
+
+                                能量來源：風
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================
+                             控制按鈕
+                        ========================= -->
+
+                        <div class="wind-controls">
+
+                            <div class="wind-button-grid">
+
+                                <button id="windPrevBtn"
+                                        class="wind-prev"
+                                        type="button"
+                                        disabled>
+
+                                    上一步
+
+                                </button>
+
+
+                                <button id="windNextBtn"
+                                        class="wind-next"
+                                        type="button">
+
+                                    開始導覽
+
+                                </button>
+
+
+                                <button id="windResetBtn"
+                                        class="wind-reset"
+                                        type="button"
+                                        disabled>
+
+                                    重設
+
+                                </button>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+
+            <div class="model-credit">
+                Credit:
+                <a href="https://energyencyclopedia.com/" rel="noopener noreferrer" target="_blank">
+                    EnergyEncyclopedia.com
+                </a>
+            </div>
+            <section class="knowledge-card knowledge-card-static">
+
+                <div class="knowledge-card-static-head">
+
+                    <div class="knowledge-helper-title">
+                        <span class="knowledge-helper-icon">🌬️</span>
+
+                        <div>
+                            <strong>能源小幫手</strong>
+                            <small>ENERGY HELPER</small>
                         </div>
                     </div>
-                </aside>
-            </div>
-        </div>
 
-        <div class="model-credit">
-            Credit:
-            <a href="https://energyencyclopedia.com/" rel="noopener noreferrer" target="_blank">
-                EnergyEncyclopedia.com
-            </a>
-        </div>
-        <section class="knowledge-card knowledge-card-static">
+                    <h3>一起整理風力發電的能量轉換</h3>
 
-            <div class="knowledge-card-static-head">
-                <span>探索後整理</span>
-                <h3>看看風力發電中的能量怎麼轉換</h3>
-            </div>
-
-            <div class="knowledge-card-content">
-                <p>
-                    流動的空氣具有<strong>動能</strong>。
-                    當風推動葉片旋轉時，部分能量傳遞給風機的旋轉系統，
-                    形成機械能，再由發電機轉換成電能。
-                </p>
-
-                <div class="energy-flow">
-                    <span>風的動能</span>
-                    <b>→</b>
-                    <span>機械能</span>
-                    <b>→</b>
-                    <span>電能</span>
                 </div>
 
-                <div class="taiwan-note">
-                    <div class="taiwan-note-head">
-                        <span>TAIWAN</span>
-                        <strong>臺灣風力發電的重要發展方向：離岸風電</strong>
+                <div class="knowledge-card-content">
+                    <p>
+                        流動的空氣具有<strong>動能</strong>。
+                        當風推動葉片旋轉時，部分能量傳遞給風機的旋轉系統，
+                        形成機械能，再由發電機轉換成電能。
+                    </p>
+
+                    <div class="energy-flow">
+                        <span>風的動能</span>
+                        <b>→</b>
+                        <span>機械能</span>
+                        <b>→</b>
+                        <span>電能</span>
                     </div>
 
-                    <p>
-                        臺灣海峽具有發展風力發電的條件，因此除了陸域風機之外，
-                        近年的風力發展重點逐漸轉向離岸風電。
-                        截至 2026 年，臺灣已設置超過 500 座離岸風力機。
-                    </p>
+                    <div class="taiwan-note">
+                        <div class="taiwan-note-head">
+                            <span>TAIWAN</span>
+                            <strong>臺灣風力發電的重要發展方向：離岸風電</strong>
+                        </div>
 
-                    <p class="policy-note">
-                        <b>未來方向：</b>
-                        離岸風場仍持續擴大，同時也開始布局適合較深海域使用的浮動式離岸風電。
-                    </p>
+                        <p>
+                            臺灣海峽具有發展風力發電的條件，因此除了陸域風機之外，
+                            近年的風力發展重點逐漸轉向離岸風電。
+                            截至 2026 年，臺灣已設置超過 500 座離岸風力機。
+                        </p>
+
+                        <p class="policy-note">
+                            <b>未來方向：</b>
+                            離岸風場仍持續擴大，同時也開始布局適合較深海域使用的浮動式離岸風電。
+                        </p>
+                    </div>
+
+                    <div class="think-note">
+                        <strong>再想一下：</strong>
+                        如果設備都正常，但風速明顯降低，
+                        葉片能從風中取得的能量與發電輸出可能會怎麼改變？
+                    </div>
                 </div>
+            </section>
+        </article>
 
-                <div class="think-note">
-                    <strong>再想一下：</strong>
-                    如果設備都正常，但風速明顯降低，
-                    葉片能從風中取得的能量與發電輸出可能會怎麼改變？
-                </div>
-            </div>
-        </section>
-    </article>
+        <div class="module-navigation">
+            <a class="btn btn-dark" href="nuclear.html">← 核能發電</a>
+            <button class="complete-phase-btn" data-complete-section="wind" data-default-label="完成風力發電">
+                完成風力發電
+            </button>
+            <a class="btn btn-primary" href="hydro.html">下一站：水力發電 →</a>
+        </div>
+    </main>
 
-    <div class="module-navigation">
-        <a class="btn btn-dark" href="nuclear.html">← 核能發電</a>
-        <button class="complete-phase-btn" data-complete-section="wind" data-default-label="完成風力發電">
-            完成風力發電
-        </button>
-        <a class="btn btn-primary" href="hydro.html">下一站：水力發電 →</a>
-    </div>
-</main>
-
-<footer>
-  <p>臺灣能源互動電子書 © 2026</p>
-  <p>本網站為教育與學術用途開發。</p>
-</footer>
-<script src="student-learning.js?v=10"></script>
+    <footer>
+        <p>臺灣能源互動電子書 © 2026</p>
+        <p>本網站為教育與學術用途開發。</p>
+    </footer>
+    <script src="student-learning.js?v=10"></script>
 </body>
 </html>

@@ -2204,26 +2204,224 @@ footer{
 ========================================================= */
 
 .route-container{padding-top:28px;padding-bottom:0}
-.learning-route{border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden}
-.learning-route-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:18px 20px 12px}
-.learning-route-head h3{margin:0;font-size:1rem}
-.learning-route-head p{margin:3px 0 0;color:var(--muted);font-size:.78rem}
-.route-overall{white-space:nowrap;color:#28798a;font-size:.78rem;font-weight:800}
-.route-stage-list{display:grid;gap:1px;background:var(--line)}
-.route-stage{display:block;width:100%;border:0;background:#fff;color:var(--black);text-decoration:none;text-align:left}
-.route-stage-main{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;padding:11px 16px}
-.route-stage-num{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#eef4f6;color:#28798a;font-size:.72rem;font-weight:900}
-.route-stage-text strong{display:block;font-size:.9rem}
-.route-stage-text small{display:block;margin-top:1px;color:#8a939b;font-size:.72rem}
-.route-stage-status{color:#6c757d;font-size:.76rem;font-weight:700}
-.route-stage.done .route-stage-num{background:#dff5d7;color:#24451d}
-.route-stage.done .route-stage-status{color:#39752d}
-.route-stage.locked{cursor:pointer;opacity:.57}
-.route-stage.locked .route-stage-num{background:#f2f3f4;color:#8a939b}
-.route-subitems{display:flex;flex-wrap:wrap;gap:7px;padding:0 16px 12px 60px;background:#fff}
-.route-subitem{display:inline-flex;align-items:center;gap:5px;min-height:30px;padding:5px 9px;border:1px solid #e4e8eb;border-radius:999px;background:#fafbfb;color:#5c6670;text-decoration:none;font-size:.7rem;font-weight:700}
-.route-subitem.done{border-color:#cce5c3;background:#eff9ec;color:#39752d}
-.route-subitem.locked{opacity:.5;cursor:pointer}
+
+/* =========================================================
+   學習路線美化版（微鮮豔、風格一致）
+========================================================= */
+
+.learning-route{
+    border:2px solid #d9e7ec;
+    border-radius:20px;
+    background:linear-gradient(180deg,#ffffff 0%, #fbfdff 100%);
+    box-shadow:0 8px 24px rgba(40,121,138,.06);
+    overflow:hidden;
+}
+
+.learning-route-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:16px;
+    padding:18px 20px 14px;
+    background:linear-gradient(90deg,#f3fbfd 0%, #ffffff 100%);
+    border-bottom:2px solid #e3edf1;
+}
+
+.learning-route-head h3{
+    margin:0;
+    font-size:1.08rem;
+    font-weight:800;
+    color:#0d1117;
+}
+
+.learning-route-head p{
+    margin:4px 0 0;
+    color:#6c7a86;
+    font-size:.82rem;
+}
+
+.route-head-right{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.route-overall{
+    display:inline-flex;
+    align-items:center;
+    padding:5px 10px;
+    border-radius:999px;
+    background:#e8f6fa;
+    color:#28798a;
+    font-size:.8rem;
+    font-weight:800;
+    border:1px solid #cfe8ef;
+}
+
+.route-toggle-icon{
+    display:grid;
+    place-items:center;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:#edf7fa;
+    border:1px solid #d6e9ef;
+    color:#28798a;
+    font-size:1rem;
+    font-weight:800;
+    transition:.2s ease;
+}
+
+.route-toggle:hover .route-toggle-icon{
+    background:#dff1f4;
+    transform:scale(1.03);
+}
+
+.route-stage-list{
+    display:grid;
+    gap:1px;
+    background:#e9eef1;
+}
+
+.route-stage{
+    display:block;
+    width:100%;
+    border:0;
+    background:#fff;
+    color:var(--black);
+    text-decoration:none;
+    text-align:left;
+    transition:background .18s ease;
+}
+
+.route-stage-main{
+    display:grid;
+    grid-template-columns:34px 1fr auto;
+    gap:10px;
+    align-items:center;
+    padding:13px 16px;
+    border-left:4px solid transparent;
+    transition:.18s ease;
+}
+
+.route-stage:hover .route-stage-main{
+    background:#f9fcfd;
+    border-left-color:#63daf4;
+}
+
+.route-stage-num{
+    display:grid;
+    place-items:center;
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:#eef6f8;
+    color:#28798a;
+    font-size:.74rem;
+    font-weight:900;
+    border:1px solid #d6e8ee;
+}
+
+.route-stage-text strong{
+    display:block;
+    font-size:.95rem;
+    color:#1f2933;
+}
+
+.route-stage-text small{
+    display:block;
+    margin-top:2px;
+    color:#8a939b;
+    font-size:.74rem;
+}
+
+.route-stage-status{
+    color:#6c757d;
+    font-size:.78rem;
+    font-weight:700;
+}
+
+/* 已完成 */
+.route-stage.done .route-stage-main{
+    background:#fbfef9;
+    border-left-color:#9bd36a;
+}
+
+.route-stage.done .route-stage-num{
+    background:#dff5d7;
+    color:#24451d;
+    border-color:#cfe8c6;
+}
+
+.route-stage.done .route-stage-status{
+    color:#39752d;
+    font-weight:800;
+}
+
+/* 鎖住 */
+.route-stage.locked{
+    opacity:.6;
+}
+
+.route-stage.locked .route-stage-main{
+    background:#fbfbfb;
+}
+
+.route-stage.locked .route-stage-num{
+    background:#f2f4f5;
+    color:#98a2aa;
+    border-color:#e3e7ea;
+}
+
+.route-stage.locked .route-stage-status{
+    color:#9aa3ab;
+}
+
+/* 子項目 chip */
+.route-subitems{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    padding:0 16px 14px 60px;
+    background:#fff;
+}
+
+.route-subitem{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    min-height:32px;
+    padding:6px 11px;
+    border:1px solid #dfe7eb;
+    border-radius:999px;
+    background:#fafcfc;
+    color:#5c6670;
+    text-decoration:none;
+    font-size:.72rem;
+    font-weight:700;
+    transition:.18s ease;
+}
+
+.route-subitem:hover{
+    background:#f2fbfd;
+    border-color:#cae6ee;
+    color:#28798a;
+}
+
+.route-subitem.done{
+    border-color:#cce5c3;
+    background:#eff9ec;
+    color:#39752d;
+}
+
+.route-subitem.locked{
+    opacity:.5;
+}
+
+/* 收合狀態時，標題列更乾淨 */
+.learning-route.route-collapsed .learning-route-head{
+    border-bottom:none;
+}
 
 .energy-menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .energy-menu-card{display:block;padding:22px;border:1px solid var(--line);border-radius:16px;background:#fff;text-decoration:none;transition:.18s ease}
@@ -2283,24 +2481,6 @@ footer{
     border: 0;
     cursor: pointer;
     text-align: left;
-}
-
-.route-head-right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.route-toggle-icon {
-    display: grid;
-    place-items: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: #f1f3f5;
-    color: #495057;
-    font-size: 1rem;
-    font-weight: 700;
 }
 
 .learning-route-content {
@@ -2407,21 +2587,6 @@ footer{
         margin-top: 18px;
         margin-bottom: 0;
     }
-
-
-/* 平板改上下 */
-
-@media(max-width:900px) {
-    .module-model-column
-    .thermal-unity-wrapper {
-        min-height: 420px;
-    }
-
-        .module-model-column
-        .thermal-unity-wrapper iframe {
-            min-height: 420px;
-        }
-}
 
 /* =========================================================
    永久展開的探索後整理
@@ -2674,89 +2839,6 @@ footer{
 }
 
 /* =========================================================
-   模型頁桌機版：右側說明固定寬度
-========================================================= */
-.module-workspace {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 300px;
-    gap: 8px;
-    align-items: stretch;
-}
-
-.wind-control-column {
-    width: 300px;
-    min-width: 300px;
-}
-
-/* =========================================================
-   平板橫向 / 小型筆電
-========================================================= */
-@media (max-width:1280px) and (min-width:901px) {
-
-    /* 平板橫向時把整個模組區放寬 */
-    .module-main {
-        width: 98%;
-    }
-
-    /* 優先保住左側模型寬度 */
-    .module-workspace {
-        grid-template-columns: minmax(0, 1fr) 220px;
-        gap: 6px;
-    }
-
-    .wind-control-column {
-        width: 180px;
-        min-width: 180px;
-    }
-
-    .wind-guide-content {
-        padding: 14px 12px;
-    }
-
-    #windStepTitle {
-        font-size: 1rem;
-    }
-
-    .wind-title-en {
-        display: block;
-        margin-top: 2px;
-        margin-left: 0;
-        font-size: .72rem;
-        line-height: 1.4;
-    }
-
-    #windStepDescription {
-        font-size: .82rem;
-        line-height: 1.65;
-    }
-
-    .wind-energy-tag {
-        margin-top: 12px;
-        padding: 5px 8px;
-        font-size: .72rem;
-    }
-
-    .wind-controls {
-        padding: 10px 8px;
-    }
-
-    .wind-button-grid {
-        grid-template-columns: .82fr 1.36fr .82fr;
-        gap: 4px;
-    }
-
-    .wind-button-grid button {
-        height: 34px;
-        padding: 4px 2px;
-        font-size: .67rem;
-
-        white-space: nowrap !important;
-        word-break: keep-all;
-    }
-
-}
-
-/* =========================================================
    平板直向 / 小螢幕：上下排列
 ========================================================= */
 
@@ -2770,21 +2852,6 @@ footer{
         width: 100%;
         min-width: 0;
     }
-}
-
-.module-page .container {
-    width: min(1380px, 97%);
-}
-
-/* =========================================================
-   能源獨立頁：導覽列跟著頁面捲動
-========================================================= */
-.module-page nav {
-    position: static;
-}
-
-.module-page .summary-hero {
-    margin-top: 0;
 }
 
 /* =========================================================

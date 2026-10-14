@@ -2517,11 +2517,16 @@ function createRouteLink({ href, label, number, subtitle, status, done, locked, 
     }
 
     main.innerHTML = `
-      <span class="route-stage-main">
-        <span class="route-stage-num">${done ? "✓" : number}</span>
-        <span class="route-stage-text"><strong>${label}</strong><small>${subtitle}</small></span>
-        <span class="route-stage-status">${status}</span>
-      </span>`;
+  <span class="route-stage-main">
+    <span class="route-stage-num">${done ? "✓" : number}</span>
+
+    <span class="route-stage-text">
+      <strong>${label}</strong>
+      ${subtitle ? `<small>${subtitle}</small>` : ""}
+    </span>
+
+    <span class="route-stage-status">${status}</span>
+  </span>`;
 
     wrapper.appendChild(main);
 
@@ -2562,7 +2567,19 @@ function renderLearningRoute() {
         countDone(EMERGING_MODULES);
 
 
+    // =========================
     // 判斷目前是不是首頁
+    // =========================
+
+    const currentPage =
+        window.location.pathname
+            .split("/")
+            .pop()
+            .toLowerCase();
+
+    const isHome =
+        currentPage === "" ||
+        currentPage === "index.html";
 
     hosts.forEach(host => {
 
@@ -2615,9 +2632,11 @@ function renderLearningRoute() {
                     傳統能源 ${traditionalCount}/5
                 </span>
 
-                <span class="route-toggle-icon">
-                    ${isHome ? "－" : "＋"}
-                </span>
+                ${!isHome ? `
+    <span class="route-toggle-icon">
+        ＋
+    </span>
+` : ""}
 
             </div>
         `;
@@ -2687,8 +2706,7 @@ function renderLearningRoute() {
                 number:
                     "2",
 
-                subtitle:
-                    "火力、核能、風力、水力、太陽光電",
+                subtitle: "",
 
                 status:
                     `已完成 ${traditionalCount} / 5`,
@@ -2764,8 +2782,7 @@ function renderLearningRoute() {
                 number:
                     "4",
 
-                subtitle:
-                    "Tokamak 與 Alpha-E",
+                subtitle: "",
 
                 status:
                     emergingUnlocked()
@@ -2875,31 +2892,34 @@ function renderLearningRoute() {
         // 收合功能
         // =========================
 
-        header.addEventListener(
-            "click",
-            () => {
+        if (!isHome) {
 
-                route.classList.toggle(
-                    "route-collapsed"
-                );
+            header.addEventListener(
+                "click",
+                () => {
 
-                const icon =
-                    header.querySelector(
-                        ".route-toggle-icon"
+                    route.classList.toggle(
+                        "route-collapsed"
                     );
 
-                if (icon) {
+                    const icon =
+                        header.querySelector(
+                            ".route-toggle-icon"
+                        );
 
-                    icon.textContent =
-                        route.classList.contains(
-                            "route-collapsed"
-                        )
-                            ? "＋"
-                            : "－";
+                    if (icon) {
+
+                        icon.textContent =
+                            route.classList.contains(
+                                "route-collapsed"
+                            )
+                                ? "＋"
+                                : "－";
+                    }
+
                 }
-
-            }
-        );
+            );
+        };
 
     });
 

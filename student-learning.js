@@ -3378,21 +3378,3 @@ document.addEventListener(
     "DOMContentLoaded",
     initMiniQuizzes
 );
-
-const MINI_QUIZ_ANSWERS = {
-    thermal_quiz_1: {
-        answer: "C",
-        explanation: "……"
-    },
-
-    nuclear_quiz_1: {
-        answer: "D",
-        explanation: "……"
-    },
-
-    wind_quiz_1: {
-        answer: "B",
-        explanation:
-            "風力發電主要將風的動能轉成旋轉機械能，再由發電機轉成電能。"
-    }
-};

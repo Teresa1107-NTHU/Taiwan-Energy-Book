@@ -2603,22 +2603,24 @@ footer{
 
 .wind-button-grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 8px;
+    grid-template-columns: 0.9fr 1.25fr 0.9fr;
+    gap: 6px;
 }
 
 .wind-button-grid button {
     width: 100%;
     min-width: 0;
     height: 36px;
-    padding: 5px 10px;
+    padding: 5px 6px;
     border: 1px solid rgba(255,255,255,.7);
     border-radius: 18px;
     background: rgba(255,255,255,.9);
     color: #495057;
-    font-size: .78rem;
+    font-size: .76rem;
     font-weight: 700;
-    white-space: nowrap;
+    white-space: nowrap !important;
+    word-break: keep-all;
+    overflow-wrap: normal;
     cursor: pointer;
     transition: .2s;
 }

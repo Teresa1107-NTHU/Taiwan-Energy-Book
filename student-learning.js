@@ -1768,7 +1768,7 @@ const hydroSteps = [
 
     {
         title: "壩體",
-        english: "Dam",
+        english: "Dam Wall",
         description:
             "壩體橫跨河流並攔蓄水量，使上游形成水庫，同時建立水位高度差。這個高度差讓水具有可用來發電的重力位能。",
         energy:
@@ -1777,7 +1777,7 @@ const hydroSteps = [
 
     {
         title: "進水口設施",
-        english: "Intake Structure",
+        english: "Intake Object",
         description:
             "進水口設施將水庫中的水導入壓力水管，通常包含攔污柵與閘門，可以控制水流並在需要時停止水流進入水輪機。",
         energy:
@@ -1786,7 +1786,7 @@ const hydroSteps = [
 
     {
         title: "蓄水庫",
-        english: "Reservoir",
+        english: "Storage Reservoir",
         description:
             "蓄水庫儲存大量位於較高位置的水。高處的水具有重力位能，水庫的水位與放水流量也會影響可供發電使用的能量。",
         energy:
@@ -1822,7 +1822,7 @@ const hydroSteps = [
 
     {
         title: "下游水庫",
-        english: "Lower Reservoir",
+        english: "Bottom Reservoir",
         description:
             "水通過水輪機後會流入下游水庫。在抽蓄式水力發電系統中，也可以在需要時利用幫浦將下游的水送回上游水庫，再次儲存能量。",
         energy:
@@ -2247,105 +2247,177 @@ document.addEventListener(
 );
 
 // =====================================================
-// 太陽光電手動文字導覽
+// 太陽光電自動同步導覽
+// 使用與風力、水力相同的 postMessage 控制方式
 // =====================================================
+
+const SOLAR_MODEL_URL =
+    "https://my-3d-proxy.loveleehom9.workers.dev/solar/photovoltaic";
+
+
 const solarSteps = [
 
     {
         title: "你知道嗎？",
+        english: "Did You Know?",
         description:
-            "大規模太陽光電發電需要相當大的設置面積。模型資料指出，1000 MW 的太陽光電發電廠大約需要 50 平方公里的土地，因此空間也是規劃太陽光電時需要考量的重要條件。",
+            "大規模太陽光電發電需要一定的設置空間，因此除了發電效率之外，場址、土地利用與太陽能板配置也是規劃時的重要條件。",
         energy:
             "延伸認識"
     },
 
     {
         title: "太陽能板",
+        english: "Photovoltaic Panel",
         description:
-            "許多太陽能電池會組合成完整的太陽能板。太陽能板接收陽光後產生電流，而產生的電流大小會受到接收到的光量影響。",
+            "太陽能板由許多太陽能電池組合而成。接收到陽光後，太陽能電池會將光能直接轉換成電能，形成直流電。",
         energy:
             "光能 → 電能"
     },
 
     {
         title: "太陽能電池",
+        english: "Photovoltaic Cell",
         description:
-            "太陽能電池是太陽光電發電的核心元件，主要由半導體材料構成。當半導體吸收光的能量後，能量會傳遞給電子，使電子移動並形成電流。",
+            "太陽能電池是太陽光電發電的核心元件，主要由半導體材料構成。當材料吸收光的能量後，電子產生移動並形成電流。",
         energy:
             "光能 → 電能"
     },
 
     {
         title: "逆變器",
+        english: "Inverters",
         description:
-            "太陽能板產生的是直流電，但電網使用交流電，因此需要逆變器將直流電轉換成交流電，讓產生的電力能進一步送往電力系統。",
+            "太陽能板產生的是直流電，而一般電網使用交流電，因此逆變器會將直流電轉換成交流電，讓產生的電力可以送往後續電力系統。",
         energy:
             "直流電 → 交流電"
     },
 
     {
         title: "支撐結構",
+        english: "Support Structure",
         description:
-            "支撐結構負責固定太陽能板，並讓面板以適合的方向與角度接收陽光。有些系統使用固定式支架，也有能追蹤太陽位置的可動式設計。",
+            "支撐結構負責固定太陽能板，並讓面板保持適合接收陽光的方向與角度。有些系統採固定式設計，也有能追蹤太陽位置的系統。",
         energy:
             "提升光能利用"
     },
 
     {
         title: "地下電纜",
+        english: "Underground Power Lines",
         description:
-            "經過逆變器轉換後的交流電，會透過地下電纜送往變電站，將各區太陽能板產生的電力集中並繼續傳輸。",
+            "完成電力轉換後，交流電會透過電纜送往變電設備，將不同區域太陽能板產生的電力集中並繼續輸送。",
         energy:
             "交流電傳輸"
     },
 
     {
         title: "電力輸出",
+        english: "Power Output",
         description:
-            "完成轉換與輸電設備處理後，太陽光電發電廠會把產生的交流電向外輸出，準備送入電網供使用者使用。",
+            "太陽光電系統完成發電與電力轉換後，產生的電能會向外輸出，準備送入電網供使用者使用。",
         energy:
             "電能 → 電網"
     },
 
     {
         title: "變電站",
+        english: "Substation",
         description:
-            "太陽光電發電廠要連接電網，需要透過變電站提高電壓，使電力更適合輸送。變電站也包含量測、控制與電力開關等設備。",
+            "變電站會調整電力系統的電壓，並包含保護、量測與控制設備，使太陽光電產生的電力能更適合送入電網。",
         energy:
             "升壓與輸電"
     },
 
     {
         title: "圍欄",
+        english: "Fence",
         description:
-            "太陽光電場周圍設置圍欄，可以避免未經允許的人員或動物進入，協助保護發電設備與場區安全。",
+            "太陽光電場周圍設置圍欄，可以避免未經允許的人員或動物進入，協助保護發電設備並維持場區安全。",
         energy:
             "場域安全"
     },
 
     {
         title: "草地",
+        english: "Grass",
         description:
-            "太陽能板之間可能會有自然生長的草地，但植被需要適當管理，避免草木過高遮住太陽能板，同時也要方便後續維修與管理。",
+            "太陽能板周圍的植被需要適當管理，避免植物過高造成遮蔭，同時也能保留設備維修與管理所需的空間。",
         energy:
             "場域維護"
     },
 
     {
         title: "間隔空間",
+        english: "Free Space",
         description:
-            "太陽能板列與列之間需要保留適當空間，除了降低彼此遮蔭，也讓維修、清潔設備與車輛可以在場區內通行。",
+            "太陽能板列與列之間需要保留適當距離，以降低彼此遮蔭，也讓維修人員與設備能在場區中移動。",
         energy:
             "避免遮蔭與方便維護"
     }
 
 ];
 
+
 let solarCurrentStep = -1;
+
+
+// =====================================================
+// 取得太陽光電 iframe
+// =====================================================
+
+function getSolarIframe() {
+
+    return document.getElementById(
+        "solarModel"
+    );
+
+}
+
+
+// =====================================================
+// 傳送控制訊號給模型
+// =====================================================
+
+function sendSolarAction(action) {
+
+    const iframe =
+        getSolarIframe();
+
+    if (
+        !iframe ||
+        !iframe.contentWindow
+    ) {
+
+        console.warn(
+            "Solar iframe 尚未準備完成"
+        );
+
+        return false;
+    }
+
+    iframe.focus();
+
+    iframe.contentWindow.focus();
+
+    iframe.contentWindow.postMessage(
+        action,
+        "*"
+    );
+
+    console.log(
+        "Solar postMessage:",
+        action
+    );
+
+    return true;
+}
+
 
 // =====================================================
 // 下一步
 // =====================================================
+
 function solarNext() {
 
     if (
@@ -2355,36 +2427,106 @@ function solarNext() {
         return;
     }
 
-    solarCurrentStep++;
+    if (
+        !sendSolarAction(
+            "ACTION_NEXT_STEP"
+        )
+    ) {
+        return;
+    }
+
+    solarCurrentStep += 1;
+
     updateSolarPanel();
 }
+
 
 // =====================================================
 // 上一步
 // =====================================================
+
 function solarPrevious() {
 
-    if (solarCurrentStep <= 0) {
+    if (
+        solarCurrentStep <= 0
+    ) {
         return;
     }
 
-    solarCurrentStep--;
+    if (
+        !sendSolarAction(
+            "ACTION_PREV_STEP"
+        )
+    ) {
+        return;
+    }
+
+    solarCurrentStep -= 1;
+
     updateSolarPanel();
 }
+
 
 // =====================================================
 // 重設
 // =====================================================
+
 function solarReset() {
 
-    solarCurrentStep = -1;
+    const wrapper =
+        document.getElementById(
+            "solarViewerWrapper"
+        );
+
+    if (!wrapper) {
+        return;
+    }
+
+    const oldIframe =
+        getSolarIframe();
+
+    if (oldIframe) {
+        oldIframe.remove();
+    }
+
+
+    const iframe =
+        document.createElement(
+            "iframe"
+        );
+
+    iframe.id =
+        "solarModel";
+
+    iframe.src =
+        SOLAR_MODEL_URL;
+
+    iframe.title =
+        "太陽光電發電廠 3D 互動模型";
+
+    iframe.allowFullscreen =
+        true;
+
+    wrapper.appendChild(
+        iframe
+    );
+
+
+    solarCurrentStep =
+        -1;
+
+    bindSolarIframeLoad(
+        iframe
+    );
 
     updateSolarPanel();
 }
 
+
 // =====================================================
-// 更新太陽光電中文導覽
+// 更新右側中文說明
 // =====================================================
+
 function updateSolarPanel() {
 
     const number =
@@ -2407,15 +2549,21 @@ function updateSolarPanel() {
             "solarEnergyTag"
         );
 
-    const prevBtn =
+    const prev =
         document.getElementById(
             "solarPrevBtn"
         );
 
-    const nextBtn =
+    const next =
         document.getElementById(
             "solarNextBtn"
         );
+
+    const reset =
+        document.getElementById(
+            "solarResetBtn"
+        );
+
 
     if (
         !number ||
@@ -2425,104 +2573,238 @@ function updateSolarPanel() {
         return;
     }
 
+
     // =========================
     // 尚未開始
     // =========================
-    if (solarCurrentStep < 0) {
+
+    if (
+        solarCurrentStep < 0
+    ) {
 
         number.textContent =
             "準備開始";
 
-        title.textContent =
-            "太陽光電發電";
+        title.innerHTML =
+            `太陽光電發電
+             <span class="solar-title-en">
+                 Solar Photovoltaic Power
+             </span>`;
 
         description.textContent =
-            "請使用上方模型中的「Next view」依序觀看各設備，並搭配下方中文步驟了解陽光如何轉換成電能，再送往電網。";
+            "模型初始畫面為整體設備視圖，可先觀察太陽能板、逆變器與變電設備的位置。按下「開始導覽」後，模型與右側中文說明會同步前進。";
 
         if (energy) {
             energy.textContent =
                 "能量來源：陽光";
         }
 
-        if (prevBtn) {
-            prevBtn.disabled = true;
+        if (prev) {
+            prev.disabled =
+                true;
         }
 
-        if (nextBtn) {
-            nextBtn.disabled = false;
-            nextBtn.textContent =
+        if (next) {
+
+            next.disabled =
+                false;
+
+            next.textContent =
                 "開始導覽";
         }
+
+        if (reset) {
+            reset.disabled =
+                true;
+        }
+
         return;
     }
+
 
     // =========================
     // 導覽中
     // =========================
+
     const step =
         solarSteps[
         solarCurrentStep
         ];
 
+
     number.textContent =
         `STEP ${solarCurrentStep + 1} / ${solarSteps.length}`;
 
-    title.textContent =
-        step.title;
+
+    title.innerHTML =
+        `${step.title}
+         <span class="solar-title-en">
+             ${step.english}
+         </span>`;
+
 
     description.textContent =
         step.description;
+
 
     if (energy) {
         energy.textContent =
             step.energy;
     }
 
-    if (prevBtn) {
-        prevBtn.disabled =
-            solarCurrentStep === 0;
+
+    const allowBackAndReset =
+        solarCurrentStep >= 1;
+
+
+    if (prev) {
+
+        prev.disabled =
+            !allowBackAndReset;
     }
 
-    const isLastStep =
+
+    if (reset) {
+
+        reset.disabled =
+            !allowBackAndReset;
+    }
+
+
+    const last =
         solarCurrentStep ===
         solarSteps.length - 1;
 
-    if (nextBtn) {
 
-        if (isLastStep) {
+    if (next) {
 
-            nextBtn.textContent =
-                "導覽完成 ✓";
+        next.disabled =
+            last;
 
-            nextBtn.disabled =
-                true;
-
-        } else {
-
-            nextBtn.textContent =
-                "下一步";
-
-            nextBtn.disabled =
-                false;
-        }
+        next.textContent =
+            last
+                ? "導覽完成 ✓"
+                : "下一步";
     }
 }
 
+
 // =====================================================
-// 頁面載入時初始化
+// iframe 載入狀態
 // =====================================================
+
+function bindSolarIframeLoad(
+    iframe
+) {
+
+    const status =
+        document.getElementById(
+            "solarModelStatus"
+        );
+
+    if (!iframe) {
+        return;
+    }
+
+
+    if (status) {
+
+        status.classList.remove(
+            "ready"
+        );
+
+        status.textContent =
+            "正在載入太陽光電 3D 模型……";
+    }
+
+
+    iframe.addEventListener(
+        "load",
+        () => {
+
+            if (status) {
+
+                status.textContent =
+                    "3D 模型已載入";
+
+                setTimeout(
+                    () => {
+
+                        status.classList.add(
+                            "ready"
+                        );
+
+                    },
+                    500
+                );
+            }
+
+            console.log(
+                "Solar model loaded"
+            );
+        }
+    );
+}
+
+
+// =====================================================
+// 太陽光電頁面初始化
+// =====================================================
+
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        if (
-            document.getElementById(
-                "solarStepNumber"
-            )
-        ) {
-            solarCurrentStep = -1;
-            updateSolarPanel();
+        const iframe =
+            getSolarIframe();
+
+        /*
+         * 只有 solar.html 才有 solarModel。
+         */
+        if (!iframe) {
+            return;
         }
+
+
+        bindSolarIframeLoad(
+            iframe
+        );
+
+
+        document
+            .getElementById(
+                "solarPrevBtn"
+            )
+            ?.addEventListener(
+                "click",
+                solarPrevious
+            );
+
+
+        document
+            .getElementById(
+                "solarNextBtn"
+            )
+            ?.addEventListener(
+                "click",
+                solarNext
+            );
+
+
+        document
+            .getElementById(
+                "solarResetBtn"
+            )
+            ?.addEventListener(
+                "click",
+                solarReset
+            );
+
+
+        solarCurrentStep =
+            -1;
+
+        updateSolarPanel();
 
     }
 );

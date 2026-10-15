@@ -1404,280 +1404,6 @@ footer{
 }
 
 /* =========================================================
-   ���O�o�q�������
-========================================================= */
-
-.hydro-learning-module {
-    background: #ffffff;
-}
-
-.hydro-model-frame {
-    overflow: hidden;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    background: #ffffff;
-}
-
-/* =========================
-   ����C
-========================= */
-
-.hydro-primary-btn,
-.hydro-secondary-btn {
-    border: 1px solid rgba(255,255,255,.7);
-    background: rgba(255,255,255,.9);
-    color: #495057;
-}
-
-    .hydro-primary-btn:hover:not(:disabled),
-    .hydro-secondary-btn:hover:not(:disabled) {
-        background: #ffffff;
-    }
-/* =========================
-   ���廡��
-========================= */
-
-.hydro-step-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 4px;
-}
-
-#hydroStepNumber {
-    color: #6b7280;
-    font-size: .8rem;
-    font-weight: 800;
-    letter-spacing: .09em;
-}
-
-.hydro-energy-tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 2px 8px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.68);
-    color: #555;
-    font-size: .66rem;
-    font-weight: 700;
-}
-
-.hydro-inline-info h4 {
-    margin: 0 0 5px;
-    color: #111827;
-    font-size: 1rem;
-    font-weight: 800;
-}
-
-.hydro-inline-info p {
-    margin: 0;
-    color: #374151;
-    font-size: 1rem;
-    line-height: 1.75;
-    font-weight: 500;
-}
-
-
-/* =========================
-   Tablet
-========================= */
-
-@media(max-width:768px) {
-
-    .hydro-inline-controls {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .hydro-inline-buttons {
-        width: 100%;
-    }
-
-        .hydro-inline-buttons button {
-            flex: 1;
-        }
-
-    .hydro-guide-hint {
-        text-align: left;
-    }
-
-    .hydro-model-wrapper iframe {
-        aspect-ratio: 16 / 10;
-    }
-}
-
-/* =========================================================
-   �Ӷ����q�������
-========================================================= */
-
-.solar-learning-module {
-    background: #ffffff;
-}
-
-.solar-model-frame {
-    overflow: hidden;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    background: #ffffff;
-}
-
-
-/* =========================
-   �ҫ�
-========================= */
-
-.solar-model-wrapper {
-    overflow: hidden;
-    background: #11161d;
-}
-
-    .solar-model-wrapper iframe {
-        display: block;
-        width: 100%;
-        aspect-ratio: 16 / 8.5;
-        border: 0;
-    }
-
-
-/* =========================
-   ����C
-========================= */
-
-.solar-inline-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
-    border-top: 1px solid #d9dde2;
-    border-bottom: 1px solid #d9dde2;
-    background: #6f6861;
-}
-
-.solar-inline-buttons {
-    display: flex;
-    gap: 6px;
-}
-
-    .solar-inline-buttons button {
-        min-width: 72px;
-        height: 34px;
-        padding: 5px 12px;
-        border-radius: 18px;
-        font-size: 0.75rem;
-        font-weight: 700;
-        transition: .2s;
-    }
-
-.solar-primary-btn,
-.solar-secondary-btn {
-    border: 1px solid rgba(255,255,255,.7);
-    background: rgba(255,255,255,.9);
-    color: #495057;
-}
-
-    .solar-primary-btn:hover:not(:disabled),
-    .solar-secondary-btn:hover:not(:disabled) {
-        background: #ffffff;
-    }
-
-.solar-inline-buttons button:disabled {
-    opacity: .45;
-    cursor: not-allowed;
-}
-
-
-/* =========================
-   �k���ާ@����
-========================= */
-
-.solar-guide-hint {
-    color: rgba(255,255,255,.78);
-    font-size: .68rem;
-}
-
-
-/* =========================
-   ���廡��
-========================= */
-
-.solar-inline-info {
-    padding: 12px 14px 14px;
-    background: #d5d2cf;
-}
-
-.solar-step-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 4px;
-}
-
-#solarStepNumber {
-    color: #6b7280;
-    font-size: .8rem;
-    font-weight: 800;
-    letter-spacing: .09em;
-}
-
-.solar-energy-tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 2px 8px;
-    border-radius: 999px;
-    background: rgba(255,255,255,.68);
-    color: #555;
-    font-size: .66rem;
-    font-weight: 700;
-}
-
-.solar-inline-info h4 {
-    margin: 0 0 5px;
-    color: #111827;
-    font-size: 1rem;
-    font-weight: 800;
-}
-
-.solar-inline-info p {
-    margin: 0;
-    color: #374151;
-    font-size: 1rem;
-    line-height: 1.75;
-    font-weight: 500;
-}
-
-
-/* =========================
-   Tablet
-========================= */
-
-@media(max-width:768px) {
-
-    .solar-inline-controls {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .solar-inline-buttons {
-        width: 100%;
-    }
-
-        .solar-inline-buttons button {
-            flex: 1;
-        }
-
-    .solar-guide-hint {
-        text-align: left;
-    }
-
-    .solar-model-wrapper iframe {
-        aspect-ratio: 16 / 10;
-    }
-}
-
-/* =========================================================
    Tokamak �������
 ========================================================= */
 
@@ -3667,5 +3393,228 @@ footer{
 
     .hydro-controls {
         padding: 10px 8px;
+    }
+}
+
+/* =========================================================
+   太陽光電正式頁
+   排版比照風力、水力發電
+========================================================= */
+
+.solar-learning-module {
+    background: #ffffff;
+}
+
+
+/* =========================
+   左側模型
+========================= */
+
+.solar-model-frame {
+    height: 100%;
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: #ffffff;
+}
+
+.solar-model-shell {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    min-height: 480px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #11161d;
+}
+
+.solar-model-shell iframe {
+    display: block;
+    width: 100%;
+    height: 480px;
+    min-height: 480px;
+    border: 0;
+    background: #11161d;
+}
+
+
+/* =========================
+   右側說明
+========================= */
+
+.solar-guide-content {
+    flex: 1;
+    padding: 20px;
+    background: #f4f2ef;
+}
+
+.solar-step-meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+#solarStepNumber {
+    color: #6b7280;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .09em;
+}
+
+#solarStepTitle {
+    margin: 0 0 10px;
+    color: #111827;
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.solar-title-en {
+    display: block;
+    margin-top: 3px;
+    color: #6f7880;
+    font-size: .88rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+#solarStepDescription {
+    margin: 0;
+    color: #374151;
+    font-size: .95rem;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+.solar-energy-tag {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 16px;
+    padding: 6px 11px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.72);
+    color: #28798a;
+    font-size: .84rem;
+    font-weight: 800;
+}
+
+
+/* =========================
+   控制區
+========================= */
+
+.solar-controls {
+    padding: 16px;
+    background: #6f6861;
+}
+
+.solar-button-grid {
+    display: grid;
+    grid-template-columns: .9fr 1.25fr .9fr;
+    gap: 6px;
+}
+
+.solar-button-grid button {
+    width: 100%;
+    min-width: 0;
+    height: 36px;
+    padding: 5px 6px;
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 18px;
+    background: rgba(255,255,255,.9);
+    color: #495057;
+    font-size: .76rem;
+    font-weight: 700;
+    white-space: nowrap !important;
+    word-break: keep-all;
+    overflow-wrap: normal;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.solar-button-grid button:hover:not(:disabled) {
+    background: #ffffff;
+}
+
+.solar-button-grid button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   平板直向 / 小螢幕
+========================================================= */
+
+@media(max-width:900px) {
+
+    .solar-control-column {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+
+/* =========================================================
+   桌機
+========================================================= */
+
+.solar-control-column {
+    width: 300px;
+    min-width: 300px;
+}
+
+
+/* =========================================================
+   平板橫向 / 小筆電
+========================================================= */
+
+@media (max-width:1280px) and (min-width:901px) {
+
+    .solar-control-column {
+        width: 220px;
+        min-width: 220px;
+    }
+
+    .solar-guide-content {
+        padding: 14px 12px;
+    }
+
+    #solarStepTitle {
+        font-size: 1rem;
+    }
+
+    .solar-title-en {
+        margin-top: 2px;
+        font-size: .72rem;
+        line-height: 1.4;
+    }
+
+    #solarStepDescription {
+        font-size: .82rem;
+        line-height: 1.65;
+    }
+
+    .solar-energy-tag {
+        margin-top: 12px;
+        padding: 5px 8px;
+        font-size: .72rem;
+    }
+
+    .solar-controls {
+        padding: 10px 8px;
+    }
+
+    .solar-button-grid {
+        grid-template-columns: .82fr 1.36fr .82fr;
+        gap: 4px;
+    }
+
+    .solar-button-grid button {
+        height: 34px;
+        padding: 4px 2px;
+        font-size: .67rem;
+        white-space: nowrap !important;
+        word-break: keep-all;
     }
 }

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>太陽光電｜臺灣能源互動電子書</title>
-  <link rel="stylesheet" href="student-learning.css?v=9">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太陽光電｜臺灣能源互動電子書</title>
+    <link rel="stylesheet" href="student-learning.css?v=13">
 </head>
+
 <body class="module-page">
 
 <nav>
@@ -31,126 +32,437 @@
 
 <main class="container module-main">
   <div class="module-focus-note">
-    <strong>本頁學習方式</strong>
-    <span>操作模型與中文導覽 → 展開「探索後整理」→ 完成本頁。</span>
+        <strong>本頁學習方式</strong>
+        <span>操作模型與中文導覽 → 查看「能源小幫手」→ 完成本頁。</span>
   </div>
 
   <article class="energy-card">
-<div class="energy-card-head">
-<span>05</span>
-<h3>太陽能發電</h3>
-</div>
-<p>
-                      看看陽光如何被太陽能板轉換成電能，
-                      再經過逆變器與變電設備送往電網。
-                  </p>
-<div class="learning-point">
-<strong>你可以注意</strong>
-                      太陽光電需要汽輪機嗎？
-                      光能轉換成電能後，還要經過哪些設備才能送入電網？
-                  </div>
-<!-- =========================
-                     太陽光電互動導覽
-                ========================= -->
-<div class="solar-learning-module">
-<div class="solar-model-frame">
-<!-- EnergyEncyclopedia 3D 模型 -->
-<div class="iframe-wrapper solar-model-wrapper">
-<iframe allowfullscreen="" id="solarModel" loading="lazy" sandbox="allow-scripts allow-same-origin" src="https://3d.energyencyclopedia.com/solar/photovoltaic" title="太陽光電發電廠 3D 互動模型">
-</iframe>
-</div>
-<!-- 手動中文導覽控制列 -->
-<div class="solar-inline-controls">
-<div class="solar-inline-buttons">
-<button class="solar-secondary-btn" disabled="" id="solarPrevBtn" onclick="solarPrevious()" type="button">
-                                      上一步
-                                  </button>
-<button class="solar-primary-btn" id="solarNextBtn" onclick="solarNext()" type="button">
-                                      開始
-                                  </button>
-<button class="solar-secondary-btn" onclick="solarReset()" type="button">
-                                      重設
-                                  </button>
-</div>
-<div class="solar-guide-hint">
-                                  上方按一次「Next view」，下方也按一次「下一步」
-                              </div>
-</div>
-<!-- 中文步驟說明 -->
-<div class="solar-inline-info">
-<div class="solar-step-meta">
-<span id="solarStepNumber">
-                                      準備開始
-                                  </span>
-<span class="solar-energy-tag" id="solarEnergyTag">
-                                      能量來源：陽光
-                                  </span>
-</div>
-<h4 id="solarStepTitle">
-                                  太陽光電發電
-                              </h4>
-<p id="solarStepDescription">
-                                  請使用上方模型中的「Next view」依序觀看各設備，
-                                  並搭配下方中文步驟了解陽光如何轉換成電能，再送往電網。
-                              </p>
-</div>
-</div>
-</div>
-<!-- 來源標示 -->
-<div class="model-credit">
-                      Credit:
-                      <a href="https://energyencyclopedia.com/" rel="noopener noreferrer" target="_blank">
-                          EnergyEncyclopedia.com
-                      </a>
-</div>
-<!-- 探索後整理 -->
-<details class="knowledge-card">
-<summary>
-<span>探索後整理</span>
-                          看看太陽光電中的能量怎麼轉換
-                      </summary>
-<div class="knowledge-card-content">
-<p>
-                              太陽光電與火力、核能、風力或水力不同，
-                              太陽能電池可以將<strong>光能直接轉換成電能</strong>，
-                              不需要先經過汽輪機、水輪機或風機等旋轉機械設備。
-                              太陽能板產生的直流電，再經過逆變器轉換成交流電，
-                              才能進一步輸送與使用。
-                          </p>
-<div class="energy-flow">
-<span>光能</span>
-<b>→</b>
-<span>直流電</span>
-<b>→</b>
-<span>交流電</span>
-<b>→</b>
-<span>電網</span>
-</div>
-<div class="taiwan-note">
-<div class="taiwan-note-head">
-<span>TAIWAN</span>
-<strong>你在臺灣最容易看到的再生能源之一</strong>
-</div>
-<p>
-                                  臺灣的太陽光電可以出現在住宅、學校、工廠屋頂，
-                                  也有地面型與其他複合利用形式。
-                                  現階段政策以「屋頂優先、地面複合利用」為主要推動方向。
-                              </p>
-<p class="policy-note">
-<b>但要注意：</b>
-                                  太陽光電只有在有足夠日照時才能發電，
-                                  因此雲量、季節與一天中的時間，
-                                  都會讓輸出功率產生變化。
-                              </p>
-</div>
-<div class="think-note">
-<strong>再想一下：</strong>
-                              如果雲量增加，使到達太陽能板的光量減少，
-                              太陽能板產生的電流與發電輸出可能會怎麼改變？
+      <div class="energy-card-head">
+          <span>05</span>
+          <h3>太陽能發電</h3>
+      </div>
+      <p>
+          看看陽光如何被太陽能板轉換成電能，
+          再經過逆變器與變電設備送往電網。
+      </p>
+      <div class="learning-point">
+          <strong>你可以注意</strong>
+          太陽光電需要汽輪機嗎？
+          光能轉換成電能後，還要經過哪些設備才能送入電網？
+      </div>
+
+      <!-- =========================
+           太陽光電 3D 互動導覽
+      ========================= -->
+      <div class="solar-learning-module">
+
+          <div class="module-workspace">
+
+              <!-- =========================
+                   左側：3D 模型
+              ========================= -->
+              <div class="module-model-column">
+
+                  <div class="solar-model-frame">
+
+                      <div class="solar-model-shell"
+                           id="solarViewerWrapper">
+
+                          <div class="model-loading"
+                               id="solarModelStatus">
+                              正在載入太陽光電 3D 模型……
                           </div>
-</div>
-</details>
-</article>
+
+                          <iframe id="solarModel"
+                                  src="https://my-3d-proxy.loveleehom9.workers.dev/solar/photovoltaic"
+                                  title="太陽光電發電廠 3D 互動模型"
+                                  allowfullscreen>
+                          </iframe>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- =========================
+                   右側：中文導覽與控制
+              ========================= -->
+              <aside class="module-control-column solar-control-column">
+
+                  <div class="solar-guide-content">
+
+                      <div class="solar-step-meta">
+
+                          <span id="solarStepNumber">
+                              準備開始
+                          </span>
+
+                      </div>
+
+                      <h2 id="solarStepTitle">
+
+                          太陽光電發電
+
+                          <span class="solar-title-en">
+                              Solar Photovoltaic Power
+                          </span>
+
+                      </h2>
+
+                      <p id="solarStepDescription">
+
+                          模型初始畫面為整體設備視圖，
+                          可先觀察太陽能板、逆變器與變電設備的位置。
+                          按下「開始導覽」後，
+                          模型與右側中文說明會同步前進。
+
+                      </p>
+
+                      <div class="solar-energy-tag"
+                           id="solarEnergyTag">
+
+                          能量來源：陽光
+
+                      </div>
+                  </div>
+
+                  <!-- =========================
+                         控制按鈕
+                  ========================= -->
+                  <div class="solar-controls">
+
+                      <div class="solar-button-grid">
+
+                          <button id="solarPrevBtn"
+                                  class="solar-prev"
+                                  type="button"
+                                  disabled>
+                              上一步
+                          </button>
+
+                          <button id="solarNextBtn"
+                                  class="solar-next"
+                                  type="button">
+                              開始導覽
+                          </button>
+
+                          <button id="solarResetBtn"
+                                  class="solar-reset"
+                                  type="button"
+                                  disabled>
+                              重設
+                          </button>
+                      </div>
+                  </div>
+              </aside>
+          </div>
+      </div>
+
+      <!-- 來源標示 -->
+      <div class="model-credit">
+          Credit:
+          <a href="https://energyencyclopedia.com/" rel="noopener noreferrer" target="_blank">
+              EnergyEncyclopedia.com
+          </a>
+      </div>
+      <section class="knowledge-card knowledge-card-static">
+
+          <div class="knowledge-card-static-head">
+
+              <div class="knowledge-helper-title">
+
+                  <span class="knowledge-helper-icon">☀️</span>
+
+                  <div>
+                      <strong>能源小幫手</strong>
+                      <small>ENERGY HELPER</small>
+                  </div>
+
+              </div>
+
+              <h3>一起整理太陽光電的能量轉換</h3>
+
+          </div>
+
+
+          <div class="knowledge-card-content">
+
+              <!-- 1. 核心原理 -->
+              <div class="helper-section">
+
+                  <h4>☀️ 陽光怎麼直接變成電？</h4>
+
+                  <p class="helper-intro">
+                      太陽光電和火力、核能、風力與水力有一個很重要的不同：
+                      它<strong>不需要先讓汽輪機、水輪機或風機旋轉</strong>。
+                      太陽能電池可以利用半導體材料吸收光的能量，
+                      使電子產生移動並形成電流，
+                      因此能將<strong>光能直接轉換成電能</strong>。
+                  </p>
+
+                  <p>
+                      多個太陽能電池組合成太陽能板後，
+                      可以產生<strong>直流電</strong>。
+                      之後還要經過逆變器與相關電力設備，
+                      才能轉換成適合電網使用的交流電。
+                  </p>
+
+
+                  <div class="energy-flow">
+
+                      <span>太陽光的光能</span>
+                      <b>→</b>
+
+                      <span>太陽能電池產生直流電</span>
+                      <b>→</b>
+
+                      <span>逆變器轉換成交流電</span>
+                      <b>→</b>
+
+                      <span>送入電網</span>
+
+                  </div>
+
+              </div>
+
+
+              <!-- 2. 設備關係 -->
+              <div class="helper-section helper-concept-box">
+
+                  <h4>⚙️ 太陽光電的重要設備怎麼合作？</h4>
+
+                  <p>
+                      <strong>太陽能電池：</strong>
+                      是真正將光能直接轉換成電能的核心元件。
+                  </p>
+
+                  <p>
+                      <strong>太陽能板：</strong>
+                      由多個太陽能電池組合而成，
+                      負責接收陽光並產生直流電。
+                  </p>
+
+                  <p>
+                      <strong>逆變器：</strong>
+                      太陽能板產生的是直流電，
+                      而一般電網使用交流電，
+                      因此逆變器負責將<strong>直流電轉換成交流電</strong>。
+                      它不是把其他種類的能量變成電能，
+                      而是改變電力的形式。
+                  </p>
+
+                  <p>
+                      <strong>變電站：</strong>
+                      電力完成轉換後，
+                      還需要調整電壓並經過相關控制設備，
+                      才能更適合送入電網。
+                  </p>
+
+              </div>
+
+
+              <!-- 3. 日照與溫度 -->
+              <div class="helper-section helper-concept-box">
+
+                  <h4>🌤️ 有太陽就一定能產生一樣多的電嗎？</h4>
+
+                  <p>
+                      不一定。太陽光電的發電輸出會受到
+                      <strong>到達太陽能板的光量</strong>影響。
+                      當雲量增加、日照變弱，或太陽位置改變時，
+                      太陽能板接收到的太陽輻射能可能減少，
+                      因此發電輸出也可能降低。
+                  </p>
+
+                  <p>
+                      一天中的時間、季節、天氣、
+                      太陽能板的方向與傾斜角度，
+                      都可能影響實際接收到的太陽能。
+                  </p>
+
+                  <p>
+                      此外，<strong>
+                          太陽能電池溫度過高時，
+                          發電效率通常會下降
+                      </strong>。
+                      因此「陽光很強」和「溫度很高」不是完全相同的概念，
+                      不能直接認為溫度越高就一定發越多電。
+                  </p>
+
+              </div>
+
+
+              <!-- 4. 和其他能源比較 -->
+              <div class="helper-section helper-concept-box">
+
+                  <h4>🔍 太陽光電和其他發電方式有什麼不同？</h4>
+
+                  <p>
+                      火力與核能會先產生<strong>熱能</strong>，
+                      再利用蒸氣推動汽輪機；
+                      風力與水力則利用風或水流使旋轉設備轉動，
+                      最後由發電機將機械能轉換成電能。
+                  </p>
+
+                  <p>
+                      太陽光電不需要先產生熱能，
+                      也不需要先把能量轉換成旋轉的機械能，
+                      而是由<strong>太陽能電池直接把光能轉換成電能</strong>。
+                  </p>
+
+                  <p>
+                      因此如果比較五種能源，
+                      太陽光電是其中最明顯不同的一種能量轉換方式。
+                  </p>
+
+              </div>
+
+
+              <!-- 5. 臺灣情境 -->
+              <div class="taiwan-note">
+
+                  <div class="taiwan-note-head">
+
+                      <span>TAIWAN</span>
+
+                      <strong>
+                          太陽光電是臺灣重要的再生能源之一
+                      </strong>
+
+                  </div>
+
+                  <p>
+                      在臺灣，可以在<strong>住宅、學校、工廠屋頂</strong>
+                      看到太陽光電系統，
+                      也有地面型與其他複合利用形式。
+                      由於臺灣可利用土地有限，
+                      如何兼顧發電、土地利用與環境條件，
+                      也是太陽光電發展時的重要課題。
+                  </p>
+
+                  <p class="policy-note">
+
+                      <strong>但太陽光電具有變動性：</strong>
+
+                      它的實際發電量會受到日照、雲量、
+                      季節與一天中時間的影響。
+                      因此當太陽光電占比提高時，
+                      電力系統也需要搭配儲能、
+                      其他發電方式與電網調度，
+                      才能在不同時間維持供電平衡。
+
+                  </p>
+
+              </div>
+
+
+              <!-- 6. 思考 -->
+              <div class="think-note">
+
+                  <div class="think-note-title">
+                      再想一下 💡
+                  </div>
+
+                  <p>
+                      假設兩套太陽光電系統使用
+                      <strong>相同型號、相同數量的太陽能板</strong>，
+                      但其中一處今天雲量明顯較多，
+                      另一處則有較穩定的日照。
+                      即使設備都沒有故障，
+                      兩套系統一天產生的電量會完全相同嗎？
+                      為什麼？
+                  </p>
+
+              </div>
+
+
+              <!-- 7. 小試身手 -->
+              <div class="mini-quiz-card"
+                   data-mini-quiz
+                   data-quiz-key="solar_quiz_1">
+
+                  <div class="mini-quiz-head">
+
+                      <span>小試身手</span>
+
+                      <h4>用剛剛學到的概念判斷看看</h4>
+
+                  </div>
+
+
+                  <p class="mini-quiz-question">
+
+                      某太陽光電系統的太陽能板、逆變器與輸電設備都正常，
+                      但下午雲量增加，使到達太陽能板的光量明顯減少。
+                      下列哪一項最合理？
+
+                  </p>
+
+
+                  <label class="quiz-option">
+
+                      <input type="radio"
+                             name="solar_quiz_1"
+                             value="A">
+
+                      <span>
+                          A. 只要逆變器正常，太陽能板接收到多少光都不會影響發電輸出
+                      </span>
+
+                  </label>
+
+
+                  <label class="quiz-option">
+
+                      <input type="radio"
+                             name="solar_quiz_1"
+                             value="B">
+
+                      <span>
+                          B. 太陽能板接收到的光能減少，可能使產生的電能與整體發電輸出降低
+                      </span>
+
+                  </label>
+
+
+                  <label class="quiz-option">
+
+                      <input type="radio"
+                             name="solar_quiz_1"
+                             value="C">
+
+                      <span>
+                          C. 光量減少後，太陽能板會改用熱能推動發電機，因此輸出維持不變
+                      </span>
+
+                  </label>
+
+
+                  <label class="quiz-option">
+
+                      <input type="radio"
+                             name="solar_quiz_1"
+                             value="D">
+
+                      <span>
+                          D. 光量越少，逆變器會自動產生更多額外電能，因此總輸出反而提高
+                      </span>
+
+                  </label>
+
+
+                  <div class="mini-quiz-actions">
+
+                      <button type="button"
+                              class="quiz-save-btn">
+                          儲存答案
+                      </button>
+
+                      <span class="quiz-save-status"></span>
+
+                  </div>
+              </div>
+          </div>
+      </section>
+  </article>
 
   <div class="module-navigation">
     <a class="btn btn-dark" href="hydro.html">← 水力發電</a>
@@ -165,6 +477,6 @@
   <p>臺灣能源互動電子書 © 2026</p>
   <p>本網站為教育與學術用途開發。</p>
 </footer>
-<script src="student-learning.js?v=9"></script>
+<script src="student-learning.js?v=13"></script>
 </body>
 </html>

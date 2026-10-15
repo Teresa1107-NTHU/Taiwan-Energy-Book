@@ -17,7 +17,7 @@ const thermalSteps = [
         title: "熱回收蒸汽產生器",
         english: "Heat Recovery Steam Generator",
         description:
-            "天然氣燃燒後釋放熱能，熱回收蒸汽產生器利用這些熱量加熱水並產生高溫蒸氣。",
+            "天然氣燃燒後釋放熱能。熱回收蒸汽產生器利用高溫氣體中的熱能加熱水並產生高溫蒸氣。它本身不是直接產生電能的設備，而是負責將熱能傳遞給蒸汽系統。",
         energy:
             "化學能 → 熱能"
     },
@@ -26,7 +26,7 @@ const thermalSteps = [
         title: "蒸汽渦輪機",
         english: "Steam Turbine",
         description:
-            "高壓蒸氣推動渦輪機旋轉，使蒸氣所攜帶的能量轉換成旋轉的機械能。",
+            "高壓蒸氣推動蒸汽渦輪機的葉片與轉軸旋轉，使蒸氣所攜帶的能量轉換成旋轉的機械能，再由轉軸帶動發電機。",
         energy:
             "熱能 → 機械能"
     },
@@ -2826,7 +2826,7 @@ const tokamakSteps = [
     {
         title: "真空容器",
         description:
-            "真空容器是一個甜甜圈形的鋼製容器，也是高溫電漿所在的主要空間。它提供高真空環境，並支撐偏濾器與包層等內部設備。",
+            "真空容器是高溫電漿所在的主要空間。維持高真空可以減少電漿粒子與背景氣體、雜質粒子之間不必要的碰撞與交互作用，降低能量損失，使電漿更容易維持高溫。",
         energy:
             "高真空環境"
     },
@@ -2922,7 +2922,7 @@ const tokamakSteps = [
     {
         title: "環向磁場線圈",
         description:
-            "環向磁場線圈（Toroidal Field Magnets）環繞真空容器，產生沿著甜甜圈方向的強磁場，主要作用是限制帶電的電漿粒子。",
+            "環向磁場線圈會產生強磁場。由於電漿中含有大量帶電粒子，這些粒子在磁場中運動時會受到磁力影響而改變運動方向，因此 Tokamak 可以利用磁場控制粒子的運動，使高溫電漿受到約束。",
         energy:
             "磁場約束電漿"
     },
@@ -4084,22 +4084,18 @@ function initMiniQuizzes() {
                             return;
                         }
 
-
                         localStorage.setItem(
                             `energy_quiz_${quizKey}`,
                             selected.value
                         );
 
-
                         if (status) {
                             status.textContent =
                                 "答案已儲存 ✓";
                         }
-
                     }
                 );
             }
-
         });
 }
 

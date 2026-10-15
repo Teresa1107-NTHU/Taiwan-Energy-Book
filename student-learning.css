@@ -2939,10 +2939,23 @@ footer{
     font-weight: 800;
 }
 
+/* 最後一段不要再多留底部空間 */
+.knowledge-card-content p:last-child {
+    margin-bottom: 0;
+}
+
 .helper-intro {
     color: #334155;
     font-size: 1rem;
     line-height: 1.9;
+}
+
+.helper-section h4 {
+    margin: 0 0 4px;
+}
+
+.helper-section {
+    margin-bottom: 24px;
 }
 
 .energy-flow {
@@ -3142,4 +3155,372 @@ footer{
     color: #39752d;
     font-size: .84rem;
     font-weight: 700;
+}
+
+/* =========================================================
+   火力正式頁：與風力頁統一
+========================================================= */
+
+.thermal-control-column {
+    width: 300px;
+    min-width: 300px;
+}
+
+#thermalStepTitle {
+    margin: 0 0 10px;
+    color: #111827;
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.thermal-title-en {
+    display: block;
+    margin-top: 3px;
+    color: #6f7880;
+    font-size: .88rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+#thermalStepDescription {
+    margin: 0;
+    color: #374151;
+    font-size: .95rem;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+.thermal-energy-tag {
+    margin-top: 16px;
+    padding: 6px 11px;
+    color: #28798a;
+    font-size: .84rem;
+    background: rgba(255,255,255,.72);
+}
+
+/* 火力按鈕不要換行 */
+.thermal-inline-buttons button {
+    white-space: nowrap;
+    word-break: keep-all;
+}
+
+/* 平板橫向 / 小型筆電 */
+@media (max-width:1280px) and (min-width:901px) {
+
+    .thermal-control-column {
+        width: 220px;
+        min-width: 220px;
+    }
+
+    .module-control-column .thermal-inline-info {
+        padding: 14px 12px;
+    }
+
+    #thermalStepTitle {
+        font-size: 1rem;
+    }
+
+    .thermal-title-en {
+        font-size: .72rem;
+    }
+
+    #thermalStepDescription {
+        font-size: .82rem;
+        line-height: 1.65;
+    }
+
+    .thermal-energy-tag {
+        margin-top: 12px;
+        padding: 5px 8px;
+        font-size: .72rem;
+    }
+
+    .module-control-column .thermal-inline-controls {
+        padding: 10px 8px;
+        gap: 10px;
+    }
+
+    .thermal-inline-buttons {
+        gap: 4px;
+    }
+
+    .thermal-inline-buttons button {
+        padding: 4px 2px;
+        font-size: .67rem;
+        white-space: nowrap;
+    }
+
+    .thermal-start-hint {
+        padding: 10px;
+    }
+
+    .thermal-start-hint strong {
+        font-size: .8rem;
+    }
+
+    .thermal-start-hint p {
+        font-size: .72rem;
+        line-height: 1.55;
+    }
+}
+
+/* 小螢幕改上下排列 */
+@media (max-width:900px) {
+
+    .thermal-control-column {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+/* =========================================================
+   核能正式頁
+   排版比照風力發電
+========================================================= */
+
+.nuclear-learning-module {
+    background: #ffffff;
+}
+
+
+/* =========================
+   左側模型
+========================= */
+
+.nuclear-model-frame {
+    height: 100%;
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: #ffffff;
+}
+
+.nuclear-model-shell {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    min-height: 480px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #11161d;
+}
+
+.nuclear-model-shell iframe {
+    display: block;
+    width: 100%;
+    height: 480px;
+    min-height: 480px;
+    border: 0;
+    background: #11161d;
+}
+
+
+/* =========================
+   右側說明
+========================= */
+
+.nuclear-control-column {
+    width: 300px;
+    min-width: 300px;
+}
+
+.nuclear-guide-content {
+    flex: 1;
+    padding: 20px;
+    background: #f4f2ef;
+}
+
+.nuclear-step-meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+#nuclearStepNumber {
+    color: #6b7280;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .09em;
+}
+
+#nuclearStepTitle {
+    margin: 0 0 10px;
+    color: #111827;
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.nuclear-title-en {
+    display: block;
+    margin-top: 3px;
+    color: #6f7880;
+    font-size: .88rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+#nuclearStepDescription {
+    margin: 0;
+    color: #374151;
+    font-size: .95rem;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+.nuclear-energy-tag {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 16px;
+    padding: 6px 11px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.72);
+    color: #28798a;
+    font-size: .84rem;
+    font-weight: 800;
+}
+
+
+/* =========================
+   模型同步提示
+========================= */
+
+.nuclear-sync-hint {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border: 1px solid #e4d29a;
+    border-radius: 10px;
+    background: #fff8e8;
+}
+
+.nuclear-sync-hint strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #111827;
+    font-size: .82rem;
+}
+
+.nuclear-sync-hint span {
+    display: block;
+    color: #4b5563;
+    font-size: .78rem;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   控制區
+========================= */
+
+.nuclear-controls {
+    padding: 16px;
+    background: #6f6861;
+}
+
+.nuclear-button-grid {
+    display: grid;
+    grid-template-columns: .9fr 1.25fr .9fr;
+    gap: 6px;
+}
+
+.nuclear-button-grid button {
+    width: 100%;
+    min-width: 0;
+    height: 36px;
+    padding: 5px 6px;
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 18px;
+    background: rgba(255,255,255,.9);
+    color: #495057;
+    font-size: .76rem;
+    font-weight: 700;
+    white-space: nowrap;
+    word-break: keep-all;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.nuclear-button-grid button:hover:not(:disabled) {
+    background: #ffffff;
+}
+
+.nuclear-button-grid button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   平板橫向 / 小筆電
+========================= */
+
+@media (max-width:1280px) and (min-width:901px) {
+
+    .nuclear-control-column {
+        width: 220px;
+        min-width: 220px;
+    }
+
+    .nuclear-guide-content {
+        padding: 14px 12px;
+    }
+
+    #nuclearStepTitle {
+        font-size: 1rem;
+    }
+
+    .nuclear-title-en {
+        font-size: .72rem;
+    }
+
+    #nuclearStepDescription {
+        font-size: .82rem;
+        line-height: 1.65;
+    }
+
+    .nuclear-energy-tag {
+        margin-top: 12px;
+        padding: 5px 8px;
+        font-size: .72rem;
+    }
+
+    .nuclear-sync-hint {
+        margin-top: 12px;
+        padding: 9px 10px;
+    }
+
+    .nuclear-sync-hint strong {
+        font-size: .72rem;
+    }
+
+    .nuclear-sync-hint span {
+        font-size: .68rem;
+    }
+
+    .nuclear-controls {
+        padding: 10px 8px;
+    }
+
+    .nuclear-button-grid {
+        gap: 4px;
+    }
+
+    .nuclear-button-grid button {
+        padding: 4px 2px;
+        font-size: .67rem;
+    }
+}
+
+
+/* =========================
+   平板直向 / 小螢幕
+========================= */
+
+@media(max-width:900px) {
+
+    .nuclear-control-column {
+        width: 100%;
+        min-width: 0;
+    }
 }

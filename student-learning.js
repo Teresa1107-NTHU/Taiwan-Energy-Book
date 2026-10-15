@@ -6,6 +6,7 @@ const thermalSteps = [
 
     {
         title: "液化天然氣儲槽",
+        english: "LNG Storage Tank",
         description:
             "液化天然氣在送入發電系統前先儲存在儲槽中。天然氣本身儲存著化學能，是這套發電系統最初的能量來源。",
         energy:
@@ -14,6 +15,7 @@ const thermalSteps = [
 
     {
         title: "熱回收蒸汽產生器",
+        english: "Heat Recovery Steam Generator",
         description:
             "天然氣燃燒後釋放熱能，熱回收蒸汽產生器利用這些熱量加熱水並產生高溫蒸氣。",
         energy:
@@ -22,6 +24,7 @@ const thermalSteps = [
 
     {
         title: "蒸汽渦輪機",
+        english: "Steam Turbine",
         description:
             "高壓蒸氣推動渦輪機旋轉，使蒸氣所攜帶的能量轉換成旋轉的機械能。",
         energy:
@@ -30,6 +33,7 @@ const thermalSteps = [
 
     {
         title: "煙囪",
+        english: "Stack",
         description:
             "天然氣燃燒後產生的廢氣經由煙囪排出。煙囪主要負責排放燃燒後的氣體，並不是產生電能的設備。",
         energy:
@@ -38,6 +42,7 @@ const thermalSteps = [
 
     {
         title: "冷凝器",
+        english: "Condenser",
         description:
             "蒸氣通過渦輪機後進入冷凝器，被冷卻並凝結回水，使水可以再次進入蒸汽循環。",
         energy:
@@ -46,6 +51,7 @@ const thermalSteps = [
 
     {
         title: "給水泵",
+        english: "Feedwater Pump",
         description:
             "給水泵將冷凝後的水送回熱回收蒸汽產生器，使工作流體可以持續循環使用。",
         energy:
@@ -54,6 +60,7 @@ const thermalSteps = [
 
     {
         title: "冷卻塔",
+        english: "Cooling Tower",
         description:
             "冷卻塔將循環水中的多餘熱量排放到環境中，協助降低冷卻水的溫度。",
         energy:
@@ -62,6 +69,7 @@ const thermalSteps = [
 
     {
         title: "冷卻水泵",
+        english: "Cooling Water Pump",
         description:
             "冷卻水泵讓冷卻水在冷凝器與冷卻塔之間循環，協助冷凝器持續帶走蒸氣中的熱量。",
         energy:
@@ -70,6 +78,7 @@ const thermalSteps = [
 
     {
         title: "發電機",
+        english: "Generator",
         description:
             "汽輪機帶動發電機旋轉，發電機利用電磁感應將旋轉的機械能轉換成電能。",
         energy:
@@ -78,6 +87,7 @@ const thermalSteps = [
 
     {
         title: "變壓器",
+        english: "Transformer",
         description:
             "發電機產生電力後，變壓器會調整電壓，使電能更適合進行後續的輸電與配電。",
         energy:
@@ -86,6 +96,7 @@ const thermalSteps = [
 
     {
         title: "電力負載",
+        english: "Electrical Load",
         description:
             "電能最後送到用電端。在模型中，燈泡代表電力負載；天然氣輸入量改變時，也可以觀察輸出效果的變化。",
         energy:
@@ -280,8 +291,11 @@ function updateThermalPanel() {
         number.textContent =
             "準備開始";
 
-        title.textContent =
-            "天然氣火力發電";
+        title.innerHTML =
+            `天然氣火力發電
+             <span class="thermal-title-en">
+                 Natural Gas Power Generation
+             </span>`;
 
         description.textContent =
             "先調整下方的 Gas Input，讓天然氣進入系統，再開始觀察發電流程。";
@@ -351,8 +365,11 @@ function updateThermalPanel() {
     number.textContent =
         `STEP ${thermalCurrentStep + 1} / ${thermalSteps.length}`;
 
-    title.textContent =
-        step.title;
+    title.innerHTML =
+        `${step.title}
+     <span class="thermal-title-en">
+         ${step.english}
+     </span>`;
 
     description.textContent =
         step.description;
@@ -582,13 +599,17 @@ function updateThermalHint() {
         "試著把 Gas Input 分別調低與調高，觀察燈泡亮度與系統運作有什麼變化。你覺得燃料輸入量和發電輸出之間有什麼關係？";
 }
 
-    // =====================================================
-// 核能發電手動文字導覽
 // =====================================================
+// 核能發電自動同步導覽
+// =====================================================
+const NUCLEAR_MODEL_URL =
+    "https://my-3d-proxy.loveleehom9.workers.dev/npp-pwr";
+
 const nuclearSteps = [
 
     {
         title: "反應爐建築",
+        english: "Reactor Building",
         description:
             "反應爐建築主要由鋼筋混凝土構成，容納核能發電廠的重要設備，主要功能是提升正常運轉與事故情況下的安全性。",
         energy:
@@ -597,6 +618,7 @@ const nuclearSteps = [
 
     {
         title: "反應爐",
+        english: "Reactor",
         description:
             "反應爐是核燃料進行受控核分裂的地方。核分裂釋放的核能會轉換成熱能，再用來產生電力。壓水式反應爐（PWR）使用厚壁鋼製壓力槽。",
         energy:
@@ -605,6 +627,7 @@ const nuclearSteps = [
 
     {
         title: "蒸汽產生器",
+        english: "Steam Generator",
         description:
             "蒸汽產生器位於一次側系統中，功能類似熱交換器。它把反應爐產生的熱傳到二次側，使水形成蒸汽並推動汽輪機。",
         energy:
@@ -613,6 +636,7 @@ const nuclearSteps = [
 
     {
         title: "反應爐冷卻水泵",
+        english: "Reactor Coolant Pump",
         description:
             "反應爐冷卻水泵使一次側冷卻水持續循環，把反應爐產生的熱帶到蒸汽產生器。",
         energy:
@@ -621,6 +645,7 @@ const nuclearSteps = [
 
     {
         title: "穩壓器系統",
+        english: "Pressurizer System",
         description:
             "穩壓器用來維持一次側系統的壓力。它部分裝有水，並利用電加熱器加熱，以維持所需的系統壓力。",
         energy:
@@ -629,6 +654,7 @@ const nuclearSteps = [
 
     {
         title: "混凝土屏蔽",
+        english: "Concrete Shielding",
         description:
             "鋼筋混凝土結構包覆並保護反應爐與一次側的重要設備，同時也作為阻隔游離輻射的重要屏障。",
         energy:
@@ -637,6 +663,7 @@ const nuclearSteps = [
 
     {
         title: "汽輪機廠房",
+        english: "Turbine Hall",
         description:
             "汽輪機廠房內包含利用蒸汽發電所需的主要設備，例如汽輪機、冷凝器與發電機，也可能包含汽水分離器與加熱設備。",
         energy:
@@ -645,6 +672,7 @@ const nuclearSteps = [
 
     {
         title: "蒸汽汽輪機",
+        english: "Steam Turbine",
         description:
             "汽輪機把蒸汽所攜帶的能量轉換成旋轉的機械能，並利用轉軸帶動發電機。",
         energy:
@@ -653,6 +681,7 @@ const nuclearSteps = [
 
     {
         title: "發電機",
+        english: "Electric Generator",
         description:
             "發電機把汽輪機提供的旋轉機械能轉換成電能。旋轉磁場會在定子線圈中感應出電壓。",
         energy:
@@ -661,6 +690,7 @@ const nuclearSteps = [
 
     {
         title: "冷凝器",
+        english: "Condenser",
         description:
             "通過汽輪機後的蒸汽在冷凝器中冷卻並凝結成水，再經由系統送回蒸汽產生器。冷凝器吸收的熱則由冷卻水帶走。",
         energy:
@@ -669,6 +699,7 @@ const nuclearSteps = [
 
     {
         title: "冷卻塔",
+        english: "Cooling Tower",
         description:
             "冷卻塔主要用來降低冷凝器循環冷卻水的溫度，使冷卻水可以持續循環使用。",
         energy:
@@ -677,6 +708,7 @@ const nuclearSteps = [
 
     {
         title: "電力輸出",
+        english: "Power Output",
         description:
             "淨電力輸出表示實際送入電網的電力。發電廠本身也會消耗一部分所產生的電力來維持設備運轉。",
         energy:
@@ -685,6 +717,7 @@ const nuclearSteps = [
 
     {
         title: "汽水分離再熱器",
+        english: "Moisture Separator Reheater",
         description:
             "汽水分離再熱器（MSR）會移除高壓汽輪機出口蒸汽中的水分，並在蒸汽進入低壓汽輪機前重新加熱，以提升效率並減少汽輪機葉片受到侵蝕。",
         energy:
@@ -696,9 +729,56 @@ const nuclearSteps = [
 let nuclearCurrentStep = -1;
 
 // =====================================================
+// 取得核能 iframe
+// =====================================================
+function getNuclearIframe() {
+
+    return document.getElementById(
+        "nuclearModel"
+    );
+
+}
+
+// =====================================================
+// 傳送控制訊號給核能模型
+// =====================================================
+function sendNuclearAction(action) {
+
+    const iframe =
+        getNuclearIframe();
+
+    if (
+        !iframe ||
+        !iframe.contentWindow
+    ) {
+
+        console.warn(
+            "Nuclear iframe 尚未準備完成"
+        );
+
+        return false;
+    }
+
+    iframe.focus();
+
+    iframe.contentWindow.focus();
+
+    iframe.contentWindow.postMessage(
+        action,
+        "*"
+    );
+
+    console.log(
+        "Nuclear postMessage:",
+        action
+    );
+
+    return true;
+}
+
+// =====================================================
 // 下一步
 // =====================================================
-
 function nuclearNext() {
 
     if (
@@ -708,44 +788,102 @@ function nuclearNext() {
         return;
     }
 
-    nuclearCurrentStep++;
+    /*
+     * 先控制模型。
+     * 訊號成功送出後，中文導覽才前進。
+     */
+    if (
+        !sendNuclearAction(
+            "ACTION_NEXT_STEP"
+        )
+    ) {
+        return;
+    }
+
+    nuclearCurrentStep += 1;
 
     updateNuclearPanel();
 }
-
 
 // =====================================================
 // 上一步
 // =====================================================
-
 function nuclearPrevious() {
 
-    if (nuclearCurrentStep <= 0) {
+    if (
+        nuclearCurrentStep <= 0
+    ) {
         return;
     }
 
-    nuclearCurrentStep--;
+    if (
+        !sendNuclearAction(
+            "ACTION_PREV_STEP"
+        )
+    ) {
+        return;
+    }
+
+    nuclearCurrentStep -= 1;
 
     updateNuclearPanel();
 }
-
 
 // =====================================================
 // 重設
 // =====================================================
-
 function nuclearReset() {
 
-    nuclearCurrentStep = -1;
+    const wrapper =
+        document.getElementById(
+            "nuclearViewerWrapper"
+        );
+
+    if (!wrapper) {
+        return;
+    }
+
+    const oldIframe =
+        getNuclearIframe();
+
+    if (oldIframe) {
+        oldIframe.remove();
+    }
+
+    const iframe =
+        document.createElement(
+            "iframe"
+        );
+
+    iframe.id =
+        "nuclearModel";
+
+    iframe.src =
+        NUCLEAR_MODEL_URL;
+
+    iframe.title =
+        "壓水式核能發電 3D 互動模型";
+
+    iframe.allowFullscreen =
+        true;
+
+    wrapper.appendChild(
+        iframe
+    );
+
+    nuclearCurrentStep =
+        -1;
+
+    bindNuclearIframeLoad(
+        iframe
+    );
 
     updateNuclearPanel();
 }
 
-
 // =====================================================
 // 更新核能文字導覽
 // =====================================================
-
 function updateNuclearPanel() {
 
     const number =
@@ -778,6 +916,10 @@ function updateNuclearPanel() {
             "nuclearNextBtn"
         );
 
+    const resetBtn =
+        document.getElementById(
+            "nuclearResetBtn"
+        );
 
     if (
         !number ||
@@ -787,21 +929,22 @@ function updateNuclearPanel() {
         return;
     }
 
-
     // =========================
     // 尚未開始
     // =========================
-
     if (nuclearCurrentStep < 0) {
 
         number.textContent =
             "準備開始";
 
-        title.textContent =
-            "壓水式核能發電";
+        title.innerHTML =
+            `壓水式核能發電
+             <span class="nuclear-title-en">
+                 Pressurized Water Reactor
+             </span>`;
 
         description.textContent =
-            "請使用上方模型中的「Next view」依序觀看各設備，並搭配下方中文步驟整理核能發電流程。";
+            "模型初始畫面為整體設備視圖，可先觀察各設備的位置與標籤。按下「開始導覽」後，模型與右側中文說明會同步前進。";
 
         if (energy) {
             energy.textContent =
@@ -817,25 +960,33 @@ function updateNuclearPanel() {
             nextBtn.textContent = "開始導覽";
         }
 
+        if (resetBtn) {
+            resetBtn.disabled = true;
+        }
+
         return;
     }
-
 
     // =========================
     // 導覽中
     // =========================
-
     const step =
         nuclearSteps[
             nuclearCurrentStep
         ];
 
+    if (resetBtn) {
+        resetBtn.disabled = false;
+    }
 
     number.textContent =
         `STEP ${nuclearCurrentStep + 1} / ${nuclearSteps.length}`;
 
-    title.textContent =
-        step.title;
+    title.innerHTML =
+        `${step.title}
+        <span class="nuclear-title-en">
+            ${step.english}
+        </span>`;
 
     description.textContent =
         step.description;
@@ -845,17 +996,22 @@ function updateNuclearPanel() {
             step.energy;
     }
 
+    const allowBackAndReset =
+        nuclearCurrentStep >= 1;
 
     if (prevBtn) {
         prevBtn.disabled =
-            nuclearCurrentStep === 0;
+            !allowBackAndReset;
     }
 
+    if (resetBtn) {
+        resetBtn.disabled =
+            !allowBackAndReset;
+    }
 
     const isLastStep =
         nuclearCurrentStep ===
         nuclearSteps.length - 1;
-
 
     if (nextBtn) {
 
@@ -876,20 +1032,85 @@ function updateNuclearPanel() {
     }
 }
 
+// =====================================================
+// 核能 iframe 載入狀態
+// =====================================================
+function bindNuclearIframeLoad(
+    iframe
+) {
 
-// 頁面載入時初始化
+    const status =
+        document.getElementById(
+            "nuclearModelStatus"
+        );
+
+    if (!iframe) {
+        return;
+    }
+
+    if (status) {
+
+        status.classList.remove(
+            "ready"
+        );
+
+        status.textContent =
+            "正在載入核能 3D 模型……";
+    }
+
+    iframe.addEventListener(
+        "load",
+        () => {
+
+            if (status) {
+
+                status.textContent =
+                    "3D 模型已載入";
+
+                setTimeout(
+                    () => {
+
+                        status.classList.add(
+                            "ready"
+                        );
+
+                    },
+                    500
+                );
+            }
+
+            console.log(
+                "Nuclear model loaded"
+            );
+        }
+    );
+}
+
+// =====================================================
+// 核能頁面初始化
+// =====================================================
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        if (
-            document.getElementById(
-                "nuclearStepNumber"
-            )
-        ) {
-            nuclearCurrentStep = -1;
-            updateNuclearPanel();
+        const iframe =
+            getNuclearIframe();
+
+        /*
+         * 只有 nuclear.html 才有這個 iframe。
+         */
+        if (!iframe) {
+            return;
         }
+
+        bindNuclearIframeLoad(
+            iframe
+        );
+
+        nuclearCurrentStep =
+            -1;
+
+        updateNuclearPanel();
 
     }
 );
@@ -898,7 +1119,6 @@ document.addEventListener(
 // 風力發電自動同步導覽
 // 使用已測試成功的 3d-Pro postMessage 控制方式
 // =====================================================
-
 const WIND_MODEL_URL =
     "https://my-3d-proxy.loveleehom9.workers.dev/wind-energy/horizontal-axis-turbine";
 

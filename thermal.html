@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>火力發電｜臺灣能源互動電子書</title>
-  <link rel="stylesheet" href="student-learning.css?v=9">
+  <link rel="stylesheet" href="student-learning.css?v=11">
 </head>
 <body class="module-page">
 
@@ -30,253 +30,511 @@
 </section>
 
 <main class="container module-main">
-  <div class="module-focus-note">
-    <strong>本頁學習方式</strong>
-    <span>操作模型與中文導覽 → 展開「探索後整理」→ 完成本頁。</span>
-  </div>
+    <div class="module-focus-note">
+        <strong>本頁學習方式</strong>
+        <span>操作模型與中文導覽 → 查看「能源小幫手」→ 完成本頁。</span>
+    </div>
 
-  <article class="energy-card">
-<div class="energy-card-head">
-<span>01</span>
-<h3>火力發電</h3>
-</div>
-<p>看看燃料燃燒後，熱如何一路帶動蒸氣、汽輪機與發電機。</p>
-<div class="learning-point">
-<strong>你可以注意</strong>
-                      燃料 → 熱 → 蒸氣 → 汽輪機 → 發電機
-                  </div>
-<!-- =========================
-                     火力發電 3D 互動模型
-                ========================= -->
-<div class="thermal-learning-module">
+    <article class="energy-card">
 
-    <div class="module-workspace">
-
-        <!-- =========================
-             左側：3D 模型
-        ========================= -->
-        <div class="module-model-column">
-
-            <div class="thermal-model-frame">
-
-                <div class="thermal-unity-wrapper">
-
-                    <iframe id="thermalUnity"
-                            src="https://teresa1107-nthu.github.io/Thermal-Power-Plant-Unity/"
-                            title="火力發電廠 3D 互動模型"
-                            loading="lazy"
-                            scrolling="no"
-                            allowfullscreen
-                            sandbox="allow-scripts allow-same-origin">
-                    </iframe>
-
-                </div>
-
-            </div>
-
+        <div class="energy-card-head">
+            <span>01</span>
+            <h3>火力發電</h3>
         </div>
 
+        <p>看看燃料燃燒後，熱如何一路帶動蒸氣、汽輪機與發電機。</p>
+
+        <div class="learning-point">
+            <strong>你可以注意</strong>
+            燃料 → 熱 → 蒸氣 → 汽輪機 → 發電機
+        </div>
 
         <!-- =========================
-             右側：操作與說明
+             火力發電 3D 互動導覽
         ========================= -->
-        <aside class="module-control-column">
 
-            <div class="thermal-inline-info">
+        <div class="thermal-learning-module">
 
-                <div class="thermal-step-meta">
+            <div class="module-workspace">
 
-                    <span id="thermalStepNumber">
-                        準備開始
-                    </span>
+                <!-- 左側：Unity 模型 -->
+                <div class="module-model-column">
 
-                    <span class="thermal-energy-tag"
-                          id="thermalEnergyTag">
+                    <div class="thermal-model-frame">
 
-                        能量來源：天然氣
+                        <div class="thermal-unity-wrapper">
 
-                    </span>
+                            <iframe id="thermalUnity"
+                                    src="https://teresa1107-nthu.github.io/Thermal-Power-Plant-Unity/"
+                                    title="天然氣火力發電廠 3D 互動模型"
+                                    loading="lazy"
+                                    scrolling="no"
+                                    allowfullscreen
+                                    sandbox="allow-scripts allow-same-origin">
+                            </iframe>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
 
-                <h4 id="thermalStepTitle">
-                    天然氣火力發電
-                </h4>
+                <!-- 右側：中文導覽與控制 -->
+                <aside class="module-control-column thermal-control-column">
+
+                    <div class="thermal-inline-info">
+
+                        <div class="thermal-step-meta">
+
+                            <span id="thermalStepNumber">
+                                準備開始
+                            </span>
+
+                        </div>
 
 
-                <p id="thermalStepDescription">
+                        <h2 id="thermalStepTitle">
 
-                    先調整 Gas Input，
-                    讓天然氣進入系統，
-                    再按下「開始導覽」。
+                            天然氣火力發電
 
-                </p>
+                            <span class="thermal-title-en">
+                                Natural Gas Power Generation
+                            </span>
+
+                        </h2>
 
 
-                <div class="thermal-start-hint"
-                     id="thermalStartHint">
-
-                    <span class="thermal-hint-icon"
-                          id="thermalHintIcon">
-
-                        01
-
-                    </span>
-
-                    <div>
-
-                        <strong id="thermalHintTitle">
-
-                            先設定天然氣輸入量
-
-                        </strong>
-
-                        <p id="thermalHintText">
-
-                            拖曳 Gas Input
-                            滑桿到大於 0%。
-
+                        <p id="thermalStepDescription">
+                            先調整下方的 Gas Input，
+                            讓天然氣進入系統，
+                            再按下「開始導覽」，
+                            逐步觀察能量如何轉換並產生電力。
                         </p>
 
+
+                        <div class="thermal-energy-tag"
+                             id="thermalEnergyTag">
+
+                            能量來源：天然氣
+
+                        </div>
+
+
+                        <div class="thermal-start-hint"
+                             id="thermalStartHint">
+
+                            <span class="thermal-hint-icon"
+                                  id="thermalHintIcon">
+                                01
+                            </span>
+
+                            <div>
+
+                                <strong id="thermalHintTitle">
+                                    先設定天然氣輸入量
+                                </strong>
+
+                                <p id="thermalHintText">
+                                    拖曳 Gas Input 滑桿到大於 0%，
+                                    再開始逐步觀察發電流程。
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- 下方控制區 -->
+                    <div class="thermal-inline-controls">
+
+                        <div class="thermal-inline-buttons">
+
+                            <button id="thermalPrevBtn"
+                                    class="thermal-secondary-btn"
+                                    type="button"
+                                    onclick="thermalPrevious()"
+                                    disabled>
+                                上一步
+                            </button>
+
+
+                            <button id="thermalNextBtn"
+                                    class="thermal-primary-btn"
+                                    type="button"
+                                    onclick="thermalNext()"
+                                    disabled>
+                                開始導覽
+                            </button>
+
+
+                            <button id="thermalResetBtn"
+                                    class="thermal-secondary-btn"
+                                    type="button"
+                                    onclick="thermalReset()"
+                                    disabled>
+                                重設
+                            </button>
+
+                        </div>
+
+
+                        <div class="thermal-inline-gas">
+
+                            <div class="thermal-inline-gas-head">
+
+                                <span>Gas Input</span>
+
+                                <strong>
+                                    <span id="thermalGasValue">0</span>%
+                                </strong>
+
+                            </div>
+
+
+                            <input id="thermalGasSlider"
+                                   type="range"
+                                   min="0"
+                                   max="100"
+                                   step="1"
+                                   value="0"
+                                   aria-label="天然氣輸入量">
+
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <section class="knowledge-card knowledge-card-static">
+
+            <div class="knowledge-card-static-head">
+
+                <div class="knowledge-helper-title">
+
+                    <span class="knowledge-helper-icon">🔥</span>
+
+                    <div>
+                        <strong>能源小幫手</strong>
+                        <small>ENERGY HELPER</small>
                     </div>
 
                 </div>
 
+                <h3>一起整理火力發電的能量轉換</h3>
+
             </div>
 
 
-            <!-- 控制按鈕 -->
-
-            <div class="thermal-inline-controls">
-
-                <div class="thermal-inline-buttons">
-
-                    <button id="thermalPrevBtn"
-                            class="thermal-secondary-btn"
-                            type="button"
-                            onclick="thermalPrevious()"
-                            disabled>
-
-                        上一步
-
-                    </button>
+            <div class="knowledge-card-content">
 
 
-                    <button id="thermalNextBtn"
-                            class="thermal-primary-btn"
-                            type="button"
-                            onclick="thermalNext()"
-                            disabled>
+                <!-- 1. 核心原理 -->
+                <div class="helper-section">
 
-                        開始導覽
+                    <h4>🔥 天然氣的能量怎麼變成電？</h4>
 
-                    </button>
+                    <p class="helper-intro">
+                        天然氣本身儲存著<strong>化學能</strong>。
+                        當天然氣燃燒時，化學能會轉換成<strong>熱能</strong>，
+                        再利用熱量產生高溫蒸氣。
+                    </p>
+
+                    <p>
+                        高溫、高壓的蒸氣會推動<strong>蒸汽渦輪機</strong>旋轉，
+                        將蒸氣所攜帶的能量轉換成<strong>旋轉的機械能</strong>。
+                        最後，汽輪機帶動<strong>發電機</strong>，
+                        利用電磁感應將機械能轉換成<strong>電能</strong>。
+                    </p>
 
 
-                    <button id="thermalResetBtn"
-                            class="thermal-secondary-btn"
-                            onclick="thermalReset()"
-                            type="button"
-                            disabled>
-                        重設
-                    </button>
+                    <div class="energy-flow">
+
+                        <span>天然氣的化學能</span>
+                        <b>→</b>
+
+                        <span>燃燒產生熱能</span>
+                        <b>→</b>
+
+                        <span>汽輪機的機械能</span>
+                        <b>→</b>
+
+                        <span>發電機產生電能</span>
+
+                    </div>
 
                 </div>
 
 
-                <div class="thermal-inline-gas">
+                <!-- 2. 設備關係 -->
+                <div class="helper-section helper-concept-box">
 
-                    <div class="thermal-inline-gas-head">
+                    <h4>⚙️ 火力發電廠的重要設備怎麼合作？</h4>
 
-                        <span>
-                            Gas Input
-                        </span>
+                    <p>
+                        <strong>天然氣儲槽：</strong>
+                        儲存發電所需的燃料。
+                        天然氣所儲存的化學能是整個系統最初的能量來源。
+                    </p>
+
+                    <p>
+                        <strong>熱回收蒸汽產生器：</strong>
+                        利用燃燒後的熱量加熱水並產生蒸氣，
+                        是把燃料的化學能轉換成熱能並傳遞給工作流體的重要設備。
+                    </p>
+
+                    <p>
+                        <strong>蒸汽渦輪機：</strong>
+                        高溫、高壓蒸氣推動渦輪葉片旋轉，
+                        將蒸氣所攜帶的能量轉換成旋轉機械能。
+                    </p>
+
+                    <p>
+                        <strong>發電機：</strong>
+                        由汽輪機帶動旋轉，
+                        利用電磁感應把機械能轉換成電能。
+                        因此<strong>真正產生電能的是發電機，而不是汽輪機</strong>。
+                    </p>
+
+                    <p>
+                        <strong>變壓器：</strong>
+                        發電後再調整電壓，
+                        讓電力更適合送入輸電系統。
+                    </p>
+
+                </div>
+
+
+                <!-- 3. 蒸氣與水循環 -->
+                <div class="helper-section helper-concept-box">
+
+                    <h4>💧 蒸氣用完之後去哪裡？</h4>
+
+                    <p>
+                        蒸氣通過汽輪機後並不直接排掉，
+                        而是進入<strong>冷凝器</strong>，
+                        被冷卻並重新凝結成水。
+                    </p>
+
+                    <p>
+                        接著由<strong>給水泵</strong>將水送回蒸汽產生器，
+                        再次被加熱形成蒸氣。
+                        因此火力發電中的水會形成循環，
+                        並不是每產生一次電就重新使用一批新的水。
+                    </p>
+
+                    <p>
+                        <strong>冷卻塔與冷卻水泵</strong>
+                        則協助把系統中多餘的熱量移除，
+                        使冷凝器可以持續讓蒸氣凝結回水。
+                    </p>
+
+                </div>
+
+
+                <!-- 4. 燃料輸入與發電輸出 -->
+                <div class="helper-section helper-concept-box">
+
+                    <h4>🎚️ 天然氣輸入量改變，發電效果會怎麼變？</h4>
+
+                    <p>
+                        模型中的 <strong>Gas Input</strong>
+                        代表送入系統的天然氣量。
+                        當燃料輸入改變時，
+                        系統中能夠釋放的化學能與後續可利用的熱能也會跟著改變。
+                    </p>
+
+                    <p>
+                        在其他條件相近的情況下，
+                        <strong>燃料輸入較多，通常可以提供較多可供發電使用的能量</strong>；
+                        如果燃料輸入停止，
+                        系統也無法持續依靠燃燒產生熱能。
+                    </p>
+
+                    <p>
+                        不過實際發電廠並不是單純追求「燃料越多越好」，
+                        還必須考慮設備容量、效率、安全與實際用電需求。
+                    </p>
+
+                </div>
+
+
+                <!-- 5. 和其他能源比較 -->
+                <div class="helper-section helper-concept-box">
+
+                    <h4>🔍 火力發電和風力發電有什麼不同？</h4>
+
+                    <p>
+                        火力發電需要先經過<strong>燃燒與熱能</strong>：
+                        燃料的化學能先轉換成熱能，
+                        再利用蒸氣推動汽輪機。
+                    </p>
+
+                    <p>
+                        風力發電則不需要燃燒，
+                        而是直接利用風的動能讓葉片與轉子旋轉。
+                    </p>
+
+                    <p>
+                        不過兩者最後都有相同的一段：
+                        都是利用<strong>旋轉的機械能帶動發電機</strong>，
+                        再轉換成電能。
+                    </p>
+
+                </div>
+
+
+                <!-- 6. 臺灣情境 -->
+                <div class="taiwan-note">
+
+                    <div class="taiwan-note-head">
+
+                        <span>TAIWAN</span>
 
                         <strong>
-                            <span id="thermalGasValue">
-                                0
-                            </span>%
+                            火力發電目前仍是臺灣重要的電力來源
                         </strong>
 
                     </div>
 
 
-                    <input id="thermalGasSlider"
-                           type="range"
-                           min="0"
-                           max="100"
-                           step="1"
-                           value="0"
-                           aria-label="天然氣輸入量">
+                    <p>
+                        臺灣的火力發電主要包含<strong>燃氣發電與燃煤發電</strong>。
+                        兩者都利用燃料中的化學能，
+                        經過熱能與機械能的轉換後產生電力，
+                        但使用的燃料種類、設備與排放特性並不完全相同。
+                    </p>
+
+
+                    <p class="policy-note">
+
+                        <strong>能源轉型方向：</strong>
+
+                        在發展再生能源的同時，
+                        臺灣也持續調整燃煤與燃氣發電的角色。
+                        火力機組除了提供大量電力之外，
+                        也可能配合用電需求與風力、太陽光電等再生能源的出力變化進行電力調度。
+
+                    </p>
 
                 </div>
 
+
+                <!-- 7. 思考 -->
+                <div class="think-note">
+
+                    <div class="think-note-title">
+                        再想一下 💡
+                    </div>
+
+                    <p>
+                        假設天然氣已經正常燃燒，
+                        蒸氣也正常產生，
+                        但是<strong>汽輪機無法有效旋轉</strong>。
+                        此時即使前面的燃燒設備都正常，
+                        發電機輸出的電力會受到影響嗎？
+                        想想看是哪一個能量轉換階段出了問題。
+                    </p>
+
+                </div>
+
+
+                <!-- 8. 小試身手 -->
+                <div class="mini-quiz-card"
+                     data-mini-quiz
+                     data-quiz-key="thermal_quiz_1">
+
+                    <div class="mini-quiz-head">
+
+                        <span>小試身手</span>
+
+                        <h4>
+                            用剛剛學到的概念判斷看看
+                        </h4>
+
+                    </div>
+
+
+                    <p class="mini-quiz-question">
+
+                        某天然氣火力發電廠的燃燒系統正常，
+                        蒸汽產生器也能持續產生高溫蒸氣，
+                        但蒸汽渦輪機故障而無法正常旋轉。
+                        下列哪一項最合理？
+
+                    </p>
+
+
+                    <label class="quiz-option">
+
+                        <input type="radio"
+                               name="thermal_quiz_1"
+                               value="A">
+
+                        <span>
+                            A. 發電量不受影響，因為蒸氣本身就是電能
+                        </span>
+
+                    </label>
+
+
+                    <label class="quiz-option">
+
+                        <input type="radio"
+                               name="thermal_quiz_1"
+                               value="B">
+
+                        <span>
+                            B. 發電機仍可直接利用燃燒產生的熱能發電
+                        </span>
+
+                    </label>
+
+
+                    <label class="quiz-option">
+
+                        <input type="radio"
+                               name="thermal_quiz_1"
+                               value="C">
+
+                        <span>
+                            C. 熱能轉換成旋轉機械能的過程受到阻礙，
+                            因此發電機可獲得的機械能會減少
+                        </span>
+
+                    </label>
+
+
+                    <label class="quiz-option">
+
+                        <input type="radio"
+                               name="thermal_quiz_1"
+                               value="D">
+
+                        <span>
+                            D. 蒸汽渦輪機停止旋轉後，
+                            化學能會直接轉換成電能
+                        </span>
+
+                    </label>
+
+
+                    <div class="mini-quiz-actions">
+
+                        <button type="button"
+                                class="quiz-save-btn">
+                            儲存答案
+                        </button>
+
+                        <span class="quiz-save-status"></span>
+
+                    </div>
+                </div>
             </div>
-
-        </aside>
-
-    </div>
-
-</div>
-
-<section class="knowledge-card knowledge-card-static">
-
-    <div class="knowledge-card-static-head">
-
-        <span>
-            探索後整理
-        </span>
-
-        <h3>
-            看看火力發電中的能量怎麼轉換
-        </h3>
-
-    </div>
-    <div class="knowledge-card-content">
-        <p>
-            火力發電是利用燃料中儲存的
-            <strong>化學能</strong>，
-            經過燃燒轉換成
-            <strong>熱能</strong>。
-            熱能使水產生高溫蒸氣，蒸氣再推動汽輪機旋轉，
-            最後由發電機將旋轉的機械能轉換成電能。
-        </p>
-        <div class="energy-flow">
-            <span>化學能</span>
-            <b>→</b>
-            <span>熱能</span>
-            <b>→</b>
-            <span>機械能</span>
-            <b>→</b>
-            <span>電能</span>
-        </div>
-        <div class="taiwan-note">
-            <div class="taiwan-note-head">
-                <span>TAIWAN</span>
-                <strong>在臺灣，火力發電仍是主要電力來源</strong>
-            </div>
-            <p>
-                臺灣目前的火力發電主要包含燃氣與燃煤。
-                2025 年燃氣發電約占全臺發電量 47.7%，燃煤約占 35.3%。
-                因此即使再生能源持續增加，火力發電目前仍負責相當大的供電量。
-            </p>
-            <p class="policy-note">
-                <b>能源轉型：</b>
-                現階段政策方向包括降低燃煤、增加再生能源，
-                並以燃氣機組配合電力需求及再生能源出力變化。
-            </p>
-        </div>
-        <div class="think-note">
-            <strong>再想一下：</strong>
-            如果燃料正常燃燒、蒸氣也正常產生，
-            但發電機沒有獲得足夠的旋轉機械能，
-            你會先檢查哪一個能量轉換階段？
-        </div>
-    </div>
-</section>
-
-</article>
+        </section>
+    </article>
 
   <div class="module-navigation">
     <a class="btn btn-dark" href="index.html#explore">← 返回能源總覽</a>
@@ -291,6 +549,6 @@
   <p>臺灣能源互動電子書 © 2026</p>
   <p>本網站為教育與學術用途開發。</p>
 </footer>
-<script src="student-learning.js?v=9"></script>
+<script src="student-learning.js?v=11"></script>
 </body>
 </html>

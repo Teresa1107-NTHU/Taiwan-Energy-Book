@@ -1740,13 +1740,17 @@ document.addEventListener(
 );
 
 // =====================================================
-// 水力發電手動文字導覽
+// 水力發電自動同步導覽
+// 使用與風力相同的 postMessage 控制方式
 // =====================================================
+const HYDRO_MODEL_URL =
+    "https://my-3d-proxy.loveleehom9.workers.dev/hydro_power_house";
 
 const hydroSteps = [
 
     {
         title: "卡布蘭水輪機",
+        english: "Kaplan Turbine",
         description:
             "卡布蘭水輪機可以調整導葉與轉輪葉片的角度，適合用於水頭較低、流量較大的水力發電環境。水流推動葉片旋轉，將水流的能量轉換成旋轉的機械能。",
         energy:
@@ -1755,6 +1759,7 @@ const hydroSteps = [
 
     {
         title: "發電機",
+        english: "Electric Generator",
         description:
             "水輪機旋轉時會帶動發電機轉子。發電機利用電磁感應，將水輪機提供的旋轉機械能轉換成電能。",
         energy:
@@ -1763,6 +1768,7 @@ const hydroSteps = [
 
     {
         title: "壩體",
+        english: "Dam",
         description:
             "壩體橫跨河流並攔蓄水量，使上游形成水庫，同時建立水位高度差。這個高度差讓水具有可用來發電的重力位能。",
         energy:
@@ -1771,6 +1777,7 @@ const hydroSteps = [
 
     {
         title: "進水口設施",
+        english: "Intake Structure",
         description:
             "進水口設施將水庫中的水導入壓力水管，通常包含攔污柵與閘門，可以控制水流並在需要時停止水流進入水輪機。",
         energy:
@@ -1779,6 +1786,7 @@ const hydroSteps = [
 
     {
         title: "蓄水庫",
+        english: "Reservoir",
         description:
             "蓄水庫儲存大量位於較高位置的水。高處的水具有重力位能，水庫的水位與放水流量也會影響可供發電使用的能量。",
         energy:
@@ -1787,6 +1795,7 @@ const hydroSteps = [
 
     {
         title: "變壓器",
+        english: "Transformer",
         description:
             "發電機產生電力後，變壓器會提高電壓，使電力更適合輸送到電網，並降低長距離輸電時的能量損失。",
         energy:
@@ -1795,6 +1804,7 @@ const hydroSteps = [
 
     {
         title: "壓力水管",
+        english: "Penstock",
         description:
             "壓力水管將水庫中的水送往水輪機。水從較高處往較低處流動時，重力位能逐漸轉換成水流的動能。",
         energy:
@@ -1803,6 +1813,7 @@ const hydroSteps = [
 
     {
         title: "尾水管",
+        english: "Draft Tube",
         description:
             "尾水管位於水輪機出口下方，負責將通過水輪機後的水導向下游，同時協助提高水輪機的能量利用效率。",
         energy:
@@ -1811,22 +1822,67 @@ const hydroSteps = [
 
     {
         title: "下游水庫",
+        english: "Lower Reservoir",
         description:
             "水通過水輪機後會流入下游水庫。在抽蓄式水力發電系統中，也可以在需要時利用幫浦將下游的水送回上游水庫，再次儲存能量。",
         energy:
             "水循環與儲能"
     }
-
 ];
-
 
 let hydroCurrentStep = -1;
 
+// =====================================================
+// 取得水力 iframe
+// =====================================================
+function getHydroIframe() {
+
+    return document.getElementById(
+        "hydroModel"
+    );
+
+}
+
+// =====================================================
+// 傳送控制訊號給 EnergyEncyclopedia
+// =====================================================
+function sendHydroAction(action) {
+
+    const iframe =
+        getHydroIframe();
+
+    if (
+        !iframe ||
+        !iframe.contentWindow
+    ) {
+
+        console.warn(
+            "Hydro iframe 尚未準備完成"
+        );
+
+        return false;
+    }
+
+    iframe.focus();
+
+    iframe.contentWindow.focus();
+
+    iframe.contentWindow.postMessage(
+        action,
+        "*"
+    );
+
+    console.log(
+        "Hydro postMessage:",
+        action
+    );
+
+    return true;
+}
 
 // =====================================================
 // 下一步
 // =====================================================
-
 function hydroNext() {
 
     if (
@@ -1836,44 +1892,98 @@ function hydroNext() {
         return;
     }
 
-    hydroCurrentStep++;
+    if (
+        !sendHydroAction(
+            "ACTION_NEXT_STEP"
+        )
+    ) {
+        return;
+    }
+
+    hydroCurrentStep += 1;
 
     updateHydroPanel();
 }
-
 
 // =====================================================
 // 上一步
 // =====================================================
-
 function hydroPrevious() {
 
-    if (hydroCurrentStep <= 0) {
+    if (
+        hydroCurrentStep <= 0
+    ) {
         return;
     }
 
-    hydroCurrentStep--;
+    if (
+        !sendHydroAction(
+            "ACTION_PREV_STEP"
+        )
+    ) {
+        return;
+    }
+
+    hydroCurrentStep -= 1;
 
     updateHydroPanel();
 }
-
 
 // =====================================================
 // 重設
 // =====================================================
-
 function hydroReset() {
 
-    hydroCurrentStep = -1;
+    const wrapper =
+        document.getElementById(
+            "hydroViewerWrapper"
+        );
+
+    if (!wrapper) {
+        return;
+    }
+
+    const oldIframe =
+        getHydroIframe();
+
+    if (oldIframe) {
+        oldIframe.remove();
+    }
+
+    const iframe =
+        document.createElement(
+            "iframe"
+        );
+
+    iframe.id =
+        "hydroModel";
+
+    iframe.src =
+        HYDRO_MODEL_URL;
+
+    iframe.title =
+        "水力發電廠 3D 互動模型";
+
+    iframe.allowFullscreen =
+        true;
+
+    wrapper.appendChild(
+        iframe
+    );
+
+    hydroCurrentStep =
+        -1;
+
+    bindHydroIframeLoad(
+        iframe
+    );
 
     updateHydroPanel();
 }
 
-
 // =====================================================
-// 更新水力中文導覽
+// 更新右側中文說明
 // =====================================================
-
 function updateHydroPanel() {
 
     const number =
@@ -1896,16 +2006,20 @@ function updateHydroPanel() {
             "hydroEnergyTag"
         );
 
-    const prevBtn =
+    const prev =
         document.getElementById(
             "hydroPrevBtn"
         );
 
-    const nextBtn =
+    const next =
         document.getElementById(
             "hydroNextBtn"
         );
 
+    const reset =
+        document.getElementById(
+            "hydroResetBtn"
+        );
 
     if (
         !number ||
@@ -1915,35 +2029,47 @@ function updateHydroPanel() {
         return;
     }
 
-
     // =========================
     // 尚未開始
     // =========================
-
-    if (hydroCurrentStep < 0) {
+    if (
+        hydroCurrentStep < 0
+    ) {
 
         number.textContent =
             "準備開始";
 
-        title.textContent =
-            "水力發電";
+        title.innerHTML =
+            `水力發電
+             <span class="hydro-title-en">
+                 Hydroelectric Power
+             </span>`;
 
         description.textContent =
-            "請使用上方模型中的「Next view」依序觀看各設備，並搭配下方中文步驟了解水如何帶動水輪機並產生電能。";
+            "模型初始畫面為整體設備視圖，可先觀察水庫、水輪機與發電機的位置。按下「開始導覽」後，模型與右側中文說明會同步前進。";
 
         if (energy) {
             energy.textContent =
                 "能量來源：高處的水";
         }
 
-        if (prevBtn) {
-            prevBtn.disabled = true;
+        if (prev) {
+            prev.disabled =
+                true;
         }
 
-        if (nextBtn) {
-            nextBtn.disabled = false;
-            nextBtn.textContent =
+        if (next) {
+
+            next.disabled =
+                false;
+
+            next.textContent =
                 "開始導覽";
+        }
+
+        if (reset) {
+            reset.disabled =
+                true;
         }
 
         return;
@@ -1952,7 +2078,6 @@ function updateHydroPanel() {
     // =========================
     // 導覽中
     // =========================
-
     const step =
         hydroSteps[
         hydroCurrentStep
@@ -1960,8 +2085,12 @@ function updateHydroPanel() {
 
     number.textContent =
         `STEP ${hydroCurrentStep + 1} / ${hydroSteps.length}`;
-    title.textContent =
-        step.title;
+
+    title.innerHTML =
+        `${step.title}
+         <span class="hydro-title-en">
+             ${step.english}
+         </span>`;
 
     description.textContent =
         step.description;
@@ -1971,51 +2100,149 @@ function updateHydroPanel() {
             step.energy;
     }
 
-    if (prevBtn) {
-        prevBtn.disabled =
-            hydroCurrentStep === 0;
+
+    const allowBackAndReset =
+        hydroCurrentStep >= 1;
+
+    if (prev) {
+        prev.disabled =
+            !allowBackAndReset;
     }
 
-    const isLastStep =
+    if (reset) {
+        reset.disabled =
+            !allowBackAndReset;
+    }
+
+
+    const last =
         hydroCurrentStep ===
         hydroSteps.length - 1;
 
-    if (nextBtn) {
+    if (next) {
 
-        if (isLastStep) {
+        next.disabled =
+            last;
 
-            nextBtn.textContent =
-                "導覽完成 ✓";
-
-            nextBtn.disabled =
-                true;
-
-        } else {
-
-            nextBtn.textContent =
-                "下一步";
-
-            nextBtn.disabled =
-                false;
-        }
+        next.textContent =
+            last
+                ? "導覽完成 ✓"
+                : "下一步";
     }
 }
 
 // =====================================================
-// 頁面載入時初始化
+// iframe 載入狀態
 // =====================================================
+function bindHydroIframeLoad(
+    iframe
+) {
+
+    const status =
+        document.getElementById(
+            "hydroModelStatus"
+        );
+
+    if (!iframe) {
+        return;
+    }
+
+    if (status) {
+
+        status.classList.remove(
+            "ready"
+        );
+
+        status.textContent =
+            "正在載入水力 3D 模型……";
+    }
+
+    iframe.addEventListener(
+        "load",
+        () => {
+
+            if (status) {
+
+                status.textContent =
+                    "3D 模型已載入";
+
+                setTimeout(
+                    () => {
+
+                        status.classList.add(
+                            "ready"
+                        );
+
+                    },
+                    500
+                );
+            }
+
+            console.log(
+                "Hydro model loaded"
+            );
+        }
+    );
+}
+
+
+// =====================================================
+// 水力頁面初始化
+// =====================================================
+
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        if (
-            document.getElementById(
-                "hydroStepNumber"
-            )
-        ) {
-            hydroCurrentStep = -1;
-            updateHydroPanel();
+        const iframe =
+            getHydroIframe();
+
+        /*
+         * 只有 hydro.html 才有 hydroModel。
+         */
+        if (!iframe) {
+            return;
         }
+
+        bindHydroIframeLoad(
+            iframe
+        );
+
+
+        document
+            .getElementById(
+                "hydroPrevBtn"
+            )
+            ?.addEventListener(
+                "click",
+                hydroPrevious
+            );
+
+
+        document
+            .getElementById(
+                "hydroNextBtn"
+            )
+            ?.addEventListener(
+                "click",
+                hydroNext
+            );
+
+
+        document
+            .getElementById(
+                "hydroResetBtn"
+            )
+            ?.addEventListener(
+                "click",
+                hydroReset
+            );
+
+
+        hydroCurrentStep =
+            -1;
+
+        updateHydroPanel();
     }
 );
 

@@ -1080,8 +1080,11 @@ footer{
 
 .thermal-start-hint {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 12px;
+    height: 72px;
+    min-height: 72px;
+    max-height: 72px;
     margin-top: 14px;
     margin-bottom: 18px;
     padding: 14px 16px;
@@ -1107,17 +1110,14 @@ footer{
 
 .thermal-start-hint strong {
     display: block;
-    margin-bottom: 4px;
+    margin: 0;
     color: #111827;
     font-size: 0.96rem;
     font-weight: 800;
 }
 
 .thermal-start-hint p {
-    margin: 0;
-    color: #4b5563;
-    font-size: 0.9rem;
-    line-height: 1.7;
+    display: none;
 }
 
 .thermal-start-hint.ready {
@@ -1184,12 +1184,11 @@ footer{
     }
 
     .thermal-start-hint {
-        align-items: flex-start;
+    align-items: center;
     }
 
     .thermal-start-hint p {
-        display: block;
-        margin-left: 0;
+        display: none;
     }
 }
 
@@ -2418,8 +2417,31 @@ footer{
     grid-template-columns: minmax(0, 1fr) 300px;
     gap: 8px;
     align-items: stretch;
+    height: 570px;
+    min-height: 570px;
+    max-height: 570px;
 }
 
+.module-model-column,
+.module-control-column {
+    height: 570px;
+    min-height: 570px;
+    max-height: 570px;
+}
+
+.module-model-column .thermal-model-frame,
+.module-model-column .thermal-unity-wrapper,
+.module-model-column .thermal-unity-wrapper iframe {
+    height: 570px;
+    min-height: 570px;
+    max-height: 570px;
+}
+
+.module-control-column .thermal-inline-info {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}
 
 .wind-control-column {
     width: 300px;
@@ -2511,13 +2533,30 @@ footer{
 
     .module-workspace {
         grid-template-columns: 1fr;
+        height: auto;
+        min-height: 0;
+        max-height: none;
     }
-
 
     .wind-control-column {
         width: 100%;
         min-width: 0;
     }
+
+    .module-model-column,
+    .module-control-column {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+        .module-model-column .thermal-model-frame,
+        .module-model-column .thermal-unity-wrapper,
+        .module-model-column .thermal-unity-wrapper iframe {
+            height: 480px;
+            min-height: 480px;
+            max-height: 480px;
+        }
 }
 
 /* =========================================================

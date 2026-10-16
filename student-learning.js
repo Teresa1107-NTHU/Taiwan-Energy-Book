@@ -538,65 +538,18 @@ function updateThermalHint() {
     const icon = document.getElementById("thermalHintIcon");
     const title = document.getElementById("thermalHintTitle");
     const text = document.getElementById("thermalHintText");
-    const slider = document.getElementById("thermalGasSlider");
 
-    if (!hint || !icon || !title || !text || !slider) return;
-
-    const gasValue = parseInt(slider.value, 10) || 0;
+    if (!hint || !icon || !title) return;
 
     hint.classList.remove("ready", "started", "complete");
+    hint.classList.add("started");
 
-    // 尚未開始
-    if (thermalCurrentStep < 0) {
-        if (gasValue <= 0) {
-            icon.textContent = "01";
-            title.textContent = "先設定天然氣輸入量";
-            text.textContent =
-                "拖曳 Gas Input 滑桿到大於 0%。觀察輸入量改變後，再開始逐步查看發電系統。";
-        } else {
-            hint.classList.add("ready");
-            icon.textContent = "✓";
-            title.textContent = "天然氣輸入已設定";
-            text.textContent =
-                "現在可以按下「開始導覽」，逐步觀察天然氣如何轉換成最後的電能。";
-        }
-        return;
+    icon.textContent = "↔";
+    title.textContent = "試著拉動滑桿比較看看";
+
+    if (text) {
+        text.textContent = "";
     }
-
-    // 導覽已開始，但 Gas Input 被拉回 0
-    if (
-        thermalCurrentStep >= 0 &&
-        gasValue <= 0
-    ) {
-        hint.classList.add("started");
-
-        icon.textContent = "!";
-
-        title.textContent =
-            "天然氣輸入已停止";
-
-        text.textContent =
-            "Gas Input 現在是 0%。請重新調高天然氣輸入量，系統恢復運作後才能繼續下一步。";
-
-        return;
-    }
-
-    // 導覽進行中
-    if (thermalCurrentStep >= 0 && thermalCurrentStep < thermalSteps.length - 1) {
-        hint.classList.add("started");
-        icon.textContent = "↔";
-        title.textContent = "試著拉動滑桿比較看看";
-        text.textContent =
-            "你已經開始導覽了。可以一邊逐步觀察設備，一邊拖拉 Gas Input 滑桿，看看天然氣輸入量不同時，系統運作與輸出效果有什麼差別。";
-        return;
-    }
-
-    // 導覽完成
-    hint.classList.add("complete");
-    icon.textContent = "✓";
-    title.textContent = "你已完成火力發電導覽，最後再比較一次";
-    text.textContent =
-        "試著把 Gas Input 分別調低與調高，觀察燈泡亮度與系統運作有什麼變化。你覺得燃料輸入量和發電輸出之間有什麼關係？";
 }
 
 // =====================================================

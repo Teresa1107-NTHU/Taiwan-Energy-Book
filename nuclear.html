@@ -46,8 +46,8 @@
         <div class="learning-point">
             <strong>你可以注意</strong>
             核分裂產生的能量如何轉換成電能？
-            壓水式反應爐中的一次側與二次側有什麼不同？
-            哪些設備負責傳熱、發電、冷卻與安全防護？
+            蒸氣如何帶動汽輪機與發電機完成發電？
+            冷卻系統在發電過程中扮演什麼角色？
         </div>
 
         <!-- =========================
@@ -167,7 +167,8 @@
                 EnergyEncyclopedia.com
             </a>
         </div>
-        <section class="knowledge-card knowledge-card-static">
+
+        <section class="knowledge-card knowledge-card-static nuclear-knowledge-card">
 
             <div class="knowledge-card-static-head">
 
@@ -227,63 +228,39 @@
 
                     </div>
 
-
-                    <!-- 2. PWR 一次側與二次側 -->
+                    <!-- 2. 熱能如何產生蒸氣 -->
                     <div class="helper-section helper-concept-box nuclear-helper-card nuclear-helper-card-pwr">
 
-                        <h4>💧 壓水式反應爐為什麼有不同的水循環？</h4>
+                        <h4>💨 反應爐產生熱之後，怎麼繼續發電？</h4>
 
                         <p>
-                            本頁模型是<strong>壓水式反應爐（PWR）</strong>。
-                            反應爐產生的熱並不是讓同一批水直接進入汽輪機，
-                            而是透過不同的水循環來傳遞熱量。
-                        </p>
-                        <div class="nuclear-loop-grid">
-
-                            <div class="nuclear-loop-card">
-                                <strong>一次側</strong>
-                                <p>
-                                    冷卻水流經反應爐，吸收核分裂產生的熱，
-                                    再將熱量帶到蒸汽產生器。
-                                    一次側維持較高壓力，使高溫的水不容易沸騰。
-                                </p>
-                            </div>
-
-                            <div class="nuclear-loop-card">
-                                <strong>二次側</strong>
-                                <p>
-                                    蒸汽產生器把一次側的熱量傳給另一套水循環，
-                                    使二次側的水形成蒸氣，
-                                    再由蒸氣推動汽輪機。
-                                </p>
-                            </div>
-
-                        </div>
-
-                        <p class="nuclear-loop-summary">
-                            <strong>重點：</strong>
-                            蒸汽產生器主要負責熱交換，
-                            並不是把一次側的水直接送進汽輪機。
+                            核分裂在<strong>反應爐</strong>中釋放能量，
+                            使系統中的水獲得熱能。
+                            這些熱量接著會被利用來產生<strong>蒸氣</strong>。
                         </p>
 
                         <p>
-                            因此，
-                            <strong>蒸汽產生器主要扮演熱交換的角色</strong>，
-                            讓熱量可以從一次側傳到二次側，
-                            而不是把一次側的水直接送進汽輪機。
+                            蒸氣具有足夠的能量後，
+                            會推動<strong>汽輪機</strong>旋轉，
+                            將熱能轉換成旋轉的<strong>機械能</strong>。
                         </p>
 
+                        <p>
+                            最後汽輪機再帶動<strong>發電機</strong>，
+                            將機械能轉換成電能。
+                            因此反應爐本身並不是直接產生電力，
+                            而是先提供後續發電所需要的熱能。
+                        </p>
                     </div>
-
 
                     <!-- 3. 設備關係 -->
                     <div class="helper-section helper-concept-box nuclear-helper-card nuclear-helper-card-wide">
 
                         <h4>⚙️ 核能發電廠的重要設備怎麼合作？</h4>
 
-                        <div class="thermal-device-grid">
+                        <div class="nuclear-device-grid">
 
-                            <div class="thermal-device-card">
+                            <div class="nuclear-device-card">
                                 <strong>反應爐</strong>
                                 <p>
                                     核燃料進行受控核分裂的位置，
@@ -291,31 +268,31 @@
                                 </p>
                             </div>
 
-                            <div class="thermal-device-card">
+                            <div class="nuclear-device-card">
                                 <strong>蒸汽產生器</strong>
                                 <p>
-                                    將一次側冷卻水攜帶的熱量傳給二次側，
-                                    使二次側產生蒸氣。
+                                    將反應爐系統帶來的熱量傳給水，
+                                    使水形成蒸氣，供後續汽輪機使用。
                                 </p>
                             </div>
 
-                            <div class="thermal-device-card">
+                            <div class="nuclear-device-card">
                                 <strong>反應爐冷卻水泵</strong>
                                 <p>
-                                    讓一次側冷卻水持續循環，
-                                    將反應爐產生的熱帶往蒸汽產生器。
+                                    讓冷卻水持續循環，
+                                    將反應爐產生的熱帶往後續系統。
                                 </p>
                             </div>
 
-                            <div class="thermal-device-card">
+                            <div class="nuclear-device-card">
                                 <strong>穩壓器</strong>
                                 <p>
-                                    協助控制一次側系統壓力，
-                                    讓一次側維持適當的運轉條件。
+                                    協助控制反應爐冷卻系統的壓力，
+                                    讓系統維持適當的運轉條件。
                                 </p>
                             </div>
 
-                            <div class="thermal-device-card">
+                            <div class="nuclear-device-card">
                                 <strong>汽輪機</strong>
                                 <p>
                                     利用蒸氣推動旋轉，
@@ -323,7 +300,7 @@
                                 </p>
                             </div>
 
-                            <div class="thermal-device-card">
+                            <div class="nuclear-device-card">
                                 <strong>發電機</strong>
                                 <p>
                                     由汽輪機帶動，
@@ -334,7 +311,7 @@
                     </div>
 
                     <!-- 4. 冷卻與安全 -->
-                    <div class="helper-section helper-concept-box">
+                    <div class="helper-section helper-concept-box nuclear-helper-card nuclear-helper-card-safety">
 
                         <h4>🛡️ 為什麼核能發電廠需要冷卻與防護設備？</h4>
 
@@ -373,143 +350,134 @@
                     </div>
                 </div>
 
-                    <!-- 5. 臺灣情境 -->
-                    <div class="taiwan-note">
+                <!-- 5. 臺灣情境 -->
+                <div class="taiwan-note">
 
-                        <div class="taiwan-note-head">
+                    <div class="taiwan-note-head">
 
-                            <span>TAIWAN</span>
+                        <span>TAIWAN</span>
 
-                            <strong>
-                                臺灣核能發電目前處於轉變中的階段
-                            </strong>
-
-                        </div>
-
-
-                        <p>
-                            臺灣曾有核一、核二與核三等核能發電廠。
-                            核三 2 號機於<strong>2025 年 5 月停止商轉</strong>，
-                            因此目前臺灣沒有正在商業發電的核能機組。
-                        </p>
-
-
-                        <p class="policy-note">
-
-                            <strong>後續發展仍在進行：</strong>
-
-                            核三廠目前已提出再運轉相關申請，
-                            並進入安全審查與現場查證程序。
-                            因此核能在臺灣的未來角色，
-                            除了發電技術本身之外，
-                            還會涉及核能安全、核廢料處理、
-                            電力供應、減碳與能源政策等議題。
-
-                        </p>
-                    </div>
-
-                    <!-- 7. 思考 -->
-                    <div class="think-note">
-
-                        <div class="think-note-title">
-                            再想一下 💡
-                        </div>
-
-                        <p>
-                            假設一座核能發電廠的<strong>核分裂反應與熱能產生都正常</strong>，
-                            但是汽輪機無法正常旋轉。
-                            即使反應爐仍持續產生熱，
-                            發電機還能正常產生原本的電力嗎？
-                            想想看是哪一段能量轉換受到了影響。
-                        </p>
+                        <strong>
+                            臺灣核能發電目前處於轉變中的階段
+                        </strong>
 
                     </div>
 
-                    <!-- 8. 小試身手 -->
-                    <div class="mini-quiz-card"
-                         data-mini-quiz
-                         data-quiz-key="nuclear_quiz_1">
 
-                        <div class="mini-quiz-head">
-
-                            <span>小試身手</span>
-
-                            <h4>用剛剛學到的概念判斷看看</h4>
-
-                        </div>
-
-                        <p class="mini-quiz-question">
-
-                            小明觀察核能發電與天然氣火力發電後說：
-                            「這兩種發電方式都有蒸氣、汽輪機和發電機，
-                            所以它們從最開始到最後的能量轉換其實完全一樣。」
-                            下列哪一項最適合修正他的說法？
-
-                        </p>
-
-                        <label class="quiz-option">
-
-                            <input type="radio"
-                                   name="nuclear_quiz_1"
-                                   value="A">
-
-                            <span>
-                                A. 小明完全正確，兩種發電方式的能量來源與轉換過程都相同
-                            </span>
-                        </label>
+                    <p>
+                        臺灣曾有核一、核二與核三等核能發電廠。
+                        核三 2 號機於<strong>2025 年 5 月停止商轉</strong>，
+                        因此目前臺灣沒有正在商業發電的核能機組。
+                    </p>
 
 
-                        <label class="quiz-option">
+                    <p class="policy-note">
 
-                            <input type="radio"
-                                   name="nuclear_quiz_1"
-                                   value="B">
+                        <strong>後續發展仍在進行：</strong>
 
-                            <span>
-                                B. 兩者後段都有熱能 → 機械能 → 電能，
-                                但火力主要由燃料的化學能產生熱，
-                                核能則由核分裂釋放核能並轉換成熱能
-                            </span>
-                        </label>
+                        核三廠目前已提出再運轉相關申請，
+                        並進入安全審查與現場查證程序。
+                        因此核能在臺灣的未來角色，
+                        除了發電技術本身之外，
+                        還會涉及核能安全、核廢料處理、
+                        電力供應、減碳與能源政策等議題。
 
-                        <label class="quiz-option">
+                    </p>
+                </div>
 
-                            <input type="radio"
-                                   name="nuclear_quiz_1"
-                                   value="C">
+                <!-- 再想一下 -->
+                <div class="think-note">
 
-                            <span>
-                                C. 核能發電不需要熱能，
-                                核分裂產生的核能可以直接送入發電機
-                            </span>
-                        </label>
+                    <div class="think-note-title">
+                        再想一下 💡
+                    </div>
 
+                    <p>
+                        核分裂可以釋放大量能量，
+                        但核能發電廠為什麼不能把這些能量
+                        <strong>直接變成電能</strong>？
+                        為什麼還需要先利用熱產生蒸氣，
+                        再經過汽輪機與發電機？
+                        想想看每個設備在能量轉換中扮演什麼角色。
+                    </p>
 
-                        <label class="quiz-option">
+                </div>
 
-                            <input type="radio"
-                                   name="nuclear_quiz_1"
-                                   value="D">
+                <!-- 小試身手 -->
+                <div class="mini-quiz-card"
+                     data-mini-quiz
+                     data-quiz-key="nuclear_quiz_1">
 
-                            <span>
-                                D. 火力與核能最大的差異是只有核能使用發電機，
-                                火力則由汽輪機直接產生電能
-                            </span>
-                        </label>
+                    <div class="mini-quiz-head">
+                        <span>小試身手</span>
+                        <h4>用剛剛學到的概念判斷看看</h4>
+                    </div>
 
-                        <div class="mini-quiz-actions">
+                    <p class="mini-quiz-question">
+                        某學生觀察核能發電模型後，
+                        整理出以下幾種說法。
+                        哪一項最符合核能發電中
+                        「熱能被利用來產生電力」的過程？
+                    </p>
 
-                            <button type="button"
-                                    class="quiz-save-btn">
-                                儲存答案
-                            </button>
+                    <label class="quiz-option">
+                        <input type="radio"
+                               name="nuclear_quiz_1"
+                               value="A">
 
-                            <span class="quiz-save-status"></span>
+                        <span>
+                            A. 反應爐產生的熱主要用來提高發電機溫度，
+                            使發電機更容易產生電流
+                        </span>
+                    </label>
 
-                        </div>
+                    <label class="quiz-option">
+                        <input type="radio"
+                               name="nuclear_quiz_1"
+                               value="B">
+
+                        <span>
+                            B. 反應爐產生的熱先使水形成蒸氣，
+                            蒸氣再推動汽輪機，
+                            讓後續設備能利用旋轉運動來發電
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio"
+                               name="nuclear_quiz_1"
+                               value="C">
+
+                        <span>
+                            C. 反應爐產生的熱先由冷卻系統集中，
+                            再由冷卻系統把熱能傳給發電機
+                        </span>
+                    </label>
+
+                    <label class="quiz-option">
+                        <input type="radio"
+                               name="nuclear_quiz_1"
+                               value="D">
+
+                        <span>
+                            D. 反應爐產生的熱主要用來維持汽輪機的溫度，
+                            汽輪機本身再直接產生電能
+                        </span>
+                    </label>
+
+                    <div class="mini-quiz-actions">
+
+                        <button type="button"
+                                class="quiz-save-btn">
+                            儲存答案
+                        </button>
+
+                        <span class="quiz-save-status"></span>
+
                     </div>
                 </div>
-</section>
+            </div>
+        </section>
     </article>
 
   <div class="module-navigation">

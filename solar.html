@@ -48,8 +48,9 @@
 
       <div class="learning-point">
           <strong>你可以注意</strong>
-          能量最初從哪裡來？光能在哪個元件中直接轉換成電能？
-          太陽光電為什麼不需要旋轉設備？日照條件改變時，發電效果會有什麼變化？
+          太陽光如何直接轉換成電能？
+          太陽能電池、逆變器與變電設備各自扮演什麼角色？
+          日照條件為什麼會影響發電輸出？
       </div>
 
       <!-- =========================
@@ -164,7 +165,8 @@
               EnergyEncyclopedia.com
           </a>
       </div>
-      <section class="knowledge-card knowledge-card-static">
+
+      <section class="knowledge-card knowledge-card-static solar-knowledge-card">
 
           <div class="knowledge-card-static-head">
 
@@ -176,186 +178,168 @@
                       <strong>能源小幫手</strong>
                       <small>ENERGY HELPER</small>
                   </div>
-
               </div>
 
               <h3>一起整理太陽光電的能量轉換</h3>
 
           </div>
 
-
           <div class="knowledge-card-content">
 
-              <!-- 1. 核心原理 -->
-              <div class="helper-section">
+              <div class="solar-helper-grid">
 
-                  <h4>☀️ 陽光怎麼直接變成電？</h4>
+                  <!-- 1. 核心原理 -->
+                  <div class="helper-section solar-helper-card solar-helper-card-main">
 
-                  <p class="helper-intro">
-                      太陽光電和火力、核能、風力與水力有一個很重要的不同：
-                      它<strong>不需要先讓汽輪機、水輪機或風機旋轉</strong>。
-                      太陽能電池可以利用半導體材料吸收光的能量，
-                      使電子產生移動並形成電流，
-                      因此能將<strong>光能直接轉換成電能</strong>。
-                  </p>
+                      <h4>☀️ 陽光怎麼直接變成電？</h4>
 
-                  <p>
-                      多個太陽能電池組合成太陽能板後，
-                      可以產生<strong>直流電</strong>。
-                      之後還要經過逆變器與相關電力設備，
-                      才能轉換成適合電網使用的交流電。
-                  </p>
+                      <p class="helper-intro">
+                          太陽光電最重要的特色，是不需要先透過汽輪機、
+                          水輪機或風機產生旋轉運動。
+                          <strong>太陽能電池</strong>中的半導體材料吸收光的能量後，
+                          會使電子產生移動並形成電流，
+                          因此可以將<strong>光能直接轉換成電能</strong>。
+                      </p>
+
+                      <p>
+                          多個太陽能電池組合成太陽能板後，
+                          產生的是<strong>直流電</strong>；
+                          接著再經由<strong>逆變器</strong>轉換成交流電，
+                          才能送往後續的電力系統。
+                      </p>
+
+                      <div class="energy-flow">
+                          <span>太陽光的光能</span>
+                          <b>→</b>
+                          <span>直流電</span>
+                          <b>→</b>
+                          <span>交流電</span>
+                          <b>→</b>
+                          <span>送入電網</span>
+                      </div>
+
+                  </div>
 
 
-                  <div class="energy-flow">
+                  <!-- 2. 重要設備 -->
+                  <div class="helper-section solar-helper-card solar-helper-card-wide">
 
-                      <span>太陽光的光能</span>
-                      <b>→</b>
+                      <h4>⚙️ 太陽光電的重要設備怎麼合作？</h4>
 
-                      <span>太陽能電池產生直流電</span>
-                      <b>→</b>
+                      <div class="solar-device-grid">
 
-                      <span>逆變器轉換成交流電</span>
-                      <b>→</b>
+                          <div class="solar-device-card">
+                              <strong>太陽能電池</strong>
+                              <p>
+                                  利用半導體材料吸收光的能量，
+                                  是直接將光能轉換成電能的核心元件。
+                              </p>
+                          </div>
 
-                      <span>送入電網</span>
+                          <div class="solar-device-card">
+                              <strong>太陽能板</strong>
+                              <p>
+                                  由許多太陽能電池組合而成，
+                                  接收陽光並產生直流電。
+                              </p>
+                          </div>
+
+                          <div class="solar-device-card">
+                              <strong>逆變器</strong>
+                              <p>
+                                  將太陽能板產生的直流電轉換成
+                                  適合電網使用的交流電。
+                              </p>
+                          </div>
+
+                          <div class="solar-device-card">
+                              <strong>變電設備</strong>
+                              <p>
+                                  調整電壓並協助電力送入後續輸電與配電系統。
+                              </p>
+                          </div>
+
+                      </div>
+
+                  </div>
+
+
+                  <!-- 3. 發電條件 -->
+                  <div class="helper-section solar-helper-card solar-helper-card-condition">
+
+                      <h4>🌤️ 有太陽，就一定能產生一樣多的電嗎？</h4>
+
+                      <p>
+                          不一定。太陽光電能產生多少電，
+                          和<strong>太陽能板實際接收到多少光能</strong>有關。
+                          雲量增加、日照變弱或一天中的太陽位置改變時，
+                          到達面板的光能可能減少，
+                          因此發電輸出也可能降低。
+                      </p>
+
+                      <p>
+                          太陽能板的<strong>方向與傾斜角度</strong>
+                          也會影響接收到的陽光。
+                          即使使用相同規格的設備，
+                          不同設置方式與不同日照條件，
+                          仍可能產生不同的發電量。
+                      </p>
+
+                  </div>
+
+
+                  <!-- 4. 溫度與發電效率 -->
+                  <div class="helper-section solar-helper-card solar-helper-card-temperature">
+
+                      <h4>🌡️ 天氣越熱，就一定發越多電嗎？</h4>
+
+                      <p>
+                          「陽光很強」和「氣溫很高」並不是同一件事。
+                          太陽光越充足時，可供太陽能電池利用的光能通常較多；
+                          但當<strong>太陽能電池溫度過高</strong>時，
+                          發電效率反而可能下降。
+                      </p>
+
+                      <p>
+                          因此判斷太陽光電的發電效果時，
+                          不能只看天氣熱不熱，
+                          還要考慮實際日照、面板方向、遮蔭與設備狀態等條件。
+                      </p>
 
                   </div>
 
               </div>
 
 
-              <!-- 2. 設備關係 -->
-              <div class="helper-section helper-concept-box">
-
-                  <h4>⚙️ 太陽光電的重要設備怎麼合作？</h4>
-
-                  <p>
-                      <strong>太陽能電池：</strong>
-                      是真正將光能直接轉換成電能的核心元件。
-                  </p>
-
-                  <p>
-                      <strong>太陽能板：</strong>
-                      由多個太陽能電池組合而成，
-                      負責接收陽光並產生直流電。
-                  </p>
-
-                  <p>
-                      <strong>逆變器：</strong>
-                      太陽能板產生的是直流電，
-                      而一般電網使用交流電，
-                      因此逆變器負責將<strong>直流電轉換成交流電</strong>。
-                      它不是把其他種類的能量變成電能，
-                      而是改變電力的形式。
-                  </p>
-
-                  <p>
-                      <strong>變電站：</strong>
-                      電力完成轉換後，
-                      還需要調整電壓並經過相關控制設備，
-                      才能更適合送入電網。
-                  </p>
-
-              </div>
-
-
-              <!-- 3. 日照與溫度 -->
-              <div class="helper-section helper-concept-box">
-
-                  <h4>🌤️ 有太陽就一定能產生一樣多的電嗎？</h4>
-
-                  <p>
-                      不一定。太陽光電的發電輸出會受到
-                      <strong>到達太陽能板的光量</strong>影響。
-                      當雲量增加、日照變弱，或太陽位置改變時，
-                      太陽能板接收到的太陽輻射能可能減少，
-                      因此發電輸出也可能降低。
-                  </p>
-
-                  <p>
-                      一天中的時間、季節、天氣、
-                      太陽能板的方向與傾斜角度，
-                      都可能影響實際接收到的太陽能。
-                  </p>
-
-                  <p>
-                      此外，<strong>
-                          太陽能電池溫度過高時，
-                          發電效率通常會下降
-                      </strong>。
-                      因此「陽光很強」和「溫度很高」不是完全相同的概念，
-                      不能直接認為溫度越高就一定發越多電。
-                  </p>
-
-              </div>
-
-
-              <!-- 4. 和其他能源比較 -->
-              <div class="helper-section helper-concept-box">
-
-                  <h4>🔍 太陽光電和其他發電方式有什麼不同？</h4>
-
-                  <p>
-                      火力與核能會先產生<strong>熱能</strong>，
-                      再利用蒸氣推動汽輪機；
-                      風力與水力則利用風或水流使旋轉設備轉動，
-                      最後由發電機將機械能轉換成電能。
-                  </p>
-
-                  <p>
-                      太陽光電不需要先產生熱能，
-                      也不需要先透過汽輪機、水輪機或風機形成旋轉的機械能，
-                      而是由<strong>太陽能電池直接把光能轉換成電能</strong>。
-                  </p>
-
-                  <p>
-                      因此如果比較五種能源，
-                      太陽光電是其中最明顯不同的一種能量轉換方式。
-                  </p>
-
-              </div>
-
-
-              <!-- 5. 臺灣情境 -->
+              <!-- 臺灣情境 -->
               <div class="taiwan-note">
 
                   <div class="taiwan-note-head">
-
                       <span>TAIWAN</span>
-
-                      <strong>
-                          太陽光電是臺灣重要的再生能源之一
-                      </strong>
-
+                      <strong>太陽光電是臺灣重要的再生能源之一</strong>
                   </div>
 
                   <p>
-                      在臺灣，可以在<strong>住宅、學校、工廠屋頂</strong>
+                      在臺灣，可以在<strong>住宅、學校與工廠屋頂</strong>
                       看到太陽光電系統，
                       也有地面型與其他複合利用形式。
                       由於臺灣可利用土地有限，
                       如何兼顧發電、土地利用與環境條件，
-                      也是太陽光電發展時的重要課題。
+                      也是發展太陽光電時的重要課題。
                   </p>
 
                   <p class="policy-note">
-
-                      <strong>但太陽光電具有變動性：</strong>
-
-                      它的實際發電量會受到日照、雲量、
-                      季節與一天中時間的影響。
-                      因此當太陽光電占比提高時，
-                      電力系統也需要搭配儲能、
-                      其他發電方式與電網調度，
-                      才能在不同時間維持供電平衡。
-
+                      <strong>太陽光電具有變動性：</strong>
+                      實際發電量會受到日照、雲量、季節與一天中時間影響。
+                      因此太陽光電增加時，
+                      電力系統也需要搭配儲能、其他電源與電網調度，
+                      協助不同時間的供需平衡。
                   </p>
 
               </div>
 
 
-              <!-- 6. 思考 -->
+              <!-- 再想一下 -->
               <div class="think-note">
 
                   <div class="think-note-title">
@@ -363,92 +347,77 @@
                   </div>
 
                   <p>
-                      假設兩套太陽光電系統使用
-                      <strong>相同型號、相同數量的太陽能板</strong>，
-                      但其中一處今天雲量明顯較多，
-                      另一處則有較穩定的日照。
-                      即使設備都沒有故障，
-                      兩套系統一天產生的電量會完全相同嗎？
-                      為什麼？
+                      假設兩套太陽光電系統使用相同型號與數量的太陽能板，
+                      而且當下接收到的陽光強度也很接近，
+                      但其中一套面板的方向與角度比較適合接收陽光。
+                      兩套系統的發電量一定會一樣嗎？
+                      想想看<strong>設備的設置方式</strong>是否也會影響實際取得的光能。
                   </p>
 
               </div>
 
 
-              <!-- 7. 小試身手 -->
+              <!-- 小試身手 -->
               <div class="mini-quiz-card"
                    data-mini-quiz
                    data-quiz-key="solar_quiz_1">
 
                   <div class="mini-quiz-head">
-
                       <span>小試身手</span>
-
                       <h4>用剛剛學到的概念判斷看看</h4>
-
                   </div>
 
-
                   <p class="mini-quiz-question">
-
-                      某太陽光電系統的太陽能板、逆變器與輸電設備都正常，
-                      但下午雲量增加，使到達太陽能板的光量明顯減少。
-                      下列哪一項最合理？
-
+                      某太陽光電系統中午時的日照比上午強，
+                      但面板溫度也明顯升高。
+                      如果只知道這兩項資訊，
+                      下列哪一項判斷最合理？
                   </p>
 
-
                   <label class="quiz-option">
-
                       <input type="radio"
                              name="solar_quiz_1"
                              value="A">
 
                       <span>
-                          A. 只要逆變器正常，太陽能板接收到多少光都不會影響發電輸出
+                          A. 中午日照較強，因此不論面板溫度如何，
+                          發電效率與輸出都會比上午高
                       </span>
-
                   </label>
 
-
                   <label class="quiz-option">
-
                       <input type="radio"
                              name="solar_quiz_1"
                              value="B">
 
                       <span>
-                          B. 太陽能板接收到的光能減少，可能使產生的電能與整體發電輸出降低
+                          B. 面板溫度升高會增加太陽能電池吸收的光能，
+                          因此可以進一步提高發電效率
                       </span>
-
                   </label>
 
-
                   <label class="quiz-option">
-
                       <input type="radio"
                              name="solar_quiz_1"
                              value="C">
 
                       <span>
-                          C. 光量減少後，太陽能板會改用熱能推動發電機，因此輸出維持不變
+                          C. 日照變強有利於取得更多光能，
+                          但較高的面板溫度可能降低轉換效率，
+                          因此不能只由其中一項條件判斷實際輸出
                       </span>
-
                   </label>
 
-
                   <label class="quiz-option">
-
                       <input type="radio"
                              name="solar_quiz_1"
                              value="D">
 
                       <span>
-                          D. 光量越少，逆變器會自動產生更多額外電能，因此總輸出反而提高
+                          D. 面板溫度升高主要影響逆變器的交流輸出形式，
+                          不會影響太陽能電池本身的能量轉換
                       </span>
-
                   </label>
-
 
                   <div class="mini-quiz-actions">
 

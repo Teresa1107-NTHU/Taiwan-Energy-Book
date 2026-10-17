@@ -51,8 +51,9 @@
 
       <div class="learning-point">
           <strong>你可以注意</strong>
-          能量最初從哪裡來？高處水的重力位能如何逐步轉換？
-          哪個設備真正產生電能？水頭與流量改變時，發電效果會有什麼變化？
+          高處的水如何把重力位能轉換成電能？
+          水輪機與發電機各自扮演什麼角色？
+          水頭與流量為什麼會影響發電效果？
       </div>
 
       <!-- =========================
@@ -188,7 +189,7 @@
           </a>
       </div>
 
-      <section class="knowledge-card knowledge-card-static">
+      <section class="knowledge-card knowledge-card-static hydro-knowledge-card">
 
           <div class="knowledge-card-static-head">
 
@@ -208,224 +209,182 @@
           </div>
 
           <div class="knowledge-card-content">
-              <!-- 1. 核心原理 -->
-              <div class="helper-section">
 
-                  <h4>💧 高處的水怎麼變成電？</h4>
+              <div class="hydro-helper-grid">
 
-                  <p class="helper-intro">
-                      位於較高位置的水具有<strong>重力位能</strong>。
-                      當水從較高處往較低處流動時，
-                      重力位能會逐漸轉換成水流的<strong>動能</strong>。
-                      水流進入水輪機後推動葉片旋轉，
-                      再把水流的能量轉換成旋轉的<strong>機械能</strong>。
-                  </p>
+                  <!-- 1. 核心原理 -->
+                  <div class="helper-section hydro-helper-card hydro-helper-card-main">
 
-                  <p>
-                      水輪機的轉軸會帶動<strong>發電機</strong>，
-                      最後由發電機利用電磁感應，
-                      將旋轉的機械能轉換成<strong>電能</strong>。
-                  </p>
+                      <h4>💧 高處的水怎麼變成電？</h4>
+
+                      <p class="helper-intro">
+                          位於較高位置的水具有<strong>重力位能</strong>。
+                          當水從較高處往較低處流動時，
+                          重力位能會逐漸轉換成水流的<strong>動能</strong>。
+                      </p>
+
+                      <p>
+                          水流進入<strong>水輪機</strong>後推動葉片旋轉，
+                          形成旋轉的<strong>機械能</strong>；
+                          接著再由<strong>發電機</strong>利用電磁感應，
+                          將機械能轉換成<strong>電能</strong>。
+                      </p>
+
+                      <div class="energy-flow">
+                          <span>重力位能</span>
+                          <b>→</b>
+                          <span>水流動能</span>
+                          <b>→</b>
+                          <span>水輪機的機械能</span>
+                          <b>→</b>
+                          <span>發電機產生電能</span>
+                      </div>
+
+                  </div>
 
 
-                  <div class="energy-flow">
+                  <!-- 2. 水頭與流量 -->
+                  <div class="helper-section hydro-helper-card hydro-helper-card-condition">
 
-                      <span>重力位能</span>
-                      <b>→</b>
+                      <h4>📏 水頭與流量為什麼重要？</h4>
 
-                      <span>水流動能</span>
-                      <b>→</b>
+                      <p>
+                          水力發電能取得多少能量，
+                          不只和「有沒有水」有關，
+                          還要看<strong>水頭</strong>與<strong>流量</strong>。
+                      </p>
 
-                      <span>水輪機的機械能</span>
-                      <b>→</b>
+                      <p>
+                          <strong>水頭</strong>可以理解成水源和水輪機之間可利用的高度差。
+                          在其他條件相近時，
+                          水頭越大，每單位質量的水所具有的重力位能通常越多。
+                      </p>
 
-                      <span>發電機產生電能</span>
+                      <p>
+                          <strong>流量</strong>則表示一段時間內通過系統的水量。
+                          即使水位很高，
+                          如果實際通過水輪機的水量變少，
+                          可提供給水輪機的總能量也可能減少。
+                      </p>
+
+                  </div>
+
+
+                  <!-- 3. 重要設備 -->
+                  <div class="helper-section hydro-helper-card hydro-helper-card-wide">
+
+                      <h4>⚙️ 水力發電的重要設備怎麼合作？</h4>
+
+                      <div class="hydro-device-grid">
+
+                          <div class="hydro-device-card">
+                              <strong>蓄水庫與壩體</strong>
+                              <p>
+                                  儲存位於較高位置的水，
+                                  並建立可供發電利用的水位高度差。
+                              </p>
+                          </div>
+
+                          <div class="hydro-device-card">
+                              <strong>進水口與壓力水管</strong>
+                              <p>
+                                  控制並引導水流，
+                                  讓高處的水流向水輪機。
+                              </p>
+                          </div>
+
+                          <div class="hydro-device-card">
+                              <strong>水輪機</strong>
+                              <p>
+                                  水流推動葉片旋轉，
+                                  將水流的能量轉換成旋轉的機械能。
+                              </p>
+                          </div>
+
+                          <div class="hydro-device-card">
+                              <strong>發電機</strong>
+                              <p>
+                                  由水輪機帶動，
+                                  將旋轉的機械能轉換成電能。
+                              </p>
+                          </div>
+
+                          <div class="hydro-device-card">
+                              <strong>變壓器</strong>
+                              <p>
+                                  發電後調整電壓，
+                                  讓電力更適合送入後續輸電系統。
+                              </p>
+                          </div>
+
+                          <div class="hydro-device-card">
+                              <strong>下游水庫</strong>
+                              <p>
+                                  接收通過水輪機後的水；
+                                  在抽蓄系統中，也可作為抽水回到上游的水源。
+                              </p>
+                          </div>
+
+                      </div>
+
+                  </div>
+
+
+                  <!-- 4. 抽蓄水力 -->
+                  <div class="helper-section hydro-helper-card hydro-helper-card-storage">
+
+                      <h4>🔋 抽蓄水力為什麼像大型儲能系統？</h4>
+
+                      <p>
+                          抽蓄水力利用上下兩個不同高度的水庫，
+                          在不同時間進行<strong>儲能與發電</strong>。
+                      </p>
+
+                      <p>
+                          當電力供應較充足時，
+                          可以利用電力將下游的水抽回高處，
+                          把輸入的電能轉換成水的<strong>重力位能</strong>；
+                          當用電需求增加時，
+                          再讓水往下流並重新發電。
+                      </p>
+
+                      <p>
+                          因此抽蓄水力不是創造額外能量，
+                          而是把不同時間的電力透過水的高度差進行<strong>儲存與轉換</strong>。
+                      </p>
 
                   </div>
 
               </div>
 
 
-              <!-- 2. 水頭與流量 -->
-              <div class="helper-section helper-concept-box">
-
-                  <h4>📏 有水就一定能產生一樣多的電嗎？</h4>
-
-                  <p>
-                      不一定。水力發電能取得多少能量，
-                      和<strong>水頭</strong>與<strong>流量</strong>都有關係。
-                  </p>
-
-                  <p>
-                      <strong>水頭：</strong>
-                      可以理解成水源與水輪機之間可利用的高度差。
-                      一般而言，在其他條件相近時，
-                      高度差越大，水具有的重力位能越多。
-                      相反地，如果水位下降、可利用的水頭變小，
-                      <strong>
-                          每單位質量的水能提供的能量也會減少，
-                          發電功率可能因此下降。
-                      </strong>
-                  </p>
-
-                  <p>
-                      <strong>流量：</strong>
-                      表示一段時間內流過系統的水量。
-                      即使水位仍然很高，
-                      如果能通過水輪機的水量明顯減少，
-                      可提供給水輪機的能量也可能降低。
-                  </p>
-
-                  <p>
-                      因此水力發電不能只看「水庫裡有沒有水」，
-                      還要一起考慮<strong>高度差與實際通過水輪機的流量</strong>。
-                  </p>
-
-              </div>
-
-
-              <!-- 3. 設備關係 -->
-              <div class="helper-section helper-concept-box">
-
-                  <h4>⚙️ 水力發電廠的重要設備怎麼合作？</h4>
-
-                  <p>
-                      <strong>蓄水庫與壩體：</strong>
-                      儲存位於較高處的水，
-                      並建立可供發電利用的水位高度差。
-                  </p>
-
-                  <p>
-                      <strong>進水口：</strong>
-                      控制水進入發電系統，
-                      並將水導向後方的壓力水管。
-                  </p>
-
-                  <p>
-                      <strong>壓力水管：</strong>
-                      將高處的水導向水輪機。
-                      水往低處流動時，
-                      重力位能逐漸轉換成水流動能。
-                  </p>
-
-                  <p>
-                      <strong>水輪機：</strong>
-                      水流推動葉片旋轉，
-                      將水的能量轉換成旋轉的機械能。
-                  </p>
-
-                  <p>
-                      <strong>發電機：</strong>
-                      由水輪機帶動，
-                      將旋轉的機械能轉換成電能。
-                      因此<strong>真正將機械能轉換成電能的是發電機</strong>。
-                  </p>
-
-                  <p>
-                      <strong>變壓器：</strong>
-                      發電完成後調整電壓，
-                      讓電力更適合送入電網進行輸送。
-                  </p>
-
-              </div>
-
-
-              <!-- 4. 和其他能源比較 -->
-              <div class="helper-section helper-concept-box">
-
-                  <h4>🔍 水力發電和風力、火力、核能有什麼不同？</h4>
-
-                  <p>
-                      火力與核能通常先產生<strong>熱能</strong>，
-                      再利用蒸氣推動汽輪機；
-                      水力發電不需要先經過熱能轉換，
-                      而是直接利用水流推動水輪機。
-                  </p>
-
-                  <p>
-                      水力和風力則有一個相似之處：
-                      兩者都是先利用自然界流動的物質帶動旋轉設備，
-                      最後再由<strong>發電機將機械能轉換成電能</strong>。
-                  </p>
-
-                  <p>
-                      不過風力主要利用<strong>空氣的動能</strong>，
-                      水力則與高處水體的<strong>重力位能、水頭及流量</strong>有關。
-                  </p>
-
-              </div>
-
-
-              <!-- 5. 抽蓄水力 -->
-              <div class="helper-section helper-concept-box">
-
-                  <h4>🔋 抽蓄水力為什麼像大型儲能系統？</h4>
-
-                  <p>
-                      抽蓄水力除了可以發電，
-                      還可以利用上下兩個不同高度的水庫來<strong>儲存能量</strong>。
-                  </p>
-
-                  <p>
-                      當電力供應較充足時，
-                      可以利用電力驅動幫浦，
-                      把下游的水送回較高處的水庫，
-                      將輸入的電能轉換成水的<strong>重力位能</strong>。
-                  </p>
-
-                  <p>
-                      當用電需求增加時，
-                      再讓高處的水往下流，
-                      帶動水輪機與發電機重新產生電力。
-                  </p>
-
-                  <p>
-                      因此抽蓄水力不是「憑空產生額外能量」，
-                      而是把不同時間的電力透過水的高度差進行<strong>儲存與轉換</strong>。
-                  </p>
-
-              </div>
-
-
-              <!-- 6. 臺灣情境 -->
+              <!-- 臺灣情境 -->
               <div class="taiwan-note">
 
                   <div class="taiwan-note-head">
-
                       <span>TAIWAN</span>
-
-                      <strong>
-                          臺灣的水力發電，也肩負電力調度與儲能功能
-                      </strong>
-
+                      <strong>臺灣的水力發電，也能支援電力調度與儲能</strong>
                   </div>
-
 
                   <p>
                       臺灣山地多、地形高低差明顯，
-                      因此很早就開始利用水力資源發電。
-                      除了傳統水力之外，
+                      因此具有利用水力資源發電的條件。
+                      除了傳統水力發電之外，
                       日月潭周邊的<strong>大觀與明潭抽蓄水力系統</strong>
-                      也具有重要的電力調度功能。
+                      也能協助電力系統進行調度。
                   </p>
 
-
                   <p class="policy-note">
-
                       <strong>抽蓄水力的角色：</strong>
-
-                      當電力供應較充足時，
-                      可以將水抽回較高位置儲存；
-                      當用電需求增加時，
-                      再放水發電。
-                      因此它常被形容為一種大型的「水力電池」。
-
+                      當電力供應較充足時，可以將水抽回高處儲存；
+                      當用電需求增加時，再放水發電，
+                      因此常被形容為大型的「水力電池」。
                   </p>
 
               </div>
 
 
-              <!-- 7. 思考 -->
+              <!-- 再想一下 -->
               <div class="think-note">
 
                   <div class="think-note-title">
@@ -433,90 +392,73 @@
                   </div>
 
                   <p>
-                      假設某座水力發電廠的<strong>發電機與水輪機都正常</strong>，
-                      但最近水庫水位下降，而且流入水輪機的水量也減少。
-                      即使設備沒有故障，
-                      發電輸出還可能和原本一樣嗎？
-                      想想看是哪兩個自然條件改變了。
+                      兩座水力發電廠的水庫都還有很多水，
+                      但其中一座的水庫與水輪機高度差較小。
+                      這兩座發電廠能從相同質量的水中取得的能量會一樣嗎？
+                      想想看<strong>水的位置高度</strong>會如何影響可利用的能量。
                   </p>
 
               </div>
 
 
-              <!-- 8. 小試身手 -->
+              <!-- 小試身手 -->
               <div class="mini-quiz-card"
                    data-mini-quiz
                    data-quiz-key="hydro_quiz_1">
 
                   <div class="mini-quiz-head">
-
                       <span>小試身手</span>
-
                       <h4>用剛剛學到的概念判斷看看</h4>
-
                   </div>
 
-
                   <p class="mini-quiz-question">
-
-                      某座水力發電廠的水輪機、發電機與輸電設備都正常，
-                      但近期上游水位降低，而且可通過水輪機的流量也比平常少。
+                      某座水力發電廠的水庫水位仍然很高，
+                      但因進水控制而使通過水輪機的水量明顯減少。
                       下列哪一項最合理？
-
                   </p>
 
-
                   <label class="quiz-option">
-
                       <input type="radio"
                              name="hydro_quiz_1"
                              value="A">
 
                       <span>
-                          A. 只要發電機沒有故障，發電輸出就一定不會受到影響
+                          A. 因為水位仍高，所以每段時間可提供給水輪機的能量大致不會改變
                       </span>
-
                   </label>
 
-
                   <label class="quiz-option">
-
                       <input type="radio"
                              name="hydro_quiz_1"
                              value="B">
 
                       <span>
-                          B. 水位差與流量降低，都可能使可供水輪機利用的能量減少，因此發電輸出可能下降
+                          B. 即使水頭仍然較大，通過水輪機的流量減少，
+                          單位時間可提供給水輪機的能量仍可能下降
                       </span>
-
                   </label>
 
-
                   <label class="quiz-option">
-
                       <input type="radio"
                              name="hydro_quiz_1"
                              value="C">
 
                       <span>
-                          C. 水位降低後，水會自動產生更多熱能來補足不足，因此發電輸出可以維持不變
+                          C. 流量減少時，水輪機通常會利用較高的水壓補償，
+                          因此發電輸出可維持相同
                       </span>
-
                   </label>
 
-
                   <label class="quiz-option">
-
                       <input type="radio"
                              name="hydro_quiz_1"
                              value="D">
 
                       <span>
-                          D. 流量越小，水輪機一定轉得越快，所以發電輸出反而會增加
+                          D. 水庫水位較高時，發電量主要由水位決定，
+                          流量只影響水流到達水輪機所需的時間
                       </span>
-
                   </label>
-
 
                   <div class="mini-quiz-actions">
 

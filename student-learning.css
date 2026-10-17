@@ -1198,22 +1198,6 @@ footer{
     background: #ece8e2;
 }
 
-/* =========================================================
-   �֯�o�q��r����
-========================================================= */
-
-.nuclear-learning-module {
-    background: #ffffff;
-}
-
-.nuclear-model-frame {
-    overflow: hidden;
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    background: #ffffff;
-}
-
-
 /* =========================
    EnergyEncyclopedia �ҫ�
 ========================= */
@@ -3121,6 +3105,115 @@ footer{
 
 .thermal-device-card strong {
     color: #b85f0a;
+}
+
+/* =========================================================
+   核能能源小幫手
+========================================================= */
+
+.nuclear-helper-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.nuclear-helper-card {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 20px;
+    border: 1px solid #d8d4cf;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 3px 10px rgba(60, 52, 46, 0.04);
+}
+
+.nuclear-helper-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: #8b9dd8;
+}
+
+.nuclear-helper-card-main {
+    grid-column: 1 / -1;
+    background: #f8f8ff;
+    border-color: #d8d8ef;
+}
+
+.nuclear-helper-card-main::before {
+    background: #7c83d8;
+}
+
+.nuclear-helper-card-pwr {
+    grid-column: 1 / -1;
+    background: #f5fbff;
+    border-color: #cfe3ef;
+}
+
+.nuclear-helper-card-pwr::before {
+    background: #4ba8c8;
+}
+
+.nuclear-helper-card-wide {
+    grid-column: 1 / -1;
+}
+
+.nuclear-helper-card-wide::before {
+    background: #9b7ac7;
+}
+
+
+/* 一次側 / 二次側 */
+.nuclear-loop-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin: 16px 0;
+}
+
+.nuclear-loop-card {
+    padding: 16px;
+    border: 1px solid #d7e2ea;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.nuclear-loop-card strong {
+    display: block;
+    margin-bottom: 7px;
+    color: #315f7a;
+    font-size: 1rem;
+}
+
+.nuclear-loop-card p {
+    margin: 0;
+}
+
+.nuclear-loop-summary {
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: #eef7fb;
+    border-left: 4px solid #4ba8c8;
+}
+
+
+/* 手機 */
+@media (max-width: 900px) {
+
+    .nuclear-helper-grid,
+    .nuclear-loop-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nuclear-helper-card-main,
+    .nuclear-helper-card-pwr,
+    .nuclear-helper-card-wide {
+        grid-column: auto;
+    }
 }
 
 /* =========================================================

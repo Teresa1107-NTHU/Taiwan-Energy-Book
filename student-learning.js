@@ -2763,21 +2763,26 @@ document.addEventListener(
 );
 
 // =====================================================
-// Tokamak 手動中文導覽
+// Tokamak 自動同步導覽
+// 使用與風力、水力、太陽能相同的 postMessage 控制方式
 // =====================================================
+const TOKAMAK_MODEL_URL =
+    "https://my-3d-proxy.loveleehom9.workers.dev/tokamak/reactor";
 
 const tokamakSteps = [
 
     {
         title: "低溫恆溫器",
+        english: "Cryostat",
         description:
-            "低溫恆溫器（Cryostat）是一個大型高真空壓力容器，包覆 Tokamak 的真空容器與超導磁鐵，提供高真空與低溫環境。",
+            "低溫恆溫器是一個大型高真空壓力容器，包覆 Tokamak 的真空容器與超導磁鐵，提供高真空與低溫環境。",
         energy:
             "真空與低溫環境"
     },
 
     {
         title: "真空容器",
+        english: "Vacuum Vessel",
         description:
             "真空容器是高溫電漿所在的主要空間。維持高真空可以減少電漿粒子與背景氣體、雜質粒子之間不必要的碰撞與交互作用，降低能量損失，使電漿更容易維持高溫。",
         energy:
@@ -2786,6 +2791,7 @@ const tokamakSteps = [
 
     {
         title: "屏蔽塊",
+        english: "Shield Block",
         description:
             "屏蔽塊安裝在真空容器內壁，可以協助阻擋核融合反應產生的高能中子，同時支撐第一壁面板，並利用冷卻水帶走熱量。",
         energy:
@@ -2794,6 +2800,7 @@ const tokamakSteps = [
 
     {
         title: "第一壁面板",
+        english: "First Wall Panel",
         description:
             "第一壁面板直接面向高溫電漿，因此必須承受很高的熱負載。它也是保護真空容器內部結構的重要第一道表面。",
         energy:
@@ -2802,6 +2809,7 @@ const tokamakSteps = [
 
     {
         title: "包層",
+        english: "Blanket",
         description:
             "真空容器內壁覆蓋著包層模組，用來保護真空容器與超導磁鐵，降低核融合產生的高能中子與熱量對設備造成的影響。",
         energy:
@@ -2810,14 +2818,16 @@ const tokamakSteps = [
 
     {
         title: "真空容器開口",
+        english: "Port",
         description:
-            "真空容器設有多個開口（Port），讓加熱設備、診斷系統、真空設備與維修裝置可以進入或連接真空容器。",
+            "真空容器設有多個開口，讓加熱設備、診斷系統、真空設備與維修裝置可以進入或連接真空容器。",
         energy:
             "設備連接與操作"
     },
 
     {
         title: "ELM 控制線圈",
+        english: "ELM Coils",
         description:
             "ELM 控制線圈會產生特定的磁場擾動，協助降低電漿邊緣出現某些不穩定現象的機會，使電漿更容易受到控制。",
         energy:
@@ -2826,6 +2836,7 @@ const tokamakSteps = [
 
     {
         title: "垂直穩定線圈",
+        english: "Vertical Stability Coils",
         description:
             "垂直穩定線圈位於 Tokamak 上下兩側，可以快速調整磁場，協助維持電漿在垂直方向上的穩定位置。",
         energy:
@@ -2834,6 +2845,7 @@ const tokamakSteps = [
 
     {
         title: "真空容器內線圈",
+        english: "In-Vessel Coils",
         description:
             "真空容器內部還設有額外的控制線圈，用來提供更快速與精細的磁場調整，協助控制電漿的位置與形狀。",
         energy:
@@ -2842,6 +2854,7 @@ const tokamakSteps = [
 
     {
         title: "磁場修正線圈",
+        english: "Correction Coils",
         description:
             "修正線圈用來補償實際磁場中的微小誤差，使 Tokamak 內部形成的磁場更接近設計值，提升電漿控制的穩定性。",
         energy:
@@ -2850,6 +2863,7 @@ const tokamakSteps = [
 
     {
         title: "預壓支撐結構",
+        english: "Precompressing Structure",
         description:
             "中央螺線管運作時會產生非常大的電磁力，因此需要強固的預壓支撐結構固定線圈，避免線圈彼此分離或產生過大的變形。",
         energy:
@@ -2858,6 +2872,7 @@ const tokamakSteps = [
 
     {
         title: "中央定位系統",
+        english: "Centering System",
         description:
             "中央定位系統是中央螺線管支撐結構的一部分，負責讓中央螺線管保持在真空容器中心的正確位置。",
         energy:
@@ -2866,6 +2881,7 @@ const tokamakSteps = [
 
     {
         title: "中央螺線管",
+        english: "Central Solenoid",
         description:
             "中央螺線管可以在電漿中感應出強大的電流。這個電流是建立與維持 Tokamak 電漿的重要條件之一。",
         energy:
@@ -2874,6 +2890,7 @@ const tokamakSteps = [
 
     {
         title: "環向磁場線圈",
+        english: "Toroidal Field Magnets",
         description:
             "環向磁場線圈會產生強磁場。由於電漿中含有大量帶電粒子，這些粒子在磁場中運動時會受到磁力影響而改變運動方向，因此 Tokamak 可以利用磁場控制粒子的運動，使高溫電漿受到約束。",
         energy:
@@ -2882,6 +2899,7 @@ const tokamakSteps = [
 
     {
         title: "極向磁場線圈",
+        english: "Poroidal Field Magnets",
         description:
             "極向磁場線圈（Poloidal Field Magnets）位於環向磁場線圈外側，可以協助調整電漿的形狀與位置，並提高電漿的穩定性。",
         energy:
@@ -2890,6 +2908,7 @@ const tokamakSteps = [
 
     {
         title: "磁鐵供應系統",
+        english: "Magnet Feeders",
         description:
             "磁鐵供應系統負責向超導磁鐵提供電流與低溫冷卻介質，使大型磁鐵能維持超導狀態並持續產生強磁場。",
         energy:
@@ -2898,14 +2917,16 @@ const tokamakSteps = [
 
     {
         title: "偏濾器",
+        english: "Divertor",
         description:
-            "偏濾器（Divertor）位於 Tokamak 底部，負責排出電漿中的熱量與融合反應產生的雜質，減少污染並保護真空容器內壁。",
+            "偏濾器位於 Tokamak 底部，負責排出電漿中的熱量與融合反應產生的雜質，減少污染並保護真空容器內壁。",
         energy:
             "排熱與移除雜質"
     },
 
     {
         title: "偏濾器中央穹頂",
+        english: "Dome",
         description:
             "中央穹頂位於偏濾器中央，形狀配合磁場分布，用來保護偏濾器其他零件，降低電漿異常移動時造成的熱負載。",
         energy:
@@ -2914,6 +2935,7 @@ const tokamakSteps = [
 
     {
         title: "垂直靶板",
+        english: "Vertical Targets",
         description:
             "垂直靶板是偏濾器中直接面對高能粒子的元件，需要承受非常高的熱負載，因此使用耐高溫材料並搭配水冷系統。",
         energy:
@@ -2922,6 +2944,7 @@ const tokamakSteps = [
 
     {
         title: "偏濾器支撐結構",
+        english: "Supporting Structure",
         description:
             "偏濾器的支撐結構負責固定偏濾器各部件，使它們能在高熱負載與複雜的 Tokamak 環境中維持正確位置。",
         energy:
@@ -2930,6 +2953,7 @@ const tokamakSteps = [
 
     {
         title: "冷卻系統",
+        english: "Cooling System",
         description:
             "Tokamak 的冷卻水系統會帶走真空容器、包層與偏濾器吸收的熱量，避免設備溫度過高，維持系統安全運作。",
         energy:
@@ -2938,14 +2962,61 @@ const tokamakSteps = [
 
 ];
 
-
 let tokamakCurrentStep = -1;
 
+// =====================================================
+// 取得 Tokamak iframe
+// =====================================================
+
+function getTokamakIframe() {
+
+    return document.getElementById(
+        "tokamakModel"
+    );
+
+}
+
+// =====================================================
+// 傳送控制訊號給 Tokamak 模型
+// =====================================================
+function sendTokamakAction(action) {
+
+    const iframe =
+        getTokamakIframe();
+
+
+    if (
+        !iframe ||
+        !iframe.contentWindow
+    ) {
+
+        console.warn(
+            "Tokamak iframe 尚未準備完成"
+        );
+
+        return false;
+    }
+
+    iframe.focus();
+
+    iframe.contentWindow.focus();
+
+    iframe.contentWindow.postMessage(
+        action,
+        "*"
+    );
+
+    console.log(
+        "Tokamak postMessage:",
+        action
+    );
+
+    return true;
+}
 
 // =====================================================
 // 下一步
 // =====================================================
-
 function tokamakNext() {
 
     if (
@@ -2955,39 +3026,119 @@ function tokamakNext() {
         return;
     }
 
-    tokamakCurrentStep++;
+
+    /*
+     * 先要求模型切換到下一個 view。
+     * 成功送出訊號後，
+     * 右側中文說明才一起往下一步。
+     */
+    if (
+        !sendTokamakAction(
+            "ACTION_NEXT_STEP"
+        )
+    ) {
+        return;
+    }
+
+
+    tokamakCurrentStep += 1;
 
     updateTokamakPanel();
 }
-
 
 // =====================================================
 // 上一步
 // =====================================================
-
 function tokamakPrevious() {
 
-    if (tokamakCurrentStep <= 0) {
+    if (
+        tokamakCurrentStep <= 0
+    ) {
         return;
     }
 
-    tokamakCurrentStep--;
+
+    if (
+        !sendTokamakAction(
+            "ACTION_PREV_STEP"
+        )
+    ) {
+        return;
+    }
+
+
+    tokamakCurrentStep -= 1;
 
     updateTokamakPanel();
 }
-
 
 // =====================================================
 // 重設
 // =====================================================
-
 function tokamakReset() {
 
-    tokamakCurrentStep = -1;
+    const wrapper =
+        document.getElementById(
+            "tokamakViewerWrapper"
+        );
+
+
+    if (!wrapper) {
+        return;
+    }
+
+
+    const oldIframe =
+        getTokamakIframe();
+
+
+    if (oldIframe) {
+        oldIframe.remove();
+    }
+
+
+    const iframe =
+        document.createElement(
+            "iframe"
+        );
+
+
+    iframe.id =
+        "tokamakModel";
+
+
+    iframe.src =
+        TOKAMAK_MODEL_URL;
+
+
+    iframe.title =
+        "Tokamak 反應器 3D 互動模型";
+
+
+    iframe.loading =
+        "lazy";
+
+
+    iframe.allowFullscreen =
+        true;
+
+
+    wrapper.appendChild(
+        iframe
+    );
+
+
+    tokamakCurrentStep =
+        -1;
+
+
+    bindTokamakIframeLoad(
+        iframe
+    );
+
 
     updateTokamakPanel();
 }
-
 
 // =====================================================
 // 更新 Tokamak 中文導覽
@@ -3025,6 +3176,11 @@ function updateTokamakPanel() {
             "tokamakNextBtn"
         );
 
+     const resetBtn =
+        document.getElementById(
+            "tokamakResetBtn"
+        );
+
 
     if (
         !number ||
@@ -3044,11 +3200,14 @@ function updateTokamakPanel() {
         number.textContent =
             "準備開始";
 
-        title.textContent =
-            "Tokamak 核融合反應器";
+        title.innerHTML =
+    `Tokamak 核融合反應器
+     <span class="tokamak-title-en">
+         Tokamak Fusion Device
+     </span>`;
 
         description.textContent =
-            "請使用上方模型中的「Next view」依序觀看各設備，並搭配下方中文步驟了解 Tokamak 如何建立與控制核融合所需的環境。";
+    "模型初始畫面為 Tokamak 整體結構，可先觀察真空容器、磁場線圈與其他設備的位置。按下「開始導覽」後，模型與中文說明會同步切換，逐步了解 Tokamak 如何建立並控制核融合所需的環境。";
 
         if (energy) {
             energy.textContent =
@@ -3063,6 +3222,10 @@ function updateTokamakPanel() {
             nextBtn.disabled = false;
             nextBtn.textContent =
                 "開始導覽";
+        }
+
+        if (resetBtn) {
+            resetBtn.disabled = true;
         }
 
         return;
@@ -3081,8 +3244,11 @@ function updateTokamakPanel() {
     number.textContent =
         `STEP ${tokamakCurrentStep + 1} / ${tokamakSteps.length}`;
 
-    title.textContent =
-        step.title;
+    title.innerHTML =
+        `${step.title}
+        <span class="tokamak-title-en">
+            ${step.english}
+        </span>`;
 
     description.textContent =
         step.description;
@@ -3092,10 +3258,22 @@ function updateTokamakPanel() {
             step.energy;
     }
 
-    if (prevBtn) {
-        prevBtn.disabled =
-            tokamakCurrentStep === 0;
-    }
+    const allowBackAndReset =
+    tokamakCurrentStep >= 1;
+
+
+if (prevBtn) {
+
+    prevBtn.disabled =
+        !allowBackAndReset;
+}
+
+
+if (resetBtn) {
+
+    resetBtn.disabled =
+        !allowBackAndReset;
+}
 
 
     const isLastStep =
@@ -3122,29 +3300,67 @@ function updateTokamakPanel() {
                 false;
         }
     }
+
+    if (resetBtn) {
+        resetBtn.disabled = false;
+    }
 }
 
+// =====================================================
+// Tokamak iframe 載入狀態
+// =====================================================
+
+function bindTokamakIframeLoad(
+    iframe
+) {
+
+    if (!iframe) {
+        return;
+    }
+
+
+    iframe.addEventListener(
+        "load",
+        () => {
+
+            console.log(
+                "Tokamak model loaded"
+            );
+
+        }
+    );
+}
 
 // =====================================================
-// 頁面載入時初始化
+// Tokamak 頁面初始化
 // =====================================================
 
 document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        if (
-            document.getElementById(
-                "tokamakStepNumber"
-            )
-        ) {
-            tokamakCurrentStep = -1;
-            updateTokamakPanel();
+        const iframe =
+            getTokamakIframe();
+
+
+        if (!iframe) {
+            return;
         }
+
+
+        bindTokamakIframeLoad(
+            iframe
+        );
+
+
+        tokamakCurrentStep =
+            -1;
+
+
+        updateTokamakPanel();
 
     }
 );
-
 
 // =====================================================
 // V9 共用學習狀態、答案保存、學習路線、解鎖
@@ -3667,7 +3883,7 @@ function refreshAllLearningUI() {
 function updateCompletionButton(button, key, done) {
     const defaultLabel = button.dataset.defaultLabel || "完成這一段";
     button.classList.toggle("done", done);
-    button.textContent = done ? "已完成 ✓（再按一次可取消）" : defaultLabel;
+    button.textContent = done ? "已完成 ✓" : defaultLabel;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -4056,3 +4272,871 @@ document.addEventListener(
     "DOMContentLoaded",
     initMiniQuizzes
 );
+
+/* =========================================================
+   能源整合比較：儲存答案後才可完成
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const textarea =
+        document.getElementById("discoverReflection");
+
+    const saveBtn =
+        document.getElementById("discoverSaveBtn");
+
+    const status =
+        document.getElementById("discoverAnswerStatus");
+
+    const completeBtn =
+        document.getElementById("discoverCompleteBtn");
+
+    if (
+        !textarea ||
+        !saveBtn ||
+        !status ||
+        !completeBtn
+    ) return;
+
+
+    const answerKey =
+        "energy_answer_discover_reflection";
+
+    const savedKey =
+        "energy_answer_saved_discover_reflection";
+
+
+    // =========================
+    // 還原之前的答案
+    // =========================
+
+    const savedAnswer =
+        localStorage.getItem(answerKey);
+
+    if (savedAnswer !== null) {
+        textarea.value = savedAnswer;
+    }
+
+
+    // =========================
+    // 更新完成按鈕狀態
+    // =========================
+
+    function updateCompleteState() {
+
+        const answerSaved =
+            localStorage.getItem(savedKey) === "yes";
+
+        const hasAnswer =
+            textarea.value.trim().length > 0;
+
+        const isCompleted =
+            completeBtn.classList.contains("done");
+
+        completeBtn.disabled =
+            !isCompleted &&
+            !(answerSaved && hasAnswer);
+
+    }
+
+
+    // =========================
+    // 載入時顯示狀態
+    // =========================
+
+    if (
+        localStorage.getItem(savedKey) === "yes" &&
+        textarea.value.trim().length > 0
+    ) {
+
+        status.textContent =
+            "答案已儲存 ✓";
+
+    }
+
+    updateCompleteState();
+
+
+    // =========================
+    // 學生修改文字後
+    // 視為需要重新儲存
+    // =========================
+    textarea.addEventListener("input", () => {
+
+    localStorage.setItem(
+        answerKey,
+        textarea.value
+    );
+
+    localStorage.removeItem(savedKey);
+
+    status.textContent = "";
+
+    // 如果已經完成，但又修改答案，
+    // 就取消「完成」狀態，要求重新儲存
+    if (isDone("discover")) {
+
+        setDone("discover", false);
+
+        updateCompletionButton(
+            completeBtn,
+            "discover",
+            false
+        );
+
+        refreshAllLearningUI();
+    }
+
+    updateCompleteState();
+
+});
+
+    // =========================
+    // 儲存答案
+    // =========================
+    saveBtn.addEventListener("click", () => {
+
+        const answer =
+            textarea.value.trim();
+
+        if (!answer) {
+
+            status.textContent =
+                "請先輸入你的想法";
+
+            completeBtn.disabled = true;
+
+            return;
+        }
+
+        localStorage.setItem(
+            answerKey,
+            textarea.value
+        );
+
+        localStorage.setItem(
+            savedKey,
+            "yes"
+        );
+
+        status.textContent =
+            "答案已儲存 ✓";
+
+        updateCompleteState();
+
+    });
+});
+
+/* =========================================================
+   開始學習：兩題都完成並儲存後才可完成
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const radioGroup =
+        document.querySelector(
+            '[data-radio-group="start_q1"]'
+        );
+
+    const textarea =
+        document.querySelector(
+            'textarea[data-save="start_q2"]'
+        );
+
+    const saveBtn =
+        document.getElementById("startSaveBtn");
+
+    const status =
+        document.getElementById("startAnswerStatus");
+
+    const completeBtn =
+        document.getElementById("startCompleteBtn");
+
+    if (
+        !radioGroup ||
+        !textarea ||
+        !saveBtn ||
+        !status ||
+        !completeBtn
+    ) return;
+
+
+    const radioKey =
+        "energy_answer_start_q1";
+
+    const textKey =
+        "energy_answer_start_q2";
+
+    const savedKey =
+        "energy_answer_saved_start";
+
+
+    // =========================
+    // 取得目前作答
+    // =========================
+
+    function getSelectedRadio() {
+
+        return radioGroup.querySelector(
+            'input[type="radio"]:checked'
+        );
+
+    }
+
+
+    function hasCompleteAnswers() {
+
+        const selected =
+            getSelectedRadio();
+
+        const hasText =
+            textarea.value.trim().length > 0;
+
+        return !!selected && hasText;
+
+    }
+
+    function updateStartAnswerHint() {
+
+    const answersSaved =
+        localStorage.getItem(savedKey) === "yes";
+
+    const complete =
+        hasCompleteAnswers();
+
+
+    if (answersSaved && complete) {
+
+        status.textContent =
+            "答案已儲存 ✓";
+
+        status.classList.remove("pending");
+
+        return;
+    }
+
+
+    status.classList.add("pending");
+
+
+    if (complete) {
+
+        status.textContent =
+            '已完成作答，請按「儲存答案」';
+
+    } else {
+
+        status.textContent =
+            '請先完成兩個問題，再按「儲存答案」';
+
+    }
+
+}
+
+    // =========================
+    // 更新完成按鈕
+    // =========================
+
+    function updateStartCompleteState() {
+
+        const answersSaved =
+            localStorage.getItem(savedKey) === "yes";
+
+        const isCompleted =
+            completeBtn.classList.contains("done");
+
+        completeBtn.disabled =
+            !isCompleted &&
+            !(answersSaved && hasCompleteAnswers());
+
+    }
+
+    // =========================
+    // 載入時還原「已儲存」狀態
+    // =========================
+    updateStartAnswerHint();
+    updateStartCompleteState();
+
+    // =========================
+    // 學生修改單選題後
+    // 需要重新儲存
+    // =========================
+    radioGroup
+        .querySelectorAll('input[type="radio"]')
+        .forEach(radio => {
+
+            radio.addEventListener("change", () => {
+
+                if (radio.checked) {
+
+                    localStorage.setItem(
+                        radioKey,
+                        radio.value
+                    );
+
+                }
+
+                localStorage.removeItem(savedKey);
+
+                // 若已完成後又修改答案，
+                // 自動取消完成狀態
+                if (isDone("start")) {
+
+                    setDone("start", false);
+
+                    updateCompletionButton(
+                        completeBtn,
+                        "start",
+                        false
+                    );
+
+                    refreshAllLearningUI();
+
+                }
+                updateStartAnswerHint();
+                updateStartCompleteState();
+
+            });
+
+        });
+
+
+    // =========================
+    // 學生修改文字後
+    // 需要重新儲存
+    // =========================
+
+    textarea.addEventListener("input", () => {
+
+        localStorage.setItem(
+            textKey,
+            textarea.value
+        );
+
+        localStorage.removeItem(savedKey);
+
+        if (isDone("start")) {
+
+            setDone("start", false);
+
+            updateCompletionButton(
+                completeBtn,
+                "start",
+                false
+            );
+
+            refreshAllLearningUI();
+
+        }
+        updateStartAnswerHint();
+        updateStartCompleteState();
+    });
+
+
+    // =========================
+    // 儲存答案
+    // =========================
+
+    saveBtn.addEventListener("click", () => {
+
+        const selected =
+            getSelectedRadio();
+
+        const answer =
+            textarea.value.trim();
+
+
+        if (!selected || !answer) {
+            status.textContent =
+            '請先完成兩個問題，再按「儲存答案」';
+            status.classList.add("pending");
+            completeBtn.disabled = true;
+
+            return;
+        }
+
+
+        localStorage.setItem(
+            radioKey,
+            selected.value
+        );
+
+        localStorage.setItem(
+            textKey,
+            textarea.value
+        );
+
+        localStorage.setItem(
+            savedKey,
+            "yes"
+        );
+
+
+        status.textContent =
+            "答案已儲存 ✓";
+
+        status.classList.remove("pending");
+
+        updateStartCompleteState();
+
+    });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    document
+        .querySelectorAll(".inline-term")
+        .forEach(button => {
+
+            button.addEventListener("click", () => {
+
+                const term =
+                    button.dataset.term;
+
+                const popover =
+                    document.getElementById(
+                        `term-${term}`
+                    );
+
+                if (!popover) return;
+
+                const willOpen =
+                    popover.hidden;
+
+                popover.hidden =
+                    !popover.hidden;
+
+                button.setAttribute(
+                    "aria-expanded",
+                    String(willOpen)
+                );
+
+            });
+
+        });
+
+});
+
+/* =========================================================
+   Alpha-E Challenge：儲存答案後才可完成
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const challenge1SaveBtn =
+        document.getElementById("challenge1SaveBtn");
+
+    const challenge1Status =
+        document.getElementById("challenge1SaveStatus");
+
+    const challenge2SaveBtn =
+        document.getElementById("challenge2SaveBtn");
+
+    const challenge2Status =
+        document.getElementById("challenge2SaveStatus");
+
+    const completeBtn =
+        document.getElementById("alphaChallengeCompleteBtn");
+
+    const completeHint =
+        document.getElementById("alphaCompleteHint");
+
+
+    // 不是 Alpha-E challenge 頁就離開
+    if (
+        !challenge1SaveBtn ||
+        !challenge2SaveBtn ||
+        !completeBtn
+    ) {
+        return;
+    }
+
+
+    const challenge1SavedKey =
+        "energy_answer_saved_alpha_challenge_1";
+
+    const challenge2SavedKey =
+        "energy_answer_saved_alpha_challenge_2";
+
+
+    // =====================================================
+    // CHALLENGE 01 是否都有回答
+    // =====================================================
+
+    function challenge1Complete() {
+
+        const selected =
+            document.querySelector(
+                'input[name="vacuum_predict"]:checked'
+            );
+
+        const reason =
+            document.querySelector(
+                'textarea[data-save="vacuum_reason"]'
+            );
+
+        const observe =
+            document.querySelector(
+                'textarea[data-save="vacuum_observe"]'
+            );
+
+        const explain =
+            document.querySelector(
+                'textarea[data-save="vacuum_explain"]'
+            );
+
+
+        return !!(
+            selected &&
+            reason?.value.trim() &&
+            observe?.value.trim() &&
+            explain?.value.trim()
+        );
+    }
+
+
+    // =====================================================
+    // CHALLENGE 02 是否都有回答
+    // =====================================================
+
+    function challenge2Complete() {
+
+        const predict =
+            document.querySelector(
+                'textarea[data-save="fuel_predict"]'
+            );
+
+        const observe =
+            document.querySelector(
+                'textarea[data-save="fuel_observe"]'
+            );
+
+        const explain =
+            document.querySelector(
+                'textarea[data-save="fuel_explain"]'
+            );
+
+
+        return !!(
+            predict?.value.trim() &&
+            observe?.value.trim() &&
+            explain?.value.trim()
+        );
+    }
+
+
+    // =====================================================
+    // 更新最終完成按鈕
+    // =====================================================
+
+    function updateAlphaCompleteState() {
+
+        const challenge1Saved =
+            localStorage.getItem(
+                challenge1SavedKey
+            ) === "yes";
+
+        const challenge2Saved =
+            localStorage.getItem(
+                challenge2SavedKey
+            ) === "yes";
+
+        const alreadyCompleted =
+            isDone("challenge");
+
+
+        completeBtn.disabled =
+            !alreadyCompleted &&
+            !(challenge1Saved && challenge2Saved);
+
+
+        if (
+            challenge1Saved &&
+            challenge2Saved
+        ) {
+
+            completeHint.textContent =
+                "兩個挑戰的答案都已儲存，可以完成 Alpha-E 挑戰 ✓";
+
+            completeHint.classList.add(
+                "ready"
+            );
+
+        } else {
+
+            completeHint.textContent =
+                "請先完成並儲存 CHALLENGE 01 與 CHALLENGE 02";
+
+            completeHint.classList.remove(
+                "ready"
+            );
+        }
+    }
+
+
+    // =====================================================
+    // CHALLENGE 01 狀態
+    // =====================================================
+
+    function updateChallenge1Hint() {
+
+        const saved =
+            localStorage.getItem(
+                challenge1SavedKey
+            ) === "yes";
+
+
+        if (
+            saved &&
+            challenge1Complete()
+        ) {
+
+            challenge1Status.textContent =
+                "答案已儲存 ✓";
+
+            challenge1Status.classList.remove(
+                "pending"
+            );
+
+        } else if (
+            challenge1Complete()
+        ) {
+
+            challenge1Status.textContent =
+                "已完成作答，請按「儲存答案」";
+
+            challenge1Status.classList.add(
+                "pending"
+            );
+
+        } else {
+
+            challenge1Status.textContent =
+                "請先完成三個步驟的回答";
+
+            challenge1Status.classList.add(
+                "pending"
+            );
+        }
+    }
+
+
+    // =====================================================
+    // CHALLENGE 02 狀態
+    // =====================================================
+
+    function updateChallenge2Hint() {
+
+        const saved =
+            localStorage.getItem(
+                challenge2SavedKey
+            ) === "yes";
+
+
+        if (
+            saved &&
+            challenge2Complete()
+        ) {
+
+            challenge2Status.textContent =
+                "答案已儲存 ✓";
+
+            challenge2Status.classList.remove(
+                "pending"
+            );
+
+        } else if (
+            challenge2Complete()
+        ) {
+
+            challenge2Status.textContent =
+                "已完成作答，請按「儲存答案」";
+
+            challenge2Status.classList.add(
+                "pending"
+            );
+
+        } else {
+
+            challenge2Status.textContent =
+                "請先完成三個步驟的回答";
+
+            challenge2Status.classList.add(
+                "pending"
+            );
+        }
+    }
+
+
+    // =====================================================
+    // CHALLENGE 01 儲存
+    // =====================================================
+
+    challenge1SaveBtn.addEventListener(
+        "click",
+        () => {
+
+            if (!challenge1Complete()) {
+
+                challenge1Status.textContent =
+                    "請先完成所有問題再儲存";
+
+                challenge1Status.classList.add(
+                    "pending"
+                );
+
+                return;
+            }
+
+
+            localStorage.setItem(
+                challenge1SavedKey,
+                "yes"
+            );
+
+
+            updateChallenge1Hint();
+            updateAlphaCompleteState();
+        }
+    );
+
+
+    // =====================================================
+    // CHALLENGE 02 儲存
+    // =====================================================
+
+    challenge2SaveBtn.addEventListener(
+        "click",
+        () => {
+
+            if (!challenge2Complete()) {
+
+                challenge2Status.textContent =
+                    "請先完成所有問題再儲存";
+
+                challenge2Status.classList.add(
+                    "pending"
+                );
+
+                return;
+            }
+
+
+            localStorage.setItem(
+                challenge2SavedKey,
+                "yes"
+            );
+
+
+            updateChallenge2Hint();
+            updateAlphaCompleteState();
+        }
+    );
+
+
+    // =====================================================
+    // 修改答案後，必須重新按儲存
+    // =====================================================
+
+    const challenge1Fields =
+        document.querySelectorAll(`
+            input[name="vacuum_predict"],
+            textarea[data-save="vacuum_reason"],
+            textarea[data-save="vacuum_observe"],
+            textarea[data-save="vacuum_explain"]
+        `);
+
+
+    challenge1Fields.forEach(field => {
+
+        const eventName =
+            field.type === "radio"
+                ? "change"
+                : "input";
+
+
+        field.addEventListener(
+            eventName,
+            () => {
+
+                localStorage.removeItem(
+                    challenge1SavedKey
+                );
+
+
+                if (isDone("challenge")) {
+
+                    setDone(
+                        "challenge",
+                        false
+                    );
+
+                    updateCompletionButton(
+                        completeBtn,
+                        "challenge",
+                        false
+                    );
+
+                    refreshAllLearningUI();
+                }
+
+
+                updateChallenge1Hint();
+                updateAlphaCompleteState();
+            }
+        );
+    });
+
+
+    const challenge2Fields =
+        document.querySelectorAll(`
+            textarea[data-save="fuel_predict"],
+            textarea[data-save="fuel_observe"],
+            textarea[data-save="fuel_explain"]
+        `);
+
+
+    challenge2Fields.forEach(field => {
+
+        field.addEventListener(
+            "input",
+            () => {
+
+                localStorage.removeItem(
+                    challenge2SavedKey
+                );
+
+
+                if (isDone("challenge")) {
+
+                    setDone(
+                        "challenge",
+                        false
+                    );
+
+                    updateCompletionButton(
+                        completeBtn,
+                        "challenge",
+                        false
+                    );
+
+                    refreshAllLearningUI();
+                }
+
+
+                updateChallenge2Hint();
+                updateAlphaCompleteState();
+            }
+        );
+    });
+
+
+    // =====================================================
+    // 初始狀態
+    // =====================================================
+
+    updateChallenge1Hint();
+    updateChallenge2Hint();
+    updateAlphaCompleteState();
+
+});

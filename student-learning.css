@@ -251,13 +251,26 @@ nav a.active{
   padding:68px 0;
 }
 
-.section-intro{margin-bottom:26px}
-.section-intro .eyebrow{color:#adb5bd;margin-bottom:6px}
-.section-intro h2{font-size:clamp(1.7rem,3vw,2.35rem);margin-bottom:6px}
+.section-intro{
+    margin-bottom:26px
+}
+
+.section-intro .eyebrow{
+    color:#adb5bd;
+    margin-bottom:6px
+}
+
+.section-intro h2{
+    font-size:clamp(1.7rem,3vw,2.35rem);
+    margin-bottom:6px
+}
+
 .section-intro p{
-    max-width:840px;
+    max-width: none;
     color: #111111;
 }
+
+
 
 .learning-goals{
   display:grid;
@@ -352,6 +365,21 @@ textarea{
 .complete-phase-btn.done{
   background:#dff5d7;
   color:#24451d;
+}
+
+.alpha-complete-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.alpha-complete-hint {
+    margin-top: 0;
+    color: #6b7280;
+    font-size: .84rem;
+    font-weight: 700;
+    text-align: right;
 }
 
 .energy-group{margin-top:40px}
@@ -478,7 +506,7 @@ textarea{
 }
 
 .summary-hero p{
-  max-width:820px;
+  max-width: none;
   color:rgba(255,255,255,.6);
 }
 
@@ -513,6 +541,8 @@ textarea{
     font-size:.88rem
 }
 
+
+
 .compare-table-wrap{
   overflow-x:auto;
   border:1px solid var(--line);
@@ -520,10 +550,31 @@ textarea{
   background:#fff;
 }
 
-.compare-table{
-  width:100%;
-  min-width:920px;
-  border-collapse:collapse;
+.compare-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.compare-table th:nth-child(1),
+.compare-table td:nth-child(1) {
+    width: 9%;
+}
+
+.compare-table th:nth-child(2),
+.compare-table td:nth-child(2) {
+    width: 22%;
+}
+
+.compare-table th:nth-child(3),
+.compare-table td:nth-child(3) {
+    width: 36%;
+}
+
+.compare-table th:nth-child(4),
+.compare-table td:nth-child(4) {
+    width: 33%;
 }
 
 .compare-table th,
@@ -818,13 +869,18 @@ footer{
 }
 
 /* =========================
-   �ֿĦX�֤ߪ���
+   Alpha-E 正式頁
 ========================= */
 
 .fusion-core-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
+}
+
+/* Alpha-E 挑戰前：兩張基本概念卡平均填滿 */
+.fusion-core-grid-two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .fusion-core-card {
@@ -852,6 +908,62 @@ footer{
     color: #111111;
     font-size: 0.9rem;
     line-height: 1.8;
+}
+
+.inline-term {
+    display: inline;
+    margin: 0;
+    padding: 0 2px;
+    border: 0;
+    border-bottom: 1px dashed #28798a;
+    background: transparent;
+    color: #28798a;
+    font: inherit;
+    font-weight: 800;
+    line-height: inherit;
+    cursor: pointer;
+}
+
+.inline-term:hover,
+.inline-term:focus-visible {
+    color: #174f5c;
+    border-bottom-style: solid;
+}
+
+.term-popover {
+    position: relative;
+    max-width: 520px;
+    margin-top: 10px;
+    padding: 14px 16px;
+    border: 1px solid #cfe3ea;
+    border-radius: 12px;
+    background: #f5fbfd;
+    box-shadow: 0 8px 24px rgba(13,17,23,.08);
+}
+
+.term-popover-head {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.term-popover-head strong {
+    color: #111827;
+    font-size: .95rem;
+}
+
+.term-popover-head span {
+    color: #6b7280;
+    font-size: .76rem;
+    font-weight: 700;
+}
+
+.term-popover p {
+    margin: 0;
+    color: #111111;
+    font-size: .86rem;
+    line-height: 1.75;
 }
 
 .fusion-example-card {
@@ -889,6 +1001,31 @@ footer{
     .fusion-core-grid {
         grid-template-columns: 1fr;
     }
+}
+
+.challenge-save-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.alpha-complete-hint {
+    margin-top: 20px;
+    margin-right: 18px;
+    color: #6b7280;
+    font-size: .84rem;
+    font-weight: 700;
+    text-align: right;
+}
+
+.alpha-complete-hint.ready {
+    color: #39752d;
+}
+
+.complete-phase-btn:disabled {
+    opacity: .45;
+    cursor: not-allowed;
 }
 
 /* =========================
@@ -1583,7 +1720,7 @@ footer{
 }
 
 .taiwan-context-head p {
-    max-width: 850px;
+    max-width: none;
     color: #111111;
 }
 
@@ -1641,6 +1778,16 @@ footer{
     text-align: right;
 }
 
+.taiwan-data-source a {
+    color: #28798a;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.taiwan-data-source a:hover {
+    color: #174f5c;
+}
 
 /* =========================================================
    �෽����
@@ -1668,7 +1815,8 @@ footer{
 }
 
 .energy-tradeoff-card > p {
-    max-width: 920px;
+    width: 100%;
+    max-width: none;
     color: #111111;
 }
 
@@ -1957,7 +2105,16 @@ footer{
     border-bottom:none;
 }
 
-.energy-menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.energy-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 16px;
+}
+
+/* 新興能源：Tokamak / Alpha-E 兩欄填滿 */
+.emerging-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 .energy-menu-card{display:block;padding:22px;border:1px solid var(--line);border-radius:16px;background:#fff;text-decoration:none;transition:.18s ease}
 .energy-menu-card:hover{transform:translateY(-2px);border-color:#cfd6dc;box-shadow:0 10px 28px rgba(13,17,23,.06)}
 .energy-menu-card > span{display:inline-block;margin-bottom:9px;color:#8a939b;font-size:.74rem;font-weight:800;letter-spacing:.08em}
@@ -2765,6 +2922,10 @@ footer{
     color: #39752d;
     font-size: .84rem;
     font-weight: 700;
+}
+
+.quiz-save-status.pending {
+    color: #6b7280;
 }
 
 /* =========================================================
@@ -4660,9 +4821,947 @@ footer,
     color: #111111;
 }
 
-
 /* 能量流程中的原本灰色文字 */
 .energy-flow b,
 .energy-flow span {
     color: #111111;
+}
+
+/* =========================================================
+   台灣發電能源整合比較
+========================================================= */
+.discover-intro p {
+    max-width: none;
+    width: 100%;
+}
+
+.discover-intro strong {
+    color: #111827;
+}
+
+/* 每一個整合區段 */
+.discover-block {
+    margin-top: 24px;
+    padding: 26px;
+    border: 1px solid #dfe5e8;
+    border-radius: 20px;
+    background: #ffffff;
+}
+
+.discover-block-head {
+    margin-bottom: 20px;
+}
+
+.discover-block-head > span {
+    display: inline-block;
+    margin-bottom: 6px;
+    color: #28798a;
+    font-size: .74rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+}
+
+.discover-block-head h3 {
+    margin-bottom: 7px;
+    color: #111827;
+    font-size: 1.35rem;
+}
+
+.discover-block-head p {
+    max-width: 900px;
+    color: #111111;
+}
+
+/* =========================================================
+   五種能量路徑
+========================================================= */
+.energy-path-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.energy-path-card {
+    position: relative;
+    overflow: hidden;
+    padding: 18px;
+    border: 1px solid #e1e5e8;
+    border-radius: 15px;
+    background: #ffffff;
+}
+
+.energy-path-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+}
+
+.energy-path-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        border-color .18s ease,
+        background .18s ease;
+}
+
+.energy-path-link:hover {
+    transform: translateY(-2px);
+    border-color: #c8d2d8;
+    box-shadow: 0 8px 20px rgba(13, 17, 23, .08);
+    background: #fbfcfd;
+}
+
+.energy-path-link:focus-visible {
+    outline: 3px solid rgba(99, 180, 199, .35);
+    outline-offset: 3px;
+}
+
+.energy-path-review {
+    display: block;
+    margin-top: 12px;
+    color: #5f6b73;
+    font-size: .76rem;
+    font-weight: 700;
+    text-align: right;
+}
+
+.energy-path-link:hover .energy-path-review {
+    color: #28798a;
+}
+
+.energy-path-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 13px;
+}
+
+.energy-path-title > span {
+    display: inline-flex;
+    padding: 4px 9px;
+    border-radius: 999px;
+    font-size: .75rem;
+    font-weight: 800;
+}
+
+.energy-path-title strong {
+    color: #111827;
+    font-size: .96rem;
+}
+
+.energy-path-flow {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+    color: #111111;
+    font-size: .88rem;
+    font-weight: 800;
+}
+
+.energy-path-flow b {
+    color: #7b858c;
+}
+
+.energy-path-card p {
+    margin: 0;
+    color: #111111;
+    font-size: .88rem;
+    line-height: 1.75;
+}
+
+/* 五種能源色 */
+.thermal-path::before {
+    background: #f59e0b;
+}
+
+.thermal-path .energy-path-title > span {
+    background: #fff1dc;
+    color: #b86108;
+}
+
+.nuclear-path::before {
+    background: #7c83d8;
+}
+
+.nuclear-path .energy-path-title > span {
+    background: #eeeeff;
+    color: #5f62b5;
+}
+
+.wind-path::before {
+    background: #4fa978;
+}
+
+.wind-path .energy-path-title > span {
+    background: #eaf7ef;
+    color: #347b56;
+}
+
+.hydro-path::before {
+    background: #3f8fb5;
+}
+
+.hydro-path .energy-path-title > span {
+    background: #e8f5fb;
+    color: #2e7393;
+}
+
+.solar-path {
+    grid-column: 1 / -1;
+}
+
+.solar-path::before {
+    background: #e5aa22;
+}
+
+.solar-path .energy-path-title > span {
+    background: #fff6cf;
+    color: #9a6c08;
+}
+
+/* =========================================================
+   找共同點
+========================================================= */
+.discover-pattern-block {
+    background: #f8fafb;
+}
+
+.pattern-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.pattern-card {
+    padding: 18px;
+    border: 1px solid #dfe5e8;
+    border-radius: 15px;
+    background: #ffffff;
+}
+
+.pattern-number {
+    display: inline-block;
+    margin-bottom: 9px;
+    color: #28798a;
+    font-size: .72rem;
+    font-weight: 900;
+    letter-spacing: .08em;
+}
+
+.pattern-card h4 {
+    margin-bottom: 10px;
+    color: #111827;
+    font-size: 1rem;
+}
+
+.pattern-card p {
+    color: #111111;
+    font-size: .88rem;
+    line-height: 1.75;
+}
+
+.pattern-energy-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 11px;
+}
+
+.pattern-energy-tags span {
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: #eef4f6;
+    color: #315f69;
+    font-size: .72rem;
+    font-weight: 800;
+}
+
+/* 整合提示 */
+.discover-thinking-note {
+    margin-top: 18px;
+    padding: 16px 18px;
+    border-left: 5px solid #63b4c7;
+    border-radius: 12px;
+    background: #f3fafc;
+}
+
+.discover-thinking-title {
+    margin-bottom: 8px;
+    color: #174f5c;
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.discover-thinking-note p {
+    margin: 0;
+    color: #111111;
+    line-height: 1.8;
+}
+
+.discover-thinking-summary {
+    margin-top: 8px !important;
+}
+
+.discover-thinking-note p {
+    margin: 0;
+    color: #111111;
+    line-height: 1.8;
+}
+
+/* =========================================================
+   臺灣情境
+========================================================= */
+.discover-taiwan {
+    margin-top: 24px;
+}
+
+.discover-question p {
+    margin-top: 5px;
+    color: #111111;
+}
+
+/* =========================================================
+   最後反思
+========================================================= */
+.discover-reflection {
+    margin-top: 22px;
+    padding: 24px;
+}
+
+.reflection-eyebrow {
+    display: block;
+    margin-bottom: 5px;
+    color: #28798a;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+}
+
+.discover-reflection h3 {
+    margin-bottom: 7px;
+}
+
+.discover-reflection p {
+    margin-bottom: 12px;
+    color: #111111;
+    line-height: 1.8;
+}
+
+.discover-answer-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.complete-phase-btn:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+/* =========================================================
+   RWD
+========================================================= */
+@media (max-width: 900px) {
+
+    .energy-path-grid,
+    .pattern-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .solar-path {
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .discover-block {
+        padding: 20px;
+    }
+
+    .energy-path-title {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+.start-answer-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+/* =========================================================
+   Tokamak 正式頁
+========================================================= */
+
+.tokamak-learning-module {
+    background: #ffffff;
+}
+
+
+/* =========================
+   左側模型
+========================= */
+
+.tokamak-model-frame {
+    height: 100%;
+    overflow: hidden;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: #ffffff;
+}
+
+.tokamak-model-shell {
+    position: relative;
+    width: 100%;
+    height: 480px;
+    min-height: 480px;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #11161d;
+}
+
+.tokamak-model-shell iframe {
+    display: block;
+    width: 100%;
+    height: 480px;
+    min-height: 480px;
+    border: 0;
+    background: #11161d;
+}
+
+
+/* =========================
+   右側導覽
+========================= */
+
+.tokamak-control-column {
+    width: 300px;
+    min-width: 300px;
+}
+
+.tokamak-guide-content {
+    flex: 1;
+    padding: 20px;
+    background: #f4f2ef;
+}
+
+.tokamak-step-meta {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+#tokamakStepNumber {
+    color: #6b7280;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .09em;
+}
+
+#tokamakStepTitle {
+    margin: 0 0 10px;
+    color: #111827;
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 1.4;
+}
+
+.tokamak-title-en {
+    display: block;
+    margin-top: 3px;
+    color: #6f7880;
+    font-size: .88rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+#tokamakStepDescription {
+    margin: 0;
+    color: #111111;
+    font-size: .95rem;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+.tokamak-energy-tag {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 16px;
+    padding: 6px 11px;
+    border-radius: 999px;
+    background: rgba(255,255,255,.72);
+    color: #6657b8;
+    font-size: .84rem;
+    font-weight: 800;
+}
+
+
+/* 模型同步提示 */
+
+.tokamak-sync-hint {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border: 1px solid #d8d2ef;
+    border-radius: 10px;
+    background: #f7f5ff;
+}
+
+.tokamak-sync-hint strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #4f4697;
+    font-size: .82rem;
+}
+
+.tokamak-sync-hint span {
+    display: block;
+    color: #111111;
+    font-size: .78rem;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   控制區
+========================= */
+
+.tokamak-controls {
+    padding: 16px;
+    background: #6f6861;
+}
+
+.tokamak-button-grid {
+    display: grid;
+    grid-template-columns: .9fr 1.25fr .9fr;
+    gap: 6px;
+}
+
+.tokamak-button-grid button {
+    width: 100%;
+    min-width: 0;
+    height: 36px;
+    padding: 5px 6px;
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 18px;
+    background: rgba(255,255,255,.9);
+    color: #111111;
+    font-size: .76rem;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.tokamak-button-grid button:hover:not(:disabled) {
+    background: #ffffff;
+}
+
+.tokamak-button-grid button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   左右欄高度
+========================= */
+
+.tokamak-learning-module .module-workspace {
+    height: 480px;
+    min-height: 480px;
+    max-height: 480px;
+}
+
+.tokamak-learning-module .module-model-column,
+.tokamak-learning-module .tokamak-control-column {
+    height: 480px;
+    min-height: 480px;
+    max-height: 480px;
+}
+
+
+/* =========================================================
+   Tokamak 能源小幫手
+========================================================= */
+
+.knowledge-card-static.tokamak-knowledge-card {
+    border-top: 4px solid #7163c6;
+}
+
+.tokamak-knowledge-card .knowledge-helper-icon {
+    background: #f0edff;
+    color: #6657b8;
+    box-shadow: inset 0 0 0 1px #d5cff2;
+}
+
+.tokamak-knowledge-card .knowledge-helper-title small {
+    color: #6657b8;
+}
+
+
+.tokamak-helper-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.tokamak-helper-card {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 20px;
+    border: 1px solid #dad7e8;
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 3px 10px rgba(80,70,130,.04);
+}
+
+.tokamak-helper-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: #a79ee0;
+}
+
+.tokamak-helper-card-main,
+.tokamak-helper-card-condition,
+.tokamak-helper-card-wide,
+.tokamak-helper-card-power {
+    grid-column: 1 / -1;
+}
+
+.tokamak-helper-card-main {
+    background: #faf9ff;
+    border-color: #d9d4f0;
+}
+
+.tokamak-helper-card-main::before {
+    background: #7163c6;
+}
+
+.tokamak-helper-card-condition::before {
+    background: #8378cf;
+}
+
+.tokamak-helper-card-wide::before {
+    background: #6657b8;
+}
+
+.tokamak-helper-card-power {
+    background: #f8fbff;
+    border-color: #d6e4ee;
+}
+
+.tokamak-helper-card-power::before {
+    background: #5d91b5;
+}
+
+
+/* 條件流程 */
+
+.tokamak-condition-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.tokamak-condition-flow span {
+    padding: 10px 15px;
+    border: 1px solid #d9d4ef;
+    border-radius: 12px;
+    background: #f5f3ff;
+    color: #322d59;
+    font-weight: 800;
+}
+
+.tokamak-condition-flow b {
+    color: #827aa6;
+}
+
+
+/* 四個條件 */
+
+.tokamak-condition-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.tokamak-condition-card {
+    padding: 14px 16px;
+    border: 1px solid #dedbea;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.tokamak-condition-card > strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #5e52ad;
+}
+
+.tokamak-condition-card p strong {
+    display: inline;
+    margin: 0;
+    color: inherit;
+    font-weight: 800;
+}
+
+
+/* 設備 */
+
+.tokamak-device-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.tokamak-device-card {
+    padding: 14px 16px;
+    border: 1px solid #dedbea;
+    border-radius: 12px;
+    background: #ffffff;
+    transition: .18s ease;
+}
+
+.tokamak-device-card:hover {
+    border-color: #aaa1dd;
+    background: #faf9ff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102,87,184,.08);
+}
+
+.tokamak-device-card > strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #5e52ad;
+}
+
+.tokamak-device-card p strong {
+    display: inline;
+    margin: 0;
+    color: inherit;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   全球 Tokamak 研究案例
+========================================================= */
+
+.fusion-world-note {
+    margin-top: 22px;
+    padding: 22px;
+    border: 1px solid #d6ddea;
+    border-radius: 16px;
+    background: #f8fbfd;
+}
+
+.fusion-world-head {
+    margin-bottom: 12px;
+}
+
+.fusion-world-head span {
+    display: block;
+    margin-bottom: 4px;
+    color: #64748b;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+}
+
+.fusion-world-head strong {
+    color: #111827;
+    font-size: 1.08rem;
+}
+
+.fusion-world-note > p {
+    margin-bottom: 16px;
+}
+
+.fusion-world-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.fusion-world-card {
+    padding: 16px;
+    border: 1px solid #dce3ea;
+    border-radius: 13px;
+    background: #ffffff;
+}
+
+.fusion-world-card > span {
+    display: inline-block;
+    margin-bottom: 6px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: #eef2ff;
+    color: #5d56a7;
+    font-size: .72rem;
+    font-weight: 800;
+}
+
+.fusion-world-card h4 {
+    margin-bottom: 7px;
+    color: #111827;
+}
+
+.fusion-world-card p {
+    margin-bottom: 12px;
+    font-size: .88rem;
+    line-height: 1.75;
+}
+
+.fusion-world-card a {
+    color: #28798a;
+    font-size: .76rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.fusion-world-summary {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-left: 4px solid #7163c6;
+    border-radius: 10px;
+    background: #f4f2ff;
+}
+
+.fusion-world-summary > strong {
+    display: block;
+    margin-bottom: 4px;
+    color: #554a9c;
+}
+
+.fusion-world-summary p {
+    margin: 0;
+}
+
+
+/* 資料來源 */
+
+.tokamak-data-source {
+    margin-top: 12px;
+    color: #6b7280;
+    font-size: .72rem;
+    text-align: right;
+}
+
+.tokamak-data-source a {
+    color: #28798a;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+
+/* =========================================================
+   RWD
+========================================================= */
+
+@media (max-width: 1280px) and (min-width: 901px) {
+
+    .tokamak-control-column {
+        width: 220px;
+        min-width: 220px;
+    }
+
+    .tokamak-guide-content {
+        padding: 14px 12px;
+    }
+
+    #tokamakStepTitle {
+        font-size: 1rem;
+    }
+
+    .tokamak-title-en {
+        font-size: .72rem;
+    }
+
+    #tokamakStepDescription {
+        font-size: .82rem;
+        line-height: 1.65;
+    }
+
+    .tokamak-energy-tag {
+        font-size: .72rem;
+    }
+
+    .tokamak-sync-hint {
+        padding: 9px 10px;
+    }
+
+    .tokamak-controls {
+        padding: 10px 8px;
+    }
+
+    .tokamak-button-grid {
+        gap: 4px;
+    }
+
+    .tokamak-button-grid button {
+        padding: 4px 2px;
+        font-size: .67rem;
+    }
+}
+
+
+@media (max-width: 900px) {
+
+    .tokamak-learning-module .module-workspace {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .tokamak-learning-module .module-model-column,
+    .tokamak-learning-module .tokamak-control-column {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .tokamak-control-column {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .tokamak-helper-grid,
+    .tokamak-condition-grid,
+    .tokamak-device-grid,
+    .fusion-world-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tokamak-helper-card-main,
+    .tokamak-helper-card-condition,
+    .tokamak-helper-card-wide,
+    .tokamak-helper-card-power {
+        grid-column: auto;
+    }
 }

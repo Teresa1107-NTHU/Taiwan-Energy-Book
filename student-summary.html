@@ -2,19 +2,27 @@
 
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>我的學習整理｜臺灣能源互動電子書</title>
-<link href="student-learning.css?v=9" rel="stylesheet"/>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>我的學習整理｜臺灣能源互動電子書</title>
+    <link href="student-learning.css?v=9" 
+          rel="stylesheet"/>
 </head>
 <body data-page-requires="final">
-<nav>
-<a class="logo" href="index.html">Taiwan Energy<span></span></a>
-<button aria-label="開啟選單" class="nav-toggle" onclick="toggleMenu()" type="button">
-<span></span><span></span><span></span>
-</button>
-<ul id="nav-menu"><li><a href="index.html#start">開始學習</a></li><li><a href="index.html#explore">傳統能源</a></li><li><a href="index.html#discover">整理發現</a></li><li><a href="index.html#emerging">新興能源</a></li><li><a class="active" href="student-summary.html">學習整理</a></li></ul>
-</nav>
+    <nav>
+        <a class="logo" href="index.html">Taiwan Energy<span></span></a>
+        <button aria-label="開啟選單" class="nav-toggle" onclick="toggleMenu()" type="button">
+            <span></span><span></span><span></span>
+        </button>
+        <ul id="nav-menu">
+            <li><a href="index.html#start">開始學習</a></li>
+            <li><a href="index.html#explore">傳統能源</a></li>
+            <li><a href="index.html#discover">整理發現</a></li>
+            <li><a href="index.html#emerging">新興能源</a></li>
+            <li><a class="active" href="student-summary.html">學習整理</a></li>
+        </ul>
+    </nav>
+
 <header class="summary-hero">
 <div class="inner">
 <span class="eyebrow">FINAL REVIEW</span>
@@ -29,72 +37,121 @@
 <section>
 <div class="section-intro">
 <span class="eyebrow">ENERGY OVERVIEW</span>
-<h2>把七個能源與核融合模組放在一起比較</h2>
+<h2>把所有能源模組放在一起比較</h2>
 </div>
 <div class="compare-table-wrap">
-<table class="compare-table">
-<thead>
-<tr>
-<th>模組</th>
-<th>主要能量來源／核心條件</th>
-<th>主要轉換或學習重點</th>
-<th>代表設備或概念</th>
-<th>目前定位</th>
-</tr>
-</thead>
-<tbody>
-<tr><td>火力</td><td>燃料中的化學能</td><td>化學能 → 熱能 → 機械能 → 電能</td><td>HRSG、汽輪機、發電機</td><td>實際發電方式</td></tr>
-<tr><td>核能</td><td>核分裂釋放的核能</td><td>核能 → 熱能 → 機械能 → 電能</td><td>反應爐、蒸汽產生器、汽輪機</td><td>實際發電方式</td></tr>
-<tr><td>風力</td><td>流動空氣的動能</td><td>動能 → 機械能 → 電能</td><td>葉片、變槳、偏航、發電機</td><td>實際發電方式</td></tr>
-<tr><td>水力</td><td>高處水體的重力位能</td><td>重力位能 → 動能 → 機械能 → 電能</td><td>水庫、壓力水管、水輪機</td><td>實際發電方式／可結合抽蓄儲能</td></tr>
-<tr><td>太陽光電</td><td>太陽光</td><td>光能 → 直流電 → 交流電</td><td>太陽能電池、逆變器、變電設備</td><td>實際發電方式</td></tr>
-<tr><td>Tokamak</td><td>高溫、真空、電漿與磁場</td><td>理解磁場如何影響帶電粒子並約束電漿</td><td>真空容器、磁場線圈、偏濾器</td><td>核融合研究概念</td></tr>
-<tr><td>Alpha-E</td><td>真空、粒子加速與核種選擇</td><td>理解粒子束建立與特定核融合反應條件</td><td>真空系統、粒子束、p–¹¹B</td><td>核融合實驗學習系統</td></tr>
-</tbody>
-</table>
+
+    <table class="compare-table">
+
+        <thead>
+            <tr>
+                <th>模組</th>
+                <th>主要能量來源／核心條件</th>
+                <th>主要轉換或學習重點</th>
+                <th>代表設備或概念</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <tr>
+                <td>火力</td>
+                <td>燃料中的化學能</td>
+                <td>化學能 → 熱能 → 機械能 → 電能</td>
+                <td>HRSG、汽輪機、發電機</td>
+            </tr>
+
+            <tr>
+                <td>核能</td>
+                <td>核分裂釋放的核能</td>
+                <td>核能 → 熱能 → 機械能 → 電能</td>
+                <td>反應爐、蒸汽產生器、汽輪機</td>
+            </tr>
+
+            <tr>
+                <td>風力</td>
+                <td>流動空氣的動能</td>
+                <td>動能 → 機械能 → 電能</td>
+                <td>葉片、變槳、偏航、發電機</td>
+            </tr>
+
+            <tr>
+                <td>水力</td>
+                <td>高處水體的重力位能</td>
+                <td>重力位能 → 動能 → 機械能 → 電能</td>
+                <td>水庫、壓力水管、水輪機</td>
+            </tr>
+
+            <tr>
+                <td>太陽光電</td>
+                <td>太陽光</td>
+                <td>光能 → 直流電 → 交流電</td>
+                <td>太陽能電池、逆變器、變電設備</td>
+            </tr>
+
+            <tr>
+                <td>Tokamak</td>
+                <td>高溫、真空、電漿與磁場</td>
+                <td>理解磁場如何影響帶電粒子並約束電漿</td>
+                <td>真空容器、磁場線圈、偏濾器</td>
+            </tr>
+
+            <tr>
+                <td>Alpha-E</td>
+                <td>真空、粒子加速與核種選擇</td>
+                <td>理解粒子束建立與特定核融合反應條件</td>
+                <td>真空系統、粒子束、p–¹¹B 核融合反應</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
 </div>
 <div class="energy-tradeoff-card">
-<span class="eyebrow-dark">
-                THINK ABOUT THE ENERGY SYSTEM
-            </span>
-<h3>發電不只是「能不能發電」</h3>
-<p>
-                真正的電力系統需要同時考慮很多條件。
-                一種能源可能碳排較低，但受到天候影響；
-                一種能源可以穩定大量發電，卻可能產生燃料、排放或廢棄物問題。
-                因此臺灣的能源選擇通常不是只比較單一優缺點，
-                而是需要一起考慮：
-            </p>
-<div class="tradeoff-grid">
-<div>
-<strong>供電穩定</strong>
-<span>需要電的時候能不能發？</span>
-</div>
-<div>
-<strong>環境影響</strong>
-<span>碳排放、空污與生態影響如何？</span>
-</div>
-<div>
-<strong>能源安全</strong>
-<span>燃料從哪裡來？是否依賴進口？</span>
-</div>
-<div>
-<strong>自然條件</strong>
-<span>需要風、陽光、水或特定場址嗎？</span>
-</div>
-<div>
-<strong>成本與建設</strong>
-<span>需要多少土地、設備與電網建設？</span>
-</div>
-<div>
-<strong>未來減碳</strong>
-<span>如何配合臺灣 2050 淨零轉型？</span>
-</div>
-</div>
-<p class="tradeoff-summary">
-                因此，臺灣的電力系統通常不是依靠單一能源，
-                而是需要不同發電方式彼此搭配，並配合儲能、電網與用電需求。
-            </p>
+    <span class="eyebrow-dark">
+        EXTEND YOUR THINKING
+    </span>
+
+    <h3>再往前想，發電不只是能不能發電</h3>
+
+    <p>
+        真正的電力系統需要同時考慮很多條件。
+        不同發電方式在供電穩定、自然條件、環境影響與設備需求等方面各有不同，
+        因此臺灣的能源選擇通常不能只比較單一優缺點，
+        而需要從多個面向一起思考：
+    </p>
+
+    <div class="tradeoff-grid">
+        <div>
+            <strong>供電穩定</strong>
+            <span>需要電的時候能不能發？</span>
+        </div>
+        <div>
+            <strong>環境影響</strong>
+            <span>碳排放、空污與生態影響如何？</span>
+        </div>
+        <div>
+            <strong>能源安全</strong>
+            <span>燃料從哪裡來？是否依賴進口？</span>
+        </div>
+        <div>
+            <strong>自然條件</strong>
+            <span>需要風、陽光、水或特定場址嗎？</span>
+        </div>
+        <div>
+            <strong>成本與建設</strong>
+            <span>需要多少土地、設備與電網建設？</span>
+        </div>
+        <div>
+            <strong>未來減碳</strong>
+            <span>如何配合臺灣 2050 淨零轉型？</span>
+        </div>
+    </div>
+    <p class="tradeoff-summary">
+        因此，臺灣的電力系統通常不是依靠單一能源，
+        而是需要不同發電方式彼此搭配，並配合儲能、電網與用電需求。
+    </p>
 </div>
 <div class="concept-bridge" style="margin-top:28px">
 <div class="concept-bridge-head">
@@ -188,9 +245,12 @@
 </article>
 </div>
 <div class="phase-footer">
-<button class="complete-phase-btn" data-complete-section="review" data-default-label="完成今天的學習" id="finishLesson">
-        完成今天的學習
-      </button>
+    <button class="complete-phase-btn"
+            data-complete-section="review"
+            data-default-label="完成今天的學習，送出答案"
+            id="finishLesson">
+        完成今天的學習，送出答案
+    </button>
 </div>
 <div class="complete-card" hidden="" id="lessonComplete">
 <div class="icon">✓</div>

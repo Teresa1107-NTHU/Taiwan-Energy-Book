@@ -1,191 +1,663 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tokamak｜臺灣能源互動電子書</title>
-  <link rel="stylesheet" href="student-learning.css?v=9">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tokamak｜臺灣能源互動電子書</title>
+    <link rel="stylesheet" href="student-learning.css?v=9">
 </head>
+
 <body class="module-page" data-page-requires="emerging">
+    <nav>
+        <a class="logo" href="index.html">Taiwan Energy<span></span></a>
+        <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+        <ul id="nav-menu">
+            <li><a href="index.html#start">開始學習</a></li>
+            <li><a href="index.html#explore">傳統能源</a></li>
+            <li><a href="index.html#discover">整理發現</a></li>
+            <li><a class="active" href="index.html#emerging">新興能源</a></li>
+            <li><a href="student-summary.html">學習整理</a></li>
+        </ul>
+    </nav>
+    
+    <header class="summary-hero">
+        <div class="inner">
+            <span class="eyebrow">EMERGING ENERGY 01</span>
+            <h1>Tokamak (托克瑪克)</h1>
+            <p>認識真空、高溫電漿與磁場如何共同建立核融合研究所需的條件。</p>
+        </div>
+    </header>
+    
+    <section class="container route-container">
+        <div data-learning-route></div>
+    </section>
+    
+    <main class="container module-main">
+        <div class="module-focus-note">
+            <strong>本頁學習方式</strong>
+            <span>操作模型與中文導覽 → 查看「能源小幫手」→ 完成小試身手 → 完成本頁。</span>
+        </div>
+        
+        <article class="energy-card">
+            <div class="energy-card-head">
+                <span>06</span>
+                <h3>Tokamak (托克瑪克)</h3>
+            </div>
 
-<nav>
-  <a class="logo" href="index.html">Taiwan Energy<span></span></a>
-  <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-  <ul id="nav-menu"><li><a href="index.html#start">開始學習</a></li><li><a href="index.html#explore">傳統能源</a></li><li><a href="index.html#discover">整理發現</a></li><li><a class="active" href="index.html#emerging">新興能源</a></li><li><a href="student-summary.html">學習整理</a></li></ul>
-</nav>
-
-
-<header class="summary-hero">
-  <div class="inner">
-    <span class="eyebrow">EMERGING ENERGY 01</span>
-    <h1>Tokamak</h1>
-    <p>認識真空、高溫電漿與磁場如何共同建立核融合研究所需的條件。</p>
-  </div>
-</header>
-
-<section class="container route-container">
-  <div data-learning-route></div>
-</section>
-
-<main class="container module-main">
-  <div class="module-focus-note">
-    <strong>本頁學習方式</strong>
-    <span>操作模型與中文導覽 → 展開「探索後整理」→ 完成本頁。</span>
-  </div>
-
-  <article class="energy-card">
-<div class="energy-card-head">
-<span>06</span>
-<h3>Tokamak</h3>
-</div>
-<p>
+            <p>
                 觀察 Tokamak 如何利用高溫電漿、真空環境與磁場，
                 建立適合核融合反應的條件。
             </p>
-<div class="learning-point">
-<strong>你可以注意</strong>
+
+            <div class="learning-point">
+                <strong>你可以注意</strong>
                 為什麼核融合需要高溫電漿？
                 磁場又如何幫助控制這些帶電粒子的運動？
             </div>
-<!-- =========================
-         Tokamak 互動導覽
-    ========================= -->
-<div class="tokamak-learning-module">
-<div class="tokamak-model-frame">
-<!-- EnergyEncyclopedia 3D 模型 -->
-<div class="iframe-wrapper tokamak-model-wrapper">
-<iframe allowfullscreen="" id="tokamakModel" loading="lazy" sandbox="allow-scripts allow-same-origin" src="https://3d.energyencyclopedia.com/tokamak/reactor" title="Tokamak 反應器 3D 互動模型">
-</iframe>
-</div>
-<!-- 手動中文導覽控制列 -->
-<div class="tokamak-inline-controls">
-<div class="tokamak-inline-buttons">
-<button class="tokamak-secondary-btn" disabled="" id="tokamakPrevBtn" onclick="tokamakPrevious()" type="button">
-                                上一步
-                            </button>
-<button class="tokamak-primary-btn" id="tokamakNextBtn" onclick="tokamakNext()" type="button">
-                                開始
-                            </button>
-<button class="tokamak-secondary-btn" onclick="tokamakReset()" type="button">
-                                重設
-                            </button>
-</div>
-<div class="tokamak-guide-hint">
-                            上方按一次「Next view」，下方也按一次「下一步」
+
+            <!-- =========================
+                 Tokamak 3D 互動導覽
+            ========================= -->
+            <div class="tokamak-learning-module">
+                <div class="module-workspace">
+                    <!-- 左側：3D 模型 -->
+                    <div class="module-model-column">
+                        <div class="tokamak-model-frame">
+                            <div class="tokamak-model-shell"
+                                 id="tokamakViewerWrapper">
+
+                                <iframe id="tokamakModel"
+                                        src="https://my-3d-proxy.loveleehom9.workers.dev/tokamak/reactor"
+                                        title="Tokamak 反應器 3D 互動模型"
+                                        loading="lazy"
+                                        allowfullscreen>
+                                </iframe>
+
+                            </div>
                         </div>
-</div>
-<!-- 中文步驟說明 -->
-<div class="tokamak-inline-info">
-<div class="tokamak-step-meta">
-<span id="tokamakStepNumber">
-                                準備開始
-                            </span>
-<span class="tokamak-energy-tag" id="tokamakEnergyTag">
-                                核融合條件：真空、電漿與磁場
-                            </span>
-</div>
-<h4 id="tokamakStepTitle">
-                            Tokamak 核融合反應器
-                        </h4>
-<p id="tokamakStepDescription">
-                            請使用上方模型中的「Next view」依序觀看各設備，
-                            並搭配下方中文步驟了解 Tokamak 如何建立與控制核融合所需的環境。
-                        </p>
-</div>
-</div>
-</div>
-<div class="model-credit">
+                    </div>
+
+                    <!-- 右側：中文導覽 -->
+                    <aside class="module-control-column tokamak-control-column">
+
+                        <div class="tokamak-guide-content">
+
+                            <div class="tokamak-step-meta">
+
+                                <span id="tokamakStepNumber">
+                                    準備開始
+                                </span>
+                            </div>
+
+                            <h2 id="tokamakStepTitle">
+
+                                Tokamak 核融合反應器
+
+                                <span class="tokamak-title-en">
+                                    Tokamak Fusion Device
+                                </span>
+                            </h2>
+
+                            <p id="tokamakStepDescription">
+                                模型初始畫面為 Tokamak 整體結構。
+                                請先觀察真空容器、磁場線圈與其他主要設備的位置，
+                                再依序進行中文導覽，了解 Tokamak 如何建立並控制高溫電漿。
+                            </p>
+
+                            <div class="tokamak-energy-tag"
+                                 id="tokamakEnergyTag">
+
+                                核融合條件：高溫、電漿、磁場與真空
+
+                            </div>
+                        </div>
+
+                        <!-- 控制區 -->
+                        <div class="tokamak-controls">
+
+                            <div class="tokamak-button-grid">
+
+                                <button id="tokamakPrevBtn"
+                                        class="tokamak-secondary-btn"
+                                        type="button"
+                                        onclick="tokamakPrevious()"
+                                        disabled>
+                                    上一步
+                                </button>
+
+
+                                <button id="tokamakNextBtn"
+                                        class="tokamak-primary-btn"
+                                        type="button"
+                                        onclick="tokamakNext()">
+                                    開始導覽
+                                </button>
+
+
+                                <button id="tokamakResetBtn"
+                                        class="tokamak-secondary-btn"
+                                        type="button"
+                                        onclick="tokamakReset()">
+                                    重設
+                                </button>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+
+            <div class="model-credit">
                 Credit:
-                <a href="https://energyencyclopedia.com/" rel="noopener noreferrer" target="_blank">
+                <a href="https://energyencyclopedia.com/"
+                   rel="noopener noreferrer"
+                   target="_blank">
                     EnergyEncyclopedia.com
                 </a>
-</div>
-<details class="knowledge-card">
-<summary>
-<span>探索後整理</span>
-                    看看 Tokamak 為什麼需要高溫電漿與磁場
-                </summary>
-<div class="knowledge-card-content">
-<p>
-                        核融合要發生，兩個帶正電的原子核必須彼此非常接近。
-                        但原子核之間會受到
-                        <strong>庫侖斥力</strong>，
-                        因此需要讓粒子具有足夠高的能量，
-                        才能提高它們接近彼此並發生核融合的機會。
-                    </p>
-<div class="concept-flow">
-<span>提高粒子能量</span>
-<b>→</b>
-<span>更有機會克服排斥</span>
-<b>→</b>
-<span>接近到核力作用範圍</span>
-<b>→</b>
-<span>提高融合機率</span>
-</div>
-<p>
-                        在極高溫下，原子中的電子會與原子核分離，
-                        形成由帶電粒子組成的
-                        <strong>電漿</strong>。
-                        因為這些粒子帶電，所以可以利用
-                        <strong>磁場</strong>
-                        影響它們的運動方向，
-                        協助把高溫電漿限制在一定範圍內。
-                    </p>
-<div class="concept-grid">
-<div class="concept-mini-card">
-<strong>高溫</strong>
-<p>提高粒子的平均動能。</p>
-</div>
-<div class="concept-mini-card">
-<strong>電漿</strong>
-<p>由帶電粒子組成的高能狀態。</p>
-</div>
-<div class="concept-mini-card">
-<strong>磁場</strong>
-<p>影響帶電粒子的運動，協助約束電漿。</p>
-</div>
-<div class="concept-mini-card">
-<strong>真空</strong>
-<p>減少背景氣體造成的不必要碰撞與能量損失。</p>
-</div>
-</div>
-<div class="think-note">
-<strong>再想一下：</strong>
-                        如果 Tokamak 中的磁場無法有效控制電漿，
-                        最直接可能發生什麼情況？
+            </div>
+
+            <section class="knowledge-card knowledge-card-static tokamak-knowledge-card">
+
+                <!-- =========================
+         標題
+    ========================= -->
+
+                <div class="knowledge-card-static-head">
+
+                    <div class="knowledge-helper-title">
+
+                        <span class="knowledge-helper-icon">⚛️</span>
+
+                        <div>
+                            <strong>能源小幫手</strong>
+                            <small>ENERGY HELPER</small>
+                        </div>
+
                     </div>
-</div>
-<div class="taiwan-note future-note">
-<div class="taiwan-note-head">
-<span>FUTURE ENERGY</span>
-<strong>核融合目前不是臺灣現行商業發電來源</strong>
-</div>
-<p>
-                        前面看到的火力、風力、水力與太陽光電，都已經實際參與電力供應；
-                        Tokamak 與 Alpha-E 則用來認識核融合研究與未來能源技術。
-                        核融合目前仍處於研究與技術發展階段，
-                        因此這裡的學習重點是理解「如何創造適合核融合的條件」，
-                        而不是把它視為目前已經商轉的發電方式。
-                    </p>
-</div>
-</details>
-</article>
 
-  <div class="module-navigation">
-    <a class="btn btn-dark" href="index.html#emerging">← 返回新興能源</a>
-    <button class="complete-phase-btn" data-complete-section="tokamak" data-default-label="完成Tokamak">
-      完成Tokamak
-    </button>
-    <a class="btn btn-primary" href="alpha-e-student-activity.html">下一站：Alpha-E →</a>
-  </div>
-</main>
+                    <h3>一起整理 Tokamak 如何建立核融合所需的環境</h3>
 
-<footer>
-  <p>臺灣能源互動電子書 © 2026</p>
-  <p>本網站為教育與學術用途開發。</p>
-</footer>
-<script src="student-learning.js?v=9"></script>
+                </div>
+
+
+                <div class="knowledge-card-content">
+
+                    <div class="tokamak-helper-grid">
+
+
+                        <!-- =========================
+                 1. 核心原理
+            ========================= -->
+
+                        <div class="helper-section tokamak-helper-card tokamak-helper-card-main">
+
+                            <h4>⚛️ 為什麼核融合需要這麼特殊的環境？</h4>
+
+                            <p class="helper-intro">
+                                核融合要發生，兩個帶正電的原子核必須靠得非常接近。
+                                但是原子核之間存在<strong>電性排斥</strong>，
+                                因此必須讓粒子具有很高的能量，
+                                才能增加它們彼此接近並發生融合的機會。
+                            </p>
+
+                            <p>
+                                當物質被加熱到極高溫時，
+                                電子會與原子核分離，形成由帶電粒子組成的<strong>電漿</strong>。
+                                Tokamak 的核心工作，
+                                就是設法把這些極高溫的帶電粒子<strong>限制在一定範圍內並維持足夠時間</strong>。
+                            </p>
+
+                            <div class="tokamak-condition-flow">
+
+                                <span>提高粒子能量</span>
+                                <b>→</b>
+
+                                <span>形成高溫電漿</span>
+                                <b>→</b>
+
+                                <span>利用磁場約束</span>
+                                <b>→</b>
+
+                                <span>提高核融合機會</span>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================
+                 2. 四個重要條件
+            ========================= -->
+
+                        <div class="helper-section tokamak-helper-card tokamak-helper-card-condition">
+
+                            <h4>🌡️ Tokamak 要同時處理哪些條件？</h4>
+
+
+                            <div class="tokamak-condition-grid">
+
+                                <div class="tokamak-condition-card">
+
+                                    <strong>高溫</strong>
+
+                                    <p>
+                                        提高粒子的<strong>平均動能</strong>，
+                                        增加原子核克服電性排斥並彼此接近的機會。
+                                    </p>
+
+                                </div>
+
+
+                                <div class="tokamak-condition-card">
+
+                                    <strong>電漿</strong>
+
+                                    <p>
+                                        在極高溫下形成大量自由電子與離子，
+                                        成為可以進一步利用磁場控制的帶電粒子系統。
+                                    </p>
+
+                                </div>
+
+
+                                <div class="tokamak-condition-card">
+
+                                    <strong>磁場</strong>
+
+                                    <p>
+                                        帶電粒子在磁場中運動會受到磁力影響，
+                                        因此可以利用磁場約束並控制高溫電漿。
+                                    </p>
+
+                                </div>
+
+
+                                <div class="tokamak-condition-card">
+
+                                    <strong>真空</strong>
+
+                                    <p>
+                                        降低背景氣體與雜質造成的碰撞，
+                                        減少電漿的<strong>能量損失</strong>與<strong>污染</strong>。
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================
+                 3. 重要設備
+            ========================= -->
+
+                        <div class="helper-section tokamak-helper-card tokamak-helper-card-wide">
+
+                            <h4>🧲 Tokamak 的重要設備怎麼合作？</h4>
+
+
+                            <div class="tokamak-device-grid">
+
+                                <div class="tokamak-device-card">
+
+                                    <strong>真空容器</strong>
+
+                                    <p>
+                                        提供<strong>高溫電漿</strong>所在的主要空間，
+                                        並維持低背景氣體密度的真空環境。
+                                    </p>
+
+                                </div>
+
+
+                                <div class="tokamak-device-card">
+
+                                    <strong>環向磁場線圈</strong>
+
+                                    <p>
+                                        在 Tokamak 周圍建立<strong>強磁場</strong>，
+                                        是限制帶電粒子運動的重要磁場來源之一。
+                                    </p>
+
+                                </div>
+
+
+                                <div class="tokamak-device-card">
+
+                                    <strong>極向磁場線圈</strong>
+
+                                    <p>
+                                        協助調整電漿的<strong>位置</strong>與<strong>形狀</strong>，
+                                        並配合其他磁場維持電漿穩定。
+                                    </p>
+
+                                </div>
+
+
+                                <div class="tokamak-device-card">
+
+                                    <strong>中央螺線管</strong>
+
+                                    <p>
+                                        藉由<strong>電磁感應</strong>在電漿中建立電流，
+                                        協助形成與維持 Tokamak 所需的電漿條件。
+                                    </p>
+
+                                </div>
+
+
+                                <div class="tokamak-device-card">
+
+                                    <strong>偏濾器</strong>
+
+                                    <p>
+                                        處理從電漿邊緣排出的<strong>熱量</strong>與<strong>雜質</strong>，
+                                        降低高熱負載對設備造成的影響。
+                                    </p>
+
+                                </div>
+
+
+                                <div class="tokamak-device-card">
+
+                                    <strong>冷卻系統</strong>
+
+                                    <p>
+                                        帶走真空容器、包層與偏濾器等設備吸收的<strong>熱量</strong>，
+                                        保護設備並維持安全運作。
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- =========================
+                             4. Tokamak ≠ 現在的發電廠
+                        ========================= -->
+                        <div class="helper-section tokamak-helper-card tokamak-helper-card-power">
+
+                            <h4>⚡ Tokamak 已經可以像火力發電廠一樣供電了嗎？</h4>
+
+                            <p>
+                                現階段常見的 Tokamak 主要是<strong>核融合研究與實驗裝置</strong>，
+                                學習重點是研究如何產生、加熱、約束並控制高溫電漿。
+                            </p>
+
+                            <p>
+                                例如正在法國建設的<strong>ITER</strong>
+                                雖然目標之一是產生大量核融合功率，
+                                但 ITER 本身<strong>不會把融合產生的熱轉換成商用電力</strong>。
+                                它主要用來驗證燃燒電漿以及未來核融合反應器所需要的重要技術。
+                            </p>
+
+                            <p>
+                                未來若發展成核融合發電廠，
+                                核融合產生的能量可以先轉換成<strong>熱能</strong>，
+                                再利用蒸氣、汽輪機與發電機等系統產生電力。
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- =================================================
+                         全球研究案例
+                    ================================================= -->
+
+                    <div class="fusion-world-note">
+
+                        <div class="fusion-world-head">
+
+                            <span>GLOBAL FUSION RESEARCH</span>
+
+                            <strong>
+                                Tokamak 並不是只存在於一個國家
+                            </strong>
+                        </div>
+
+                        <p>
+                            世界各地已有多座 Tokamak 用來研究
+                            高溫電漿、磁場約束、材料與未來核融合反應器技術。
+                            這些設施的目的與規模不完全相同，
+                            但都在為未來核融合能源累積研究成果。
+                        </p>
+
+                        <div class="fusion-world-grid">
+
+                            <!-- ITER -->
+                            <article class="fusion-world-card">
+
+                                <span>法國</span>
+
+                                <h4>ITER</h4>
+
+                                <p>
+                                    ITER 位於法國南部，
+                                    是由多個國家與地區共同參與的大型國際核融合計畫。
+                                    它是一座大型 Tokamak 實驗裝置，
+                                    目標是研究燃燒電漿並驗證未來核融合能源所需的重要技術。
+                                </p>
+
+                                <a href="https://www.iter.org/about/iter-france"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    資料來源：ITER Organization ↗
+                                </a>
+                            </article>
+
+                            <!-- JT-60SA -->
+                            <article class="fusion-world-card">
+
+                                <span>日本</span>
+
+                                <h4>JT-60SA</h4>
+
+                                <p>
+                                    JT-60SA 位於日本茨城縣那珂市，
+                                    是日本與歐洲共同推動的超導 Tokamak 實驗裝置。
+                                    研究重點包含高性能電漿控制，
+                                    並支援 ITER 與未來原型爐相關研究。
+                                </p>
+
+                                <a href="https://www.qst.go.jp/site/jt60/5150.html"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    資料來源：QST JT-60SA ↗
+                                </a>
+                            </article>
+
+                            <!-- DIII-D -->
+                            <article class="fusion-world-card">
+
+                                <span>美國</span>
+
+                                <h4>DIII-D</h4>
+
+                                <p>
+                                    DIII-D 位於美國加州聖地牙哥，
+                                    是美國能源部的核融合研究設施，
+                                    用來研究 Tokamak 電漿的約束、穩定與控制等問題。
+                                </p>
+
+                                <a href="https://www.ga.com/magnetic-fusion/diii-d"
+                                   target="_blank"
+                                   rel="noopener noreferrer">
+                                    資料來源：DIII-D National Fusion Facility ↗
+                                </a>
+                            </article>
+                        </div>
+
+                        <div class="fusion-world-summary">
+
+                            <strong>這和前面五種能源最大的差別是：</strong>
+
+                            <p>
+                                火力、核能、風力、水力與太陽光電都是目前實際使用的發電方式；
+                                Tokamak 在本教材中則代表<strong>正在持續研究與發展中的核融合技術</strong>，
+                                因此這裡關注的不是今天可以發多少電，
+                                而是<strong>怎麼創造並維持</strong>核融合所需要的條件。
+</p>
+                        </div>
+                    </div>
+
+                    <!-- ===============================
+                             再想一下
+                    ================================ -->
+
+                    <div class="think-note tokamak-think-note">
+
+                        <div class="think-note-title">
+                            再想一下 💡
+                        </div>
+
+                        <p>
+                            假設未來的 Tokamak 已經能夠長時間穩定維持核融合反應，
+                            但研究人員希望進一步把它變成真正可以供應電力的發電廠。
+                            除了<strong>讓核融合反應持續發生</strong>之外，
+                            你覺得還需要增加或解決哪些系統與問題，
+                            才能把核融合釋放的能量真正送到電網中？
+                        </p>
+                    </div>
+
+                    <!-- =============================
+                         小試身手
+                    ============================== -->
+
+                    <div class="mini-quiz-card"
+                         data-mini-quiz
+                         data-quiz-key="tokamak_quiz_1">
+
+                        <div class="mini-quiz-head">
+
+                            <span>小試身手</span>
+
+                            <h4>
+                                用剛剛學到的概念判斷看看
+                            </h4>
+                        </div>
+
+                        <p class="mini-quiz-question">
+                            某次 Tokamak 實驗已經成功產生高溫電漿，
+                            但量測發現電漿的位置與形狀變得不穩定，
+                            並逐漸接近真空容器內壁。
+                            在其他條件相近的情況下，
+                            下列哪一項最值得優先檢查？
+                        </p>
+
+                        <label class="quiz-option">
+
+                            <input type="radio"
+                                   name="tokamak_quiz_1"
+                                   value="A">
+
+                            <span>
+                                A. 真空系統，因為背景氣體增加可能造成碰撞，
+                                所以電漿位置與形狀的改變主要由真空度決定
+                            </span>
+                        </label>
+
+                        <label class="quiz-option">
+
+                            <input type="radio"
+                                   name="tokamak_quiz_1"
+                                   value="B">
+
+                            <span>
+                                B. 磁場與電漿控制系統，
+                                因為磁場會影響帶電粒子的運動，
+                                並協助控制電漿的位置、形狀與穩定性
+                            </span>
+                        </label>
+
+                        <label class="quiz-option">
+
+                            <input type="radio"
+                                   name="tokamak_quiz_1"
+                                   value="C">
+
+                            <span>
+                                C. 偏濾器系統，
+                                因為它負責排出熱量與雜質，
+                                因此也是決定整體電漿位置的主要控制設備
+                            </span>
+                        </label>
+
+                        <label class="quiz-option">
+
+                            <input type="radio"
+                                   name="tokamak_quiz_1"
+                                   value="D">
+
+                            <span>
+                                D. 冷卻系統，
+                                因為降低真空容器與其他設備溫度後，
+                                就能直接調整高溫電漿在容器中的位置
+                            </span>
+                        </label>
+
+                        <div class="mini-quiz-actions">
+
+                            <button type="button"
+                                    class="quiz-save-btn">
+                                儲存答案
+                            </button>
+
+                            <span class="quiz-save-status"></span>
+
+                        </div>
+                    </div>
+
+                    <!-- =================================================
+                         資料來源
+                    ================================================= -->
+                    <div class="tokamak-data-source">
+                        <span>概念與國際案例資料來源：</span>
+
+                        <a href="https://www.iter.org/machine/what-tokamak"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            ITER Organization
+                        </a>
+
+                        <span>｜</span>
+
+                        <a href="https://www.qst.go.jp/site/jt60/5150.html"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            QST JT-60SA
+                        </a>
+
+                        <span>｜</span>
+
+                        <a href="https://www.ga.com/magnetic-fusion/diii-d"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            DIII-D National Fusion Facility
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </article>
+        
+        <div class="module-navigation">
+            <a class="btn btn-dark" href="index.html#emerging">← 返回新興能源</a>
+            <button class="complete-phase-btn"
+                    data-complete-section="tokamak"
+                    data-default-label="完成 Tokamak">
+                完成 Tokamak
+            </button>
+            
+            <a class="btn btn-primary" href="alpha-e-student-activity.html">下一站：Alpha-E →</a>
+        </div>
+    </main>
+    <footer>
+        <p>臺灣能源互動電子書 © 2026</p>
+        <p>本網站為教育與學術用途開發。</p>
+    </footer>
+
+    <script src="student-learning.js?v=9"></script>
 </body>
 </html>

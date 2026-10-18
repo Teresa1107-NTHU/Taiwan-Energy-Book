@@ -16,7 +16,7 @@
         </button>
         <ul id="nav-menu">
             <li><a href="index.html#start">開始學習</a></li>
-            <li><a href="index.html#explore">傳統能源</a></li>
+            <li><a href="index.html#explore">臺灣常見發電方式</a></li>
             <li><a href="index.html#discover">整理發現</a></li>
             <li><a href="index.html#emerging">新興能源</a></li>
             <li><a class="active" href="student-summary.html">學習整理</a></li>
@@ -125,7 +125,7 @@
     <div class="tradeoff-grid">
         <div>
             <strong>供電穩定</strong>
-            <span>需要電的時候能不能發？</span>
+            <span>能否在需要時穩定提供電力？</span>
         </div>
         <div>
             <strong>環境影響</strong>
@@ -141,7 +141,7 @@
         </div>
         <div>
             <strong>成本與建設</strong>
-            <span>需要多少土地、設備與電網建設？</span>
+            <span>建置、運轉與電網配套需要投入多少資源？</span>
         </div>
         <div>
             <strong>未來減碳</strong>
@@ -212,55 +212,72 @@
 </div>
 </section>
 <section style="margin-top:48px">
-<div class="section-intro">
-<span class="eyebrow">YOUR TURN</span>
-<h2>現在換你說說看</h2>
-<p>不用背課本句子，用你自己的話回答就好。</p>
-</div>
-<div class="evaluate-grid">
-<article class="reflection-card">
-<h3>問題 1</h3>
-<p>
+    <div class="section-intro">
+        <span class="eyebrow">YOUR TURN</span>
+        <h2>現在換你說說看</h2>
+        <p>不用背課本句子，用你自己的話回答就好。</p>
+    </div>
+    <div class="evaluate-grid">
+        <article class="reflection-card">
+            <h3>問題 1</h3>
+            <p>
                 核能發電與火力發電後半段都可能使用蒸氣、汽輪機與發電機，
                 那麼兩者最主要的差異發生在哪一個階段？
             </p>
 <textarea data-save="review_q1" placeholder="請從能量來源與轉換過程說明……"></textarea>
-</article>
-<article class="reflection-card">
-<h3>問題 2</h3>
-<p>
+        </article>
+        <article class="reflection-card">
+            <h3>問題 2</h3>
+            <p>
                 太陽光電和風力發電最後都能產生電能，
                 但兩者的能量轉換路徑有什麼主要差異？
             </p>
 <textarea data-save="review_q2" placeholder="請比較是否需要經過機械轉動……"></textarea>
-</article>
-<article class="reflection-card">
-<h3>問題 3</h3>
-<p>
+        </article>
+        <article class="reflection-card">
+            <h3>問題 3</h3>
+            <p>
                 有人說：「只要粒子的能量夠高，
                 不管使用哪一種原子核，都可以發生相同的核融合反應。」
                 你同意嗎？為什麼？
             </p>
 <textarea data-save="review_q3" placeholder="請從核種、反應物與核反應種類來說明……"></textarea>
-</article>
-</div>
-<div class="phase-footer">
-    <button class="complete-phase-btn"
-            data-complete-section="review"
-            data-default-label="完成今天的學習，送出答案"
-            id="finishLesson">
-        完成今天的學習，送出答案
-    </button>
-</div>
-<div class="complete-card" hidden="" id="lessonComplete">
-<div class="icon">✓</div>
-<h2>完成今天的能源探索！</h2>
-<p>
-        你已經從日常常見的發電方式一路看到核融合，
-        也完成了 Alpha-E 的操作與比較。現在可以回頭看看一開始的答案，
-        比較自己的想法有沒有改變。
-      </p>
-</div>
+        </article>
+    </div>
+    <div class="challenge-save-actions">
+
+        <button type="button"
+                class="quiz-save-btn"
+                id="reviewSaveBtn">
+            儲存三題答案
+        </button>
+
+        <span class="quiz-save-status pending"
+              id="reviewSaveStatus">
+            請先完成三個問題
+        </span>
+
+    </div>
+
+    <div class="phase-footer">
+
+        <button class="complete-phase-btn"
+                data-complete-section="review"
+                data-default-label="完成今天的學習，送出答案"
+                id="finishLesson">
+            完成今天的學習，送出答案
+        </button>
+
+    </div>
+    <div class="complete-card" hidden="" id="lessonComplete">
+        <div class="icon">✓</div>
+        <h2>完成今天的能源探索！</h2>
+        <p>
+            你已經從日常常見的發電方式一路看到核融合，
+            也完成了 Alpha-E 的操作與比較。現在可以回頭看看一開始的答案，
+            比較自己的想法有沒有改變。
+        </p>
+    </div>
 </section>
 </main>
 <footer>

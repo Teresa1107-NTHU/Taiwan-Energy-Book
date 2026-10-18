@@ -1741,8 +1741,8 @@ const hydroSteps = [
         title: "蓄水庫",
         english: "Storage Reservoir",
         description:
-            description:
-    "蓄水庫儲存大量位於較高位置的水。高處的水具有重力位能，而可利用的水位高度差與放水流量，都會影響水力發電的輸出。",,
+           
+    "蓄水庫儲存大量位於較高位置的水。高處的水具有重力位能，而可利用的水位高度差與放水流量，都會影響水力發電的輸出。",
         energy:
             "重力位能"
     },
@@ -4098,6 +4098,290 @@ if (key === "wind") {
         ok: true
     };
 }
+
+// =========================
+// 水力發電
+// =========================
+if (key === "hydro") {
+
+    const selected =
+        document.querySelector(
+            'input[name="hydro_quiz_1"]:checked'
+        );
+
+    const answerSaved =
+        localStorage.getItem(
+            "energy_quiz_saved_hydro_quiz_1"
+        ) === "yes";
+
+
+    if (!selected) {
+
+        return {
+            ok: false,
+            message: "請先完成水力發電的「小試身手」"
+        };
+    }
+
+
+    if (!answerSaved) {
+
+        return {
+            ok: false,
+            message: "答案尚未儲存，請先按「儲存答案」"
+        };
+    }
+
+
+    return {
+        ok: true
+    };
+}
+
+
+// =========================
+// 太陽光電
+// =========================
+if (key === "solar") {
+
+    const selected =
+        document.querySelector(
+            'input[name="solar_quiz_1"]:checked'
+        );
+
+    const answerSaved =
+        localStorage.getItem(
+            "energy_quiz_saved_solar_quiz_1"
+        ) === "yes";
+
+
+    if (!selected) {
+
+        return {
+            ok: false,
+            message: "請先完成太陽光電的「小試身手」"
+        };
+    }
+
+
+    if (!answerSaved) {
+
+        return {
+            ok: false,
+            message: "答案尚未儲存，請先按「儲存答案」"
+        };
+    }
+
+
+    return {
+        ok: true
+    };
+}
+
+// =========================
+// Tokamak
+// =========================
+if (key === "tokamak") {
+
+    const selected =
+        document.querySelector(
+            'input[name="tokamak_quiz_1"]:checked'
+        );
+
+    const answerSaved =
+        localStorage.getItem(
+            "energy_quiz_saved_tokamak_quiz_1"
+        ) === "yes";
+
+
+    if (!selected) {
+
+        return {
+            ok: false,
+            message: "請先完成 Tokamak 的「小試身手」"
+        };
+    }
+
+
+    if (!answerSaved) {
+
+        return {
+            ok: false,
+            message: "答案尚未儲存，請先按「儲存答案」"
+        };
+    }
+
+
+    return {
+        ok: true
+    };
+}
+
+// =========================
+// Alpha-E 挑戰
+// =========================
+if (key === "challenge") {
+
+    const vacuumPredict =
+        document.querySelector(
+            'input[name="vacuum_predict"]:checked'
+        );
+
+    const vacuumReason =
+        document.querySelector(
+            'textarea[data-save="vacuum_reason"]'
+        );
+
+    const vacuumObserve =
+        document.querySelector(
+            'textarea[data-save="vacuum_observe"]'
+        );
+
+    const vacuumExplain =
+        document.querySelector(
+            'textarea[data-save="vacuum_explain"]'
+        );
+
+
+    const fuelPredict =
+        document.querySelector(
+            'textarea[data-save="fuel_predict"]'
+        );
+
+    const fuelObserve =
+        document.querySelector(
+            'textarea[data-save="fuel_observe"]'
+        );
+
+    const fuelExplain =
+        document.querySelector(
+            'textarea[data-save="fuel_explain"]'
+        );
+
+
+    const challenge1Complete =
+        !!(
+            vacuumPredict &&
+            vacuumReason?.value.trim() &&
+            vacuumObserve?.value.trim() &&
+            vacuumExplain?.value.trim()
+        );
+
+
+    const challenge2Complete =
+        !!(
+            fuelPredict?.value.trim() &&
+            fuelObserve?.value.trim() &&
+            fuelExplain?.value.trim()
+        );
+
+
+    if (!challenge1Complete) {
+
+        return {
+            ok: false,
+            message: "請先完成 CHALLENGE 01 的所有回答"
+        };
+    }
+
+
+    if (
+        localStorage.getItem(
+            "energy_answer_saved_alpha_challenge_1"
+        ) !== "yes"
+    ) {
+
+        return {
+            ok: false,
+            message: "請先儲存 CHALLENGE 01 的答案"
+        };
+    }
+
+
+    if (!challenge2Complete) {
+
+        return {
+            ok: false,
+            message: "請先完成 CHALLENGE 02 的所有回答"
+        };
+    }
+
+
+    if (
+        localStorage.getItem(
+            "energy_answer_saved_alpha_challenge_2"
+        ) !== "yes"
+    ) {
+
+        return {
+            ok: false,
+            message: "請先儲存 CHALLENGE 02 的答案"
+        };
+    }
+
+
+    return {
+        ok: true
+    };
+}
+
+// =========================
+// 最後學習整理
+// =========================
+if (key === "review") {
+
+    const q1 =
+        document.querySelector(
+            'textarea[data-save="review_q1"]'
+        );
+
+    const q2 =
+        document.querySelector(
+            'textarea[data-save="review_q2"]'
+        );
+
+    const q3 =
+        document.querySelector(
+            'textarea[data-save="review_q3"]'
+        );
+
+
+    const allComplete =
+        !!(
+            q1?.value.trim() &&
+            q2?.value.trim() &&
+            q3?.value.trim()
+        );
+
+
+    if (!allComplete) {
+
+        return {
+            ok: false,
+            message: "請先完成最後的三個問題"
+        };
+    }
+
+
+    const answersSaved =
+        localStorage.getItem(
+            "energy_answer_saved_review"
+        ) === "yes";
+
+
+    if (!answersSaved) {
+
+        return {
+            ok: false,
+            message: "答案尚未儲存，請先按「儲存三題答案」"
+        };
+    }
+
+
+    return {
+        ok: true
+    };
+}
     
     /*
      * 其他還沒改成新機制的頁面，
@@ -4111,21 +4395,38 @@ if (key === "wind") {
 document.addEventListener("DOMContentLoaded", () => {
 
     const moduleQuizMap = {
-        thermal: {
-            quizName: "thermal_quiz_1",
-            buttonId: "thermalCompleteBtn"
-        },
 
-        nuclear: {
-            quizName: "nuclear_quiz_1",
-            buttonId: "nuclearCompleteBtn"
-        },
+    thermal: {
+        quizName: "thermal_quiz_1",
+        buttonId: "thermalCompleteBtn"
+    },
 
-        wind: {
-            quizName: "wind_quiz_1",
-            buttonId: "windCompleteBtn"
-        }
-    };
+    nuclear: {
+        quizName: "nuclear_quiz_1",
+        buttonId: "nuclearCompleteBtn"
+    },
+
+    wind: {
+        quizName: "wind_quiz_1",
+        buttonId: "windCompleteBtn"
+    },
+
+    hydro: {
+        quizName: "hydro_quiz_1",
+        buttonId: "hydroCompleteBtn"
+    },
+
+    solar: {
+        quizName: "solar_quiz_1",
+        buttonId: "solarCompleteBtn"
+    },
+
+    tokamak: {
+    quizName: "tokamak_quiz_1",
+    buttonId: "tokamakCompleteBtn"
+}
+
+};
 
 
     Object.entries(moduleQuizMap)
@@ -5082,10 +5383,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const completeBtn =
         document.getElementById("alphaChallengeCompleteBtn");
 
-    const completeHint =
-        document.getElementById("alphaCompleteHint");
-
-
     // 不是 Alpha-E challenge 頁就離開
     if (
         !challenge1SaveBtn ||
@@ -5167,56 +5464,6 @@ document.addEventListener("DOMContentLoaded", () => {
             explain?.value.trim()
         );
     }
-
-
-    // =====================================================
-    // 更新最終完成按鈕
-    // =====================================================
-
-    function updateAlphaCompleteState() {
-
-        const challenge1Saved =
-            localStorage.getItem(
-                challenge1SavedKey
-            ) === "yes";
-
-        const challenge2Saved =
-            localStorage.getItem(
-                challenge2SavedKey
-            ) === "yes";
-
-        const alreadyCompleted =
-            isDone("challenge");
-
-
-        completeBtn.disabled =
-            !alreadyCompleted &&
-            !(challenge1Saved && challenge2Saved);
-
-
-        if (
-            challenge1Saved &&
-            challenge2Saved
-        ) {
-
-            completeHint.textContent =
-                "兩個挑戰的答案都已儲存，可以完成 Alpha-E 挑戰 ✓";
-
-            completeHint.classList.add(
-                "ready"
-            );
-
-        } else {
-
-            completeHint.textContent =
-                "請先完成並儲存 CHALLENGE 01 與 CHALLENGE 02";
-
-            completeHint.classList.remove(
-                "ready"
-            );
-        }
-    }
-
 
     // =====================================================
     // CHALLENGE 01 狀態
@@ -5340,7 +5587,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             updateChallenge1Hint();
-            updateAlphaCompleteState();
+            
         }
     );
 
@@ -5373,7 +5620,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             updateChallenge2Hint();
-            updateAlphaCompleteState();
+            
         }
     );
 
@@ -5426,7 +5673,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 updateChallenge1Hint();
-                updateAlphaCompleteState();
+                
             }
         );
     });
@@ -5469,7 +5716,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
                 updateChallenge2Hint();
-                updateAlphaCompleteState();
+                
             }
         );
     });
@@ -5481,6 +5728,215 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateChallenge1Hint();
     updateChallenge2Hint();
-    updateAlphaCompleteState();
+    
+
+});
+
+/* =========================================================
+   最後學習整理：三題完成並儲存後才可完成
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const q1 =
+        document.querySelector(
+            'textarea[data-save="review_q1"]'
+        );
+
+    const q2 =
+        document.querySelector(
+            'textarea[data-save="review_q2"]'
+        );
+
+    const q3 =
+        document.querySelector(
+            'textarea[data-save="review_q3"]'
+        );
+
+    const saveBtn =
+        document.getElementById(
+            "reviewSaveBtn"
+        );
+
+    const status =
+        document.getElementById(
+            "reviewSaveStatus"
+        );
+
+    const completeBtn =
+        document.getElementById(
+            "finishLesson"
+        );
+
+
+    /*
+     * 不是最後整理頁就離開。
+     */
+    if (
+        !q1 ||
+        !q2 ||
+        !q3 ||
+        !saveBtn ||
+        !status ||
+        !completeBtn
+    ) {
+        return;
+    }
+
+
+    const savedKey =
+        "energy_answer_saved_review";
+
+
+    function allAnswered() {
+
+        return !!(
+            q1.value.trim() &&
+            q2.value.trim() &&
+            q3.value.trim()
+        );
+    }
+
+
+    function updateReviewHint() {
+
+        const saved =
+            localStorage.getItem(
+                savedKey
+            ) === "yes";
+
+
+        if (
+            saved &&
+            allAnswered()
+        ) {
+
+            status.textContent =
+                "答案已儲存 ✓";
+
+            status.classList.remove(
+                "pending"
+            );
+
+            return;
+        }
+
+
+        status.classList.add(
+            "pending"
+        );
+
+
+        if (allAnswered()) {
+
+            status.textContent =
+                "已完成作答，請按「儲存三題答案」";
+
+        } else {
+
+            status.textContent =
+                "請先完成三個問題";
+
+        }
+
+    }
+
+
+    /*
+     * 修改任何答案後：
+     * 必須重新按儲存，
+     * 若原本已完成，也取消完成狀態。
+     */
+    [q1, q2, q3].forEach(field => {
+
+        field.addEventListener(
+            "input",
+            () => {
+
+                localStorage.removeItem(
+                    savedKey
+                );
+
+
+                if (isDone("review")) {
+
+                    setDone(
+                        "review",
+                        false
+                    );
+
+
+                    updateCompletionButton(
+                        completeBtn,
+                        "review",
+                        false
+                    );
+
+
+                    const completeCard =
+                        document.getElementById(
+                            "lessonComplete"
+                        );
+
+
+                    if (completeCard) {
+                        completeCard.hidden = true;
+                    }
+
+
+                    refreshAllLearningUI();
+                }
+
+
+                updateReviewHint();
+
+            }
+        );
+
+    });
+
+
+    /*
+     * 正式儲存
+     */
+    saveBtn.addEventListener(
+        "click",
+        () => {
+
+            if (!allAnswered()) {
+
+                status.textContent =
+                    "請先完成三個問題再儲存";
+
+                status.classList.add(
+                    "pending"
+                );
+
+                return;
+            }
+
+
+            /*
+             * textarea 本身的內容已由共用
+             * data-save 機制存入 localStorage，
+             * 這裡只需要紀錄：
+             * 「三題已正式儲存」。
+             */
+            localStorage.setItem(
+                savedKey,
+                "yes"
+            );
+
+
+            updateReviewHint();
+
+        }
+    );
+
+
+    /*
+     * 頁面載入時還原提示狀態。
+     */
+    updateReviewHint();
 
 });

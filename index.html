@@ -7,143 +7,125 @@
   <link rel="stylesheet" href="student-learning.css?v=9">
 </head>
 <body>
-
-<nav>
-  <a class="logo" href="index.html">Taiwan Energy<span></span></a>
-  <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
-  <ul id="nav-menu"><li><a class="active" href="index.html#start">開始學習</a></li><li><a href="index.html#explore">傳統能源</a></li><li><a href="index.html#discover">整理發現</a></li><li><a href="index.html#emerging">新興能源</a></li><li><a href="student-summary.html">學習整理</a></li></ul>
-</nav>
-
-
-<header class="hero">
-  <div class="hero-inner">
-    <div>
-      <span class="eyebrow">TAIWAN ENERGY INTERACTIVE LEARNING</span>
-      <h1>一起看電是怎麼來的，<br>再挑戰<em>核融合</em></h1>
-      <p>
-        先從火力、核能、風力、水力與太陽光電建立發電概念，
-        完成比較整理後，再進入 Tokamak 與 Alpha-E 的新興能源探索。
-      </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#start">開始今天的探索</a>
-        <a class="btn btn-soft" href="#explore">查看學習模組</a>
-      </div>
-    </div>
-    <aside class="hero-panel">
-
-        <h3>我的學習路線</h3>
-
-        <div class="phase-list">
-
-            <a class="phase-chip route-home-link"
-               href="#start"
-               data-home-route="start">
-
-                <b>1</b>
-
-                <div>
-                    <strong>先想一想</strong>
-                    <small>留下原本的想法</small>
+    <nav>
+        <a class="logo" href="index.html">Taiwan Energy<span></span></a>
+        <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </button>
+        <ul id="nav-menu">
+            <li><a class="active" href="index.html#start">開始學習</a></li>
+            <li><a href="index.html#explore">臺灣常見發電方式</a></li>
+            <li><a href="index.html#discover">整理發現</a></li>
+            <li><a href="index.html#emerging">新興能源</a></li>
+            <li><a href="student-summary.html">學習整理</a></li>
+        </ul>
+    </nav>
+    
+    <header class="hero">
+        <div class="hero-inner">
+            <div>
+                <span class="eyebrow">TAIWAN ENERGY INTERACTIVE LEARNING</span>
+                <h1>一起看電是怎麼來的，<br>再挑戰<em>核融合</em></h1>
+                <p>
+                    先從火力、核能、風力、水力與太陽光電建立發電概念，
+                    完成比較整理後，再進入 Tokamak 與 Alpha-E 的新興能源探索。
+                </p>
+            
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#start">開始今天的探索</a>
+                    <a class="btn btn-soft" href="#explore">查看學習模組</a>
                 </div>
+            </div>
+            
+            <aside class="hero-panel">
+                <h3>我的學習路線</h3>
+                <div class="phase-list">
+                    <a class="phase-chip route-home-link"
+                        href="#start"
+                        data-home-route="start">
+                        <b>1</b>
+                        <div>
+                            <strong>先想一想</strong>
+                            <small>留下原本的想法</small>
+                        </div>
+                        
+                        <span class="phase-status"
+                                data-home-status="start">
+                            未完成
+                        </span>
+                    </a>
+                    
+                    <a class="phase-chip route-home-link"
+                        href="#explore"
+                        data-home-route="traditional">
+                        <b>2</b>
+                        <div>
+                            <strong>臺灣發電能源探索</strong>
+                            <small>
+                                火力、核能、風力、水力、太陽光電
+                            </small>
+                        </div>
+                        
+                        <span class="phase-status"
+                                data-home-status="traditional">
+                                已完成 0 / 5
+                        </span>
+                    </a>
 
-                <span class="phase-status"
-                      data-home-status="start">
-                    未完成
-                </span>
+                    <a class="phase-chip route-home-link"
+                        href="#discover"
+                        data-home-route="discover">
+                        <b>3</b>
+                        <div>
+                            <strong>臺灣發電方式整合比較</strong>
+                            <small>
+                                比較五種發電方式的能量轉換與臺灣電力角色
+                            </small>
+                        </div>
 
-            </a>
+                        <span class="phase-status"
+                                data-home-status="discover">
+                                尚未解鎖
+                        </span>
+                    </a>
 
+                    <a class="phase-chip route-home-link"
+                        href="#emerging"
+                        data-home-route="emerging">
+                        <b>4</b>
+                        <div>
+                            <strong>新興能源</strong>
+                            <small>
+                                Tokamak 與 Alpha-E
+                            </small>
+                        </div>
 
-            <a class="phase-chip route-home-link"
-               href="#explore"
-               data-home-route="traditional">
+                        <span class="phase-status"
+                                data-home-status="emerging">
+                            尚未解鎖
+                        </span>
+                    </a>
 
-                <b>2</b>
+                    <a class="phase-chip route-home-link"
+                        href="student-summary.html"
+                        data-home-route="summary">
+                        <b>5</b>
+                        <div>
+                            <strong>學習整理</strong>
+                            <small>
+                                七個模組最終比較
+                            </small>
+                        </div>
 
-                <div>
-                    <strong>台灣發電能源探索</strong>
-                    <small>
-                        火力、核能、風力、水力、太陽光電
-                    </small>
+                        <span class="phase-status"
+                                data-home-status="summary">
+                                尚未解鎖
+                        </span>
+                    </a>
                 </div>
-
-                <span class="phase-status"
-                      data-home-status="traditional">
-                    已完成 0 / 5
-                </span>
-
-            </a>
-
-
-            <a class="phase-chip route-home-link"
-               href="#discover"
-               data-home-route="discover">
-
-                <b>3</b>
-
-                <div>
-                    <strong>臺灣發電方式整合比較</strong>
-                    <small>
-                        比較五種發電方式的能量轉換與臺灣電力角色
-                    </small>
-                </div>
-
-                <span class="phase-status"
-                      data-home-status="discover">
-                    尚未解鎖
-                </span>
-
-            </a>
-
-
-            <a class="phase-chip route-home-link"
-               href="#emerging"
-               data-home-route="emerging">
-
-                <b>4</b>
-
-                <div>
-                    <strong>新興能源</strong>
-                    <small>
-                        Tokamak 與 Alpha-E
-                    </small>
-                </div>
-
-                <span class="phase-status"
-                      data-home-status="emerging">
-                    尚未解鎖
-                </span>
-
-            </a>
-
-
-            <a class="phase-chip route-home-link"
-               href="student-summary.html"
-               data-home-route="summary">
-
-                <b>5</b>
-
-                <div>
-                    <strong>學習整理</strong>
-                    <small>
-                        七個模組最終比較
-                    </small>
-                </div>
-
-                <span class="phase-status"
-                      data-home-status="summary">
-                    尚未解鎖
-                </span>
-
-            </a>
-
+            </aside>
         </div>
-
-    </aside>
-  </div>
-</header>
+    </header>
 
 <main>
     <section class="container" id="start">
@@ -223,7 +205,7 @@
             <article class="learning-card">
                 <span>03</span>
                 <h3>哪些設備最關鍵？</h3>
-                <p>找出渦輪、發電機、反應爐與其他主要設備。</p>
+                <p>找出不同能源系統中的主要設備，並理解它們各自扮演的角色。</p>
             </article>
             
             <article class="learning-card">
@@ -570,13 +552,9 @@
              3. 臺灣情境
         ========================= -->
         <section class="taiwan-energy-context discover-taiwan">
-
             <div class="taiwan-context-head">
-
-                <span>TAIWAN ENERGY TODAY</span>
-
-                <h3>但是，知道怎麼發電還不夠</h3>
-
+                <span>TAIWAN ENERGY 2025</span>
+                <h3>2025 年臺灣發電結構</h3>
                 <p>
                     真實的電力系統不只需要能夠產生電，
                     還要考慮 <strong>什麼時候可以發電</strong>、<strong>能不能配合用電需求</strong>，
@@ -630,8 +608,7 @@
                 <p>
                     如果太陽光電與風力都不需要燃燒燃料，
                     為什麼臺灣目前仍然需要其他發電方式？
-                    試著從<strong>自然條件、發電時間與用電需求</strong>
-                    三個方向思考。
+                    試著從<strong>自然條件、發電時間與用電需求</strong>三個方向思考。
                 </p>
             </div>
 

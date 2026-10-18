@@ -1,3 +1,157 @@
+
+const ENERGY_SUBMIT_URL =
+    "https://script.google.com/macros/s/AKfycby5SSVFvh6uV-c4Jz5kGVBt-XYU34OOqbpacPfxhwi37qfHH-3ENitj4InYiiwck7Wp/exec";
+
+    function collectEnergyAnswers() {
+
+    return {
+
+        participant_id:
+            localStorage.getItem(
+                "energy_participant_id"
+            ) || "",
+
+
+        start_q1:
+            localStorage.getItem(
+                "energy_answer_start_q1"
+            ) || "",
+
+        start_q2:
+            localStorage.getItem(
+                "energy_answer_start_q2"
+            ) || "",
+
+
+        thermal:
+            localStorage.getItem(
+                "energy_quiz_thermal_quiz_1"
+            ) || "",
+
+        nuclear:
+            localStorage.getItem(
+                "energy_quiz_nuclear_quiz_1"
+            ) || "",
+
+        wind:
+            localStorage.getItem(
+                "energy_quiz_wind_quiz_1"
+            ) || "",
+
+        hydro:
+            localStorage.getItem(
+                "energy_quiz_hydro_quiz_1"
+            ) || "",
+
+        solar:
+            localStorage.getItem(
+                "energy_quiz_solar_quiz_1"
+            ) || "",
+
+        tokamak:
+            localStorage.getItem(
+                "energy_quiz_tokamak_quiz_1"
+            ) || "",
+
+
+        discover:
+            localStorage.getItem(
+                "energy_answer_discover_reflection"
+            ) || "",
+
+
+        vacuum_predict:
+            localStorage.getItem(
+                "energy_answer_vacuum_predict"
+            ) || "",
+
+        vacuum_reason:
+            localStorage.getItem(
+                "energy_answer_vacuum_reason"
+            ) || "",
+
+        vacuum_observe:
+            localStorage.getItem(
+                "energy_answer_vacuum_observe"
+            ) || "",
+
+        vacuum_explain:
+            localStorage.getItem(
+                "energy_answer_vacuum_explain"
+            ) || "",
+
+
+        fuel_predict:
+            localStorage.getItem(
+                "energy_answer_fuel_predict"
+            ) || "",
+
+        fuel_observe:
+            localStorage.getItem(
+                "energy_answer_fuel_observe"
+            ) || "",
+
+        fuel_explain:
+            localStorage.getItem(
+                "energy_answer_fuel_explain"
+            ) || "",
+
+
+        review_q1:
+            localStorage.getItem(
+                "energy_answer_review_q1"
+            ) || "",
+
+        review_q2:
+            localStorage.getItem(
+                "energy_answer_review_q2"
+            ) || "",
+
+        review_q3:
+            localStorage.getItem(
+                "energy_answer_review_q3"
+            ) || ""
+
+    };
+
+}
+
+async function submitEnergyAnswers() {
+
+    const data =
+        collectEnergyAnswers();
+
+
+    const response =
+        await fetch(
+            ENERGY_SUBMIT_URL,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type":
+                        "text/plain;charset=utf-8"
+                },
+
+                body:
+                    JSON.stringify(data)
+            }
+        );
+
+
+    if (!response.ok) {
+
+        throw new Error(
+            "送出失敗"
+        );
+
+    }
+
+
+    return true;
+
+}
+
 // =====================================================
 // 火力發電 Unity 網頁控制
 // =====================================================
@@ -4541,6 +4695,57 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+    /*
+ * 最後整理頁：
+ * 先把答案送到 Google Sheets。
+ */
+if (key === "review") {
+
+    try {
+
+        button.disabled = true;
+
+        button.textContent =
+            "正在送出答案…";
+
+
+        await submitEnergyAnswers();
+
+
+        showLearningToast(
+            "答案已成功送出 ✓"
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "送出答案失敗：",
+            error
+        );
+
+
+        showLearningToast(
+            "答案送出失敗，請檢查網路後再試一次"
+        );
+
+
+        button.disabled = false;
+
+        updateCompletionButton(
+            button,
+            key,
+            false
+        );
+
+        return;
+
+    }
+
+
+    button.disabled = false;
+
+}
 
     /*
      * 條件符合，才真正完成。
@@ -5333,7 +5538,9 @@ document.addEventListener("DOMContentLoaded", () => {
         .querySelectorAll(".inline-term")
         .forEach(button => {
 
-            button.addEventListener("click", () => {
+            button.addEventListener(
+    "click",
+    async () => {
 
                 const term =
                     button.dataset.term;

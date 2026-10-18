@@ -4639,7 +4639,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".complete-phase-btn[data-complete-section]").forEach(button => {
         const key = button.dataset.completeSection;
         updateCompletionButton(button, key, isDone(key));
-        button.addEventListener("click", () => {
+        button.addEventListener("click", async () => {
 
     /*
      * 如果目前已完成，

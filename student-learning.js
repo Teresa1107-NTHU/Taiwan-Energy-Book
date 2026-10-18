@@ -1,6 +1,6 @@
 
 const ENERGY_SUBMIT_URL =
-    "https://script.google.com/macros/s/AKfycby5SSVFvh6uV-c4Jz5kGVBt-XYU34OOqbpacPfxhwi37qfHH-3ENitj4InYiiwck7Wp/exec";
+    "https://script.google.com/macros/s/AKfycbxktgL1V9DMzOa9Lr2-dRdeyt7sYg6SKWwU9JBkhymJeali4s6rod3TRdcKoBNOGtPc/exec";
 
     function collectEnergyAnswers(
     participantInfo = {}

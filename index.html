@@ -126,427 +126,401 @@
             </aside>
         </div>
     </header>
-
-<main>
-    <section class="container" id="start">
-        <div class="section-intro">
-            <span class="eyebrow">BEFORE WE START</span>
-            <h2>先別急著找答案，先看看你現在怎麼想</h2>
-            <p>
-                下面沒有立即顯示標準答案。先留下你的想法，等操作完模型後，再回頭看看自己有沒有新的發現。
-            </p>
-        </div>
-
-        <div class="activity-grid">
-            <article class="activity-card">
-                <h3>你覺得哪些發電方式需要先產生熱，再靠渦輪發電？</h3>
-                <div class="choice-list" data-radio-group="start_q1">
-                    <!-- radio -> 單選 -->
-                    <label class="choice"><input name="start_q1" type="radio" value="thermal_nuclear" /> 火力與核能</label>
-                    <label class="choice"><input name="start_q1" type="radio" value="wind_solar" /> 風力與太陽能</label>
-                    <label class="choice"><input name="start_q1" type="radio" value="all" /> 所有發電方式都一樣</label>
-                    <label class="choice"><input name="start_q1" type="radio" value="unknown" /> 我還不確定</label>
-                </div>
-            </article>
-
-            <article class="activity-card">
-                <h3>你目前覺得核融合和火力發電最大的不同可能是什麼？</h3>
-                <textarea data-save="start_q2" placeholder="用自己的話寫下目前的想法就可以……"></textarea>
-            </article>
-        </div>
-
-        <div class="start-answer-actions">
-
-            <button type="button"
-                    class="quiz-save-btn"
-                    id="startSaveBtn">
-                儲存答案
-            </button>
-
-            <span class="quiz-save-status pending"
-                  id="startAnswerStatus">
-                請先完成兩個問題，再按「儲存答案」
-            </span>
-
-        </div>
-
-        <div class="phase-footer">
-
-            <button class="complete-phase-btn"
-                    id="startCompleteBtn"
-                    data-complete-section="start"
-                    data-default-label="完成這一段"
-                    disabled>
-                完成這一段
-            </button>
-        </div>
-    </section>
     
-    <section class="container">
-        <div class="section-intro">
-            <span class="eyebrow">TODAY'S GOALS</span>
-            <h2>今天你會學到什麼？</h2>
-            <p>不用一開始就全部記住，只要在探索時注意下面四件事。</p>
-        </div>
-        
-        <div class="learning-goals">
-            <article class="learning-card">
-                <span>01</span>
-                <h3>不同能源從哪裡來？</h3>
-                <p>看看燃料、水、風、陽光與核反應各自扮演什麼角色。</p>
-            </article>
-            
-            <article class="learning-card">
-                <span>02</span>
-                <h3>能量怎麼一步步轉換？</h3>
-                <p>觀察熱能、機械能、光能與電能之間的轉換。</p>
-            </article>
-            
-            <article class="learning-card">
-                <span>03</span>
-                <h3>哪些設備最關鍵？</h3>
-                <p>找出不同能源系統中的主要設備，並理解它們各自扮演的角色。</p>
-            </article>
-            
-            <article class="learning-card">
-                <span>04</span>
-                <h3>核融合為什麼這麼困難？</h3>
+    <main>
+        <section class="container" id="start">
+            <div class="section-intro">
+                <span class="eyebrow">BEFORE WE START</span>
+                <h2>先別急著找答案，先看看你現在怎麼想</h2>
                 <p>
-                    認識高能粒子、電漿、原子核間的排斥，
-                    以及不同核種如何影響核融合反應。
-                </p>
-            </article>
-        </div>
-    </section>
-    
-    <section id="explore" class="container">
-        <div class="section-intro">
-            <span class="eyebrow">TRADITIONAL ENERGY</span>
-            <h2>選擇一種能源，進入獨立的互動頁面</h2>
-            <p>
-                先完成五種傳統與常見發電方式。每頁只專注一種能源，
-                完成模型導覽與整理後，再回到這裡查看進度。
-            </p>
-        </div>
-        
-        <div class="section-progress-line">
-            <strong>傳統能源探索</strong>
-            <span id="traditionalProgressText">已完成 0 / 5</span>
-        </div>
-        
-        <div class="energy-menu-grid">
-            <a class="energy-menu-card" href="thermal.html" data-module-card="thermal">
-                <span>01</span>
-                <h3>火力發電</h3>
-                <p>天然氣的化學能如何經過熱能與機械能轉成電能。</p>
-                <strong class="module-card-status">開始探索 →</strong>
-            </a>
-            
-            <a class="energy-menu-card" href="nuclear.html" data-module-card="nuclear">
-                <span>02</span>
-                <h3>核能發電</h3>
-                <p>核分裂產生熱之後，如何透過蒸汽與汽輪機發電。</p>
-                <strong class="module-card-status">開始探索 →</strong>
-            </a>
-            
-            <a class="energy-menu-card" href="wind.html" data-module-card="wind">
-                <span>03</span>
-                <h3>風力發電</h3>
-                <p>風的動能如何帶動葉片與發電機。</p>
-                <strong class="module-card-status">開始探索 →</strong>
-            </a>
-            
-            <a class="energy-menu-card" href="hydro.html" data-module-card="hydro">
-                <span>04</span>
-                <h3>水力發電</h3>
-                <p>水的重力位能與動能如何驅動水輪機。</p>
-                <strong class="module-card-status">開始探索 →</strong>
-            </a>
-            
-            <a class="energy-menu-card" href="solar.html" data-module-card="solar">
-                <span>05</span>
-                <h3>太陽光電</h3>
-                <p>太陽能電池如何直接把光能轉成電能。</p>
-                <strong class="module-card-status">開始探索 →</strong>
-            </a>
-        </div>
-    </section>
-
-  <section id="discover" class="container gated-section" data-gate="discover">
-    <div class="gate-message">
-      <span>🔒</span>
-      <div>
-          <strong>台灣發電能源整合比較尚未解鎖</strong>
-        <p>完成火力、核能、風力、水力與太陽光電五個模組後即可進入。</p>
-      </div>
-    </div>
-    <div class="gated-content">
-
-        <!-- =========================
-             區塊標題
-        ========================= -->
-        <div class="section-intro discover-intro">
-
-            <span class="eyebrow">CONNECT THE IDEAS</span>
-
-            <h2>把五種發電方式放在一起比較</h2>
-
-            <p>
-                你已經分別探索了火力、核能、風力、水力與太陽光電。
-                現在先不要把它們當成五個獨立的知識點，
-                試著從<strong>能量從哪裡來、怎麼轉換，以及最後怎麼產生電</strong>
-                三個角度，把它們放在一起看。
-            </p>
-        </div>
-
-        <!-- =========================
-             1. 五種能源的能量路徑
-        ========================= -->
-        <section class="discover-block">
-
-            <div class="discover-block-head">
-
-                <span>STEP 01</span>
-
-                <h3>先看看：五種能源走的是同一條路嗎？</h3>
-
-                <p>
-                    有些發電方式看起來差很多，
-                    但把設備名稱拿掉、只看能量怎麼轉換後，
-                    其實可以找到一些很有趣的共同點。
-                    如果有哪一種發電方式想再確認，
-                    <strong>可以直接點選下方卡片，回到該能源頁面重新查看。</strong>
+                    下面沒有立即顯示標準答案。先留下你的想法，等操作完模型後，再回頭看看自己有沒有新的發現。
                 </p>
             </div>
 
-            <div class="energy-path-grid">
-
-                <a class="energy-path-card energy-path-link thermal-path"
-                   href="thermal.html"
-                   aria-label="回到火力發電頁面">
-
-                    <div class="energy-path-title">
-                        <span>火力</span>
-                        <strong>天然氣的化學能</strong>
+            <div class="activity-grid">
+                <article class="activity-card">
+                    <h3>你覺得哪些發電方式需要先產生熱，再靠渦輪發電？</h3>
+                    <div class="choice-list" data-radio-group="start_q1">
+                        <!-- radio -> 單選 -->
+                        <label class="choice"><input name="start_q1" type="radio" value="thermal_nuclear" /> 火力與核能</label>
+                        <label class="choice"><input name="start_q1" type="radio" value="wind_solar" /> 風力與太陽能</label>
+                        <label class="choice"><input name="start_q1" type="radio" value="all" /> 所有發電方式都一樣</label>
+                        <label class="choice"><input name="start_q1" type="radio" value="unknown" /> 我還不確定</label>
                     </div>
-
-                    <div class="energy-path-flow">
-                        化學能
-                        <b>→</b>
-                        熱能
-                        <b>→</b>
-                        機械能
-                        <b>→</b>
-                        電能
-                    </div>
-
-                    <p>
-                        燃料先提供熱能，
-                        再利用蒸氣與汽輪機帶動發電機。
-                    </p>
-
-                    <span class="energy-path-review">
-                        回到這一頁複習 →
-                    </span>
-                </a>
-
-                <a class="energy-path-card energy-path-link nuclear-path"
-                   href="nuclear.html"
-                   aria-label="回到核能發電頁面">
-
-                    <div class="energy-path-title">
-                        <span>核能</span>
-                        <strong>核分裂釋放的核能</strong>
-                    </div>
-
-                    <div class="energy-path-flow">
-                        核能
-                        <b>→</b>
-                        熱能
-                        <b>→</b>
-                        機械能
-                        <b>→</b>
-                        電能
-                    </div>
-
-                    <p>
-                        熱的來源和火力不同，
-                        但後續同樣會利用蒸氣推動汽輪機。
-                    </p>
-
-                    <span class="energy-path-review">
-                        回到這一頁複習 →
-                    </span>
-                </a>
-
-                <a class="energy-path-card energy-path-link wind-path"
-                   href="wind.html"
-                   aria-label="回到風力發電頁面">
-
-                    <div class="energy-path-title">
-                        <span>風力</span>
-                        <strong>移動空氣的動能</strong>
-                    </div>
-
-                    <div class="energy-path-flow">
-                        風的動能
-                        <b>→</b>
-                        機械能
-                        <b>→</b>
-                        電能
-                    </div>
-
-                    <p>
-                        風直接推動葉片與轉子，
-                        不需要先產生熱能。
-                    </p>
-
-                    <span class="energy-path-review">
-                        回到這一頁複習 →
-                    </span>
-                </a>
-
-                <a class="energy-path-card energy-path-link hydro-path"
-                   href="hydro.html"
-                   aria-label="回到水力發電頁面">
-
-                    <div class="energy-path-title">
-                        <span>水力</span>
-                        <strong>高處水體的重力位能</strong>
-                    </div>
-
-                    <div class="energy-path-flow">
-                        重力位能
-                        <b>→</b>
-                        水流動能
-                        <b>→</b>
-                        機械能
-                        <b>→</b>
-                        電能
-                    </div>
-
-                    <p>
-                        水往低處流動後推動水輪機，
-                        再由發電機產生電能。
-                    </p>
-
-                    <span class="energy-path-review">
-                        回到這一頁複習 →
-                    </span>
-                </a>
-
-                <a class="energy-path-card energy-path-link solar-path"
-                   href="solar.html"
-                   aria-label="回到太陽光電頁面">
-
-                    <div class="energy-path-title">
-                        <span>太陽光電</span>
-                        <strong>太陽光的光能</strong>
-                    </div>
-
-                    <div class="energy-path-flow">
-                        光能
-                        <b>→</b>
-                        電能
-                    </div>
-
-                    <p>
-                        太陽能電池可以直接完成光能到電能的轉換，
-                        不需要旋轉機械設備。
-                    </p>
-
-                    <span class="energy-path-review">
-                        回到這一頁複習 →
-                    </span>
-                </a>
-</div>
-        </section>
-
-        <!-- =========================
-             2. 找共同點
-        ========================= -->
-        <section class="discover-block discover-pattern-block">
-
-            <div class="discover-block-head">
-                <span>STEP 02</span>
-                <h3>再找找看，哪些其實比你想像中更像？</h3>
-                <p>
-                    如果不只記住設備名稱，而是看「能量經過哪些階段」，
-                    五種發電方式可以重新分成幾組。
-                </p>
-            </div>
-
-            <div class="pattern-grid">
-
-                <article class="pattern-card">
-
-                    <span class="pattern-number">01</span>
-
-                    <h4>都需要熱才能發電</h4>
-
-                    <div class="pattern-energy-tags">
-                        <span>火力</span>
-                        <span>核能</span>
-                    </div>
-
-                    <p>
-                        兩者最初的能源來源不同，
-                        但都先產生<strong>熱</strong>，再利用<strong>蒸氣</strong>推動汽輪機。
-                    </p>
                 </article>
 
-                <article class="pattern-card">
-
-                    <span class="pattern-number">02</span>
-
-                    <h4>直接利用自然界的運動</h4>
-
-                    <div class="pattern-energy-tags">
-                        <span>風力</span>
-                        <span>水力</span>
-                    </div>
-
-                    <p>
-                        風與水先使<strong>旋轉設備</strong>產生<strong>機械能</strong>，
-                        再由<strong>發電機</strong>把機械能轉換成<strong>電能</strong>。
-                    </p>
-                </article>
-
-                <article class="pattern-card">
-
-                    <span class="pattern-number">03</span>
-
-                    <h4>不需要旋轉機械階段</h4>
-
-                    <div class="pattern-energy-tags">
-                        <span>太陽光電</span>
-                    </div>
-
-                    <p>
-                        太陽能電池<strong>直接</strong>將光能轉換成電能，
-                        是五種發電方式中能量路徑最不同的一種。
-                    </p>
+                <article class="activity-card">
+                    <h3>你目前覺得核融合和火力發電最大的不同可能是什麼？</h3>
+                    <textarea data-save="start_q2" placeholder="用自己的話寫下目前的想法就可以……"></textarea>
                 </article>
             </div>
 
-            <div class="discover-thinking-note">
+            <div class="start-answer-actions">
 
-                <div class="discover-thinking-title">
-                    你發現了嗎？
-                </div>
+                <button type="button"
+                        class="quiz-save-btn"
+                        id="startSaveBtn">
+                    儲存答案
+                </button>
 
-                <p>
-                    能源來源不同不代表整個發電流程都不同。
-                    火力與核能的熱來源不同，但後半段很相似；
-                    風力與水力的自然條件不同，卻都會先形成旋轉機械能。
-                </p>
+                <span class="quiz-save-status pending"
+                      id="startAnswerStatus">
+                    請先完成兩個問題，再按「儲存答案」
+                </span>
+            </div>
 
-                <p class="discover-thinking-summary">
-                    真正比較能源時，應該同時觀察<strong>能量來源</strong>與<strong>轉換路徑</strong>。
-                </p>
-
+            <div class="phase-footer">
+                <button class="complete-phase-btn"
+                        id="startCompleteBtn"
+                        data-complete-section="start"
+                        data-default-label="完成這一段"
+                        disabled>
+                    完成這一段
+                </button>
             </div>
         </section>
+    
+        <section class="container">
+            <div class="section-intro">
+                <span class="eyebrow">TODAY'S GOALS</span>
+                <h2>今天你會學到什麼？</h2>
+                <p>不用一開始就全部記住，只要在探索時注意下面四件事。</p>
+            </div>
+        
+            <div class="learning-goals">
+                <article class="learning-card">
+                    <span>01</span>
+                    <h3>不同能源從哪裡來？</h3>
+                    <p>看看燃料、水、風、陽光與核反應各自扮演什麼角色。</p>
+                </article>
+            
+                <article class="learning-card">
+                    <span>02</span>
+                    <h3>能量怎麼一步步轉換？</h3>
+                    <p>觀察熱能、機械能、光能與電能之間的轉換。</p>
+                </article>
+            
+                <article class="learning-card">
+                    <span>03</span>
+                    <h3>哪些設備最關鍵？</h3>
+                    <p>找出不同能源系統中的主要設備，並理解它們各自扮演的角色。</p>
+                </article>
+            
+                <article class="learning-card">
+                    <span>04</span>
+                    <h3>核融合為什麼這麼困難？</h3>
+                    <p>
+                        認識高能粒子、電漿、原子核間的排斥，
+                        以及不同核種如何影響核融合反應。
+                    </p>
+                </article>
+            </div>
+        </section>
+    
+        <section id="explore" class="container">
+            <div class="section-intro">
+                <span class="eyebrow">TRADITIONAL ENERGY</span>
+                <h2>選擇一種能源，進入獨立的互動頁面</h2>
+                <p>
+                    先完成五種傳統與常見發電方式。每頁只專注一種能源，
+                    完成模型導覽與整理後，再回到這裡查看進度。
+                </p>
+            </div>
+        
+            <div class="section-progress-line">
+                <strong>傳統能源探索</strong>
+                <span id="traditionalProgressText">已完成 0 / 5</span>
+            </div>
+        
+            <div class="energy-menu-grid">
+                <a class="energy-menu-card" href="thermal.html" data-module-card="thermal">
+                    <span>01</span>
+                    <h3>火力發電</h3>
+                    <p>天然氣的化學能如何經過熱能與機械能轉成電能。</p>
+                    <strong class="module-card-status">開始探索 →</strong>
+                </a>
+            
+                <a class="energy-menu-card" href="nuclear.html" data-module-card="nuclear">
+                    <span>02</span>
+                    <h3>核能發電</h3>
+                    <p>核分裂產生熱之後，如何透過蒸汽與汽輪機發電。</p>
+                    <strong class="module-card-status">開始探索 →</strong>
+                </a>
+            
+                <a class="energy-menu-card" href="wind.html" data-module-card="wind">
+                    <span>03</span>
+                    <h3>風力發電</h3>
+                    <p>風的動能如何帶動葉片與發電機。</p>
+                    <strong class="module-card-status">開始探索 →</strong>
+                </a>
+            
+                <a class="energy-menu-card" href="hydro.html" data-module-card="hydro">
+                    <span>04</span>
+                    <h3>水力發電</h3>
+                    <p>水的重力位能與動能如何驅動水輪機。</p>
+                    <strong class="module-card-status">開始探索 →</strong>
+                </a>
+            
+                <a class="energy-menu-card" href="solar.html" data-module-card="solar">
+                    <span>05</span>
+                    <h3>太陽光電</h3>
+                    <p>太陽能電池如何直接把光能轉成電能。</p>
+                    <strong class="module-card-status">開始探索 →</strong>
+                </a>
+            </div>
+        </section>
+
+        <section id="discover" class="container gated-section" data-gate="discover">
+            <div class="gate-message">
+                <span>🔒</span>
+                <div>
+                    <strong>台灣發電能源整合比較尚未解鎖</strong>
+                    <p>完成火力、核能、風力、水力與太陽光電五個模組後即可進入。</p>
+                </div>
+            </div>
+            
+            <div class="gated-content">
+                <!-- =========================
+                     區塊標題
+                ========================= -->
+                <div class="section-intro discover-intro">
+                    <span class="eyebrow">CONNECT THE IDEAS</span>
+                    <h2>把五種發電方式放在一起比較</h2>
+                    <p>
+                        你已經分別探索了火力、核能、風力、水力與太陽光電。
+                        現在先不要把它們當成五個獨立的知識點，
+                        試著從<strong>能量從哪裡來、怎麼轉換，以及最後怎麼產生電</strong>
+                        三個角度，把它們放在一起看。
+                    </p>
+                </div>
+
+                <!-- =========================
+                     1. 五種能源的能量路徑
+                ========================= -->
+                <section class="discover-block">
+                    <div class="discover-block-head">
+                        <span>STEP 01</span>
+                        <h3>先看看：五種能源走的是同一條路嗎？</h3>
+                        <p>
+                            有些發電方式看起來差很多，
+                            但把設備名稱拿掉、只看能量怎麼轉換後，
+                            其實可以找到一些很有趣的共同點。
+                            如果有哪一種發電方式想再確認，
+                            <strong>可以直接點選下方卡片，回到該能源頁面重新查看。</strong>
+                        </p>
+                    </div>
+
+                    <div class="energy-path-grid">
+                        <a class="energy-path-card energy-path-link thermal-path"
+                            href="thermal.html"
+                            aria-label="回到火力發電頁面">
+                            <div class="energy-path-title">
+                                <span>火力</span>
+                                <strong>天然氣的化學能</strong>
+                            </div>
+
+                            <div class="energy-path-flow">
+                                化學能
+                                <b>→</b>
+                                熱能
+                                <b>→</b>
+                                機械能
+                                <b>→</b>
+                                電能
+                            </div>
+
+                            <p>
+                                燃料先提供熱能，
+                                再利用蒸氣與汽輪機帶動發電機。
+                            </p>
+
+                            <span class="energy-path-review">
+                                回到這一頁複習 →
+                            </span>
+                        </a>
+
+                        <a class="energy-path-card energy-path-link nuclear-path"
+                           href="nuclear.html"
+                           aria-label="回到核能發電頁面">
+                            <div class="energy-path-title">
+                                <span>核能</span>
+                                <strong>核分裂釋放的核能</strong>
+                            </div>
+
+                            <div class="energy-path-flow">
+                                核能
+                                <b>→</b>
+                                熱能
+                                <b>→</b>
+                                機械能
+                                <b>→</b>
+                                電能
+                            </div>
+
+                            <p>
+                                熱的來源和火力不同，
+                                但後續同樣會利用蒸氣推動汽輪機。
+                            </p>
+
+                            <span class="energy-path-review">
+                                回到這一頁複習 →
+                            </span>
+                        </a>
+
+                        <a class="energy-path-card energy-path-link wind-path"
+                           href="wind.html"
+                           aria-label="回到風力發電頁面">
+                            <div class="energy-path-title">
+                                <span>風力</span>
+                                <strong>移動空氣的動能</strong>
+                            </div>
+
+                            <div class="energy-path-flow">
+                                風的動能
+                                <b>→</b>
+                                機械能
+                                <b>→</b>
+                                電能
+                            </div>
+
+                            <p>
+                                風直接推動葉片與轉子，
+                                不需要先產生熱能。
+                            </p>
+
+                            <span class="energy-path-review">
+                                回到這一頁複習 →
+                            </span>
+                        </a>
+
+                        <a class="energy-path-card energy-path-link hydro-path"
+                           href="hydro.html"
+                           aria-label="回到水力發電頁面">
+
+                            <div class="energy-path-title">
+                                <span>水力</span>
+                                <strong>高處水體的重力位能</strong>
+                            </div>
+
+                            <div class="energy-path-flow">
+                                重力位能
+                                <b>→</b>
+                                水流動能
+                                <b>→</b>
+                                機械能
+                                <b>→</b>
+                                電能
+                            </div>
+
+                            <p>
+                                水往低處流動後推動水輪機，
+                                再由發電機產生電能。
+                            </p>
+
+                            <span class="energy-path-review">
+                                回到這一頁複習 →
+                            </span>
+                        </a>
+
+                        <a class="energy-path-card energy-path-link solar-path"
+                           href="solar.html"
+                           aria-label="回到太陽光電頁面">
+
+                            <div class="energy-path-title">
+                                <span>太陽光電</span>
+                                <strong>太陽光的光能</strong>
+                            </div>
+
+                            <div class="energy-path-flow">
+                                光能
+                                <b>→</b>
+                                電能
+                            </div>
+
+                            <p>
+                                太陽能電池可以直接完成光能到電能的轉換，
+                                不需要旋轉機械設備。
+                            </p>
+
+                            <span class="energy-path-review">
+                                回到這一頁複習 →
+                            </span>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- =========================
+                     2. 找共同點
+                ========================= -->
+                <section class="discover-block discover-pattern-block">
+                    <div class="discover-block-head">
+                        <span>STEP 02</span>
+                        <h3>再找找看，哪些其實比你想像中更像？</h3>
+                        <p>
+                            如果不只記住設備名稱，而是看「能量經過哪些階段」，
+                            五種發電方式可以重新分成幾組。
+                        </p>
+                    </div>
+
+                    <div class="pattern-grid">
+                        <article class="pattern-card">
+                            <span class="pattern-number">01</span>
+                            <h4>都需要熱才能發電</h4>
+                            <div class="pattern-energy-tags">
+                                <span>火力</span>
+                                <span>核能</span>
+                            </div>
+
+                            <p>
+                                兩者最初的能源來源不同，
+                                但都先產生<strong>熱</strong>，再利用<strong>蒸氣</strong>推動汽輪機。
+                            </p>
+                        </article>
+
+                        <article class="pattern-card">
+                            <span class="pattern-number">02</span>
+                            <h4>直接利用自然界的運動</h4>
+                            <div class="pattern-energy-tags">
+                                <span>風力</span>
+                                <span>水力</span>
+                            </div>
+
+                            <p>
+                                風與水先使<strong>旋轉設備</strong>產生<strong>機械能</strong>，
+                                再由<strong>發電機</strong>把機械能轉換成<strong>電能</strong>。
+                            </p>
+                        </article>
+
+                        <article class="pattern-card">
+                            <span class="pattern-number">03</span>
+                            <h4>不需要旋轉機械階段</h4>
+                            <div class="pattern-energy-tags">
+                                <span>太陽光電</span>
+                            </div>
+
+                            <p>
+                                太陽能電池<strong>直接</strong>將光能轉換成電能，
+                                是五種發電方式中能量路徑最不同的一種。
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="discover-thinking-note">
+                        <div class="discover-thinking-title">
+                            你發現了嗎？
+                        </div>
+
+                        <p>
+                            能源來源不同不代表整個發電流程都不同。
+                            火力與核能的熱來源不同，但後半段很相似；
+                            風力與水力的自然條件不同，卻都會先形成旋轉機械能。
+                        </p>
+
+                        <p class="discover-thinking-summary">
+                            真正比較能源時，應該同時觀察<strong>能量來源</strong>與<strong>轉換路徑</strong>。
+                        </p>
+                    </div>
+                </section>
 
         <!-- =========================
              3. 臺灣情境

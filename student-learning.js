@@ -2,14 +2,17 @@
 const ENERGY_SUBMIT_URL =
     "https://script.google.com/macros/s/AKfycby5SSVFvh6uV-c4Jz5kGVBt-XYU34OOqbpacPfxhwi37qfHH-3ENitj4InYiiwck7Wp/exec";
 
-    function collectEnergyAnswers() {
+    function collectEnergyAnswers(
+    participantInfo = {}
+) {
 
     return {
 
-        participant_id:
-            localStorage.getItem(
-                "energy_participant_id"
-            ) || "",
+        student_id:
+            participantInfo.student_id || "",
+
+        gender:
+            participantInfo.gender || "",
 
 
         start_q1:
@@ -116,10 +119,14 @@ const ENERGY_SUBMIT_URL =
 
 }
 
-async function submitEnergyAnswers() {
+async function submitEnergyAnswers(
+    participantInfo
+) {
 
     const data =
-        collectEnergyAnswers();
+        collectEnergyAnswers(
+            participantInfo
+        );
 
 
     await fetch(
@@ -141,6 +148,100 @@ async function submitEnergyAnswers() {
 
 
     return true;
+}
+
+function requestSubmissionInfo() {
+
+    // =========================
+    // 1. 輸入學號
+    // =========================
+    const studentId =
+        window.prompt(
+            "請輸入你的學號："
+        );
+
+
+    /*
+     * 按「取消」
+     */
+    if (studentId === null) {
+
+        return null;
+
+    }
+
+
+    if (!studentId.trim()) {
+
+        window.alert(
+            "學號不可空白，請重新送出。"
+        );
+
+        return null;
+
+    }
+
+
+    // =========================
+    // 2. 輸入性別
+    // =========================
+    const genderInput =
+        window.prompt(
+            "請輸入性別：\n\n" +
+            "1：男性\n" +
+            "2：女性\n" +
+            "3：其他\n" +
+            "4：不願回答"
+        );
+
+
+    /*
+     * 按「取消」
+     */
+    if (genderInput === null) {
+
+        return null;
+
+    }
+
+
+    const genderMap = {
+
+        "1": "男性",
+        "2": "女性",
+        "3": "其他",
+        "4": "不願回答"
+
+    };
+
+
+    const gender =
+        genderMap[
+            genderInput.trim()
+        ];
+
+
+    if (!gender) {
+
+        window.alert(
+            "性別輸入錯誤，請輸入 1、2、3 或 4。"
+        );
+
+        return null;
+
+    }
+
+
+    return {
+
+        student_id:
+            studentId.trim(),
+
+        gender:
+            gender
+
+    };
+
 }
 
 // =====================================================
@@ -3045,9 +3146,9 @@ const tokamakSteps = [
 
     {
         title: "極向磁場線圈",
-        english: "Poroidal Field Magnets",
+        english: "Poloidal Field Magnets",
         description:
-            "極向磁場線圈（Poloidal Field Magnets）位於環向磁場線圈外側，可以協助調整電漿的形狀與位置，並提高電漿的穩定性。",
+            "極向磁場線圈位於環向磁場線圈外側，可以協助調整電漿的形狀與位置，並提高電漿的穩定性。",
         energy:
             "塑形與穩定電漿"
     },
@@ -4692,6 +4793,25 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 if (key === "review") {
 
+    /*
+     * 最後真正送出前，
+     * 先要求輸入學號與性別。
+     */
+    const participantInfo =
+        await requestSubmissionInfo();
+
+
+    /*
+     * 學生按「返回修改」
+     * 就不送出，也不標記完成。
+     */
+    if (!participantInfo) {
+
+        return;
+
+    }
+
+
     try {
 
         button.disabled = true;
@@ -4700,7 +4820,9 @@ if (key === "review") {
             "正在送出答案…";
 
 
-        await submitEnergyAnswers();
+        await submitEnergyAnswers(
+            participantInfo
+        );
 
 
         showLearningToast(
@@ -4723,11 +4845,13 @@ if (key === "review") {
 
         button.disabled = false;
 
+
         updateCompletionButton(
             button,
             key,
             false
         );
+
 
         return;
 

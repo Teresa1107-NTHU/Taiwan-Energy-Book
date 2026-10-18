@@ -522,198 +522,195 @@
                     </div>
                 </section>
 
-        <!-- =========================
-             3. 臺灣情境
-        ========================= -->
-        <section class="taiwan-energy-context discover-taiwan">
-            <div class="taiwan-context-head">
-                <span>TAIWAN ENERGY 2025</span>
-                <h3>2025 年臺灣發電結構</h3>
-                <p>
-                    真實的電力系統不只需要能夠產生電，
-                    還要考慮 <strong>什麼時候可以發電</strong>、<strong>能不能配合用電需求</strong>，
-                    以及<strong>不同能源</strong>如何一起維持供電。
-                </p>
-            </div>
+                <!-- =========================
+                     3. 臺灣情境
+                ========================= -->
+                <section class="taiwan-energy-context discover-taiwan">
+                    <div class="taiwan-context-head">
+                        <span>TAIWAN ENERGY 2025</span>
+                        <h3>2025 年臺灣發電結構</h3>
+                        <p>
+                            真實的電力系統不只需要能夠產生電，
+                            還要考慮 <strong>什麼時候可以發電</strong>、<strong>能不能配合用電需求</strong>，
+                            以及<strong>不同能源</strong>如何一起維持供電。
+                        </p>
+                    </div>
 
-            <div class="taiwan-mix-grid">
+                    <div class="taiwan-mix-grid">
+                        <article>
+                            <strong>47.7%</strong>
+                            <span>燃氣發電</span>
+                            <p>
+                                2025 年臺灣發電量占比最高的能源，
+                                目前仍是重要的電力來源。
+                            </p>
+                        </article>
 
-                <article>
-                    <strong>47.7%</strong>
-                    <span>燃氣發電</span>
+                        <article>
+                            <strong>35.3%</strong>
+                            <span>燃煤發電</span>
+                            <p>
+                                仍占相當比例，
+                                但能源政策方向持續降低燃煤使用。
+                            </p>
+                        </article>
+
+                        <article>
+                            <strong>13.3%</strong>
+                            <span>再生能源</span>
+                            <p>
+                                包含太陽光電、風力、水力
+                                以及其他再生能源。
+                            </p>
+                        </article>
+
+                        <article>
+                            <strong>1.1%</strong>
+                            <span>核能發電</span>
+                            <p>
+                                2025 年全年仍有部分核能發電量，
+                                之後既有機組陸續進入除役。
+                            </p>
+                        </article>
+                    </div>
+
+                    <div class="taiwan-context-note discover-question">
+                        <strong>想一想：</strong>
+                        <p>
+                            如果太陽光電與風力都不需要燃燒燃料，
+                            為什麼臺灣目前仍然需要其他發電方式？
+                            試著從<strong>自然條件、發電時間與用電需求</strong>三個方向思考。
+                        </p>
+                    </div>
+
+                    <div class="taiwan-data-source">
+                        資料基準：2025 年全年發電結構｜
+                        資料來源：
+                        <a href="https://service.moea.gov.tw/EE521/common/Common.aspx?code=M&no=9"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            經濟部能源統計 ↗
+                        </a>
+                    </div>
+                </section>
+
+                <!-- =========================
+                     4. 整合反思
+                ========================= -->
+                <div class="reflection-card discover-reflection">
+                    <span class="reflection-eyebrow">
+                        YOUR TURN
+                    </span>
+
+                    <h3>如果只能用一句話，你會怎麼比較這五種發電方式？</h3>
                     <p>
-                        2025 年臺灣發電量占比最高的能源，
-                        目前仍是重要的電力來源。
+                        不需要把五種能源逐一介紹。
+                        試著找出一個你認為最重要的比較角度，
+                        例如能源來源、能量轉換方式、
+                        是否受到自然條件影響，或在供電系統中的角色。
                     </p>
-                </article>
 
-                <article>
-                    <strong>35.3%</strong>
-                    <span>燃煤發電</span>
-                    <p>
-                        仍占相當比例，
-                        但能源政策方向持續降低燃煤使用。
-                    </p>
-                </article>
+                    <textarea data-save="discover_reflection"
+                              id="discoverReflection"
+                              placeholder="例如：我發現雖然五種能源來源不同，但……"></textarea>
 
-                <article>
-                    <strong>13.3%</strong>
-                    <span>再生能源</span>
-                    <p>
-                        包含太陽光電、風力、水力
-                        以及其他再生能源。
-                    </p>
-                </article>
+                    <div class="discover-answer-actions">
+                        <button type="button"
+                                class="quiz-save-btn"
+                                id="discoverSaveBtn">
+                            儲存答案
+                        </button>
 
-                <article>
-                    <strong>1.1%</strong>
-                    <span>核能發電</span>
-                    <p>
-                        2025 年全年仍有部分核能發電量，
-                        之後既有機組陸續進入除役。
-                    </p>
-                </article>
-            </div>
+                        <span class="quiz-save-status"
+                              id="discoverAnswerStatus"></span>
 
-            <div class="taiwan-context-note discover-question">
+                    </div>
+                </div>
 
-                <strong>想一想：</strong>
-
-                <p>
-                    如果太陽光電與風力都不需要燃燒燃料，
-                    為什麼臺灣目前仍然需要其他發電方式？
-                    試著從<strong>自然條件、發電時間與用電需求</strong>三個方向思考。
-                </p>
-            </div>
-
-            <div class="taiwan-data-source">
-                資料基準：2025 年全年發電結構｜
-                資料來源：
-                <a href="https://service.moea.gov.tw/EE521/common/Common.aspx?code=M&no=9"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    經濟部能源統計 ↗
-                </a>
+                <div class="phase-footer">
+                    <button class="complete-phase-btn"
+                            id="discoverCompleteBtn"
+                            data-complete-section="discover"
+                            data-default-label="完成能源整合比較"
+                            disabled>
+                        完成能源整合比較
+                    </button>
+                </div>
             </div>
         </section>
 
-        <!-- =========================
-             4. 整合反思
-        ========================= -->
-        <div class="reflection-card discover-reflection">
-
-            <span class="reflection-eyebrow">
-                YOUR TURN
-            </span>
-
-            <h3>如果只能用一句話，你會怎麼比較這五種發電方式？</h3>
-
-            <p>
-                不需要把五種能源逐一介紹。
-                試著找出一個你認為最重要的比較角度，
-                例如能源來源、能量轉換方式、
-                是否受到自然條件影響，或在供電系統中的角色。
-            </p>
-
-            <textarea data-save="discover_reflection"
-                      id="discoverReflection"
-                      placeholder="例如：我發現雖然五種能源來源不同，但……"></textarea>
-
-            <div class="discover-answer-actions">
-
-                <button type="button"
-                        class="quiz-save-btn"
-                        id="discoverSaveBtn">
-                    儲存答案
-                </button>
-
-                <span class="quiz-save-status"
-                      id="discoverAnswerStatus"></span>
-
+        <section id="emerging" class="container gated-section" data-gate="emerging">
+            <div class="gate-message">
+                <span>🔒</span>
+                <div>
+                    <strong>新興能源尚未解鎖</strong>
+                    <p>完成五種傳統能源並完成「整理發現」後即可進入。</p>
+                </div>
             </div>
-        </div>
 
-        <div class="phase-footer">
+            <div class="gated-content">
+                <div class="section-intro">
+                    <span class="eyebrow">EMERGING ENERGY</span>
+                    <h2>接下來，進入新興能源探索</h2>
+                    <p>
+                        前面五種能源用來認識實際發電系統，接下來的 Tokamak 與 Alpha-E
+                        則著重<strong>核融合</strong>所需要的條件與實驗概念。
+                    </p>
+                </div>
 
-            <button class="complete-phase-btn"
-                    id="discoverCompleteBtn"
-                    data-complete-section="discover"
-                    data-default-label="完成能源整合比較"
-                    disabled>
-                完成能源整合比較
-            </button>
-        </div>
-    </div>
-  </section>
+                <div class="section-progress-line">
+                    <strong>新興能源探索</strong>
+                    <span id="emergingProgressText">已完成 0 / 2</span>
+                </div>
 
-  <section id="emerging" class="container gated-section" data-gate="emerging">
-    <div class="gate-message">
-      <span>🔒</span>
-      <div>
-        <strong>新興能源尚未解鎖</strong>
-        <p>完成五種傳統能源並完成「整理發現」後即可進入。</p>
-      </div>
-    </div>
+                <div class="energy-menu-grid emerging-grid">
+                    <a class="energy-menu-card" href="tokamak.html" data-module-card="tokamak">
+                        <span>01</span>
+                        <h3>Tokamak</h3>
+                        <p>認識真空、高溫電漿、磁場與電漿控制。</p>
+                        <strong class="module-card-status">開始探索 →</strong>
+                    </a>
 
-    <div class="gated-content">
-      <div class="section-intro">
-        <span class="eyebrow">EMERGING ENERGY</span>
-        <h2>接下來，進入新興能源探索</h2>
-        <p>
-          前面五種能源用來認識實際發電系統，接下來的 Tokamak 與 Alpha-E
-          則著重<strong>核融合</strong>所需要的條件與實驗概念。
-        </p>
-      </div>
+                    <a class="energy-menu-card gated-link" 
+                       href="alpha-e-student-activity.html"
+                       data-module-card="challenge" 
+                       data-link-requires="alpha">
+                        <span>02</span>
+                        <h3>Alpha-E</h3>
+                        <p>從真空、粒子束與核種選擇理解核融合實驗條件。</p>
+                        <strong class="module-card-status">完成 Tokamak 後解鎖</strong>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-      <div class="section-progress-line">
-        <strong>新興能源探索</strong>
-        <span id="emergingProgressText">已完成 0 / 2</span>
-      </div>
+        <section id="final-review" class="container gated-section compact-gate" data-gate="final">
+            <div class="gate-message">
+                <span>🔒</span>
+                <div>
+                    <strong>最終學習整理尚未解鎖</strong>
+                    <p>完成 Tokamak 與 Alpha-E 後，就能把七個能源與核融合模組放在一起比較。</p>
+                </div>
+            </div>
 
-      <div class="energy-menu-grid emerging-grid">
-        <a class="energy-menu-card" href="tokamak.html" data-module-card="tokamak">
-          <span>01</span>
-          <h3>Tokamak</h3>
-          <p>認識真空、高溫電漿、磁場與電漿控制。</p>
-          <strong class="module-card-status">開始探索 →</strong>
-        </a>
+            <div class="gated-content">
+                <div class="challenge-panel">
+                    <div>
+                        <h3>七個模組都完成了</h3>
+                        <p>最後把五種發電方式、Tokamak 與 Alpha-E 一起比較與反思。</p>
+                    </div>
+                    
+                    <a class="btn btn-primary" href="student-summary.html">前往學習整理</a>
+                </div>
+            </div>
+        </section>
+    </main>
 
-        <a class="energy-menu-card gated-link" href="alpha-e-student-activity.html"
-           data-module-card="challenge" data-link-requires="alpha">
-          <span>02</span>
-          <h3>Alpha-E</h3>
-          <p>從真空、粒子束與核種選擇理解核融合實驗條件。</p>
-          <strong class="module-card-status">完成 Tokamak 後解鎖</strong>
-        </a>
-      </div>
-    </div>
-  </section>
+    <footer>
+        <p>臺灣能源互動電子書 © 2026</p>
+        <p>本網站為教育與學術用途開發。</p>
+    </footer>
 
-  <section id="final-review" class="container gated-section compact-gate" data-gate="final">
-    <div class="gate-message">
-      <span>🔒</span>
-      <div>
-        <strong>最終學習整理尚未解鎖</strong>
-        <p>完成 Tokamak 與 Alpha-E 後，就能把七個能源與核融合模組放在一起比較。</p>
-      </div>
-    </div>
-
-    <div class="gated-content">
-      <div class="challenge-panel">
-        <div>
-          <h3>七個模組都完成了</h3>
-          <p>最後把五種發電方式、Tokamak 與 Alpha-E 一起比較與反思。</p>
-        </div>
-        <a class="btn btn-primary" href="student-summary.html">前往學習整理</a>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <p>臺灣能源互動電子書 © 2026</p>
-  <p>本網站為教育與學術用途開發。</p>
-</footer>
-<script src="student-learning.js?v=9"></script>
+    <script src="student-learning.js?v=9"></script>
 </body>
 </html>

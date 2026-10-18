@@ -122,34 +122,25 @@ async function submitEnergyAnswers() {
         collectEnergyAnswers();
 
 
-    const response =
-        await fetch(
-            ENERGY_SUBMIT_URL,
-            {
-                method: "POST",
+    await fetch(
+        ENERGY_SUBMIT_URL,
+        {
+            method: "POST",
 
-                headers: {
-                    "Content-Type":
-                        "text/plain;charset=utf-8"
-                },
+            mode: "no-cors",
 
-                body:
-                    JSON.stringify(data)
-            }
-        );
+            headers: {
+                "Content-Type":
+                    "text/plain;charset=utf-8"
+            },
 
-
-    if (!response.ok) {
-
-        throw new Error(
-            "送出失敗"
-        );
-
-    }
+            body:
+                JSON.stringify(data)
+        }
+    );
 
 
     return true;
-
 }
 
 // =====================================================

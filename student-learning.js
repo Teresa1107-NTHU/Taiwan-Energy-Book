@@ -1,6 +1,13 @@
 
 const ENERGY_SUBMIT_URL =
-    "https://script.google.com/macros/s/AKfycbxktgL1V9DMzOa9Lr2-dRdeyt7sYg6SKWwU9JBkhymJeali4s6rod3TRdcKoBNOGtPc/exec";
+    "https://script.google.com/macros/s/AKfycbyw8ZH5ToyfYPXwxqLOchz1zZNEnjVnm7iqUeU9wiZJrQHIjvTu58VfbCzYuT-YCXo/exec";
+
+
+const ENERGY_SUBMISSION_DONE_KEY =
+    "energy_submission_done";
+
+const ENERGY_SUBMISSION_STUDENT_KEY =
+    "energy_submission_student_id";
 
     function collectEnergyAnswers(
     participantInfo = {}
@@ -4733,6 +4740,24 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCompletionButton(button, key, isDone(key));
         button.addEventListener("click", async () => {
 
+            /*
+ * 最後學習整理一旦已送出，
+ * 不允許再取消完成或重複送出。
+ */
+if (
+    key === "review" &&
+    localStorage.getItem(
+        ENERGY_SUBMISSION_DONE_KEY
+    ) === "yes"
+) {
+
+    showLearningToast(
+        "本次學習紀錄已經送出，無需重複送出"
+    );
+
+    return;
+}
+
     /*
      * 如果目前已完成，
      * 再按一次仍允許取消完成。
@@ -4821,13 +4846,27 @@ if (key === "review") {
 
 
         await submitEnergyAnswers(
-            participantInfo
-        );
+    participantInfo
+);
 
 
-        showLearningToast(
-            "答案已成功送出 ✓"
-        );
+/*
+ * 紀錄這台裝置已經送出過。
+ */
+localStorage.setItem(
+    ENERGY_SUBMISSION_DONE_KEY,
+    "yes"
+);
+
+localStorage.setItem(
+    ENERGY_SUBMISSION_STUDENT_KEY,
+    participantInfo.student_id
+);
+
+
+showLearningToast(
+    "答案已成功送出 ✓"
+);
 
 
     } catch (error) {

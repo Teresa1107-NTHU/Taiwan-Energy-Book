@@ -199,15 +199,16 @@
                         <p class="helper-intro">
                             現行核能發電主要利用<strong>核分裂</strong>。
                             當核燃料中的原子核發生核分裂時，
-                            會釋放能量，並使反應爐中的冷卻水獲得<strong>熱能</strong>。
+                            會釋放能量，並使反應爐系統中的水獲得<strong>熱能</strong>。
                         </p>
 
                         <p>
-                            接著利用這些熱量產生蒸氣，
-                            蒸氣推動<strong>汽輪機</strong>旋轉，
-                            將熱能轉換成<strong>機械能</strong>。
+                            這些熱量接著會透過<strong>蒸汽產生器</strong>傳遞給另一側的水，
+                            使水形成蒸氣。
+                            蒸氣再推動<strong>汽輪機</strong>旋轉，
+                            將蒸氣所攜帶的能量轉換成<strong>機械能</strong>。
                             最後汽輪機帶動<strong>發電機</strong>，
-                            利用電磁感應將機械能轉換成<strong>電能</strong>。
+                            將機械能轉換成<strong>電能</strong>。
                         </p>
 
 
@@ -437,9 +438,7 @@
                                value="B">
 
                         <span>
-                            B. 反應爐產生的熱先使水形成蒸氣，
-                            蒸氣再推動汽輪機，
-                            讓後續設備能利用旋轉運動來發電
+                            B. 反應爐產生的熱先透過蒸汽產生器使水形成蒸氣，蒸氣再推動汽輪機，最後由發電機將旋轉的機械能轉換成電能。
                         </span>
                     </label>
 
@@ -482,8 +481,11 @@
 
   <div class="module-navigation">
     <a class="btn btn-dark" href="thermal.html">← 火力發電</a>
-    <button class="complete-phase-btn" data-complete-section="nuclear" data-default-label="完成核能發電">
-      完成核能發電
+    <button class="complete-phase-btn"
+            data-complete-section="nuclear"
+            data-default-label="完成核能發電"
+            id="nuclearCompleteBtn">
+        完成核能發電
     </button>
     <a class="btn btn-primary" href="wind.html">下一站：風力發電 →</a>
   </div>

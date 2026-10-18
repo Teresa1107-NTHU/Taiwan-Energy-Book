@@ -240,8 +240,11 @@
                         <p class="helper-intro">
                             天然氣本身儲存著<strong>化學能</strong>。
                             燃燒天然氣時，化學能會轉換成<strong>熱能</strong>。
-                            本模型以簡化方式呈現後續利用高溫氣體中的熱能產生蒸氣，
-                            再透過蒸汽渦輪機與發電機完成發電的過程。
+                            本模型以簡化方式呈現發電流程，
+                            未另外呈現燃燒器與燃氣渦輪機；
+                            實際天然氣複循環發電中，天然氣燃燒後會先驅動燃氣渦輪機，
+                            其高溫排氣再進入熱回收蒸汽產生器（HRSG）產生蒸氣。
+                            其高溫排氣再進入熱回收蒸汽產生器（HRSG）產生蒸氣。
                         </p>
 
                         <p>
@@ -419,8 +422,7 @@
                     </div>
 
                     <p>
-                        蒸氣通過蒸汽渦輪機之後，為什麼還需要經過
-                        <strong>冷凝器</strong>重新變成水，
+                        蒸氣通過蒸汽渦輪機之後，為什麼還需要經過<strong>冷凝器</strong>重新變成水，
                         再由給水泵送回蒸汽系統？
                         如果蒸氣使用後就直接排掉，而沒有重新凝結成水並循環利用，
                         可能會對整個發電系統造成什麼影響？
@@ -519,8 +521,11 @@
 
   <div class="module-navigation">
     <a class="btn btn-dark" href="index.html#explore">← 返回能源總覽</a>
-    <button class="complete-phase-btn" data-complete-section="thermal" data-default-label="完成火力發電">
-      完成火力發電
+    <button class="complete-phase-btn"
+            data-complete-section="thermal"
+            data-default-label="完成火力發電"
+            id="thermalCompleteBtn">
+        完成火力發電
     </button>
     <a class="btn btn-primary" href="nuclear.html">下一站：核能發電 →</a>
   </div>

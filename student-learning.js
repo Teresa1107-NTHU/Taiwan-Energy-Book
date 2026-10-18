@@ -19,7 +19,7 @@ const thermalSteps = [
         description:
             "天然氣燃燒後可以形成高溫氣體。熱回收蒸汽產生器利用其中的熱能加熱水並產生蒸氣，使熱能可以繼續被利用。在實際的天然氣複循環發電系統中，HRSG 主要回收燃氣渦輪機排出的高溫氣體。它本身不是直接產生電能的設備。",
         energy:
-            "熱能 → 蒸氣"
+            "熱能傳遞"
     },
 
     {
@@ -582,7 +582,7 @@ const nuclearSteps = [
         title: "蒸汽產生器",
         english: "Steam Generator",
         description:
-            "蒸汽產生器位於一次側系統中，功能類似熱交換器。它把反應爐產生的熱傳到二次側，使水形成蒸汽並推動汽輪機。",
+            "功能類似熱交換器。它把反應爐系統帶來的熱量傳給另一側的水，使水形成蒸氣，再利用蒸氣推動汽輪機。",
         energy:
             "熱能傳遞"
     },
@@ -591,16 +591,16 @@ const nuclearSteps = [
         title: "反應爐冷卻水泵",
         english: "Reactor Coolant Pump",
         description:
-            "反應爐冷卻水泵使一次側冷卻水持續循環，把反應爐產生的熱帶到蒸汽產生器。",
+"反應爐冷卻水泵讓冷卻水持續循環，把反應爐產生的熱帶到蒸汽產生器。",
         energy:
-            "一次側循環"
+    "冷卻水循環"
     },
 
     {
         title: "穩壓器系統",
         english: "Pressurizer System",
         description:
-            "穩壓器用來維持一次側系統的壓力。它部分裝有水，並利用電加熱器加熱，以維持所需的系統壓力。",
+            "穩壓器用來協助維持反應爐冷卻系統的壓力，使系統保持適當的運轉條件。",
         energy:
             "壓力控制"
     },
@@ -609,7 +609,7 @@ const nuclearSteps = [
         title: "混凝土屏蔽",
         english: "Concrete Shielding",
         description:
-            "鋼筋混凝土結構包覆並保護反應爐與一次側的重要設備，同時也作為阻隔游離輻射的重要屏障。",
+            "鋼筋混凝土結構包覆並保護反應爐與重要設備，同時也作為阻隔游離輻射的重要屏障。",
         energy:
             "安全與防護"
     },
@@ -1741,7 +1741,8 @@ const hydroSteps = [
         title: "蓄水庫",
         english: "Storage Reservoir",
         description:
-            "蓄水庫儲存大量位於較高位置的水。高處的水具有重力位能，水庫的水位與放水流量也會影響可供發電使用的能量。",
+            description:
+    "蓄水庫儲存大量位於較高位置的水。高處的水具有重力位能，而可利用的水位高度差與放水流量，都會影響水力發電的輸出。",,
         energy:
             "重力位能"
     },
@@ -3886,21 +3887,391 @@ function updateCompletionButton(button, key, done) {
     button.textContent = done ? "已完成 ✓" : defaultLabel;
 }
 
+/* =========================================================
+   完成按鈕：檢查學習條件
+========================================================= */
+
+function getCompletionRequirement(key) {
+
+    // =========================
+    // 首頁：先想一想
+    // =========================
+    if (key === "start") {
+
+        const q1 =
+            document.querySelector(
+                '[data-radio-group="start_q1"] input[type="radio"]:checked'
+            );
+
+        const q2 =
+            document.querySelector(
+                'textarea[data-save="start_q2"]'
+            );
+
+        const saved =
+            localStorage.getItem(
+                "energy_answer_saved_start"
+            ) === "yes";
+
+
+        if (!q1 || !q2 || !q2.value.trim()) {
+
+            return {
+                ok: false,
+                message: "請先完成「先想一想」的兩個問題"
+            };
+        }
+
+
+        if (!saved) {
+
+            return {
+                ok: false,
+                message: "答案尚未儲存，請先按「儲存答案」"
+            };
+        }
+
+
+        return {
+            ok: true
+        };
+    }
+
+
+    // =========================
+    // 首頁：能源整合比較
+    // =========================
+    if (key === "discover") {
+
+        const textarea =
+            document.getElementById(
+                "discoverReflection"
+            );
+
+        const saved =
+            localStorage.getItem(
+                "energy_answer_saved_discover_reflection"
+            ) === "yes";
+
+
+        if (
+            !textarea ||
+            !textarea.value.trim()
+        ) {
+
+            return {
+                ok: false,
+                message: "請先完成能源整合比較的反思問題"
+            };
+        }
+
+
+        if (!saved) {
+
+            return {
+                ok: false,
+                message: "答案尚未儲存，請先按「儲存答案」"
+            };
+        }
+
+
+        return {
+            ok: true
+        };
+    }
+
+    // =========================
+// 火力發電
+// =========================
+if (key === "thermal") {
+
+    const selected =
+        document.querySelector(
+            'input[name="thermal_quiz_1"]:checked'
+        );
+
+    const answerSaved =
+        localStorage.getItem(
+            "energy_quiz_saved_thermal_quiz_1"
+        ) === "yes";
+
+
+    if (!selected) {
+
+        return {
+            ok: false,
+            message: "請先完成火力發電的「小試身手」"
+        };
+    }
+
+
+    if (!answerSaved) {
+
+        return {
+            ok: false,
+            message: "答案尚未儲存，請先按「儲存答案」"
+        };
+    }
+
+
+    return {
+        ok: true
+    };
+}
+
+
+// =========================
+// 核能發電
+// =========================
+if (key === "nuclear") {
+
+    const selected =
+        document.querySelector(
+            'input[name="nuclear_quiz_1"]:checked'
+        );
+
+    const answerSaved =
+        localStorage.getItem(
+            "energy_quiz_saved_nuclear_quiz_1"
+        ) === "yes";
+
+
+    if (!selected) {
+
+        return {
+            ok: false,
+            message: "請先完成核能發電的「小試身手」"
+        };
+    }
+
+
+    if (!answerSaved) {
+
+        return {
+            ok: false,
+            message: "答案尚未儲存，請先按「儲存答案」"
+        };
+    }
+
+
+    return {
+        ok: true
+    };
+}
+
+
+// =========================
+// 風力發電
+// =========================
+if (key === "wind") {
+
+    const selected =
+        document.querySelector(
+            'input[name="wind_quiz_1"]:checked'
+        );
+
+    const answerSaved =
+        localStorage.getItem(
+            "energy_quiz_saved_wind_quiz_1"
+        ) === "yes";
+
+
+    if (!selected) {
+
+        return {
+            ok: false,
+            message: "請先完成風力發電的「小試身手」"
+        };
+    }
+
+
+    if (!answerSaved) {
+
+        return {
+            ok: false,
+            message: "答案尚未儲存，請先按「儲存答案」"
+        };
+    }
+
+
+    return {
+        ok: true
+    };
+}
+    
+    /*
+     * 其他還沒改成新機制的頁面，
+     * 暫時不額外限制。
+     */
+    return {
+        ok: true
+    };
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const moduleQuizMap = {
+        thermal: {
+            quizName: "thermal_quiz_1",
+            buttonId: "thermalCompleteBtn"
+        },
+
+        nuclear: {
+            quizName: "nuclear_quiz_1",
+            buttonId: "nuclearCompleteBtn"
+        },
+
+        wind: {
+            quizName: "wind_quiz_1",
+            buttonId: "windCompleteBtn"
+        }
+    };
+
+
+    Object.entries(moduleQuizMap)
+        .forEach(([moduleKey, config]) => {
+
+            document
+                .querySelectorAll(
+                    `input[name="${config.quizName}"]`
+                )
+                .forEach(radio => {
+
+                    radio.addEventListener(
+                        "change",
+                        () => {
+
+                            if (!isDone(moduleKey)) {
+                                return;
+                            }
+
+
+                            setDone(
+                                moduleKey,
+                                false
+                            );
+
+
+                            const button =
+                                document.getElementById(
+                                    config.buttonId
+                                );
+
+
+                            if (button) {
+
+                                updateCompletionButton(
+                                    button,
+                                    moduleKey,
+                                    false
+                                );
+
+                            }
+
+
+                            refreshAllLearningUI();
+
+                        }
+                    );
+
+                });
+
+        });
+
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".complete-phase-btn[data-complete-section]").forEach(button => {
         const key = button.dataset.completeSection;
         updateCompletionButton(button, key, isDone(key));
         button.addEventListener("click", () => {
-            const newState = !isDone(key);
-            setDone(key, newState);
-            updateCompletionButton(button, key, newState);
 
-            if (key === "review") {
-                const completeCard = document.getElementById("lessonComplete");
-                if (completeCard) completeCard.hidden = !newState;
+    /*
+     * 如果目前已完成，
+     * 再按一次仍允許取消完成。
+     */
+    if (isDone(key)) {
+
+        setDone(
+            key,
+            false
+        );
+
+        updateCompletionButton(
+            button,
+            key,
+            false
+        );
+
+
+        if (key === "review") {
+
+            const completeCard =
+                document.getElementById(
+                    "lessonComplete"
+                );
+
+            if (completeCard) {
+                completeCard.hidden = true;
             }
-            refreshAllLearningUI();
-        });
+        }
+
+
+        refreshAllLearningUI();
+
+        return;
+    }
+
+
+    /*
+     * 尚未完成：
+     * 先檢查是否符合完成條件。
+     */
+    const requirement =
+        getCompletionRequirement(key);
+
+
+    if (!requirement.ok) {
+
+        showLearningToast(
+            requirement.message
+        );
+
+        return;
+    }
+
+
+    /*
+     * 條件符合，才真正完成。
+     */
+    setDone(
+        key,
+        true
+    );
+
+    updateCompletionButton(
+        button,
+        key,
+        true
+    );
+
+
+    if (key === "review") {
+
+        const completeCard =
+            document.getElementById(
+                "lessonComplete"
+            );
+
+        if (completeCard) {
+            completeCard.hidden = false;
+        }
+    }
+
+
+    refreshAllLearningUI();
+
+});
     });
 
     const completeCard = document.getElementById("lessonComplete");
@@ -4200,6 +4571,27 @@ function initMiniQuizzes() {
                     ".quiz-save-status"
                 );
 
+                radios.forEach(radio => {
+
+    radio.addEventListener("change", () => {
+
+        /*
+         * 只要答案被修改，
+         * 就視為尚未重新儲存。
+         */
+        localStorage.removeItem(
+            `energy_quiz_saved_${quizKey}`
+        );
+
+        if (status) {
+            status.textContent =
+                "答案已修改，請重新儲存";
+        }
+
+    });
+
+});
+
 
             // -------------------------
             // 還原之前的作答
@@ -4212,21 +4604,27 @@ function initMiniQuizzes() {
 
             if (savedAnswer) {
 
-                const savedRadio =
-                    card.querySelector(
-                        `input[value="${savedAnswer}"]`
-                    );
+    const savedRadio =
+        card.querySelector(
+            `input[value="${savedAnswer}"]`
+        );
 
-                if (savedRadio) {
-                    savedRadio.checked = true;
-                }
+    if (savedRadio) {
+        savedRadio.checked = true;
+    }
 
-                if (status) {
-                    status.textContent =
-                        "已儲存答案";
-                }
-            }
+    const answerSaved =
+        localStorage.getItem(
+            `energy_quiz_saved_${quizKey}`
+        ) === "yes";
 
+    if (status) {
+        status.textContent =
+            answerSaved
+                ? "答案已儲存 ✓"
+                : "答案尚未儲存";
+    }
+}
 
             // -------------------------
             // 儲存答案
@@ -4254,14 +4652,19 @@ function initMiniQuizzes() {
                         }
 
                         localStorage.setItem(
-                            `energy_quiz_${quizKey}`,
-                            selected.value
-                        );
+    `energy_quiz_${quizKey}`,
+    selected.value
+);
 
-                        if (status) {
-                            status.textContent =
-                                "答案已儲存 ✓";
-                        }
+localStorage.setItem(
+    `energy_quiz_saved_${quizKey}`,
+    "yes"
+);
+
+if (status) {
+    status.textContent =
+        "答案已儲存 ✓";
+}
                     }
                 );
             }
@@ -4317,29 +4720,6 @@ document.addEventListener("DOMContentLoaded", () => {
         textarea.value = savedAnswer;
     }
 
-
-    // =========================
-    // 更新完成按鈕狀態
-    // =========================
-
-    function updateCompleteState() {
-
-        const answerSaved =
-            localStorage.getItem(savedKey) === "yes";
-
-        const hasAnswer =
-            textarea.value.trim().length > 0;
-
-        const isCompleted =
-            completeBtn.classList.contains("done");
-
-        completeBtn.disabled =
-            !isCompleted &&
-            !(answerSaved && hasAnswer);
-
-    }
-
-
     // =========================
     // 載入時顯示狀態
     // =========================
@@ -4353,9 +4733,6 @@ document.addEventListener("DOMContentLoaded", () => {
             "答案已儲存 ✓";
 
     }
-
-    updateCompleteState();
-
 
     // =========================
     // 學生修改文字後
@@ -4386,9 +4763,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         refreshAllLearningUI();
     }
-
-    updateCompleteState();
-
 });
 
     // =========================
@@ -4401,13 +4775,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!answer) {
 
-            status.textContent =
-                "請先輸入你的想法";
+    status.textContent =
+        "請先輸入你的想法";
 
-            completeBtn.disabled = true;
-
-            return;
-        }
+    return;
+}
 
         localStorage.setItem(
             answerKey,
@@ -4421,9 +4793,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         status.textContent =
             "答案已儲存 ✓";
-
-        updateCompleteState();
-
     });
 });
 
@@ -4534,28 +4903,10 @@ document.addEventListener("DOMContentLoaded", () => {
 }
 
     // =========================
-    // 更新完成按鈕
-    // =========================
-
-    function updateStartCompleteState() {
-
-        const answersSaved =
-            localStorage.getItem(savedKey) === "yes";
-
-        const isCompleted =
-            completeBtn.classList.contains("done");
-
-        completeBtn.disabled =
-            !isCompleted &&
-            !(answersSaved && hasCompleteAnswers());
-
-    }
-
-    // =========================
     // 載入時還原「已儲存」狀態
     // =========================
     updateStartAnswerHint();
-    updateStartCompleteState();
+   
 
     // =========================
     // 學生修改單選題後
@@ -4594,18 +4945,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 }
                 updateStartAnswerHint();
-                updateStartCompleteState();
-
+                
             });
-
         });
-
 
     // =========================
     // 學生修改文字後
     // 需要重新儲存
     // =========================
-
     textarea.addEventListener("input", () => {
 
         localStorage.setItem(
@@ -4629,7 +4976,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
         updateStartAnswerHint();
-        updateStartCompleteState();
+       
     });
 
 
@@ -4650,7 +4997,6 @@ document.addEventListener("DOMContentLoaded", () => {
             status.textContent =
             '請先完成兩個問題，再按「儲存答案」';
             status.classList.add("pending");
-            completeBtn.disabled = true;
 
             return;
         }
@@ -4676,8 +5022,6 @@ document.addEventListener("DOMContentLoaded", () => {
             "答案已儲存 ✓";
 
         status.classList.remove("pending");
-
-        updateStartCompleteState();
 
     });
 });

@@ -3718,6 +3718,17 @@ function renderLearningRoute() {
     const emergingCount =
         countDone(EMERGING_MODULES);
 
+    const overallStageCount =
+        [
+            isDone("start"),
+            traditionalCount === 5,
+            isDone("discover"),
+            emergingCount === 2,
+            isDone("review")
+        ]
+            .filter(Boolean)
+            .length;
+
 
     // =========================
     // 判斷目前是不是首頁
@@ -3781,8 +3792,8 @@ function renderLearningRoute() {
             <div class="route-head-right">
 
                 <span class="route-overall">
-                    傳統能源 ${traditionalCount}/5
-                </span>
+    學習階段 ${overallStageCount}/5
+</span>
 
                 ${!isHome ? `
     <span class="route-toggle-icon">
@@ -3853,7 +3864,7 @@ function renderLearningRoute() {
                     "index.html#explore",
 
                 label:
-                    "傳統能源探索",
+                    "臺灣常見發電方式",
 
                 number:
                     "2",
@@ -3965,7 +3976,7 @@ function renderLearningRoute() {
                             !emergingUnlocked(),
 
                         message:
-                            "請先完成五種傳統能源與整理發現。"
+                            "請先完成五種常見發電方式與整理發現。"
                     },
 
                     {
@@ -4964,7 +4975,11 @@ showLearningToast(
 
     const requirement = document.body.dataset.pageRequires;
     if (requirement === "emerging" && !emergingUnlocked()) {
-        showPageLock("Tokamak 尚未解鎖","請先完成五種傳統能源探索與「整理發現」。","index.html#discover");
+        showPageLock(
+            "Tokamak 尚未解鎖",
+            "請先完成五種常見發電方式與「整理發現」。",
+            "index.html#discover"
+        );
     }
     if (requirement === "alpha" && !alphaUnlocked()) {
         showPageLock("Alpha-E 尚未解鎖","請先完成 Tokamak，再進入 Alpha-E 挑戰。","index.html#emerging");
@@ -5048,7 +5063,7 @@ function refreshHomeRoute() {
     }
 
 
-    // 2 傳統能源
+    // 2 臺灣常見發電方式
     if (traditional) {
 
         const status =
@@ -5107,7 +5122,7 @@ function refreshHomeRoute() {
                     event.preventDefault();
 
                     showLearningToast(
-                        "請先完成五種傳統能源。"
+                        "請先完成五種常見發電方式。"
                     );
                 };
     }

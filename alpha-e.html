@@ -7,22 +7,34 @@
   <link rel="stylesheet" href="alpha-e.css">
 </head>
 <body>
-<nav>
-  <a class="logo" href="index.html">Taiwan Energy<span></span></a>
-  <button class="nav-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-  <ul id="nav-menu">
-      <li><a href="index.html">回到學習首頁</a></li>
-      <li><a href="alpha-e-student-activity.html">Alpha-E 挑戰</a></li>
-      <li><a href="student-summary.html">學習整理</a></li>
-      <li>
-          <button id="langToggle"
-                  class="lang-toggle"
-                  type="button">
-              EN
-          </button>
-      </li>
-  </ul>
-</nav>
+    <nav>
+        <a class="logo" href="index.html">Taiwan Energy<span></span></a>
+        <button class="nav-toggle" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+   
+        <ul id="nav-menu">
+
+            <li>
+                <a href="index.html">
+                    回學習首頁
+                </a>
+            </li>
+
+            <li>
+                <a href="alpha-e-student-activity.html">
+                    回 Alpha-E 挑戰
+                </a>
+            </li>
+
+            <li>
+                <button id="langToggle"
+                        class="lang-toggle"
+                        type="button">
+                    EN
+                </button>
+            </li>
+
+        </ul>
+    </nav>
 <header class="page-hero">
     <div>
 
@@ -876,11 +888,28 @@
                 </div>
 
                 <div class="alpha-unity-wrap">
+
                     <iframe id="alphaUnity"
                             src="about:blank"
                             title="Alpha-E 3D 模型"
                             allowfullscreen>
                     </iframe>
+
+                    <div id="alphaModelPausedHint"
+                         class="alpha-model-paused-hint"
+                         hidden>
+
+                        <strong data-i18n="alpha_model_paused_title">
+                            Alpha-E 3D 模型已暫停
+                        </strong>
+
+                        <p data-i18n="alpha_model_paused_desc">
+                            目前正在進行下方的 p–¹¹B 核融合反應。
+                            完成反應後，請按下「返回 Alpha-E」以重新啟動模型。
+                        </p>
+
+                    </div>
+
                 </div>
 
             </div>

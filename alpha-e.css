@@ -2117,6 +2117,44 @@ footer {
     background: #000;
 }
 
+.alpha-model-paused-hint {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 28px;
+
+    background: #0d1117;
+    color: #ffffff;
+    text-align: center;
+}
+
+.alpha-model-paused-hint strong {
+    margin-bottom: 10px;
+
+    color: #63daf4;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.alpha-model-paused-hint p {
+    max-width: 320px;
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.82rem;
+    line-height: 1.7;
+}
+
+.alpha-model-paused-hint[hidden] {
+    display: none;
+}
+
 #alphaUnity {
     display: block;
     width: 100%;

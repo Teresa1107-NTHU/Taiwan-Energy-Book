@@ -295,6 +295,12 @@ const translations = {
         alpha_model:
             "Alpha-E 互動式 3D 模型",
 
+        alpha_model_paused_title:
+            "Alpha-E 3D 模型已暫停",
+
+        alpha_model_paused_desc:
+            "目前正在進行下方的 p–¹¹B 核融合反應。完成反應後，請按下「返回 Alpha-E」以重新啟動模型。",
+
         alpha_model_status:
             "系統待機",
 
@@ -781,6 +787,12 @@ const translations = {
         /* Unity */
         alpha_model:
             "Alpha-E Interactive 3D Model",
+
+        alpha_model_paused_title:
+            "Alpha-E 3D Model Paused",
+
+        alpha_model_paused_desc:
+            "The fusion model below is currently active. After completing the reaction, select “Return to Alpha-E” to reload the Alpha-E model.",
 
         alpha_model_status:
             "System Standby",
@@ -3462,6 +3474,13 @@ $("beamOn").onclick = () => {
      */
     unloadAlphaUnity();
 
+    const pausedHint =
+        $("alphaModelPausedHint");
+
+    if (pausedHint) {
+        pausedHint.hidden = false;
+    }
+
     showBeamTransition();
 };
 
@@ -4215,7 +4234,6 @@ function completeFusionReaction() {
     /* =========================
        自動捲到結果
     ========================= */
-
     setTimeout(() => {
 
         result?.scrollIntoView({
@@ -4223,7 +4241,7 @@ function completeFusionReaction() {
             block: "center"
         });
 
-    }, 350);
+    }, 1500);
 }
 
 /* =========================================================
@@ -4468,6 +4486,12 @@ $("returnAlpha").onclick = () => {
      */
     loadAlphaUnity();
 
+    const pausedHint =
+        $("alphaModelPausedHint");
+
+    if (pausedHint) {
+        pausedHint.hidden = true;
+    }
 
     /*
      * 再回到 Alpha-E 操作區。

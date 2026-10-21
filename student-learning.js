@@ -187,11 +187,9 @@ function requestSubmissionInfo() {
     // =========================
     const genderInput =
         window.prompt(
-            "請輸入性別：\n\n" +
-            "1：男性\n" +
-            "2：女性\n" +
-            "3：其他\n" +
-            "4：不願回答"
+            "請輸入生理性別：\n\n" +
+            "1：生理男\n" +
+            "2：生理女"
         );
 
 
@@ -207,40 +205,29 @@ function requestSubmissionInfo() {
 
     const genderMap = {
 
-        "1": "男性",
-        "2": "女性",
-        "3": "其他",
-        "4": "不願回答"
+        "1": "生理男",
+        "2": "生理女"
 
     };
 
 
     const gender =
         genderMap[
-            genderInput.trim()
+        genderInput.trim()
         ];
 
 
     if (!gender) {
 
         window.alert(
-            "性別輸入錯誤，請輸入 1、2、3 或 4。"
+            "生理性別輸入錯誤，請輸入 1 或 2。"
         );
 
         return null;
 
     }
 
-
-    return {
-
-        student_id:
-            studentId.trim(),
-
-        gender:
-            gender
-
-    };
+    return null;
 
 }
 

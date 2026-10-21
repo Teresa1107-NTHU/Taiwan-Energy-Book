@@ -227,7 +227,15 @@ function requestSubmissionInfo() {
 
     }
 
-    return null;
+    return {
+
+        student_id:
+            studentId.trim(),
+
+        gender:
+            gender
+
+    };
 
 }
 

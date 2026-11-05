@@ -5765,3 +5765,263 @@ footer,
         grid-column: auto;
     }
 }
+
+/* =========================================================
+   正式版可讀性調整
+   依預試回饋：放大主要閱讀文字、增加行距
+========================================================= */
+
+/* =========================================================
+   1. 3D 模型右側：目前設備名稱
+========================================================= */
+
+#thermalStepTitle,
+#nuclearStepTitle,
+#windStepTitle,
+#hydroStepTitle,
+#solarStepTitle,
+#tokamakStepTitle {
+    font-size: 1.35rem;
+    line-height: 1.4;
+}
+
+
+/* 英文設備名稱 */
+.thermal-title-en,
+.nuclear-title-en,
+.wind-title-en,
+.hydro-title-en,
+.solar-title-en,
+.tokamak-title-en {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   2. 3D 模型右側：主要中文說明
+========================================================= */
+
+#thermalStepDescription,
+#nuclearStepDescription,
+#windStepDescription,
+#hydroStepDescription,
+#solarStepDescription,
+#tokamakStepDescription {
+    font-size: 1.08rem;
+    line-height: 1.85;
+}
+
+
+/* =========================================================
+   3. 能源小幫手主要文字
+========================================================= */
+
+.knowledge-card-content p,
+.thermal-helper-card p,
+.nuclear-helper-card p,
+.wind-helper-card p,
+.hydro-helper-card p,
+.solar-helper-card p,
+.tokamak-helper-card p {
+    font-size: 1.02rem;
+    line-height: 1.85;
+}
+
+
+/* 設備小卡 */
+.thermal-device-card p,
+.nuclear-device-card p,
+.wind-device-card p,
+.hydro-device-card p,
+.solar-device-card p,
+.tokamak-device-card p {
+    font-size: 0.98rem;
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   4. 再想一下
+========================================================= */
+
+.think-note p,
+.discover-thinking-note p {
+    font-size: 1.02rem;
+    line-height: 1.85;
+}
+
+
+/* =========================================================
+   5. 小試身手
+========================================================= */
+
+.mini-quiz-question {
+    font-size: 1.08rem;
+    line-height: 1.8;
+}
+
+.quiz-option span {
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   6. 一般主要閱讀文字
+========================================================= */
+
+.section-intro p,
+.energy-card > p,
+.activity-step p,
+.reflection-card p,
+.discover-block p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* =========================================================
+   平板橫向 / 小筆電：
+   不再把主要學習文字縮得太小
+========================================================= */
+
+@media (max-width:1280px) and (min-width:901px) {
+
+    #thermalStepTitle,
+    #nuclearStepTitle,
+    #windStepTitle,
+    #hydroStepTitle,
+    #solarStepTitle,
+    #tokamakStepTitle {
+        font-size: 1.15rem;
+    }
+
+    #thermalStepDescription,
+    #nuclearStepDescription,
+    #windStepDescription,
+    #hydroStepDescription,
+    #solarStepDescription,
+    #tokamakStepDescription {
+        font-size: 0.98rem;
+        line-height: 1.75;
+    }
+
+    .thermal-title-en,
+    .nuclear-title-en,
+    .wind-title-en,
+    .hydro-title-en,
+    .solar-title-en,
+    .tokamak-title-en {
+        font-size: 0.82rem;
+    }
+}
+
+/* =========================================================
+   正式版資訊層級調整
+   預試回饋：降低文字密集感
+========================================================= */
+
+/* 能源小幫手內不同段落之間增加距離 */
+.knowledge-card-content p + p,
+.thermal-helper-card p + p,
+.nuclear-helper-card p + p,
+.wind-helper-card p + p,
+.hydro-helper-card p + p,
+.solar-helper-card p + p,
+.tokamak-helper-card p + p {
+    margin-top: 12px;
+}
+
+/* 各能源小幫手的小標題更明顯 */
+.thermal-helper-card h4,
+.nuclear-helper-card h4,
+.wind-helper-card h4,
+.hydro-helper-card h4,
+.solar-helper-card h4,
+.tokamak-helper-card h4 {
+    margin-bottom: 14px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+/* 正文中的關鍵詞 */
+.knowledge-card-content p strong,
+.thermal-helper-card p strong,
+.nuclear-helper-card p strong,
+.wind-helper-card p strong,
+.hydro-helper-card p strong,
+.solar-helper-card p strong,
+.tokamak-helper-card p strong,
+.think-note p strong {
+    color: #111827;
+    font-weight: 800;
+}
+
+/* 長文字避免一整行橫跨過寬 */
+.knowledge-card-content > p,
+.think-note > p,
+.discover-thinking-note > p {
+    max-width: 1000px;
+}
+
+/* =========================================================
+   正式版資訊層級調整
+   預試回饋：降低文字密集感
+========================================================= */
+
+/* 段落之間增加空間 */
+.knowledge-card-content p + p,
+.thermal-helper-card p + p,
+.nuclear-helper-card p + p,
+.wind-helper-card p + p,
+.hydro-helper-card p + p,
+.solar-helper-card p + p,
+.tokamak-helper-card p + p {
+    margin-top: 12px;
+}
+
+
+/* 各卡片小標題更清楚 */
+.thermal-helper-card h4,
+.nuclear-helper-card h4,
+.wind-helper-card h4,
+.hydro-helper-card h4,
+.solar-helper-card h4,
+.tokamak-helper-card h4 {
+    margin-bottom: 14px;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+
+/* 正文關鍵詞 */
+.knowledge-card-content p strong,
+.thermal-helper-card p strong,
+.nuclear-helper-card p strong,
+.wind-helper-card p strong,
+.hydro-helper-card p strong,
+.solar-helper-card p strong,
+.tokamak-helper-card p strong,
+.think-note p strong {
+    color: #111827;
+    font-weight: 800;
+}
+
+
+/* 長文字不要橫跨過寬 */
+.knowledge-card-content > p,
+.think-note > p,
+.discover-thinking-note > p {
+    max-width: 1000px;
+}
+
+.model-language-hint {
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #475569;
+}

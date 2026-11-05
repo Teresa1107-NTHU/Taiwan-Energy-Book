@@ -242,14 +242,13 @@ function requestSubmissionInfo() {
 // =====================================================
 // 火力發電 Unity 網頁控制
 // =====================================================
-
 const thermalSteps = [
 
     {
         title: "液化天然氣儲槽",
         english: "LNG Storage Tank",
         description:
-            "液化天然氣在送入發電系統前先儲存在儲槽中。天然氣本身儲存著化學能，是這套發電系統最初的能量來源。",
+            "儲存發電所需的液化天然氣。天然氣中的化學能是整套發電系統最初的能量來源。",
         energy:
             "化學能"
     },
@@ -258,7 +257,7 @@ const thermalSteps = [
         title: "熱回收蒸汽產生器",
         english: "Heat Recovery Steam Generator",
         description:
-            "天然氣燃燒後可以形成高溫氣體。熱回收蒸汽產生器利用其中的熱能加熱水並產生蒸氣，使熱能可以繼續被利用。在實際的天然氣複循環發電系統中，HRSG 主要回收燃氣渦輪機排出的高溫氣體。它本身不是直接產生電能的設備。",
+            "回收燃氣渦輪機排出的高溫氣體，利用其中的熱能加熱水並產生蒸氣。HRSG 本身不是直接產生電能的設備。",
         energy:
             "熱能傳遞"
     },
@@ -267,7 +266,7 @@ const thermalSteps = [
         title: "蒸汽渦輪機",
         english: "Steam Turbine",
         description:
-            "高壓蒸氣推動蒸汽渦輪機的葉片與轉軸旋轉，使蒸氣所攜帶的能量轉換成旋轉的機械能，再由轉軸帶動發電機。",
+            "高溫、高壓蒸氣推動葉片與轉軸旋轉，將蒸氣所攜帶的能量轉換成機械能。",
         energy:
             "熱能 → 機械能"
     },
@@ -276,7 +275,7 @@ const thermalSteps = [
         title: "煙囪",
         english: "Stack",
         description:
-            "天然氣燃燒後產生的廢氣經由煙囪排出。煙囪主要負責排放燃燒後的氣體，並不是產生電能的設備。",
+            "將燃燒後的氣體排出系統。煙囪負責排氣，不是產生電能的設備。",
         energy:
             "燃燒後氣體排放"
     },
@@ -285,7 +284,7 @@ const thermalSteps = [
         title: "冷凝器",
         english: "Condenser",
         description:
-            "蒸氣通過渦輪機後進入冷凝器，被冷卻並凝結回水，使水可以再次進入蒸汽循環。",
+            "將通過汽輪機後的蒸氣冷卻並凝結回水，使水可以再次進入蒸汽循環。",
         energy:
             "蒸氣 → 水"
     },
@@ -294,7 +293,7 @@ const thermalSteps = [
         title: "給水泵",
         english: "Feedwater Pump",
         description:
-            "給水泵將冷凝後的水送回熱回收蒸汽產生器，使工作流體可以持續循環使用。",
+            "將冷凝後的水送回熱回收蒸汽產生器，使水可以持續循環使用。",
         energy:
             "水循環"
     },
@@ -303,7 +302,7 @@ const thermalSteps = [
         title: "冷卻塔",
         english: "Cooling Tower",
         description:
-            "冷卻塔將循環水中的多餘熱量排放到環境中，協助降低冷卻水的溫度。",
+            "將冷卻水中的多餘熱量排放到環境中，使冷卻水降溫後可以再次使用。",
         energy:
             "移除多餘熱量"
     },
@@ -312,7 +311,7 @@ const thermalSteps = [
         title: "冷卻水泵",
         english: "Cooling Water Pump",
         description:
-            "冷卻水泵讓冷卻水在冷凝器與冷卻塔之間循環，協助冷凝器持續帶走蒸氣中的熱量。",
+            "讓冷卻水在冷凝器與冷卻塔之間循環，協助系統持續帶走多餘熱量。",
         energy:
             "冷卻循環"
     },
@@ -321,7 +320,7 @@ const thermalSteps = [
         title: "發電機",
         english: "Generator",
         description:
-            "汽輪機帶動發電機旋轉，發電機利用電磁感應將旋轉的機械能轉換成電能。",
+            "接收汽輪機傳來的旋轉機械能，再利用電磁感應將機械能轉換成電能。",
         energy:
             "機械能 → 電能"
     },
@@ -330,7 +329,7 @@ const thermalSteps = [
         title: "變壓器",
         english: "Transformer",
         description:
-            "發電機產生電力後，變壓器會調整電壓，使電能更適合進行後續的輸電與配電。",
+            "調整發電機輸出電力的電壓，使電能更適合後續輸電與配電。",
         energy:
             "電能傳輸"
     },
@@ -339,13 +338,12 @@ const thermalSteps = [
         title: "電力負載",
         english: "Electrical Load",
         description:
-            "電能最後送到用電端。在模型中，燈泡代表電力負載；天然氣輸入量改變時，也可以觀察輸出效果的變化。",
+            "代表最後使用電能的用電端。模型中的燈泡可以用來觀察輸出效果的變化。",
         energy:
             "電能 → 使用"
     }
 
 ];
-
 
 let thermalCurrentStep = -1;
 
@@ -539,7 +537,7 @@ function updateThermalPanel() {
              </span>`;
 
         description.textContent =
-            "先調整下方的 Gas Input，讓天然氣進入系統，再開始觀察發電流程。";
+            "先調整下方的天然氣輸入量（Gas Input），讓天然氣進入系統，再開始觀察發電流程。";
 
         if (energyTag) {
             energyTag.textContent =

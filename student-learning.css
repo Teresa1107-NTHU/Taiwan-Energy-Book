@@ -6277,3 +6277,93 @@ footer,
 .learning-point-list li:last-child {
     margin-bottom: 0;
 }
+
+/* =========================================================
+   整理發現：正式版可讀性
+========================================================= */
+
+.home-page #discover .module-focus-note {
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+
+/* STEP 區塊說明 */
+.home-page #discover .discover-block-head p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+
+/* 五種能源路徑 */
+.home-page #discover .energy-path-title strong {
+    font-size: 1.05rem;
+}
+
+.home-page #discover .energy-path-flow {
+    font-size: 0.98rem;
+    line-height: 1.7;
+}
+
+.home-page #discover .energy-path-card p {
+    font-size: 0.98rem;
+    line-height: 1.75;
+}
+
+.home-page #discover .energy-path-review {
+    font-size: 0.88rem;
+}
+
+
+/* 找共同點 */
+.home-page #discover .pattern-card h4 {
+    font-size: 1.08rem;
+}
+
+.home-page #discover .pattern-card p {
+    font-size: 0.98rem;
+    line-height: 1.75;
+}
+
+.home-page #discover .pattern-energy-tags span {
+    font-size: 0.8rem;
+}
+
+
+/* 整合重點 */
+.home-page #discover .discover-thinking-note p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+
+/* 臺灣情境 */
+.home-page #discover .taiwan-context-head p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.home-page #discover .taiwan-mix-grid p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.home-page #discover .discover-question p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+
+/* 最後反思 */
+.home-page #discover .discover-reflection h3 {
+    font-size: 1.15rem;
+}
+
+.home-page #discover .discover-reflection p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.discover-focus-note {
+    margin-bottom: 22px;
+}

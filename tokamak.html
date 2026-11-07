@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tokamak｜臺灣能源互動電子書</title>
-    <link rel="stylesheet" href="student-learning.css?v=14">
+    <link rel="stylesheet" href="student-learning.css?v=18">
 </head>
 
 <body class="module-page" data-page-requires="emerging">
@@ -52,9 +52,25 @@
             </p>
 
             <div class="learning-point">
+
                 <strong>你可以注意</strong>
-                為什麼核融合需要高溫電漿？
-                磁場又如何幫助控制這些帶電粒子的運動？
+
+                <ul class="learning-point-list">
+
+                    <li>
+                        為什麼核融合需要高溫電漿？
+                    </li>
+
+                    <li>
+                        真空環境為什麼有助於維持高溫電漿？
+                    </li>
+
+                    <li>
+                        磁場如何幫助控制帶電粒子的運動？
+                    </li>
+
+                </ul>
+
             </div>
 
             <!-- =========================
@@ -101,15 +117,31 @@
                             </h2>
 
                             <p id="tokamakStepDescription">
-                                模型初始畫面為 Tokamak 整體結構。
-                                請先觀察真空容器、磁場線圈與其他主要設備的位置，
-                                再依序進行中文導覽，了解 Tokamak 如何建立並控制高溫電漿。
+
+                                模型初始畫面為 Tokamak 整體結構，
+                                可先觀察真空容器、磁場線圈與其他設備的位置。
+                                按下「開始導覽」後，
+                                模型與中文說明會同步切換，
+                                逐步了解 Tokamak 如何建立並控制核融合所需的環境。
+
                             </p>
 
                             <div class="tokamak-energy-tag"
                                  id="tokamakEnergyTag">
 
                                 核融合條件：高溫、電漿、磁場與真空
+
+                            </div>
+
+                            <div class="tokamak-sync-hint">
+
+                                <strong>怎麼操作？</strong>
+
+                                <span>
+                                    使用右側的「開始導覽／下一步」依序查看設備。
+                                    模型會同步切換位置；
+                                    模型中的英文名稱可對照上方中文名稱。
+                                </span>
 
                             </div>
                         </div>
@@ -187,25 +219,36 @@
 
 
                         <!-- =========================
-                 1. 核心原理
-            ========================= -->
+             1. 核心原理
+        ========================= -->
 
-                        <div class="helper-section tokamak-helper-card tokamak-helper-card-main">
+                        <div class="helper-section
+                                    tokamak-helper-card
+                                    tokamak-helper-card-main">
 
                             <h4>⚛️ 為什麼核融合需要這麼特殊的環境？</h4>
 
-                            <p class="helper-intro">
-                                核融合要發生，兩個帶正電的原子核必須靠得非常接近。
-                                但是原子核之間存在<strong>電性排斥</strong>，
-                                因此必須讓粒子具有很高的能量，
-                                才能增加它們彼此接近到核力可以發揮作用範圍的機會。
+                            <p>
+                                <strong>① 原子核之間會互相排斥：</strong>
+                                參與核融合的原子核都帶正電，
+                                因此彼此接近時會受到<strong>電性排斥</strong>。
+                                必須讓粒子具有很高的能量，
+                                才能增加原子核非常接近的機會。
                             </p>
 
                             <p>
+                                <strong>② 高溫會形成電漿：</strong>
                                 當物質被加熱到極高溫時，
-                                電子會與原子核分離，形成由帶電粒子組成的<strong>電漿</strong>。
-                                Tokamak 的核心工作，
-                                就是設法把這些極高溫的帶電粒子<strong>限制在一定範圍內並維持足夠時間</strong>。
+                                電子會與原子核分離，
+                                形成由自由電子與離子組成的<strong>電漿</strong>。
+                            </p>
+
+                            <p>
+                                <strong>③ Tokamak 要把高溫電漿控制住：</strong>
+                                Tokamak 利用<strong>真空環境與磁場</strong>
+                                減少不必要的碰撞，
+                                並限制帶電粒子的運動，
+                                讓高溫電漿能維持足夠的條件與時間。
                             </p>
 
                             <div class="tokamak-condition-flow">
@@ -222,13 +265,11 @@
                                 <span>提高核融合機會</span>
 
                             </div>
-
                         </div>
 
-
                         <!-- =========================
-                 2. 四個重要條件
-            ========================= -->
+             2. 四個重要條件
+        ========================= -->
 
                         <div class="helper-section tokamak-helper-card tokamak-helper-card-condition">
 
@@ -290,8 +331,8 @@
 
 
                         <!-- =========================
-                 3. 重要設備
-            ========================= -->
+             3. 重要設備
+        ========================= -->
 
                         <div class="helper-section tokamak-helper-card tokamak-helper-card-wide">
 
@@ -377,35 +418,43 @@
 
 
                         <!-- =========================
-                             4. Tokamak ≠ 現在的發電廠
-                        ========================= -->
-                        <div class="helper-section tokamak-helper-card tokamak-helper-card-power">
+             4. Tokamak ≠ 現在的發電廠
+        ========================= -->
+                        <div class="helper-section
+                                    tokamak-helper-card
+                                    tokamak-helper-card-power">
 
                             <h4>⚡ Tokamak 已經可以像火力發電廠一樣供電了嗎？</h4>
 
                             <p>
-                                現階段常見的 Tokamak 主要是<strong>核融合研究與實驗裝置</strong>，
-                                學習重點是研究如何產生、加熱、約束並控制高溫電漿。
+                                <strong>① 現階段主要是研究裝置：</strong>
+                                現階段常見的 Tokamak 主要用來研究
+                                <strong>高溫電漿的產生、加熱、約束與控制</strong>，
+                                並不是一般商用發電廠。
                             </p>
 
                             <p>
-                                例如正在法國建設的<strong>ITER</strong>
-                                雖然目標之一是產生大量核融合功率，
-                                但 ITER 本身<strong>不會把融合產生的熱轉換成商用電力</strong>。
-                                它主要用來驗證燃燒電漿以及未來核融合反應器所需要的重要技術。
+                                <strong>② ITER 也不是商用發電廠：</strong>
+                                例如正在法國建設的<strong> ITER</strong>，
+                                主要用來研究燃燒電漿，
+                                並驗證未來核融合反應器需要的重要技術，
+                                本身不會把核融合產生的熱轉換成商用電力。
                             </p>
 
                             <p>
-                                未來若發展成核融合發電廠，
-                                核融合產生的能量可以先轉換成<strong>熱能</strong>，
-                                再利用蒸氣、汽輪機與發電機等系統產生電力。
+                                <strong>③ 未來還需要完整的發電系統：</strong>
+                                若未來發展成核融合發電廠，
+                                核融合釋放的能量還需要經過
+                                <strong>熱能利用、汽輪機與發電機</strong>等系統，
+                                才能轉換成可供使用的電力。
                             </p>
+
                         </div>
                     </div>
 
                     <!-- =================================================
-                         全球研究案例
-                    ================================================= -->
+         全球研究案例
+    ================================================= -->
 
                     <div class="fusion-world-note">
 
@@ -499,14 +548,13 @@
                                 Tokamak 在本教材中則代表<strong>正在持續研究與發展中的核融合技術</strong>，
                                 因此這裡關注的不是今天可以發多少電，
                                 而是<strong>怎麼創造並維持</strong>核融合所需要的條件。
-</p>
+                            </p>
                         </div>
                     </div>
 
                     <!-- ===============================
                              再想一下
                     ================================ -->
-
                     <div class="think-note tokamak-think-note">
 
                         <div class="think-note-title">
@@ -514,16 +562,15 @@
                         </div>
 
                         <p>
-                            假設未來的 Tokamak 已經能夠長時間穩定維持核融合反應，
-                            但研究人員希望進一步把它變成真正可以供應電力的發電廠。
-                            除了<strong>讓核融合反應持續發生</strong>之外，
-                            你覺得還需要增加或解決哪些系統與問題，
-                            才能把核融合釋放的能量真正送到電網中？
+                            如果未來 Tokamak 已能穩定維持核融合反應，
+                            還需要哪些<strong>能量轉換與發電設備</strong>，
+                            才能把核融合釋放的能量真正送進電網？
                         </p>
+
                     </div>
 
                     <!-- =============================
-                         小試身手
+                            小試身手
                     ============================== -->
 
                     <div class="mini-quiz-card"
@@ -611,8 +658,8 @@
                     </div>
 
                     <!-- =================================================
-                         資料來源
-                    ================================================= -->
+         資料來源
+    ================================================= -->
                     <div class="tokamak-data-source">
                         <span>概念與國際案例資料來源：</span>
 
@@ -659,6 +706,6 @@
         <p>本網站為教育與學術用途開發。</p>
     </footer>
 
-    <script src="student-learning.js?v=14"></script>
+    <script src="student-learning.js?v=18"></script>
 </body>
 </html>

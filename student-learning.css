@@ -5376,7 +5376,9 @@ footer,
 
 .tokamak-guide-content {
     flex: 1;
+    min-height: 0;
     padding: 20px;
+    overflow-y: auto;
     background: #f4f2ef;
 }
 
@@ -5459,8 +5461,8 @@ footer,
 /* =========================
    控制區
 ========================= */
-
 .tokamak-controls {
+    flex-shrink: 0;
     padding: 16px;
     background: #6f6861;
 }
@@ -5496,22 +5498,29 @@ footer,
     cursor: not-allowed;
 }
 
-
-/* =========================
-   左右欄高度
-========================= */
+/* =========================================================
+   Tokamak 模型：版面比照其他正式能源頁
+========================================================= */
 
 .tokamak-learning-module .module-workspace {
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
 }
 
 .tokamak-learning-module .module-model-column,
 .tokamak-learning-module .tokamak-control-column {
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
+}
+
+.tokamak-learning-module .tokamak-model-frame,
+.tokamak-learning-module .tokamak-model-shell,
+.tokamak-learning-module .tokamak-model-shell iframe {
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
 }
 
 
@@ -5753,8 +5762,14 @@ footer,
 
 .fusion-world-card p {
     margin-bottom: 12px;
-    font-size: .88rem;
+    font-size: .98rem;
     line-height: 1.75;
+}
+
+.fusion-world-note > p,
+.fusion-world-summary p {
+    font-size: 1rem;
+    line-height: 1.8;
 }
 
 .fusion-world-card a {
@@ -5884,6 +5899,14 @@ footer,
     .tokamak-helper-card-wide,
     .tokamak-helper-card-power {
         grid-column: auto;
+    }
+
+    .tokamak-learning-module .tokamak-model-frame,
+    .tokamak-learning-module .tokamak-model-shell,
+    .tokamak-learning-module .tokamak-model-shell iframe {
+        height: 480px;
+        min-height: 480px;
+        max-height: 480px;
     }
 }
 
@@ -6034,6 +6057,14 @@ footer,
     .solar-title-en,
     .tokamak-title-en {
         font-size: 0.82rem;
+    }
+
+    .tokamak-sync-hint strong {
+        font-size: .72rem;
+    }
+
+    .tokamak-sync-hint span {
+        font-size: .68rem;
     }
 }
 
@@ -6402,3 +6433,41 @@ footer,
 .emerging-focus-note {
     margin-bottom: 18px;
 }
+
+/* =========================================================
+   Tokamak 正式版可讀性
+========================================================= */
+
+.tokamak-helper-card h4 {
+    font-size: 1.05rem;
+    line-height: 1.5;
+}
+
+.tokamak-helper-card p,
+.tokamak-condition-card p,
+.tokamak-device-card p {
+    font-size: 0.98rem;
+    line-height: 1.8;
+}
+
+.tokamak-condition-card > strong,
+.tokamak-device-card > strong {
+    font-size: 0.98rem;
+}
+
+.fusion-world-note > p,
+.fusion-world-summary p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.fusion-world-card p {
+    font-size: 0.98rem;
+    line-height: 1.75;
+}
+
+.tokamak-think-note p {
+    font-size: 1rem;
+    line-height: 1.85;
+}
+

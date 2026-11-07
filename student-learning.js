@@ -5198,7 +5198,6 @@ function initMiniQuizzes() {
                 card.querySelector(
                     ".quiz-save-status"
                 );
-
                 radios.forEach(radio => {
 
     radio.addEventListener("change", () => {
@@ -5215,7 +5214,6 @@ function initMiniQuizzes() {
             status.textContent =
                 "答案已修改，請重新儲存";
         }
-
     });
 
 });

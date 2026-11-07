@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>臺灣能源互動電子書｜學生學習版</title>
-  <link rel="stylesheet" href="student-learning.css?v=14">
+  <link rel="stylesheet" href="student-learning.css?v=15">
 </head>
-<body>
+<body class="home-page">
     <nav>
         <a class="logo" href="index.html">Taiwan Energy<span></span></a>
         <button class="nav-toggle" type="button" aria-label="開啟選單" onclick="toggleMenu()">
@@ -20,7 +20,7 @@
             <li><a href="student-summary.html">學習整理</a></li>
         </ul>
     </nav>
-    
+
     <header class="hero">
         <div class="hero-inner">
             <div>
@@ -30,34 +30,34 @@
                     先從火力、核能、風力、水力與太陽光電建立發電概念，
                     完成比較整理後，再進入新興能源探索。
                 </p>
-            
+
                 <div class="hero-actions">
                     <a class="btn btn-primary" href="#start">開始今天的探索</a>
                     <a class="btn btn-soft" href="#explore">查看學習模組</a>
                 </div>
             </div>
-            
+
             <aside class="hero-panel">
                 <h3>我的學習路線</h3>
                 <div class="phase-list">
                     <a class="phase-chip route-home-link"
-                        href="#start"
-                        data-home-route="start">
+                       href="#start"
+                       data-home-route="start">
                         <b>1</b>
                         <div>
                             <strong>先想一想</strong>
                             <small>留下原本的想法</small>
                         </div>
-                        
+
                         <span class="phase-status"
-                                data-home-status="start">
+                              data-home-status="start">
                             未完成
                         </span>
                     </a>
-                    
+
                     <a class="phase-chip route-home-link"
-                        href="#explore"
-                        data-home-route="traditional">
+                       href="#explore"
+                       data-home-route="traditional">
                         <b>2</b>
                         <div>
                             <strong>臺灣常見發電方式</strong>
@@ -65,16 +65,16 @@
                                 火力、核能、風力、水力、太陽光電
                             </small>
                         </div>
-                        
+
                         <span class="phase-status"
-                                data-home-status="traditional">
-                                已完成 0 / 5
+                              data-home-status="traditional">
+                            已完成 0 / 5
                         </span>
                     </a>
 
                     <a class="phase-chip route-home-link"
-                        href="#discover"
-                        data-home-route="discover">
+                       href="#discover"
+                       data-home-route="discover">
                         <b>3</b>
                         <div>
                             <strong>臺灣發電方式整合比較</strong>
@@ -84,14 +84,14 @@
                         </div>
 
                         <span class="phase-status"
-                                data-home-status="discover">
-                                尚未解鎖
+                              data-home-status="discover">
+                            尚未解鎖
                         </span>
                     </a>
 
                     <a class="phase-chip route-home-link"
-                        href="#emerging"
-                        data-home-route="emerging">
+                       href="#emerging"
+                       data-home-route="emerging">
                         <b>4</b>
                         <div>
                             <strong>新興能源</strong>
@@ -101,14 +101,14 @@
                         </div>
 
                         <span class="phase-status"
-                                data-home-status="emerging">
+                              data-home-status="emerging">
                             尚未解鎖
                         </span>
                     </a>
 
                     <a class="phase-chip route-home-link"
-                        href="student-summary.html"
-                        data-home-route="summary">
+                       href="student-summary.html"
+                       data-home-route="summary">
                         <b>5</b>
                         <div>
                             <strong>學習整理</strong>
@@ -118,22 +118,76 @@
                         </div>
 
                         <span class="phase-status"
-                                data-home-status="summary">
-                                尚未解鎖
+                              data-home-status="summary">
+                            尚未解鎖
                         </span>
                     </a>
                 </div>
             </aside>
         </div>
     </header>
+
     
     <main>
+
+        <section class="container home-first-use">
+
+            <div class="first-use-card">
+
+                <div class="first-use-head">
+                    <span>第一次使用？</span>
+                    <h2>跟著學習路線往下完成就可以</h2>
+                </div>
+
+                <div class="first-use-grid">
+
+                    <div class="first-use-item">
+                        <b>01</b>
+                        <div>
+                            <strong>依序完成學習內容</strong>
+                            <p>
+                                從「先想一想」開始，
+                                完成目前階段後，後面的內容會逐步解鎖。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="first-use-item">
+                        <b>02</b>
+                        <div>
+                            <strong>進入能源頁後先操作模型</strong>
+                            <p>
+                                跟著中文導覽操作 3D 模型，
+                                再查看「能源小幫手」整理重點。
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="first-use-item">
+                        <b>03</b>
+                        <div>
+                            <strong>記得儲存並完成</strong>
+                            <p>
+                                回答題目後先按「儲存答案」，
+                                再按「完成」記錄目前的學習進度。
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
         <section class="container" id="start">
             <div class="section-intro">
                 <span class="eyebrow">BEFORE WE START</span>
                 <h2>先別急著找答案，先看看你現在怎麼想</h2>
                 <p>
-                    下面沒有立即顯示標準答案。先留下你的想法，等操作完模型後，再回頭看看自己有沒有新的發現。
+                    這裡<strong>不會立即顯示標準答案</strong>。
+                    先留下你現在的想法，完成後面的模型探索後，再看看自己的想法有沒有改變。
                 </p>
             </div>
 
@@ -178,33 +232,33 @@
                 </button>
             </div>
         </section>
-    
+
         <section class="container">
             <div class="section-intro">
                 <span class="eyebrow">TODAY'S GOALS</span>
                 <h2>今天你會學到什麼？</h2>
                 <p>不用一開始就全部記住，只要在探索時注意下面四件事。</p>
             </div>
-        
+
             <div class="learning-goals">
                 <article class="learning-card">
                     <span>01</span>
                     <h3>不同能源從哪裡來？</h3>
                     <p>看看燃料、水、風、陽光與核反應各自扮演什麼角色。</p>
                 </article>
-            
+
                 <article class="learning-card">
                     <span>02</span>
                     <h3>能量怎麼一步步轉換？</h3>
                     <p>觀察熱能、機械能、光能與電能之間的轉換。</p>
                 </article>
-            
+
                 <article class="learning-card">
                     <span>03</span>
                     <h3>哪些設備最關鍵？</h3>
                     <p>找出不同能源系統中的主要設備，並理解它們各自扮演的角色。</p>
                 </article>
-            
+
                 <article class="learning-card">
                     <span>04</span>
                     <h3>核融合為什麼這麼困難？</h3>
@@ -215,22 +269,22 @@
                 </article>
             </div>
         </section>
-    
+
         <section id="explore" class="container">
             <div class="section-intro">
-                <span class="eyebrow">TRADITIONAL ENERGY</span>
+                <span class="eyebrow">POWER GENERATION</span>
                 <h2>選擇一種能源，進入獨立的互動頁面</h2>
                 <p>
-                    先完成五種臺灣常見發電方式。每頁只專注一種能源，
-                    完成模型導覽與整理後，再回到這裡查看進度。
+                    依序探索<strong>火力、核能、風力、水力與太陽光電</strong>。
+                    每一頁都會帶你操作模型、整理能量轉換，再完成一個小問題。
                 </p>
             </div>
-        
+
             <div class="section-progress-line">
                 <strong>臺灣常見發電方式</strong>
                 <span id="traditionalProgressText">已完成 0 / 5</span>
             </div>
-        
+
             <div class="energy-menu-grid">
                 <a class="energy-menu-card" href="thermal.html" data-module-card="thermal">
                     <span>01</span>
@@ -238,28 +292,28 @@
                     <p>天然氣的化學能如何經過熱能與機械能轉成電能。</p>
                     <strong class="module-card-status">開始探索 →</strong>
                 </a>
-            
+
                 <a class="energy-menu-card" href="nuclear.html" data-module-card="nuclear">
                     <span>02</span>
                     <h3>核能發電</h3>
                     <p>核分裂產生熱之後，如何透過蒸汽與汽輪機發電。</p>
                     <strong class="module-card-status">開始探索 →</strong>
                 </a>
-            
+
                 <a class="energy-menu-card" href="wind.html" data-module-card="wind">
                     <span>03</span>
                     <h3>風力發電</h3>
                     <p>風的動能如何帶動葉片與發電機。</p>
                     <strong class="module-card-status">開始探索 →</strong>
                 </a>
-            
+
                 <a class="energy-menu-card" href="hydro.html" data-module-card="hydro">
                     <span>04</span>
                     <h3>水力發電</h3>
                     <p>水的重力位能與動能如何驅動水輪機。</p>
                     <strong class="module-card-status">開始探索 →</strong>
                 </a>
-            
+
                 <a class="energy-menu-card" href="solar.html" data-module-card="solar">
                     <span>05</span>
                     <h3>太陽光電</h3>
@@ -277,7 +331,7 @@
                     <p>完成火力、核能、風力、水力與太陽光電五個模組後即可進入。</p>
                 </div>
             </div>
-            
+
             <div class="gated-content">
                 <!-- =========================
                      區塊標題
@@ -286,10 +340,11 @@
                     <span class="eyebrow">CONNECT THE IDEAS</span>
                     <h2>把五種發電方式放在一起比較</h2>
                     <p>
-                        你已經分別探索了火力、核能、風力、水力與太陽光電。
-                        現在先不要把它們當成五個獨立的知識點，
-                        試著從<strong>能量從哪裡來、怎麼轉換，以及最後怎麼產生電</strong>
-                        三個角度，把它們放在一起看。
+                        你已經完成五種發電方式的探索。
+                    </p>
+
+                    <p>
+                        接下來從<strong>能源來源</strong>、<strong>能量轉換</strong>與<strong>如何產生電能</strong>三個角度，把它們放在一起比較。
                     </p>
                 </div>
 
@@ -301,18 +356,20 @@
                         <span>STEP 01</span>
                         <h3>先看看：五種能源走的是同一條路嗎？</h3>
                         <p>
-                            有些發電方式看起來差很多，
-                            但把設備名稱拿掉、只看能量怎麼轉換後，
-                            其實可以找到一些很有趣的共同點。
-                            如果有哪一種發電方式想再確認，
-                            <strong>可以直接點選下方卡片，回到該能源頁面重新查看。</strong>
+                            先暫時拿掉設備名稱，只看<strong>能量轉換路徑</strong>，
+                            你會發現不同發電方式之間其實有不少共同點。
+                        </p>
+
+                        <p>
+                            想重新確認某一種能源時，
+                            <strong>直接點選下方卡片即可回到該能源頁面複習。</strong>
                         </p>
                     </div>
 
                     <div class="energy-path-grid">
                         <a class="energy-path-card energy-path-link thermal-path"
-                            href="thermal.html"
-                            aria-label="回到火力發電頁面">
+                           href="thermal.html"
+                           aria-label="回到火力發電頁面">
                             <div class="energy-path-title">
                                 <span>火力</span>
                                 <strong>天然氣的化學能</strong>
@@ -510,9 +567,13 @@
                         </div>
 
                         <p>
-                            能源來源不同不代表整個發電流程都不同。
-                            火力與核能的熱來源不同，但後半段很相似；
-                            風力與水力的自然條件不同，卻都會先形成旋轉機械能。
+                            <strong>火力與核能：</strong>
+                            熱的來源不同，但後半段都會利用蒸氣、汽輪機與發電機。
+                        </p>
+
+                        <p>
+                            <strong>風力與水力：</strong>
+                            自然條件不同，但都會先形成旋轉的機械能，再轉換成電能。
                         </p>
 
                         <p class="discover-thinking-summary">
@@ -603,10 +664,12 @@
 
                     <h3>如果只能用一句話，你會怎麼比較這五種發電方式？</h3>
                     <p>
-                        不需要把五種能源逐一介紹。
-                        試著找出一個你認為最重要的比較角度，
-                        例如能源來源、能量轉換方式、
-                        是否受到自然條件影響，或在供電系統中的角色。
+                        不需要逐一介紹五種能源。
+                        請選擇<strong>一個你認為最重要的比較角度</strong>來回答。
+                    </p>
+
+                    <p>
+                        例如：能源來源、能量轉換、自然條件，或在供電系統中的角色。
                     </p>
 
                     <textarea data-save="discover_reflection"
@@ -669,9 +732,9 @@
                         <strong class="module-card-status">開始探索 →</strong>
                     </a>
 
-                    <a class="energy-menu-card gated-link" 
+                    <a class="energy-menu-card gated-link"
                        href="alpha-e-student-activity.html"
-                       data-module-card="challenge" 
+                       data-module-card="challenge"
                        data-link-requires="alpha">
                         <span>02</span>
                         <h3>Alpha-E</h3>
@@ -697,7 +760,7 @@
                         <h3>七個模組都完成了</h3>
                         <p>最後把五種發電方式、Tokamak 與 Alpha-E 一起比較與反思。</p>
                     </div>
-                    
+
                     <a class="btn btn-primary" href="student-summary.html">前往學習整理</a>
                 </div>
             </div>
@@ -709,6 +772,6 @@
         <p>本網站為教育與學術用途開發。</p>
     </footer>
 
-    <script src="student-learning.js?v=14"></script>
+    <script src="student-learning.js?v=15"></script>
 </body>
 </html>

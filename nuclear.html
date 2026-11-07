@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>核能發電｜臺灣能源互動電子書</title>
-  <link rel="stylesheet" href="student-learning.css?v=14">
+  <link rel="stylesheet" href="student-learning.css?v=15">
 </head>
 <body class="module-page">
 
@@ -32,7 +32,12 @@
 <main class="container module-main">
     <div class="module-focus-note">
         <strong>本頁學習方式</strong>
-        <span>操作模型與中文導覽 → 查看「能源小幫手」→ 完成本頁。</span>
+        <span>
+            操作模型與中文導覽 →
+            查看「能源小幫手」→
+            完成小試身手 →
+            完成本頁。
+        </span>
     </div>
 
     <article class="energy-card">
@@ -44,10 +49,23 @@
         <p>看看核反應產生熱之後，後面的發電流程和火力有沒有相似的地方。</p>
 
         <div class="learning-point">
+
             <strong>你可以注意</strong>
-            核分裂產生的能量如何轉換成電能？
-            蒸氣如何帶動汽輪機與發電機完成發電？
-            冷卻系統在發電過程中扮演什麼角色？
+
+            <ul class="learning-point-list">
+                <li>
+                    核分裂產生的能量如何轉換成電能？
+                </li>
+
+                <li>
+                    蒸氣如何帶動汽輪機與發電機完成發電？
+                </li>
+
+                <li>
+                    冷卻系統在發電過程中扮演什麼角色？
+                </li>
+            </ul>
+
         </div>
 
         <!-- =========================
@@ -64,8 +82,6 @@
 
                     <div class="nuclear-model-frame">
 
-                        <div class="nuclear-model-shell">
-
                             <div class="nuclear-model-shell"
                                  id="nuclearViewerWrapper">
 
@@ -81,7 +97,6 @@
                                 </iframe>
 
                             </div>
-                        </div>
                     </div>
                 </div>
 
@@ -121,6 +136,18 @@
                              id="nuclearEnergyTag">
 
                             能量來源：核分裂
+
+                        </div>
+
+                        <div class="nuclear-sync-hint">
+
+                            <strong>怎麼操作？</strong>
+
+                            <span>
+                                只要使用右側的「開始導覽／下一步」即可。
+                                模型會自動切換設備；
+                                模型中的英文名稱可對照上方中文名稱。
+                            </span>
 
                         </div>
                     </div>
@@ -196,21 +223,29 @@
 
                         <h4>⚛️ 核分裂釋放的能量怎麼變成電？</h4>
 
-                        <p class="helper-intro">
-                            現行核能發電主要利用<strong>核分裂</strong>。
-                            當核燃料中的原子核發生核分裂時，
-                            會釋放能量，並使反應爐系統中的水獲得<strong>熱能</strong>。
+                        <p>
+                            <strong>① 核分裂釋放能量：</strong>
+                            核燃料中的原子核發生核分裂時會釋放能量，
+                            並在反應爐系統中轉換成<strong>熱能</strong>。
                         </p>
 
                         <p>
-                            這些熱量接著會透過<strong>蒸汽產生器</strong>傳遞給另一側的水，
-                            使水形成蒸氣。
-                            蒸氣再推動<strong>汽輪機</strong>旋轉，
-                            將蒸氣所攜帶的能量轉換成<strong>機械能</strong>。
-                            最後汽輪機帶動<strong>發電機</strong>，
-                            將機械能轉換成<strong>電能</strong>。
+                            <strong>② 熱能產生蒸氣：</strong>
+                            反應爐系統中的熱量透過<strong>蒸汽產生器</strong>
+                            傳遞給另一側的水，使水形成蒸氣。
                         </p>
 
+                        <p>
+                            <strong>③ 蒸氣推動汽輪機：</strong>
+                            蒸氣推動<strong>汽輪機</strong>旋轉，
+                            將蒸氣所攜帶的能量轉換成<strong>機械能</strong>。
+                        </p>
+
+                        <p>
+                            <strong>④ 發電機產生電力：</strong>
+                            汽輪機帶動<strong>發電機</strong>，
+                            再將旋轉的機械能轉換成<strong>電能</strong>。
+                        </p>
 
                         <div class="energy-flow">
 
@@ -227,31 +262,6 @@
 
                         </div>
 
-                    </div>
-
-                    <!-- 2. 熱能如何產生蒸氣 -->
-                    <div class="helper-section helper-concept-box nuclear-helper-card nuclear-helper-card-pwr">
-
-                        <h4>💨 反應爐產生熱之後，怎麼繼續發電？</h4>
-
-                        <p>
-                            核分裂在<strong>反應爐</strong>中釋放能量，
-                            使系統中的水獲得熱能。
-                            這些熱量接著會被利用來產生<strong>蒸氣</strong>。
-                        </p>
-
-                        <p>
-                            蒸氣具有足夠的能量後，
-                            會推動<strong>汽輪機</strong>旋轉，
-                            將熱能轉換成旋轉的<strong>機械能</strong>。
-                        </p>
-
-                        <p>
-                            最後汽輪機再帶動<strong>發電機</strong>，
-                            將機械能轉換成電能。
-                            因此反應爐本身並不是直接產生電力，
-                            而是先提供後續發電所需要的熱能。
-                        </p>
                     </div>
 
                     <!-- 3. 設備關係 -->
@@ -312,42 +322,36 @@
                     </div>
 
                     <!-- 4. 冷卻與安全 -->
-                    <div class="helper-section helper-concept-box nuclear-helper-card nuclear-helper-card-safety">
+                    <div class="helper-section helper-concept-box
+            nuclear-helper-card nuclear-helper-card-safety">
 
                         <h4>🛡️ 為什麼核能發電廠需要冷卻與防護設備？</h4>
 
                         <p>
-                            蒸氣通過汽輪機之後，
-                            會進入<strong>冷凝器</strong>重新凝結成水，
-                            再回到系統中循環使用。
+                            <strong>① 蒸氣重新變回水：</strong>
+                            蒸氣通過汽輪機後會進入<strong>冷凝器</strong>，
+                            冷卻並重新凝結成水，再回到系統中循環使用。
                         </p>
 
                         <p>
-                            在發電過程中，
+                            <strong>② 移除多餘熱量：</strong>
                             並不是所有熱能都能轉換成電能，
-                            系統中仍會有需要移除的熱量。
-                            <strong>
-                                冷卻系統的主要功能就是把這些需要排出的熱能帶走，
-                                協助設備維持適當的運轉溫度。
-                            </strong>
+                            因此<strong>冷卻系統</strong>需要將多餘熱量帶走，
+                            幫助設備維持適當的運轉溫度。
                         </p>
 
                         <p>
-                            因此冷卻系統不是把熱能全部保存起來，
-                            也不是把所有熱能直接轉換成電能，
-                            而是協助系統散熱並維持穩定運轉。
+                            <strong>③ 保護人員與環境：</strong>
+                            <strong>反應爐建築、混凝土屏蔽與多重安全系統</strong>
+                            能降低放射性物質與游離輻射影響人員及環境的可能性。
                         </p>
 
                         <p>
-                            核能發電廠除了發電設備之外，
-                            還需要<strong>反應爐建築、混凝土屏蔽與多重安全系統</strong>，
-                            用來降低放射性物質與游離輻射對人員及環境造成影響的可能性。
+                            <strong>重點：</strong>
+                            核能發電除了能量轉換，
+                            也必須同時考慮<strong>冷卻、安全與防護</strong>。
                         </p>
 
-                        <p>
-                            因此核能發電除了了解能量轉換之外，
-                            還需要同時理解<strong>冷卻、安全與防護</strong>的重要性。
-                        </p>
                     </div>
                 </div>
 
@@ -364,26 +368,37 @@
 
                     </div>
 
-
                     <p>
+                        <strong>目前狀態：</strong>
                         臺灣曾有核一、核二與核三等核能發電廠。
                         核三 2 號機於<strong>2025 年 5 月停止商轉</strong>，
-                        因此目前臺灣沒有正在商業發電的核能機組。
+                        目前臺灣沒有正在商業發電的核能機組。
                     </p>
 
+                    <p>
+                        <strong>再運轉進度：</strong>
+                        核三廠已提出運轉執照換發申請，
+                        核安會並於 2026 年 9 月完成
+                        「再運轉計畫」審查與核定。
+                    </p>
+
+                    <p>
+                        <strong>後續程序：</strong>
+                        後續仍須完成相關作業，
+                        並接受<strong>安全審查與現場查證</strong>，
+                        符合相關法規與安全要求後，
+                        才可能進一步換發運轉執照。
+                    </p>
 
                     <p class="policy-note">
-
-                        <strong>後續發展仍在進行：</strong>
-
-                        核三廠目前已提出再運轉相關申請，
-                        並進入安全審查與現場查證程序。
-                        因此核能在臺灣的未來角色，
-                        除了發電技術本身之外，
-                        還會涉及核能安全、核廢料處理、
-                        電力供應、減碳與能源政策等議題。
-
+                        <strong>值得思考：</strong>
+                        核能未來在臺灣扮演的角色，
+                        還涉及<strong>
+                            核能安全、核廢料處理、
+                            電力供應、減碳與能源政策
+                        </strong>等議題。
                     </p>
+
                 </div>
 
                 <!-- 再想一下 -->
@@ -395,11 +410,9 @@
 
                     <p>
                         核分裂可以釋放大量能量，
-                        但核能發電廠為什麼不能把這些能量
-                        <strong>直接變成電能</strong>？
-                        為什麼還需要先利用熱產生蒸氣，
-                        再經過汽輪機與發電機？
-                        想想看每個設備在能量轉換中扮演什麼角色。
+                        但為什麼不能<strong>直接變成電能</strong>？
+                        為什麼還需要先產生蒸氣，再經過汽輪機與發電機？
+                        想想看各設備在能量轉換中扮演什麼角色。
                     </p>
 
                 </div>
@@ -495,6 +508,6 @@
   <p>臺灣能源互動電子書 © 2026</p>
   <p>本網站為教育與學術用途開發。</p>
 </footer>
-<script src="student-learning.js?v=14"></script>
+<script src="student-learning.js?v=15"></script>
 </body>
 </html>

@@ -2370,14 +2370,10 @@ footer{
 
 .wind-model-shell {
     position: relative;
-
     width: 100%;
-    height: 480px;
     min-height: 480px;
-
     overflow: hidden;
     border-radius: 14px;
-
     background: #11161d;
 }
 
@@ -2420,13 +2416,13 @@ footer{
 /* =========================
    右側說明
 ========================= */
-
 .wind-guide-content {
     flex: 1;
+    min-height: 0;
     padding: 20px;
+    overflow-y: auto;
     background: #f4f2ef;
 }
-
 
 .wind-step-meta {
     display: flex;
@@ -2482,12 +2478,37 @@ footer{
     font-weight: 800;
 }
 
+/* =========================
+   模型同步提示
+========================= */
+
+.wind-sync-hint {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border: 1px solid #e4d29a;
+    border-radius: 10px;
+    background: #fff8e8;
+}
+
+.wind-sync-hint strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #111827;
+    font-size: .82rem;
+}
+
+.wind-sync-hint span {
+    display: block;
+    color: #4b5563;
+    font-size: .78rem;
+    line-height: 1.6;
+}
 
 /* =========================
    控制區
 ========================= */
-
 .wind-controls {
+    flex-shrink: 0;
     padding: 16px;
     background: #6f6861;
 }
@@ -2656,6 +2677,19 @@ footer{
             white-space: nowrap !important;
             word-break: keep-all;
         }
+
+        .wind-sync-hint {
+    margin-top: 12px;
+    padding: 9px 10px;
+}
+
+.wind-sync-hint strong {
+    font-size: .72rem;
+}
+
+.wind-sync-hint span {
+    font-size: .68rem;
+}
 }
 
 
@@ -2816,6 +2850,13 @@ footer{
     margin: 0;
     color: #111111;
     line-height: 1.85;
+    white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+    .think-note p {
+        white-space: normal;
+    }
 }
 
 .think-note strong {
@@ -3024,51 +3065,28 @@ footer{
 }
 
 /* =========================================================
-   風力模型：左右欄高度一致
+   風力模型：版面比照火力／核能
 ========================================================= */
+
 .wind-learning-module .module-workspace {
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
 }
 
 .wind-learning-module .module-model-column,
 .wind-learning-module .wind-control-column {
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
 }
 
 .wind-learning-module .wind-model-frame,
 .wind-learning-module .wind-model-shell,
 .wind-learning-module .wind-model-shell iframe {
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
-}
-
-@media (max-width: 900px) {
-
-    .wind-learning-module .module-workspace {
-        height: auto;
-        min-height: 0;
-        max-height: none;
-    }
-
-    .wind-learning-module .module-model-column,
-    .wind-learning-module .wind-control-column {
-        height: auto;
-        min-height: 0;
-        max-height: none;
-    }
-
-    .wind-learning-module .wind-model-frame,
-    .wind-learning-module .wind-model-shell,
-    .wind-learning-module .wind-model-shell iframe {
-        height: 480px;
-        min-height: 480px;
-        max-height: 480px;
-    }
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
 }
 
 /* =========================================================
@@ -3960,7 +3978,9 @@ footer{
 
 .nuclear-guide-content {
     flex: 1;
+    min-height: 0;
     padding: 20px;
+    overflow-y: auto;
     background: #f4f2ef;
 }
 
@@ -4015,27 +4035,28 @@ footer{
 }
 
 /* =========================================================
-   核能模型：左右欄高度一致
+   核能模型：版面比照火力發電
 ========================================================= */
+
 .nuclear-learning-module .module-workspace {
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
 }
 
 .nuclear-learning-module .module-model-column,
 .nuclear-learning-module .nuclear-control-column {
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
 }
 
 .nuclear-learning-module .nuclear-model-frame,
 .nuclear-learning-module .nuclear-model-shell,
 .nuclear-learning-module .nuclear-model-shell iframe {
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
 }
 
 /* =========================
@@ -4067,6 +4088,7 @@ footer{
    控制區
 ========================= */
 .nuclear-controls {
+    flex-shrink: 0;
     padding: 16px;
     background: #6f6861;
 }
@@ -4771,6 +4793,8 @@ footer,
 /* 風力模型說明 */
 #windStepNumber,
 .wind-title-en,
+#windStepDescription,
+.wind-sync-hint span,
 .wind-button-grid button {
     color: #111111;
 }
@@ -4816,7 +4840,7 @@ footer,
 .thermal-device-card p,
 .nuclear-device-card p,
 .wind-device-card p,
-.hydro-device-card p
+.hydro-device-card p,
 .solar-device-card p {
     color: #111111;
 }
@@ -5921,54 +5945,6 @@ footer,
    預試回饋：降低文字密集感
 ========================================================= */
 
-/* 能源小幫手內不同段落之間增加距離 */
-.knowledge-card-content p + p,
-.thermal-helper-card p + p,
-.nuclear-helper-card p + p,
-.wind-helper-card p + p,
-.hydro-helper-card p + p,
-.solar-helper-card p + p,
-.tokamak-helper-card p + p {
-    margin-top: 12px;
-}
-
-/* 各能源小幫手的小標題更明顯 */
-.thermal-helper-card h4,
-.nuclear-helper-card h4,
-.wind-helper-card h4,
-.hydro-helper-card h4,
-.solar-helper-card h4,
-.tokamak-helper-card h4 {
-    margin-bottom: 14px;
-    font-size: 1.1rem;
-    line-height: 1.5;
-}
-
-/* 正文中的關鍵詞 */
-.knowledge-card-content p strong,
-.thermal-helper-card p strong,
-.nuclear-helper-card p strong,
-.wind-helper-card p strong,
-.hydro-helper-card p strong,
-.solar-helper-card p strong,
-.tokamak-helper-card p strong,
-.think-note p strong {
-    color: #111827;
-    font-weight: 800;
-}
-
-/* 長文字避免一整行橫跨過寬 */
-.knowledge-card-content > p,
-.think-note > p,
-.discover-thinking-note > p {
-    max-width: 1000px;
-}
-
-/* =========================================================
-   正式版資訊層級調整
-   預試回饋：降低文字密集感
-========================================================= */
-
 /* 段落之間增加空間 */
 .knowledge-card-content p + p,
 .thermal-helper-card p + p,
@@ -6024,4 +6000,183 @@ footer,
     font-size: 0.95rem;
     line-height: 1.6;
     color: #475569;
+}
+
+.module-page .energy-card > p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.module-page .learning-point {
+    font-size: 0.98rem;
+    line-height: 1.75;
+}
+
+.module-page .module-focus-note {
+    font-size: 0.98rem;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   首頁可讀性調整
+========================================================= */
+
+.home-page .hero p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.home-page .phase-chip strong {
+    font-size: 1rem;
+}
+
+.home-page .phase-chip small {
+    font-size: 0.85rem;
+    line-height: 1.55;
+}
+
+.home-page .phase-status {
+    font-size: 0.88rem;
+}
+
+.home-page .section-intro p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.home-page .learning-card h3 {
+    font-size: 1.08rem;
+}
+
+.home-page .learning-card p {
+    font-size: 0.98rem;
+    line-height: 1.75;
+}
+
+.home-page .activity-card h3 {
+    font-size: 1.12rem;
+    line-height: 1.6;
+}
+
+.home-page .choice {
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.home-page textarea {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.home-page .energy-menu-card h3 {
+    font-size: 1.18rem;
+}
+
+.home-page .energy-menu-card p {
+    font-size: 0.98rem;
+    line-height: 1.75;
+}
+
+.home-page .energy-menu-card .module-card-status {
+    font-size: 0.92rem;
+}
+
+.home-page .section-progress-line {
+    font-size: 0.95rem;
+}
+
+.home-page .gate-message p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   首頁第一次使用說明
+========================================================= */
+
+.home-first-use {
+    padding-top: 34px;
+    padding-bottom: 10px;
+}
+
+.first-use-card {
+    padding: 24px 26px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: #fff;
+}
+
+.first-use-head {
+    margin-bottom: 20px;
+}
+
+    .first-use-head > span {
+        display: inline-block;
+        margin-bottom: 5px;
+        color: #28798a;
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+    }
+
+    .first-use-head h2 {
+        font-size: 1.35rem;
+    }
+
+.first-use-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.first-use-item {
+    display: grid;
+    grid-template-columns: 38px 1fr;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+    .first-use-item > b {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: #edf9fc;
+        color: #28798a;
+        font-size: 0.8rem;
+    }
+
+    .first-use-item strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 1rem;
+    }
+
+    .first-use-item p {
+        margin: 0;
+        color: #56616b;
+        font-size: 0.95rem;
+        line-height: 1.7;
+    }
+
+@media (max-width: 768px) {
+
+    .first-use-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.learning-point-list {
+    margin: 8px 0 0;
+    padding-left: 1.2rem;
+}
+
+.learning-point-list li {
+    margin-bottom: 5px;
+    line-height: 1.7;
+}
+
+.learning-point-list li:last-child {
+    margin-bottom: 0;
 }

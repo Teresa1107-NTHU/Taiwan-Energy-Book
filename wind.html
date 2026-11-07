@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>風力發電｜臺灣能源互動電子書</title>
-    <link rel="stylesheet" href="student-learning.css?v=14">
+    <link rel="stylesheet" href="student-learning.css?v=15">
 </head>
 <body class="module-page">
 
@@ -32,7 +32,12 @@
     <main class="container module-main">
         <div class="module-focus-note">
             <strong>本頁學習方式</strong>
-            <span>操作模型與中文導覽 → 查看「能源小幫手」→ 完成本頁。</span>
+            <span>
+                操作模型與中文導覽 →
+                查看「能源小幫手」→
+                完成小試身手 →
+                完成本頁。
+            </span>
         </div>
 
         <article class="energy-card">
@@ -44,10 +49,25 @@
             <p>看看風怎麼推動葉片，再把轉動變成電。</p>
 
             <div class="learning-point">
+
                 <strong>你可以注意</strong>
-                風的動能如何讓葉片與轉子旋轉？
-                旋轉的機械能如何傳到發電機？
-                風速、風向與葉片角度為什麼會影響發電效果？
+
+                <ul class="learning-point-list">
+
+                    <li>
+                        風的動能如何讓葉片與轉子旋轉？
+                    </li>
+
+                    <li>
+                        旋轉的機械能如何傳到發電機？
+                    </li>
+
+                    <li>
+                        風速、風向與葉片角度為什麼會影響發電效果？
+                    </li>
+
+                </ul>
+
             </div>
 
             <!-- =========================
@@ -114,21 +134,32 @@
 
                             </h2>
 
-
                             <p id="windStepDescription">
-
                                 模型初始畫面為整體設備視圖，
                                 可先觀察各設備的位置與標籤。
                                 按下「開始導覽」後，
-                                模型與右側中文說明會同步前進。
-
+                                模型會依設備順序逐步介紹；
+                                完成設備探索後，
+                                再利用下方「能源小幫手」
+                                整理完整的能量轉換流程。
                             </p>
-
 
                             <div class="wind-energy-tag"
                                  id="windEnergyTag">
 
                                 能量來源：風
+
+                            </div>
+
+                            <div class="wind-sync-hint">
+
+                                <strong>怎麼操作？</strong>
+
+                                <span>
+                                    只要使用右側的「開始導覽／下一步」即可。
+                                    模型會自動切換設備；
+                                    模型中的英文名稱可對照上方中文名稱。
+                                </span>
 
                             </div>
 
@@ -202,29 +233,44 @@
                     <div class="wind-helper-grid">
 
                         <!-- 1. 核心原理 -->
-                        <div class="helper-section wind-helper-card wind-helper-card-main">
+                        <div class="helper-section
+                                    wind-helper-card
+                                    wind-helper-card-main">
 
                             <h4>🌬️ 風的能量怎麼變成電？</h4>
 
-                            <p class="helper-intro">
+                            <p>
+                                <strong>① 風吹動葉片：</strong>
                                 風是流動的空氣，因此具有<strong>動能</strong>。
-                                當風吹過葉片時，葉片受到作用力而帶動<strong>轉子旋轉</strong>，
-                                使風的動能轉換成旋轉的<strong>機械能</strong>。
+                                當風吹過葉片時，葉片受到作用力並帶動轉子旋轉。
                             </p>
 
                             <p>
-                                接著，旋轉運動會透過主軸與傳動設備傳到<strong>發電機</strong>。
+                                <strong>② 形成旋轉機械能：</strong>
+                                葉片與<strong>轉子</strong>開始旋轉後，
+                                風的動能便轉換成旋轉的<strong>機械能</strong>，
+                                再透過主軸與傳動設備向後傳遞。
+                            </p>
+
+                            <p>
+                                <strong>③ 發電機產生電力：</strong>
+                                旋轉運動傳到<strong>發電機</strong>後，
                                 發電機利用電磁感應，
-                                將旋轉的機械能轉換成<strong>電能</strong>。
+                                將機械能轉換成<strong>電能</strong>。
                             </p>
 
                             <div class="energy-flow">
+
                                 <span>風的動能</span>
                                 <b>→</b>
+
                                 <span>轉子的機械能</span>
                                 <b>→</b>
+
                                 <span>發電機產生電能</span>
+
                             </div>
+
                         </div>
 
                         <!-- 2. 設備關係 -->
@@ -270,28 +316,40 @@
                         </div>
 
                         <!-- 3. 風況與控制 -->
-                        <div class="helper-section wind-helper-card wind-helper-card-observe">
+                        <div class="helper-section
+                                    wind-helper-card
+                                    wind-helper-card-observe">
 
                             <h4>🌪️ 風速與風向為什麼會影響發電？</h4>
 
                             <p>
-                                風力發電的輸出會受到<strong>風速</strong>影響。
-                                當風速改變時，葉片可以從風中取得的能量也會改變，
-                                因此發電輸出並不會一直保持固定。
+                                <strong>① 風速會影響可取得的風能：</strong>
+                                當<strong>風速</strong>改變時，
+                                葉片能從風中取得的能量也會改變，
+                                因此發電輸出不會一直保持固定。
                             </p>
 
                             <p>
-                                風力機也會利用<strong>風速計</strong>與<strong>風向標</strong>
-                                偵測目前的風況，再透過<strong>偏航系統</strong>
-                                調整機艙方向，讓轉子面向較適合的來風方向。
+                                <strong>② 風向會影響葉片受風：</strong>
+                                <strong>風速計</strong>與<strong>風向標</strong>
+                                可以偵測目前風況，
+                                再由<strong>偏航系統</strong>調整機艙方向，
+                                讓轉子面向較適合的來風方向。
                             </p>
 
                             <p>
-                                此外，<strong>葉片變槳系統</strong>可以調整葉片角度。
+                                <strong>③ 葉片角度可以調整：</strong>
+                                <strong>葉片變槳系統</strong>可以改變葉片角度。
                                 當風速過高時，系統會降低葉片取得的風能，
-                                以避免設備承受過大的負載。
-                                因此風力發電並不是「風越大就一定越好」。
+                                避免設備承受過大的負載。
                             </p>
+
+                            <p>
+                                <strong>重點：</strong>
+                                風力發電的輸出受到<strong>風速、風向與控制系統</strong>共同影響，
+                                並不是「風越大就一定越好」。
+                            </p>
+
                         </div>
                     </div>
 
@@ -299,24 +357,35 @@
                     <div class="taiwan-note">
 
                         <div class="taiwan-note-head">
+
                             <span>TAIWAN</span>
-                            <strong>臺灣風力發電的重要發展方向：離岸風電</strong>
+
+                            <strong>
+                                臺灣風力發電的重要發展方向：離岸風電
+                            </strong>
+
                         </div>
 
                         <p>
+                            <strong>主要發展：</strong>
                             臺灣海峽具有發展風力發電的條件，
-                            因此除了陸域風機之外，
+                            除了陸域風機外，
                             <strong>離岸風電</strong>也是臺灣再生能源的重要發展方向之一。
+                        </p>
+
+                        <p>
+                            <strong>風況影響：</strong>
                             一個地區具有良好的風力資源，
-                            代表它具有發展風場的潛力，
+                            代表具有發展風場的潛力，
                             但不代表每一個時刻都會產生相同的電力。
                         </p>
 
                         <p class="policy-note">
-                            <strong>風力發電具有變動性：</strong>
-                            即使風機設備相同，
-                            實際發電量仍會受到當下的風速、風向與設備運轉狀況影響。
+                            <strong>值得注意：</strong>
+                            即使使用相同的風力機，
+                            實際發電量仍會受到<strong>風速、風向與設備運轉狀況</strong>影響。
                         </p>
+
                     </div>
 
                     <!-- 5. 思考 -->
@@ -327,11 +396,11 @@
                         </div>
 
                         <p>
-                            同一座風力機在兩個不同時間測得相同的風速，
-                            但發電量卻不同，這一定代表設備發生故障嗎？
-                            想想看，<strong>除了風速之外</strong>，
-                            還有哪些因素可能讓風力機實際取得的風能不同？
+                            相同風速下，風力機的發電量也可能不同。
+                            除了<strong>風速</strong>之外，
+                            還有哪些因素會影響葉片實際取得的風能？
                         </p>
+
                     </div>
 
                     <!-- 6. 小試身手 -->
@@ -431,6 +500,6 @@
         <p>臺灣能源互動電子書 © 2026</p>
         <p>本網站為教育與學術用途開發。</p>
     </footer>
-    <script src="student-learning.js?v=14"></script>
+    <script src="student-learning.js?v=15"></script>
 </body>
 </html>

@@ -3268,39 +3268,6 @@ footer{
 }
 
 /* =========================================================
-   水力模型：左右欄高度一致
-========================================================= */
-
-.hydro-learning-module .module-workspace {
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
-}
-
-.hydro-learning-module .module-model-column,
-.hydro-learning-module .hydro-control-column {
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
-}
-
-@media (max-width:900px) {
-
-    .hydro-learning-module .module-workspace {
-        height: auto;
-        min-height: 0;
-        max-height: none;
-    }
-
-    .hydro-learning-module .module-model-column,
-    .hydro-learning-module .hydro-control-column {
-        height: auto;
-        min-height: 0;
-        max-height: none;
-    }
-}
-
-/* =========================================================
    太陽光電能源小幫手
 ========================================================= */
 
@@ -3449,38 +3416,6 @@ footer{
     .solar-helper-card-condition,
     .solar-helper-card-temperature {
         grid-column: auto;
-    }
-}
-
-/* =========================================================
-   太陽光電模型：左右欄高度一致
-========================================================= */
-.solar-learning-module .module-workspace {
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
-}
-
-.solar-learning-module .module-model-column,
-.solar-learning-module .solar-control-column {
-    height: 480px;
-    min-height: 480px;
-    max-height: 480px;
-}
-
-@media (max-width: 900px) {
-
-    .solar-learning-module .module-workspace {
-        height: auto;
-        min-height: 0;
-        max-height: none;
-    }
-
-    .solar-learning-module .module-model-column,
-    .solar-learning-module .solar-control-column {
-        height: auto;
-        min-height: 0;
-        max-height: none;
     }
 }
 
@@ -5309,12 +5244,6 @@ footer,
     margin-top: 8px !important;
 }
 
-.discover-thinking-note p {
-    margin: 0;
-    color: #111111;
-    line-height: 1.8;
-}
-
 /* =========================================================
    臺灣情境
 ========================================================= */
@@ -5359,11 +5288,6 @@ footer,
     align-items: center;
     gap: 12px;
     margin-top: 12px;
-}
-
-.complete-phase-btn:disabled {
-    opacity: .45;
-    cursor: not-allowed;
 }
 
 /* =========================================================

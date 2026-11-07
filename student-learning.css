@@ -4626,7 +4626,9 @@ footer{
 ========================= */
 .solar-guide-content {
     flex: 1;
+    min-height: 0;
     padding: 20px;
+    overflow-y: auto;
     background: #f4f2ef;
 }
 
@@ -4681,9 +4683,36 @@ footer{
 }
 
 /* =========================
+   模型同步提示
+========================= */
+
+.solar-sync-hint {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border: 1px solid #e4d29a;
+    border-radius: 10px;
+    background: #fff8e8;
+}
+
+.solar-sync-hint strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #111827;
+    font-size: .82rem;
+}
+
+.solar-sync-hint span {
+    display: block;
+    color: #4b5563;
+    font-size: .78rem;
+    line-height: 1.6;
+}
+
+/* =========================
    控制區
 ========================= */
 .solar-controls {
+    flex-shrink: 0;
     padding: 16px;
     background: #6f6861;
 }
@@ -4719,6 +4748,31 @@ footer{
 .solar-button-grid button:disabled {
     opacity: .45;
     cursor: not-allowed;
+}
+
+/* =========================================================
+   太陽光電模型：版面比照火力／核能／風力／水力
+========================================================= */
+
+.solar-learning-module .module-workspace {
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
+}
+
+.solar-learning-module .module-model-column,
+.solar-learning-module .solar-control-column {
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
+}
+
+.solar-learning-module .solar-model-frame,
+.solar-learning-module .solar-model-shell,
+.solar-learning-module .solar-model-shell iframe {
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
 }
 
 /* =========================================================
@@ -4780,6 +4834,19 @@ footer{
         white-space: nowrap !important;
         word-break: keep-all;
     }
+
+    .solar-sync-hint {
+    margin-top: 12px;
+    padding: 9px 10px;
+}
+
+.solar-sync-hint strong {
+    font-size: .72rem;
+}
+
+.solar-sync-hint span {
+    font-size: .68rem;
+}
 }
 
 /* =========================================================
@@ -4790,6 +4857,27 @@ footer{
     .solar-control-column {
         width: 100%;
         min-width: 0;
+    }
+
+    .solar-learning-module .module-workspace {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .solar-learning-module .module-model-column,
+    .solar-learning-module .solar-control-column {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .solar-learning-module .solar-model-frame,
+    .solar-learning-module .solar-model-shell,
+    .solar-learning-module .solar-model-shell iframe {
+        height: 480px;
+        min-height: 480px;
+        max-height: 480px;
     }
 }
 
@@ -4898,10 +4986,10 @@ footer,
 #solarStepNumber,
 .solar-title-en,
 #solarStepDescription,
+.solar-sync-hint span,
 .solar-button-grid button {
     color: #111111;
 }
-
 
 /* 托克馬克模型說明 */
 #tokamakStepNumber,

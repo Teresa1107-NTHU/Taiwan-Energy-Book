@@ -4321,8 +4321,6 @@ footer{
 .hydro-model-shell {
     position: relative;
     width: 100%;
-    height: 480px;
-    min-height: 480px;
     overflow: hidden;
     border-radius: 14px;
     background: #11161d;
@@ -4342,7 +4340,9 @@ footer{
 ========================= */
 .hydro-guide-content {
     flex: 1;
+    min-height: 0;
     padding: 20px;
+    overflow-y: auto;
     background: #f4f2ef;
 }
 
@@ -4398,9 +4398,36 @@ footer{
 }
 
 /* =========================
+   模型同步提示
+========================= */
+
+.hydro-sync-hint {
+    margin-top: 18px;
+    padding: 12px 14px;
+    border: 1px solid #e4d29a;
+    border-radius: 10px;
+    background: #fff8e8;
+}
+
+.hydro-sync-hint strong {
+    display: block;
+    margin-bottom: 3px;
+    color: #111827;
+    font-size: .82rem;
+}
+
+.hydro-sync-hint span {
+    display: block;
+    color: #4b5563;
+    font-size: .78rem;
+    line-height: 1.6;
+}
+
+/* =========================
    控制區
 ========================= */
 .hydro-controls {
+    flex-shrink: 0;
     padding: 16px;
     background: #6f6861;
 }
@@ -4437,6 +4464,31 @@ footer{
             opacity: .45;
             cursor: not-allowed;
         }
+
+/* =========================================================
+   水力模型：版面比照火力／核能／風力
+========================================================= */
+
+.hydro-learning-module .module-workspace {
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
+}
+
+.hydro-learning-module .module-model-column,
+.hydro-learning-module .hydro-control-column {
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
+}
+
+.hydro-learning-module .hydro-model-frame,
+.hydro-learning-module .hydro-model-shell,
+.hydro-learning-module .hydro-model-shell iframe {
+    height: 580px;
+    min-height: 580px;
+    max-height: 580px;
+}
 
 /* =========================================================
    水力：桌機
@@ -4484,6 +4536,19 @@ footer{
     .hydro-controls {
         padding: 10px 8px;
     }
+
+    .hydro-sync-hint {
+        margin-top: 12px;
+        padding: 9px 10px;
+    }
+    
+    .hydro-sync-hint strong {
+        font-size: .72rem;
+    }
+
+    .hydro-sync-hint span {
+        font-size: .68rem;
+    }
 }
 
 /* =========================================================
@@ -4494,6 +4559,27 @@ footer{
     .hydro-control-column {
         width: 100%;
         min-width: 0;
+    }
+
+    .hydro-learning-module .module-workspace {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .hydro-learning-module .module-model-column,
+    .hydro-learning-module .hydro-control-column {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+    }
+
+    .hydro-learning-module .hydro-model-frame,
+    .hydro-learning-module .hydro-model-shell,
+    .hydro-learning-module .hydro-model-shell iframe {
+        height: 480px;
+        min-height: 480px;
+        max-height: 480px;
     }
 }
 
@@ -4799,15 +4885,14 @@ footer,
     color: #111111;
 }
 
-
 /* 水力模型說明 */
 #hydroStepNumber,
 .hydro-title-en,
 #hydroStepDescription,
+.hydro-sync-hint span,
 .hydro-button-grid button {
     color: #111111;
 }
-
 
 /* 太陽光電模型說明 */
 #solarStepNumber,

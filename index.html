@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>臺灣能源互動電子書｜學生學習版</title>
-  <link rel="stylesheet" href="student-learning.css?v=15">
+  <link rel="stylesheet" href="student-learning.css?v=17">
 </head>
 <body class="home-page">
     <nav>
@@ -327,8 +327,8 @@
             <div class="gate-message">
                 <span>🔒</span>
                 <div>
-                    <strong>臺灣發電方式整合比較尚未解鎖</strong>
-                    <p>完成火力、核能、風力、水力與太陽光電五個模組後即可進入。</p>
+                    <strong>新興能源尚未解鎖</strong>
+                    <p>完成五種常見發電方式並完成「整理發現」後即可進入。</p>
                 </div>
             </div>
 
@@ -740,9 +740,27 @@
                     <span class="eyebrow">EMERGING ENERGY</span>
                     <h2>接下來，進入新興能源探索</h2>
                     <p>
-                        前面五種能源用來認識實際發電系統，接下來的 Tokamak 與 Alpha-E
-                        則著重<strong>核融合</strong>所需要的條件與實驗概念。
+                        前面五種發電方式，主要用來認識<strong>實際電力系統如何產生電能</strong>。
                     </p>
+
+                    <p>
+                        接下來將進入<strong>核融合</strong>主題，
+                        先理解 Tokamak 如何維持高溫電漿，
+                        再透過 Alpha-E 探索核融合實驗中的真空、粒子束與核種條件。
+                    </p>
+                </div>
+
+                <div class="module-focus-note emerging-focus-note">
+
+                    <strong>本區學習方式</strong>
+
+                    <span>
+                        先完成 Tokamak →
+                        理解核融合需要的基本環境 →
+                        再進入 Alpha-E →
+                        挑戰核融合實驗條件。
+                    </span>
+
                 </div>
 
                 <div class="section-progress-line">
@@ -751,21 +769,43 @@
                 </div>
 
                 <div class="energy-menu-grid emerging-grid">
-                    <a class="energy-menu-card" href="tokamak.html" data-module-card="tokamak">
+                    <a class="energy-menu-card emerging-card tokamak-entry"
+                       href="tokamak.html"
+                       data-module-card="tokamak">
+
                         <span>01</span>
+
                         <h3>Tokamak</h3>
-                        <p>認識真空、高溫電漿、磁場與電漿控制。</p>
-                        <strong class="module-card-status">開始探索 →</strong>
+
+                        <p>
+                            先認識<strong>真空、高溫電漿與磁場控制</strong>，
+                            理解核融合裝置為什麼需要特殊環境。
+                        </p>
+
+                        <strong class="module-card-status">
+                            先從這裡開始 →
+                        </strong>
+
                     </a>
 
-                    <a class="energy-menu-card gated-link"
+                    <a class="energy-menu-card gated-link emerging-card alpha-entry"
                        href="alpha-e-student-activity.html"
                        data-module-card="challenge"
                        data-link-requires="alpha">
+
                         <span>02</span>
+
                         <h3>Alpha-E</h3>
-                        <p>從真空、粒子束與核種選擇理解核融合實驗條件。</p>
-                        <strong class="module-card-status">完成 Tokamak 後解鎖</strong>
+
+                        <p>
+                            再進一步操作<strong>真空、粒子束與核種選擇</strong>，
+                            思考哪些條件會影響核融合實驗。
+                        </p>
+
+                        <strong class="module-card-status">
+                            完成 Tokamak 後解鎖
+                        </strong>
+
                     </a>
                 </div>
             </div>
@@ -798,6 +838,6 @@
         <p>本網站為教育與學術用途開發。</p>
     </footer>
 
-    <script src="student-learning.js?v=15"></script>
+    <script src="student-learning.js?v=17"></script>
 </body>
 </html>

@@ -6367,3 +6367,38 @@ footer,
 .discover-focus-note {
     margin-bottom: 22px;
 }
+
+/* =========================================================
+   新興能源：正式版可讀性
+========================================================= */
+
+.home-page #emerging .section-intro p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.home-page #emerging .module-focus-note {
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.home-page #emerging .section-progress-line {
+    font-size: 0.95rem;
+}
+
+.home-page #emerging .energy-menu-card h3 {
+    font-size: 1.15rem;
+}
+
+.home-page #emerging .energy-menu-card p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.home-page #emerging .energy-menu-card .module-card-status {
+    font-size: 0.9rem;
+}
+
+.emerging-focus-note {
+    margin-bottom: 18px;
+}

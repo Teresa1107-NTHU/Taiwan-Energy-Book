@@ -5852,6 +5852,14 @@ footer,
         padding: 9px 10px;
     }
 
+    .tokamak-sync-hint strong {
+        font-size: .72rem;
+    }
+
+.tokamak-sync-hint span {
+        font-size: .68rem;
+    }
+
     .tokamak-controls {
         padding: 10px 8px;
     }

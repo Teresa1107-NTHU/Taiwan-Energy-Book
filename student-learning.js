@@ -3441,7 +3441,7 @@ function updateTokamakPanel() {
             "準備開始";
 
         title.innerHTML =
-    `Tokamak 核融合反應器
+            `Tokamak 核融合裝置
      <span class="tokamak-title-en">
          Tokamak Fusion Device
      </span>`;

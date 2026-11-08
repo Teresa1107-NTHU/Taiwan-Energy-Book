@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alpha-E 互動教學系統｜臺灣能源互動電子書</title>
-  <link rel="stylesheet" href="alpha-e.css">
+  <link rel="stylesheet" href="alpha-e.css?v=19">
 </head>
 <body>
     <nav>
@@ -206,6 +206,27 @@
 
         </div>
 
+        <div class="alpha-action-guide"
+             id="alphaActionGuide">
+
+            <div class="alpha-action-current">
+                <span>現在請做</span>
+
+                <strong id="alphaCurrentAction">
+                    開啟系統電源（Power On）
+                </strong>
+            </div>
+
+            <div class="alpha-action-next">
+                <span>完成後</span>
+
+                <strong id="alphaNextAction">
+                    啟動前級真空泵（Rough Pump）
+                </strong>
+            </div>
+
+        </div>
+
         <div class="alpha-workspace">
 
             <div class="alpha-control-column">
@@ -335,9 +356,9 @@
                                 </button>
 
                                 <button data-cmd="turbo:vent"
-        data-i18n="panel_vent">
-    Vent
-</button>
+                                        data-i18n="panel_vent">
+                                    Vent
+                                </button>
 
                                 <button data-cmd="turbo:on"
                                         data-i18n="panel_on">
@@ -668,12 +689,12 @@
                         </div>
 
                         <!-- =====================================================
-         Alpha-E 教學流程進度
-    ===================================================== -->
+                         Alpha-E 教學流程進度
+                    ===================================================== -->
                         <!-- =========================
-          Plasma 顯示區
-          Microwave On 後顯示
-    ========================= -->
+                          Plasma 顯示區
+                          Microwave On 後顯示
+                    ========================= -->
                         <div id="plasmaDisplay"
                              class="plasma-display"
                              aria-hidden="true">
@@ -905,7 +926,7 @@
 
                         <p data-i18n="alpha_model_paused_desc">
                             目前正在進行下方的 p–¹¹B 核融合反應。
-                            完成反應後，請按下「返回 Alpha-E」以重新啟動模型。
+                            完成反應後，請按下下方的「返回 Alpha-E」以重新啟動模型。
                         </p>
 
                     </div>
@@ -1193,6 +1214,12 @@
                 質子與硼-11 發生核融合反應後，最終產生三個 α 粒子並釋放能量。
             </p>
 
+            <p class="fusion-return-hint">
+                已完成反應觀察。
+                你可以選擇「重新播放反應」再次觀看，
+                或按下「返回 Alpha-E」回到操作面板。
+            </p>
+
             <div class="fusion-result-actions">
 
                 <button id="fusionReplay"
@@ -1225,7 +1252,7 @@
 
 </footer>
 
-<script src="alpha-e.js"></script>
+<script src="alpha-e.js?v=19"></script>
 
 </body>
 

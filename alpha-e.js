@@ -50,29 +50,29 @@ const translations = {
         /* Flow */
         flow_title: "Alpha-E 實驗流程",
 
-        flow_power: "Power",
+        flow_power: "Power｜電源",
         flow_power_desc: "系統啟動",
 
-        flow_vacuum: "Vacuum",
+        flow_vacuum: "Vacuum｜真空",
         flow_vacuum_desc: "建立真空",
 
-        flow_gas: "Gas",
+        flow_gas: "Gas｜氣體",
         flow_gas_desc: "氣體注入",
 
-        flow_cooling: "Cooling",
+        flow_cooling: "Cooling｜冷卻",
         flow_cooling_desc: "冷卻系統",
 
-        flow_hv: "High Voltage",
+        flow_hv: "High Voltage｜高壓",
         flow_hv_desc: "粒子加速",
 
-        flow_plasma: "Plasma",
+        flow_plasma: "Plasma｜電漿",
         flow_plasma_desc:
             "電漿形成與維持",
 
-        flow_beam: "Beam",
+        flow_beam: "Beam｜粒子束",
         flow_beam_desc: "建立粒子束",
 
-        flow_fusion: "Fusion",
+        flow_fusion: "Fusion｜核融合",
         flow_fusion_desc: "核融合反應",
 
         /* Selected equipment */
@@ -1597,6 +1597,196 @@ function updateGuide(){
      */
     $("beamOff").dataset.locked =
         "false";
+}
+
+/* =========================================================
+   Alpha-E 文字操作導引
+========================================================= */
+
+function updateAlphaActionGuide() {
+
+    const current =
+        document.getElementById(
+            "alphaCurrentAction"
+        );
+
+    const next =
+        document.getElementById(
+            "alphaNextAction"
+        );
+
+    if (!current || !next) {
+        return;
+    }
+
+
+    // STEP 1：Power
+    if (!s.power) {
+
+        current.textContent =
+            "開啟系統電源（Power On）";
+
+        next.textContent =
+            "啟動前級真空泵（Rough Pump）";
+
+        return;
+    }
+
+
+    // STEP 2-1：Rough Pump
+    if (!s.rough) {
+
+        current.textContent =
+            "啟動前級真空泵（Rough Pump）";
+
+        next.textContent =
+            "再啟動渦輪分子泵（Turbo Pump）";
+
+        return;
+    }
+
+
+    // STEP 2-2：Turbo Pump
+    if (!s.turbo) {
+
+        current.textContent =
+            "啟動渦輪分子泵（Turbo Pump）";
+
+        next.textContent =
+            "等待系統建立高真空";
+
+        return;
+    }
+
+
+    // STEP 2-3：等待真空完成
+    if (!isVacuumReady()) {
+
+        current.textContent =
+            "等待真空進度達到就緒狀態";
+
+        next.textContent =
+            "選擇氣體並按下「設定氣體」";
+
+        return;
+    }
+
+
+    // STEP 3-1：Gas
+    if (!s.gas) {
+
+        current.textContent =
+            "選擇 Hydrogen 或 Deuterium，並按下「設定氣體」";
+
+        next.textContent =
+            "開啟 MFC，讓氣體進入系統";
+
+        return;
+    }
+
+
+    // STEP 3-2：MFC
+    if (!s.mfc) {
+
+        current.textContent =
+            "開啟 MFC（質量流量控制器）";
+
+        next.textContent =
+            "啟動冷卻系統（Cooler）";
+
+        return;
+    }
+
+
+    // STEP 4：Cooling
+    if (!s.cooler) {
+
+        current.textContent =
+            "啟動冷卻系統（Cooler）";
+
+        next.textContent =
+            "啟動高壓系統（High Voltage）";
+
+        return;
+    }
+
+
+    // STEP 5：High Voltage
+    if (!s.hv) {
+
+        current.textContent =
+            "啟動高壓系統（High Voltage）";
+
+        next.textContent =
+            "啟動微波系統形成電漿";
+
+        return;
+    }
+
+
+    // STEP 6：Plasma
+    if (!s.mw) {
+
+        current.textContent =
+            "啟動微波系統（Microwave），形成並維持電漿";
+
+        next.textContent =
+            "建立高能粒子束（Beam On）";
+
+        return;
+    }
+
+
+    // STEP 7：Beam
+    if (!s.beam) {
+
+        current.textContent =
+            "按下 Beam On，建立高能粒子束";
+
+        next.textContent =
+            s.gasType === "Hydrogen"
+                ? "進入 p–¹¹B 核融合反應示意"
+                : "觀察目前核種是否符合 p–¹¹B 反應條件";
+
+        return;
+    }
+
+
+    // Deuterium 特殊情況
+    if (
+        s.beam &&
+        s.gasType !== "Hydrogen"
+    ) {
+
+        current.textContent =
+            "目前已建立氘離子束；請將氣體改成 Hydrogen 並重新設定";
+
+        next.textContent =
+            "重新完成後續步驟，再建立質子束";
+
+        return;
+    }
+
+
+    // STEP 8：Fusion 尚未完成
+    if (!fusionCompleted) {
+
+        current.textContent =
+            "前往下方 p–¹¹B 區域，按下「開始反應」";
+
+        next.textContent =
+            "觀察反應過程與能量釋放";
+
+        return;
+    }
+
+
+    // 全部完成
+    current.textContent =
+        "Alpha-E 與 p–¹¹B 核融合反應已完成 ✓";
+
+    next.textContent =
+        "可重新播放反應，或返回 Alpha-E 繼續操作";
 }
 
 /* =========================================================
@@ -3655,6 +3845,7 @@ function update() {
     live();
     updateGuide();
     updateFlowProgress();
+    updateAlphaActionGuide();
 }
 function live() {
 

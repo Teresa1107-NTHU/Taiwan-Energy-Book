@@ -1610,6 +1610,63 @@ footer {
     transition: background .25s ease;
 }
 
+/* =========================================================
+   Alpha-E：現在請做 / 下一步
+========================================================= */
+
+.alpha-action-guide {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap: 10px;
+    margin: 0 0 14px;
+}
+
+.alpha-action-current,
+.alpha-action-next {
+    padding: 14px 16px;
+    border-radius: 12px;
+}
+
+.alpha-action-current {
+    border: 2px solid #63daf4;
+    background: #eefbfe;
+}
+
+.alpha-action-next {
+    border: 1px solid #dfe5e8;
+    background: #f8f9fa;
+}
+
+.alpha-action-current span,
+.alpha-action-next span {
+    display: block;
+    margin-bottom: 4px;
+    font-size: .76rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+}
+
+.alpha-action-current span {
+    color: #28798a;
+}
+
+.alpha-action-next span {
+    color: #6b7280;
+}
+
+.alpha-action-current strong,
+.alpha-action-next strong {
+    display: block;
+    color: #111827;
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+    .alpha-action-guide {
+        grid-template-columns: 1fr;
+    }
+}
 
 /* =========================================================
    Current Step
@@ -1898,6 +1955,18 @@ footer {
     line-height: 1.7;
 }
 
+.fusion-return-hint {
+    margin: 16px auto 0;
+    padding: 14px 18px;
+    max-width: 680px;
+    border-radius: 12px;
+    background: rgba(89, 216, 238, 0.12);
+    border: 1px solid rgba(89, 216, 238, 0.28);
+    color: #eafcff;
+    font-size: 1rem;
+    line-height: 1.8;
+    text-align: center;
+}
 
 .fusion-result-actions {
     margin-top: 24px;
@@ -2276,4 +2345,43 @@ footer {
     border-radius: 16px;
     transform-origin: top left;
     transform: scale(var(--alpha-panel-scale, 1));
+}
+
+/* =========================================================
+   Alpha-E 正式版閱讀字級
+========================================================= */
+
+.card-heading h2 {
+    font-size: 1.55rem;
+}
+
+.alpha-flow-header h3 {
+    font-size: 1.05rem;
+}
+
+.flow-step-text strong {
+    font-size: .92rem;
+}
+
+.flow-step-text span {
+    font-size: .78rem;
+}
+
+.alpha-device-info-title h3 {
+    font-size: 1.1rem;
+}
+
+.alpha-info-box p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.fusion-section .card-heading p {
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+.fusion-result p {
+    font-size: 1rem;
+    line-height: 1.8;
 }

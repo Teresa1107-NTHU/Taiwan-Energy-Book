@@ -6479,3 +6479,47 @@ footer,
     line-height: 1.85;
 }
 
+/* =========================================================
+   Alpha-E 挑戰頁正式版可讀性
+========================================================= */
+
+.alpha-challenge-focus-wrap {
+    padding-top: 28px;
+    padding-bottom: 0;
+}
+
+.fusion-core-card p {
+    font-size: 1rem;
+    line-height: 1.85;
+}
+
+.activity-step h4 {
+    font-size: 1.02rem;
+    line-height: 1.7;
+}
+
+.activity-step p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.choice {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.term-popover p {
+    font-size: .95rem;
+    line-height: 1.8;
+}
+
+.concept-bridge-head p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.summary-card p {
+    font-size: .95rem;
+    line-height: 1.75;
+}
+

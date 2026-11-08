@@ -6267,3 +6267,332 @@ document.addEventListener("DOMContentLoaded", () => {
     updateReviewHint();
 
 });
+
+/* =========================================================
+   最後學習整理：小試身手回顧
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const container =
+            document.getElementById(
+                "quizReviewGrid"
+            );
+
+        /*
+         * 只有 student-summary.html
+         * 才有這個容器。
+         */
+        if (!container) {
+            return;
+        }
+
+
+        const quizReviewData = [
+
+            {
+                key: "thermal_quiz_1",
+
+                module: "火力發電",
+
+                question:
+                    "當天然氣輸入量增加時，在其他條件相近的情況下，哪一項判斷最合理？",
+
+                correct: "C",
+
+                options: {
+                    A:
+                        "天然氣輸入量只影響儲槽中的燃料量，不會影響後續能量轉換。",
+
+                    B:
+                        "天然氣輸入越多，發電機就一定能無限制產生更多電力。",
+
+                    C:
+                        "天然氣輸入增加時，可供系統利用的能量通常也會增加，但實際發電仍受設備容量、效率與需求限制。",
+
+                    D:
+                        "天然氣輸入增加後，化學能會直接轉換成電能。"
+                },
+
+                explanation:
+                    "天然氣中的化學能是系統最初的能量來源。增加燃料輸入通常代表可供系統利用的能量增加，但實際發電量仍受到設備容量、轉換效率與系統需求限制，因此不會無限制增加。"
+            },
+
+
+            {
+                key: "nuclear_quiz_1",
+
+                module: "核能發電",
+
+                question:
+                    "哪一項最符合核能發電中「熱能被利用來產生電力」的過程？",
+
+                correct: "B",
+
+                options: {
+                    A:
+                        "反應爐產生的熱主要用來提高發電機溫度。",
+
+                    B:
+                        "反應爐產生的熱先使水形成蒸氣，蒸氣推動汽輪機，再由發電機把旋轉的機械能轉換成電能。",
+
+                    C:
+                        "熱能由冷卻系統直接傳給發電機。",
+
+                    D:
+                        "汽輪機本身直接產生電能。"
+                },
+
+                explanation:
+                    "核分裂先釋放核能並轉換成熱能，再利用熱產生蒸氣。蒸氣推動汽輪機形成機械能，最後由發電機利用電磁感應轉換成電能。"
+            },
+
+
+            {
+                key: "wind_quiz_1",
+
+                module: "風力發電",
+
+                question:
+                    "風速沒有明顯改變，但風向改變，而機艙沒有跟著調整方向，最可能發生什麼情況？",
+
+                correct: "A",
+
+                options: {
+                    A:
+                        "葉片取得風能的效果可能變差，因此發電輸出可能受到影響。",
+
+                    B:
+                        "只要風速不變，風向就不會影響葉片取得能量。",
+
+                    C:
+                        "齒輪箱會自動產生額外機械能補償。",
+
+                    D:
+                        "風向只影響塔架，不影響轉子取得風能。"
+                },
+
+                explanation:
+                    "風力機需要利用偏航系統讓機艙與轉子朝向適合的風向。若方向沒有調整，葉片可能無法有效取得風的動能，因此發電輸出可能下降。"
+            },
+
+
+            {
+                key: "hydro_quiz_1",
+
+                module: "水力發電",
+
+                question:
+                    "水庫水位仍高，但通過水輪機的水量明顯減少，最合理的判斷是什麼？",
+
+                correct: "B",
+
+                options: {
+                    A:
+                        "只要水位仍高，單位時間可提供的能量就不會改變。",
+
+                    B:
+                        "即使水頭仍較大，流量減少時，單位時間可提供給水輪機的能量仍可能下降。",
+
+                    C:
+                        "水輪機會利用較高水壓自動完全補償流量下降。",
+
+                    D:
+                        "流量只影響水庫存水量，不影響發電輸出。"
+                },
+
+                explanation:
+                    "水力發電的輸出不只和水頭有關，也和流量有關。即使水位高度差仍大，如果單位時間流過水輪機的水量減少，可供轉換的能量與發電輸出仍可能下降。"
+            },
+
+
+            {
+                key: "solar_quiz_1",
+
+                module: "太陽光電",
+
+                question:
+                    "中午日照較強，但面板溫度也明顯升高，只知道這兩項資訊時，哪一項判斷最合理？",
+
+                correct: "C",
+
+                options: {
+                    A:
+                        "日照較強，所以不論溫度如何，輸出一定較高。",
+
+                    B:
+                        "面板溫度升高會增加發電效率。",
+
+                    C:
+                        "日照變強有利於取得更多光能，但較高的面板溫度可能降低轉換效率，因此不能只看其中一項條件。",
+
+                    D:
+                        "面板溫度不會影響太陽能電池本身的能量轉換。"
+                },
+
+                explanation:
+                    "日照較強通常能提供更多光能，但太陽能電池溫度過高時，轉換效率可能下降。因此實際輸出要同時考慮日照、面板溫度與其他系統條件。"
+            },
+
+
+            {
+                key: "tokamak_quiz_1",
+
+                module: "Tokamak",
+
+                question:
+                    "高溫電漿的位置與形狀變得不穩定並接近真空容器內壁時，最值得優先檢查什麼？",
+
+                correct: "D",
+
+                options: {
+                    A:
+                        "只檢查真空系統，因為電漿位置完全由真空度決定。",
+
+                    B:
+                        "磁場與電漿控制系統，因為磁場會影響帶電粒子的運動，並協助控制電漿的位置、形狀與穩定性。",
+
+                    C:
+                        "只提高冷卻水流量即可恢復電漿位置。",
+
+                    D:
+                        "發電機輸出，因為電力不足會直接改變電漿形狀。"
+                },
+
+                explanation:
+                    "Tokamak 中的電漿由大量帶電粒子組成，因此可以利用磁場影響粒子的運動。磁場與控制線圈的重要功能之一，就是控制電漿的位置、形狀與穩定性。"
+            }
+
+        ];
+
+
+        quizReviewData.forEach(
+            quiz => {
+
+                const answer =
+                    localStorage.getItem(
+                        `energy_quiz_${quiz.key}`
+                    ) || "";
+
+                const isCorrect =
+                    answer === quiz.correct;
+
+                const card =
+                    document.createElement(
+                        "article"
+                    );
+
+                card.className =
+                    "quiz-review-card";
+
+                if (answer) {
+
+                    card.classList.add(
+                        isCorrect
+                            ? "correct"
+                            : "incorrect"
+                    );
+
+                } else {
+
+                    card.classList.add(
+                        "unanswered"
+                    );
+                }
+
+
+                const studentAnswerText =
+                    answer &&
+                        quiz.options[answer]
+                        ? quiz.options[answer]
+                        : "沒有找到已儲存的答案";
+
+
+                card.innerHTML = `
+
+                    <div class="quiz-review-head">
+
+                        <span>
+                            小試身手回顧
+                        </span>
+
+                        <strong>
+                            ${quiz.module}
+                        </strong>
+
+                    </div>
+
+
+                    <p class="quiz-review-question">
+                        ${quiz.question}
+                    </p>
+
+
+                    <div class="quiz-review-answer
+                                student-answer">
+
+                        <span>
+                            你的答案
+                        </span>
+
+                        <strong>
+                            ${answer
+                        ? `${answer}. ${studentAnswerText}`
+                        : studentAnswerText
+                    }
+                        </strong>
+
+                    </div>
+
+
+                    <div class="quiz-review-answer
+                                correct-answer">
+
+                        <span>
+                            正確答案
+                        </span>
+
+                        <strong>
+                            ${quiz.correct}.
+                            ${quiz.options[quiz.correct]}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="quiz-review-explanation">
+
+                        <strong>
+                            為什麼？
+                        </strong>
+
+                        <p>
+                            ${quiz.explanation}
+                        </p>
+
+                    </div>
+
+
+                    <div class="quiz-review-result">
+
+                        ${!answer
+                        ? "尚未找到作答紀錄"
+                        : isCorrect
+                            ? "原本作答正確 ✓"
+                            : "可以再確認這個概念"
+                    }
+
+                    </div>
+                `;
+
+
+                container.appendChild(
+                    card
+                );
+            }
+        );
+
+    }
+);

@@ -6523,3 +6523,263 @@ footer,
     line-height: 1.75;
 }
 
+/* =========================================================
+   最後學習整理：正式版
+========================================================= */
+
+.summary-focus-note {
+    margin-bottom: 30px;
+    font-size: 1rem;
+    line-height: 1.75;
+}
+
+
+/* =========================================================
+   小試身手回顧
+========================================================= */
+
+.quiz-review-section {
+    margin-top: 48px;
+}
+
+.quiz-review-intro p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.quiz-review-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.quiz-review-intro .quiz-review-reminder {
+    margin-top: 18px;
+    margin-bottom: 0;
+}
+
+.quiz-review-card {
+    position: relative;
+    overflow: hidden;
+    padding: 22px;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    background: #ffffff;
+}
+
+    .quiz-review-card.correct {
+        border-color: #cbe6c3;
+    }
+
+    .quiz-review-card.incorrect {
+        border-color: #ead8b2;
+    }
+
+    .quiz-review-card.unanswered {
+        border-color: #d9dde2;
+    }
+
+
+.quiz-review-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+    .quiz-review-head span {
+        color: #8a939b;
+        font-size: .74rem;
+        font-weight: 800;
+        letter-spacing: .08em;
+    }
+
+    .quiz-review-head strong {
+        color: #111827;
+        font-size: 1.08rem;
+    }
+
+
+.quiz-review-question {
+    margin-bottom: 16px;
+    color: #111111;
+    font-size: 1rem;
+    line-height: 1.8;
+    font-weight: 600;
+}
+
+
+.quiz-review-answer {
+    margin-top: 10px;
+    padding: 12px 14px;
+    border-radius: 10px;
+}
+
+    .quiz-review-answer span {
+        display: block;
+        margin-bottom: 4px;
+        color: #6b7280;
+        font-size: .78rem;
+        font-weight: 800;
+    }
+
+    .quiz-review-answer strong {
+        display: block;
+        color: #111827;
+        font-size: .95rem;
+        line-height: 1.7;
+    }
+
+
+.student-answer {
+    background: #f7f8f9;
+}
+
+.correct-answer {
+    background: #eff8ec;
+}
+
+
+.quiz-review-explanation {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed #d9dde2;
+}
+
+    .quiz-review-explanation > strong {
+        color: #28798a;
+        font-size: .9rem;
+    }
+
+    .quiz-review-explanation p {
+        margin: 5px 0 0;
+        color: #111111;
+        font-size: .95rem;
+        line-height: 1.8;
+    }
+
+
+.quiz-review-result {
+    margin-top: 14px;
+    font-size: .88rem;
+    font-weight: 800;
+}
+
+.quiz-review-card.correct
+.quiz-review-result {
+    color: #39752d;
+}
+
+.quiz-review-card.incorrect
+.quiz-review-result {
+    color: #9a691e;
+}
+
+.quiz-review-card.unanswered
+.quiz-review-result {
+    color: #6b7280;
+}
+
+
+@media (max-width: 900px) {
+
+    .quiz-review-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   學習整理：正式版可讀性
+========================================================= */
+
+.summary-page .summary-hero p,
+body[data-page-requires="final"]
+.summary-hero p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+body[data-page-requires="final"]
+.section-intro p {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+body[data-page-requires="final"]
+.compare-table th {
+    font-size: .9rem;
+}
+
+body[data-page-requires="final"]
+.compare-table td {
+    font-size: .98rem;
+    line-height: 1.75;
+}
+
+body[data-page-requires="final"]
+.energy-tradeoff-card > p,
+body[data-page-requires="final"]
+.tradeoff-summary {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+body[data-page-requires="final"]
+.tradeoff-grid span {
+    font-size: .95rem;
+    line-height: 1.7;
+}
+
+body[data-page-requires="final"]
+.compare-box p {
+    font-size: .98rem;
+    line-height: 1.8;
+}
+
+body[data-page-requires="final"]
+.fusion-core-card p {
+    font-size: 1rem;
+    line-height: 1.85;
+}
+
+body[data-page-requires="final"]
+.reflection-card h3 {
+    margin-bottom: 8px;
+    font-size: 1.08rem;
+}
+
+body[data-page-requires="final"]
+.reflection-card p {
+    color: #111111;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+body[data-page-requires="final"]
+.reflection-card textarea {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.quiz-review-reminder {
+    margin-bottom: 20px;
+    padding: 14px 16px;
+    border: 1px solid #ead8a6;
+    border-radius: 12px;
+    background: #fff8e8;
+}
+
+    .quiz-review-reminder strong {
+        display: block;
+        margin-bottom: 4px;
+        color: #8a6514;
+        font-size: .9rem;
+    }
+
+    .quiz-review-reminder p {
+        margin: 0;
+        color: #111111;
+        font-size: .98rem;
+        line-height: 1.8;
+    }

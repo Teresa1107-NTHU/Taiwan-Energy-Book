@@ -6783,3 +6783,62 @@ body[data-page-requires="final"]
         font-size: .98rem;
         line-height: 1.8;
     }
+
+/* =========================================================
+   小試身手：一次作答提醒
+========================================================= */
+
+.mini-quiz-once-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    margin: 14px 0 18px;
+    padding: 12px 14px;
+
+    border: 1px solid #ead8a6;
+    border-radius: 10px;
+
+    background: #fff8e8;
+}
+
+.mini-quiz-once-notice strong {
+    flex-shrink: 0;
+
+    color: #8a6514;
+    font-size: .88rem;
+    line-height: 1.7;
+}
+
+.mini-quiz-once-notice span {
+    color: #111111;
+    font-size: .92rem;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   小試身手：答案鎖定狀態
+========================================================= */
+
+.mini-quiz-card.quiz-locked
+.quiz-option {
+    cursor: default;
+}
+
+.mini-quiz-card.quiz-locked
+.quiz-option:has(input:disabled) {
+    opacity: .72;
+}
+
+.mini-quiz-card.quiz-locked
+.quiz-option:has(input:checked) {
+    opacity: 1;
+    border-color: #8fb89a;
+    background: #f2f8f3;
+}
+
+.mini-quiz-card.quiz-locked
+.quiz-save-btn {
+    opacity: .65;
+    cursor: not-allowed;
+}

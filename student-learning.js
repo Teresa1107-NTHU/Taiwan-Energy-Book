@@ -5171,6 +5171,7 @@ function refreshHomeRoute() {
 
 /* =========================================================
    各能源模組共用：小試身手
+   每題只有一次正式作答機會
 ========================================================= */
 
 function initMiniQuizzes() {
@@ -5182,7 +5183,10 @@ function initMiniQuizzes() {
             const quizKey =
                 card.dataset.quizKey;
 
-            if (!quizKey) return;
+            if (!quizKey) {
+                return;
+            }
+
 
             const radios =
                 card.querySelectorAll(
@@ -5198,63 +5202,106 @@ function initMiniQuizzes() {
                 card.querySelector(
                     ".quiz-save-status"
                 );
-                radios.forEach(radio => {
-
-    radio.addEventListener("change", () => {
-
-        /*
-         * 只要答案被修改，
-         * 就視為尚未重新儲存。
-         */
-        localStorage.removeItem(
-            `energy_quiz_saved_${quizKey}`
-        );
-
-        if (status) {
-            status.textContent =
-                "答案已修改，請重新儲存";
-        }
-    });
-
-});
 
 
-            // -------------------------
-            // 還原之前的作答
-            // -------------------------
+            /* =============================================
+               檢查這一題是否已正式儲存
+            ============================================= */
 
             const savedAnswer =
                 localStorage.getItem(
                     `energy_quiz_${quizKey}`
                 );
 
-            if (savedAnswer) {
+            const answerSaved =
+                localStorage.getItem(
+                    `energy_quiz_saved_${quizKey}`
+                ) === "yes";
 
-    const savedRadio =
-        card.querySelector(
-            `input[value="${savedAnswer}"]`
-        );
 
-    if (savedRadio) {
-        savedRadio.checked = true;
-    }
+            /* =============================================
+               已經作答並儲存
+               → 還原答案
+               → 整題鎖定
+            ============================================= */
 
-    const answerSaved =
-        localStorage.getItem(
-            `energy_quiz_saved_${quizKey}`
-        ) === "yes";
+            if (
+                savedAnswer &&
+                answerSaved
+            ) {
 
-    if (status) {
-        status.textContent =
-            answerSaved
-                ? "答案已儲存 ✓"
-                : "答案尚未儲存";
-    }
-}
+                const savedRadio =
+                    card.querySelector(
+                        `input[name="${quizKey}"][value="${savedAnswer}"]`
+                    );
 
-            // -------------------------
-            // 儲存答案
-            // -------------------------
+                if (savedRadio) {
+                    savedRadio.checked = true;
+                }
+
+
+                /*
+                 * 鎖定所有選項
+                 */
+                radios.forEach(
+                    radio => {
+                        radio.disabled = true;
+                    }
+                );
+
+
+                /*
+                 * 鎖定儲存按鈕
+                 */
+                if (saveBtn) {
+
+                    saveBtn.disabled = true;
+
+                    saveBtn.textContent =
+                        "答案已鎖定";
+                }
+
+
+                /*
+                 * 顯示狀態
+                 */
+                if (status) {
+
+                    status.textContent =
+                        "答案已儲存並鎖定 ✓";
+                }
+
+
+                /*
+                 * 增加鎖定樣式
+                 */
+                card.classList.add(
+                    "quiz-locked"
+                );
+
+
+                /*
+                 * 已經完成，
+                 * 不需要再綁儲存事件。
+                 */
+                return;
+            }
+
+
+            /* =============================================
+               尚未正式儲存
+            ============================================= */
+
+            if (status) {
+
+                status.textContent =
+                    "請確認答案後再儲存";
+            }
+
+
+            /* =============================================
+               儲存答案
+            ============================================= */
 
             if (saveBtn) {
 
@@ -5262,14 +5309,41 @@ function initMiniQuizzes() {
                     "click",
                     () => {
 
+                        /*
+                         * 再檢查一次，
+                         * 防止重複儲存。
+                         */
+                        const alreadySaved =
+                            localStorage.getItem(
+                                `energy_quiz_saved_${quizKey}`
+                            ) === "yes";
+
+
+                        if (alreadySaved) {
+
+                            if (status) {
+
+                                status.textContent =
+                                    "答案已儲存並鎖定 ✓";
+                            }
+
+                            return;
+                        }
+
+
                         const selected =
                             card.querySelector(
                                 `input[name="${quizKey}"]:checked`
                             );
 
+
+                        /*
+                         * 沒有選答案
+                         */
                         if (!selected) {
 
                             if (status) {
+
                                 status.textContent =
                                     "請先選擇一個答案";
                             }
@@ -5277,25 +5351,65 @@ function initMiniQuizzes() {
                             return;
                         }
 
+
+                        /*
+                         * 儲存正式答案
+                         */
                         localStorage.setItem(
-    `energy_quiz_${quizKey}`,
-    selected.value
-);
+                            `energy_quiz_${quizKey}`,
+                            selected.value
+                        );
 
-localStorage.setItem(
-    `energy_quiz_saved_${quizKey}`,
-    "yes"
-);
 
-if (status) {
-    status.textContent =
-        "答案已儲存 ✓";
-}
+                        /*
+                         * 標記：
+                         * 這題已正式提交
+                         */
+                        localStorage.setItem(
+                            `energy_quiz_saved_${quizKey}`,
+                            "yes"
+                        );
+
+
+                        /* =================================
+                           儲存後立即鎖定
+                        ================================= */
+
+                        radios.forEach(
+                            radio => {
+                                radio.disabled = true;
+                            }
+                        );
+
+
+                        saveBtn.disabled = true;
+
+                        saveBtn.textContent =
+                            "答案已鎖定";
+
+
+                        card.classList.add(
+                            "quiz-locked"
+                        );
+
+
+                        if (status) {
+
+                            status.textContent =
+                                "答案已儲存並鎖定 ✓";
+                        }
                     }
                 );
             }
+
         });
 }
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initMiniQuizzes
+);
 
 document.addEventListener(
     "DOMContentLoaded",

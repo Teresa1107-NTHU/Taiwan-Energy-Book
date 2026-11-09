@@ -6842,3 +6842,53 @@ body[data-page-requires="final"]
     opacity: .65;
     cursor: not-allowed;
 }
+
+/* =========================================================
+   全站：一次正式作答提醒
+========================================================= */
+
+.single-attempt-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 14px 0 18px;
+    padding: 12px 14px;
+    border: 1px solid #ead8a6;
+    border-radius: 10px;
+    background: #fff8e8;
+}
+
+    .single-attempt-notice strong {
+        flex-shrink: 0;
+        color: #8a6514;
+        font-size: .88rem;
+        line-height: 1.7;
+    }
+
+    .single-attempt-notice span {
+        color: #111111;
+        font-size: .92rem;
+        line-height: 1.7;
+    }
+
+
+/* =========================================================
+   全站：正式儲存後的鎖定狀態
+========================================================= */
+
+textarea:disabled {
+    opacity: 1;
+    color: #111111;
+    background: #f5f6f7;
+    border-color: #d9dde2;
+    cursor: default;
+}
+
+input[type="radio"]:disabled {
+    cursor: default;
+}
+
+.quiz-save-btn:disabled {
+    opacity: .65;
+    cursor: not-allowed;
+}

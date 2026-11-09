@@ -5405,12 +5405,6 @@ function initMiniQuizzes() {
         });
 }
 
-
-document.addEventListener(
-    "DOMContentLoaded",
-    initMiniQuizzes
-);
-
 document.addEventListener(
     "DOMContentLoaded",
     initMiniQuizzes
@@ -5465,45 +5459,37 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================
 
     if (
-        localStorage.getItem(savedKey) === "yes" &&
+        localStorage.getItem(
+            savedKey
+        ) === "yes" &&
         textarea.value.trim().length > 0
     ) {
 
-        status.textContent =
-            "答案已儲存 ✓";
-
+        lockAnswerFields(
+            [textarea],
+            saveBtn,
+            status
+        );
     }
 
     // =========================
     // 學生修改文字後
     // 視為需要重新儲存
     // =========================
-    textarea.addEventListener("input", () => {
+    textarea.addEventListener(
+        "input",
+        () => {
 
-    localStorage.setItem(
-        answerKey,
-        textarea.value
+            /*
+             * 尚未正式儲存前，
+             * 可暫存目前輸入內容。
+             */
+            localStorage.setItem(
+                answerKey,
+                textarea.value
+            );
+        }
     );
-
-    localStorage.removeItem(savedKey);
-
-    status.textContent = "";
-
-    // 如果已經完成，但又修改答案，
-    // 就取消「完成」狀態，要求重新儲存
-    if (isDone("discover")) {
-
-        setDone("discover", false);
-
-        updateCompletionButton(
-            completeBtn,
-            "discover",
-            false
-        );
-
-        refreshAllLearningUI();
-    }
-});
 
     // =========================
     // 儲存答案
@@ -5531,10 +5517,45 @@ document.addEventListener("DOMContentLoaded", () => {
             "yes"
         );
 
-        status.textContent =
-            "答案已儲存 ✓";
+        lockAnswerFields(
+            [textarea],
+            saveBtn,
+            status
+        );
     });
 });
+
+/* =========================================================
+   共用：正式儲存後鎖定作答區
+========================================================= */
+
+function lockAnswerFields(
+    fields,
+    saveBtn,
+    status,
+    buttonText = "答案已鎖定"
+) {
+
+    fields.forEach(field => {
+        if (field) {
+            field.disabled = true;
+        }
+    });
+
+    if (saveBtn) {
+        saveBtn.disabled = true;
+        saveBtn.textContent = buttonText;
+    }
+
+    if (status) {
+        status.textContent =
+            "答案已儲存並鎖定 ✓";
+
+        status.classList.remove(
+            "pending"
+        );
+    }
+}
 
 /* =========================================================
    開始學習：兩題都完成並儲存後才可完成
@@ -5578,6 +5599,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const savedKey =
         "energy_answer_saved_start";
+
+    const startRadios =
+        Array.from(
+            radioGroup.querySelectorAll(
+                'input[type="radio"]'
+            )
+        );
+
+    const startFields = [
+        ...startRadios,
+        textarea
+    ];
 
 
     // =========================
@@ -5646,79 +5679,59 @@ document.addEventListener("DOMContentLoaded", () => {
     // 載入時還原「已儲存」狀態
     // =========================
     updateStartAnswerHint();
-   
 
+    if (
+        localStorage.getItem(
+            savedKey
+        ) === "yes"
+    ) {
+
+        lockAnswerFields(
+            startFields,
+            saveBtn,
+            status
+        );
+    }
+   
     // =========================
-    // 學生修改單選題後
-    // 需要重新儲存
+    // 尚未正式儲存前，可自由修改單選題
     // =========================
     radioGroup
         .querySelectorAll('input[type="radio"]')
         .forEach(radio => {
 
-            radio.addEventListener("change", () => {
+            radio.addEventListener(
+                "change",
+                () => {
 
-                if (radio.checked) {
+                    if (radio.checked) {
 
-                    localStorage.setItem(
-                        radioKey,
-                        radio.value
-                    );
+                        localStorage.setItem(
+                            radioKey,
+                            radio.value
+                        );
+                    }
 
+                    updateStartAnswerHint();
                 }
-
-                localStorage.removeItem(savedKey);
-
-                // 若已完成後又修改答案，
-                // 自動取消完成狀態
-                if (isDone("start")) {
-
-                    setDone("start", false);
-
-                    updateCompletionButton(
-                        completeBtn,
-                        "start",
-                        false
-                    );
-
-                    refreshAllLearningUI();
-
-                }
-                updateStartAnswerHint();
-                
-            });
+            );
         });
 
     // =========================
-    // 學生修改文字後
-    // 需要重新儲存
+    // 尚未正式儲存前，可自由修改文字答案
     // =========================
-    textarea.addEventListener("input", () => {
+    textarea.addEventListener(
+        "input",
+        () => {
 
-        localStorage.setItem(
-            textKey,
-            textarea.value
-        );
-
-        localStorage.removeItem(savedKey);
-
-        if (isDone("start")) {
-
-            setDone("start", false);
-
-            updateCompletionButton(
-                completeBtn,
-                "start",
-                false
+            localStorage.setItem(
+                textKey,
+                textarea.value
             );
 
-            refreshAllLearningUI();
-
+            updateStartAnswerHint();
         }
-        updateStartAnswerHint();
-       
-    });
-
+    );
 
     // =========================
     // 儲存答案
@@ -5757,9 +5770,11 @@ document.addEventListener("DOMContentLoaded", () => {
             "yes"
         );
 
-
-        status.textContent =
-            "答案已儲存 ✓";
+        lockAnswerFields(
+            startFields,
+            saveBtn,
+            status
+        );
 
         status.classList.remove("pending");
 
@@ -5839,6 +5854,52 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const challenge2SavedKey =
         "energy_answer_saved_alpha_challenge_2";
+
+    const challenge1Fields =
+        Array.from(
+            document.querySelectorAll(`
+            input[name="vacuum_predict"],
+            textarea[data-save="vacuum_reason"],
+            textarea[data-save="vacuum_observe"],
+            textarea[data-save="vacuum_explain"]
+        `)
+        );
+
+    const challenge2Fields =
+        Array.from(
+            document.querySelectorAll(`
+            textarea[data-save="fuel_predict"],
+            textarea[data-save="fuel_observe"],
+            textarea[data-save="fuel_explain"]
+        `)
+        );
+
+    if (
+        localStorage.getItem(
+            challenge1SavedKey
+        ) === "yes"
+    ) {
+
+        lockAnswerFields(
+            challenge1Fields,
+            challenge1SaveBtn,
+            challenge1Status
+        );
+    }
+
+
+    if (
+        localStorage.getItem(
+            challenge2SavedKey
+        ) === "yes"
+    ) {
+
+        lockAnswerFields(
+            challenge2Fields,
+            challenge2SaveBtn,
+            challenge2Status
+        );
+    }
 
 
     // =====================================================
@@ -6003,7 +6064,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // =====================================================
     // CHALLENGE 01 儲存
     // =====================================================
-
     challenge1SaveBtn.addEventListener(
         "click",
         () => {
@@ -6027,16 +6087,19 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-            updateChallenge1Hint();
-            
+            lockAnswerFields(
+                challenge1Fields,
+                challenge1SaveBtn,
+                challenge1Status,
+                "CHALLENGE 01 已鎖定"
+            );
+
         }
     );
-
 
     // =====================================================
     // CHALLENGE 02 儲存
     // =====================================================
-
     challenge2SaveBtn.addEventListener(
         "click",
         () => {
@@ -6060,108 +6123,15 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-            updateChallenge2Hint();
-            
+            lockAnswerFields(
+                challenge2Fields,
+                challenge2SaveBtn,
+                challenge2Status,
+                "CHALLENGE 02 已鎖定"
+            );
+
         }
     );
-
-
-    // =====================================================
-    // 修改答案後，必須重新按儲存
-    // =====================================================
-
-    const challenge1Fields =
-        document.querySelectorAll(`
-            input[name="vacuum_predict"],
-            textarea[data-save="vacuum_reason"],
-            textarea[data-save="vacuum_observe"],
-            textarea[data-save="vacuum_explain"]
-        `);
-
-
-    challenge1Fields.forEach(field => {
-
-        const eventName =
-            field.type === "radio"
-                ? "change"
-                : "input";
-
-
-        field.addEventListener(
-            eventName,
-            () => {
-
-                localStorage.removeItem(
-                    challenge1SavedKey
-                );
-
-
-                if (isDone("challenge")) {
-
-                    setDone(
-                        "challenge",
-                        false
-                    );
-
-                    updateCompletionButton(
-                        completeBtn,
-                        "challenge",
-                        false
-                    );
-
-                    refreshAllLearningUI();
-                }
-
-
-                updateChallenge1Hint();
-                
-            }
-        );
-    });
-
-
-    const challenge2Fields =
-        document.querySelectorAll(`
-            textarea[data-save="fuel_predict"],
-            textarea[data-save="fuel_observe"],
-            textarea[data-save="fuel_explain"]
-        `);
-
-
-    challenge2Fields.forEach(field => {
-
-        field.addEventListener(
-            "input",
-            () => {
-
-                localStorage.removeItem(
-                    challenge2SavedKey
-                );
-
-
-                if (isDone("challenge")) {
-
-                    setDone(
-                        "challenge",
-                        false
-                    );
-
-                    updateCompletionButton(
-                        completeBtn,
-                        "challenge",
-                        false
-                    );
-
-                    refreshAllLearningUI();
-                }
-
-
-                updateChallenge2Hint();
-                
-            }
-        );
-    });
-
 
     // =====================================================
     // 初始狀態
@@ -6169,218 +6139,199 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateChallenge1Hint();
     updateChallenge2Hint();
-    
 
 });
 
 /* =========================================================
-   最後學習整理：三題完成並儲存後才可完成
+   最後學習整理：三題一次正式提交
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    const q1 =
-        document.querySelector(
-            'textarea[data-save="review_q1"]'
-        );
+        const q1 =
+            document.querySelector(
+                'textarea[data-save="review_q1"]'
+            );
 
-    const q2 =
-        document.querySelector(
-            'textarea[data-save="review_q2"]'
-        );
+        const q2 =
+            document.querySelector(
+                'textarea[data-save="review_q2"]'
+            );
 
-    const q3 =
-        document.querySelector(
-            'textarea[data-save="review_q3"]'
-        );
+        const q3 =
+            document.querySelector(
+                'textarea[data-save="review_q3"]'
+            );
 
-    const saveBtn =
-        document.getElementById(
-            "reviewSaveBtn"
-        );
+        const saveBtn =
+            document.getElementById(
+                "reviewSaveBtn"
+            );
 
-    const status =
-        document.getElementById(
-            "reviewSaveStatus"
-        );
+        const status =
+            document.getElementById(
+                "reviewSaveStatus"
+            );
 
-    const completeBtn =
-        document.getElementById(
-            "finishLesson"
-        );
-
-
-    /*
-     * 不是最後整理頁就離開。
-     */
-    if (
-        !q1 ||
-        !q2 ||
-        !q3 ||
-        !saveBtn ||
-        !status ||
-        !completeBtn
-    ) {
-        return;
-    }
+        const completeBtn =
+            document.getElementById(
+                "finishLesson"
+            );
 
 
-    const savedKey =
-        "energy_answer_saved_review";
+        /*
+         * 不是學習整理頁就停止。
+         */
+        if (
+            !q1 ||
+            !q2 ||
+            !q3 ||
+            !saveBtn ||
+            !status ||
+            !completeBtn
+        ) {
+            return;
+        }
 
 
-    function allAnswered() {
-
-        return !!(
-            q1.value.trim() &&
-            q2.value.trim() &&
-            q3.value.trim()
-        );
-    }
+        const savedKey =
+            "energy_answer_saved_review";
 
 
-    function updateReviewHint() {
+        /*
+         * 三題視為同一組。
+         */
+        const reviewFields = [
+            q1,
+            q2,
+            q3
+        ];
 
-        const saved =
+
+        /*
+         * 檢查三題是否都有回答。
+         */
+        function allAnswered() {
+
+            return !!(
+                q1.value.trim() &&
+                q2.value.trim() &&
+                q3.value.trim()
+            );
+        }
+
+
+        /*
+         * 如果之前已正式儲存，
+         * 重新進入頁面時直接鎖定。
+         */
+        if (
             localStorage.getItem(
                 savedKey
-            ) === "yes";
-
-
-        if (
-            saved &&
-            allAnswered()
+            ) === "yes"
         ) {
 
-            status.textContent =
-                "答案已儲存 ✓";
-
-            status.classList.remove(
-                "pending"
+            lockAnswerFields(
+                reviewFields,
+                saveBtn,
+                status,
+                "三題答案已鎖定"
             );
 
             return;
         }
 
 
-        status.classList.add(
-            "pending"
+        /*
+         * 尚未儲存時的提示。
+         */
+        function updateReviewHint() {
+
+            status.classList.add(
+                "pending"
+            );
+
+            if (allAnswered()) {
+
+                status.textContent =
+                    "已完成作答，請確認內容後按「儲存三題答案」";
+
+            } else {
+
+                status.textContent =
+                    "請先完成三個問題";
+            }
+        }
+
+
+        /*
+         * 儲存前仍可自由修改。
+         */
+        reviewFields.forEach(
+            field => {
+
+                field.addEventListener(
+                    "input",
+                    updateReviewHint
+                );
+            }
         );
 
 
-        if (allAnswered()) {
-
-            status.textContent =
-                "已完成作答，請按「儲存三題答案」";
-
-        } else {
-
-            status.textContent =
-                "請先完成三個問題";
-
-        }
-
-    }
-
-
-    /*
-     * 修改任何答案後：
-     * 必須重新按儲存，
-     * 若原本已完成，也取消完成狀態。
-     */
-    [q1, q2, q3].forEach(field => {
-
-        field.addEventListener(
-            "input",
+        /*
+         * 正式儲存。
+         */
+        saveBtn.addEventListener(
+            "click",
             () => {
 
-                localStorage.removeItem(
-                    savedKey
-                );
+                if (!allAnswered()) {
 
+                    status.textContent =
+                        "請先完成三個問題再儲存";
 
-                if (isDone("review")) {
-
-                    setDone(
-                        "review",
-                        false
+                    status.classList.add(
+                        "pending"
                     );
 
-
-                    updateCompletionButton(
-                        completeBtn,
-                        "review",
-                        false
-                    );
-
-
-                    const completeCard =
-                        document.getElementById(
-                            "lessonComplete"
-                        );
-
-
-                    if (completeCard) {
-                        completeCard.hidden = true;
-                    }
-
-
-                    refreshAllLearningUI();
+                    return;
                 }
 
 
-                updateReviewHint();
+                /*
+                 * data-save 已將文字內容
+                 * 存進 localStorage。
+                 * 這裡只標記這三題已正式提交。
+                 */
+                localStorage.setItem(
+                    savedKey,
+                    "yes"
+                );
+
+
+                /*
+                 * 三題立即鎖定。
+                 */
+                lockAnswerFields(
+                    reviewFields,
+                    saveBtn,
+                    status,
+                    "三題答案已鎖定"
+                );
 
             }
         );
 
-    });
 
+        /*
+         * 第一次進入頁面的提示。
+         */
+        updateReviewHint();
 
-    /*
-     * 正式儲存
-     */
-    saveBtn.addEventListener(
-        "click",
-        () => {
-
-            if (!allAnswered()) {
-
-                status.textContent =
-                    "請先完成三個問題再儲存";
-
-                status.classList.add(
-                    "pending"
-                );
-
-                return;
-            }
-
-
-            /*
-             * textarea 本身的內容已由共用
-             * data-save 機制存入 localStorage，
-             * 這裡只需要紀錄：
-             * 「三題已正式儲存」。
-             */
-            localStorage.setItem(
-                savedKey,
-                "yes"
-            );
-
-
-            updateReviewHint();
-
-        }
-    );
-
-
-    /*
-     * 頁面載入時還原提示狀態。
-     */
-    updateReviewHint();
-
-});
+    }
+);
 
 /* =========================================================
    最後學習整理：小試身手回顧

@@ -6892,3 +6892,63 @@ input[type="radio"]:disabled {
     opacity: .65;
     cursor: not-allowed;
 }
+
+/* =========================================================
+   首頁：新興能源共同先備概念
+========================================================= */
+
+.emerging-basics {
+    margin: 28px 0 30px;
+    padding: 26px;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    background: #ffffff;
+}
+
+.emerging-basics-head {
+    margin-bottom: 20px;
+}
+
+.emerging-basics-head .eyebrow {
+    color: #8a939b;
+    margin-bottom: 5px;
+}
+
+.emerging-basics-head h3 {
+    margin-bottom: 8px;
+    font-size: 1.35rem;
+}
+
+.emerging-basics-head p {
+    color: #111111;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.emerging-basics-transition {
+    margin-top: 20px;
+    padding: 16px 18px;
+    border-left: 3px solid #63daf4;
+    border-radius: 10px;
+    background: #f5fafb;
+}
+
+.emerging-basics-transition strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #111827;
+}
+
+.emerging-basics-transition p {
+    margin: 4px 0 0;
+    color: #111111;
+    font-size: .98rem;
+    line-height: 1.8;
+}
+
+@media(max-width:768px) {
+
+    .emerging-basics {
+        padding: 20px;
+    }
+}
